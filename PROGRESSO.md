@@ -12,20 +12,24 @@
 - [x] **Definição da stack** → **Astro** escolhido (melhor SEO, performance e custo)
 - [x] **Relatório salvo** em `C:\Users\Doma\pesquisa_stack_portal\pesquisa_stack_portal_2026.md`
 - [x] **Análise do plano de ação** (`plano_acao_portal_seo.pdf`) lido e compreendido
-- [x] **Pesquisa de mercado** adicional baixada (`Pesquisa de mercado para um portal editorial...pdf`)
+- [x] **Pesquisa de mercado** adicional baixada
 - [x] **Pasta do projeto criada:** `C:\Users\Doma\portal-marketing-digital\`
-- [x] **Sistema de progresso:** PROGRESSO.md criado e será atualizado a cada sessão
+- [x] **Sistema de progresso:** PROGRESSO.md criado
 - [x] **Nome definido:** **Radar Digital** 🎯 (07/07)
 - [x] **Setup Astro + Tailwind** — Projeto criado, build funcional (07/07)
 - [x] **Design da Home** — Hero com gradiente, glass cards, placeholder artigos, newsletter (07/07)
 - [x] **Sistema de Tema Dark/Light** — CSS variables + toggle + localStorage (07/07)
 - [x] **Repositório GitHub criado** — `github.com/Burntroll/radar-digital` (07/07)
+- [x] **Página 404** — Three.js com radar estilizado (anéis, scan line, blips, estrelas) + deriva espacial (07/07)
+- [x] **Light mode ajustado** — Paleta creme quente (`#f0ece4`) para conforto visual (07/07)
 
 ---
 
 ## 🟡 Em andamento
 
-- [ ] **Escrever primeiro artigo de verdade**
+- [ ] **Ajustar light mode** (ainda claro demais) — paleta creme quente
+- [ ] **Primeiro artigo de verdade**
+- [ ] **Páginas de categoria** (marketing-digital, inteligencia-artificial, monetizacao)
 
 ---
 
