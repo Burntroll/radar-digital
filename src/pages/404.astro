@@ -139,95 +139,267 @@ import Layout from '../layouts/Layout.astro';
       const stars = new THREE.Points(starGeo, starMat);
       scene.add(stars);
 
-      // ─── Broken Radar ───
+      // ─── BROKEN RADAR (realistic model) ───
       const radar = new THREE.Group();
       scene.add(radar);
 
-      const dishMat = new THREE.MeshPhysicalMaterial({
-        color: 0x1a2a3a, metalness: 0.7, roughness: 0.3,
-        emissive: 0x00e5ff, emissiveIntensity: 0.04,
-      });
-      const accentMat = new THREE.MeshPhysicalMaterial({
-        color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.3,
-        metalness: 0.9, roughness: 0.2,
-      });
-      const darkMat = new THREE.MeshPhysicalMaterial({
-        color: 0x0d1a2a, metalness: 0.5, roughness: 0.6,
-      });
+      // Materials
+      function makeMat(color, opts) {
+        return new THREE.MeshPhysicalMaterial(Object.assign({
+          color: color, metalness: 0.3, roughness: 0.6,
+        }, opts || {}));
+      }
+      var cream    = 0xeae0d0;  // Warm off-white - contrasts dark/light
+      var dishIn   = 0x2a3238;  // Deep charcoal dish interior
+      var metal    = 0x3a4755;  // Gunmetal structure
+      var darkIron = 0x1a2430;  // Very dark base elements
+      var amber    = 0xff8833;  // Warning light accent
+      var copper   = 0xc4883c;  // Broken cable
 
-      // Dish
-      const dish = new THREE.Mesh(new THREE.SphereGeometry(1.6, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.4), dishMat);
-      dish.rotation.x = Math.PI;
-      dish.rotation.z = 0.2;
-      radar.add(dish);
-
-      // Rim
-      const rim = new THREE.Mesh(
-        new THREE.TorusGeometry(1.6, 0.04, 12, 48),
-        new THREE.MeshPhysicalMaterial({ color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.15, metalness: 0.8, roughness: 0.2 })
+      // ── 1. Main Parabolic Dish ──
+      var dishBody = new THREE.Mesh(
+        new THREE.SphereGeometry(1.6, 40, 28, 0, Math.PI*2, 0, Math.PI*0.45),
+        makeMat(dishIn, { metalness: 0.6, roughness: 0.4 })
       );
-      rim.rotation.x = Math.PI * 0.38;
-      rim.rotation.z = 0.2;
-      rim.position.z = 0.05;
+      dishBody.rotation.x = Math.PI; dishBody.rotation.z = 0.15;
+      radar.add(dishBody);
+
+      // Dish outer shell (back of dish)
+      var dishBack = new THREE.Mesh(
+        new THREE.SphereGeometry(1.58, 32, 20, 0, Math.PI*2, Math.PI*0.45, Math.PI*0.15),
+        makeMat(cream, { roughness: 0.7 })
+      );
+      dishBack.rotation.x = Math.PI; dishBack.rotation.z = 0.15;
+      radar.add(dishBack);
+
+      // Dish rim
+      var rim = new THREE.Mesh(
+        new THREE.TorusGeometry(1.6, 0.035, 10, 56),
+        makeMat(metal, { metalness: 0.8, roughness: 0.2 })
+      );
+      rim.rotation.x = Math.PI * 0.43; rim.rotation.z = 0.15; rim.position.z = 0.04;
       radar.add(rim);
 
-      // Mast
-      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 1.2, 6), darkMat);
-      mast.position.set(0, -1.2, 0);
+      // Dish panel lines (wireframe overlay)
+      var panelGeo = new THREE.SphereGeometry(1.59, 14, 10, 0, Math.PI*2, 0, Math.PI*0.43);
+      var panelLine = new THREE.LineSegments(
+        new THREE.EdgesGeometry(panelGeo),
+        new THREE.LineBasicMaterial({ color: 0x4a5a6a, transparent: true, opacity: 0.2 })
+      );
+      panelLine.rotation.x = Math.PI; panelLine.rotation.z = 0.15;
+      radar.add(panelLine);
+
+      // ── 2. Feed Horn Antenna (at focal point) ──
+      var feedGroup = new THREE.Group();
+      feedGroup.position.set(0.3, 0.8, 0); // Offset because dish is tilted
+      radar.add(feedGroup);
+
+      var feedBody = new THREE.Mesh(
+        new THREE.ConeGeometry(0.2, 0.25, 8),
+        makeMat(metal, { metalness: 0.7, roughness: 0.3 })
+      );
+      feedBody.rotation.x = Math.PI * 0.5;
+      feedGroup.add(feedBody);
+
+      var feedTip = new THREE.Mesh(
+        new THREE.SphereGeometry(0.045, 6, 6),
+        makeMat(0x445566, { metalness: 0.9, roughness: 0.2 })
+      );
+      feedTip.position.z = 0.15;
+      feedGroup.add(feedTip);
+
+      // Feed support struts (3 thin cylinders to dish edge)
+      for (var s = 0; s < 3; s++) {
+        var angle = (s / 3) * Math.PI * 2;
+        var strut = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.012, 0.018, 1.0, 4),
+          makeMat(metal, { metalness: 0.7, roughness: 0.3 })
+        );
+        strut.position.set(
+          Math.cos(angle) * 0.7,
+          0.6 - Math.sin(angle) * 0.4,
+          Math.sin(angle) * 0.3
+        );
+        strut.rotation.z = Math.cos(angle) * 0.15;
+        strut.rotation.x = Math.sin(angle) * 0.15;
+        radar.add(strut);
+      }
+
+      // ── 3. Radome (white dome enclosure - back) ──
+      var radome = new THREE.Mesh(
+        new THREE.SphereGeometry(1.2, 24, 18, 0, Math.PI, 0, Math.PI*0.4),
+        makeMat(cream, { roughness: 0.8, transparent: true, opacity: 0.3 })
+      );
+      radome.position.set(-0.1, -0.1, 0.6);
+      radome.rotation.x = 0.2; radome.rotation.z = 0.1;
+      radar.add(radome);
+
+      // ── 4. Pedestal / Mast ──
+      var mast = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.18, 1.4, 10),
+        makeMat(metal, { metalness: 0.6, roughness: 0.5 })
+      );
+      mast.position.set(0, -1.3, 0);
       radar.add(mast);
 
-      // Base
-      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.15, 6), darkMat);
-      base.position.set(0, -1.8, 0);
-      radar.add(base);
+      // Mast ring detail
+      var mastRing = new THREE.Mesh(
+        new THREE.TorusGeometry(0.16, 0.025, 6, 12),
+        makeMat(darkIron, { metalness: 0.7, roughness: 0.4 })
+      );
+      mastRing.position.set(0, -0.7, 0);
+      mastRing.rotation.x = Math.PI * 0.5;
+      radar.add(mastRing);
 
-      // Arm
-      const armGroup = new THREE.Group();
-      armGroup.position.set(0, 0.3, 0);
+      // ── 5. Equipment Cabinet (base) ──
+      var cabinet = new THREE.Mesh(
+        new THREE.BoxGeometry(0.6, 0.35, 0.5),
+        makeMat(darkIron, { roughness: 0.8 })
+      );
+      cabinet.position.set(0, -1.95, 0.1);
+      radar.add(cabinet);
+
+      // Cabinet details
+      var vent = new THREE.Mesh(
+        new THREE.BoxGeometry(0.35, 0.02, 0.02),
+        makeMat(0x4a5a6a, { metalness: 0.5, roughness: 0.5 })
+      );
+      for (var v = 0; v < 4; v++) {
+        var vv = vent.clone();
+        vv.position.set(0.1, -1.85 + v * 0.06, 0.35);
+        radar.add(vv);
+      }
+
+      // Base plate
+      var basePlate = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.5, 0.55, 0.1, 8),
+        makeMat(darkIron, { roughness: 0.9 })
+      );
+      basePlate.position.set(0, -2.15, 0);
+      radar.add(basePlate);
+
+      // ── 6. Broken Scanner Arm ──
+      var armGroup = new THREE.Group();
+      armGroup.position.set(0, 0.2, 0);
       radar.add(armGroup);
 
-      const arm = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.04, 0.04), accentMat);
-      armGroup.add(arm);
-
-      const tipMat = new THREE.MeshPhysicalMaterial({
-        color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.8, transparent: true, opacity: 0.9,
-      });
-      const t1 = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 6), tipMat);
-      t1.position.set(0.9, 0, 0);
-      armGroup.add(t1);
-      const t2 = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 6), tipMat);
-      t2.position.set(-0.9, 0, 0);
-      armGroup.add(t2);
-
-      // Broken piece
-      const crack = new THREE.Mesh(new THREE.SphereGeometry(0.3, 5, 4, 0, Math.PI * 0.6, 0, Math.PI * 0.3), dishMat);
-      crack.position.set(1.8, 0.8, 0.5);
-      crack.rotation.set(0.7, 0.3, 1.2);
-      crack.scale.set(0.8, 0.5, 0.6);
-      radar.add(crack);
-
-      // Fragment
-      const frag = new THREE.Mesh(
-        new THREE.BoxGeometry(0.15, 0.02, 0.25),
-        new THREE.MeshPhysicalMaterial({ color: 0x1a2a3a, metalness: 0.5, roughness: 0.5, emissive: 0x00e5ff, emissiveIntensity: 0.02 })
+      // Arm girder (more realistic than a flat bar)
+      var armBeam = new THREE.Mesh(
+        new THREE.BoxGeometry(1.6, 0.04, 0.06),
+        makeMat(metal, { metalness: 0.7, roughness: 0.3 })
       );
-      frag.position.set(-1.4, 0.6, -0.3);
-      frag.rotation.set(0.5, 0.8, 0.2);
-      radar.add(frag);
+      armGroup.add(armBeam);
 
-      // Ring
-      const ringMat = new THREE.MeshPhysicalMaterial({
-        color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.1, transparent: true, opacity: 0.3,
+      // Arm cross-braces
+      for (var b = -2; b <= 2; b++) {
+        if (b === 0) continue;
+        var brace = new THREE.Mesh(
+          new THREE.BoxGeometry(0.02, 0.02, 0.1),
+          makeMat(metal, { metalness: 0.6, roughness: 0.4 })
+        );
+        brace.position.set(b * 0.3, 0, 0);
+        armGroup.add(brace);
+      }
+
+      // Scanner tips with glow
+      var tipMat2 = new THREE.MeshPhysicalMaterial({
+        color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.8,
+        transparent: true, opacity: 0.9,
       });
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.8, 0.015, 6, 32, Math.PI * 1.5), ringMat);
-      ring.position.set(0, 0.1, 0);
-      ring.rotation.x = Math.PI * 0.15;
-      ring.rotation.z = 0.3;
-      radar.add(ring);
+      var tipA = new THREE.Mesh(new THREE.SphereGeometry(0.05, 6, 6), tipMat2);
+      tipA.position.set(0.8, 0, 0);
+      armGroup.add(tipA);
+      var tipB = new THREE.Mesh(new THREE.SphereGeometry(0.05, 6, 6), tipMat2);
+      tipB.position.set(-0.8, 0, 0);
+      armGroup.add(tipB);
 
-      // Tilt
-      radar.rotation.x = 0.15;
-      radar.rotation.z = -0.2;
+      // ── 7. Warning Light (amber, blinking) ──
+      var warnLight = new THREE.Mesh(
+        new THREE.SphereGeometry(0.08, 8, 8),
+        new THREE.MeshPhysicalMaterial({
+          color: amber, emissive: amber, emissiveIntensity: 1.0,
+          transparent: true, opacity: 0.9,
+        })
+      );
+      warnLight.position.set(-0.2, 0.4, 1.1);
+      radar.add(warnLight);
+
+      // Light housing
+      var lightHousing = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.07, 0.09, 0.06, 6),
+        makeMat(metal, { metalness: 0.8, roughness: 0.2 })
+      );
+      lightHousing.position.set(-0.2, 0.36, 1.1);
+      radar.add(lightHousing);
+
+      // ── 8. Broken/Damaged Details ──
+
+      // Cracked dish fragment floating
+      var frag1 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 5, 4, 0, Math.PI*0.5, 0, Math.PI*0.3),
+        makeMat(cream, { roughness: 0.6 })
+      );
+      frag1.position.set(1.7, 0.7, 0.4);
+      frag1.rotation.set(0.6, 0.4, 1.1);
+      frag1.scale.set(0.7, 0.4, 0.5);
+      radar.add(frag1);
+
+      // Another fragment (metal piece)
+      var frag2 = new THREE.Mesh(
+        new THREE.BoxGeometry(0.12, 0.015, 0.2),
+        makeMat(metal, { metalness: 0.7, roughness: 0.3 })
+      );
+      frag2.position.set(-1.5, 0.5, -0.2);
+      frag2.rotation.set(0.7, 0.9, 0.3);
+      radar.add(frag2);
+
+      // Dangling broken cable
+      var cablePts = [];
+      cablePts.push(new THREE.Vector3(0.4, -0.2, 1.2));
+      cablePts.push(new THREE.Vector3(0.7, -0.8, 1.0));
+      cablePts.push(new THREE.Vector3(0.5, -1.3, 0.7));
+      var cableGeo = new THREE.BufferGeometry().setFromPoints(cablePts);
+      var cable = new THREE.Line(cableGeo, new THREE.LineBasicMaterial({
+        color: copper, transparent: true, opacity: 0.5,
+      }));
+      radar.add(cable);
+
+      // Spark particles at broken edge
+      var sparkCount = 25;
+      var sparkGeo2 = new THREE.BufferGeometry();
+      var sparkPos2 = new Float32Array(sparkCount * 3);
+      for (var i = 0; i < sparkCount * 3; i += 3) {
+        var a = Math.random() * Math.PI * 2;
+        var r = 0.1 + Math.random() * 0.25;
+        sparkPos2[i] = 1.5 + Math.cos(a) * r;
+        sparkPos2[i+1] = 0.3 + Math.sin(a) * r * 0.5;
+        sparkPos2[i+2] = (Math.random() - 0.5) * 0.15;
+      }
+      sparkGeo2.setAttribute('position', new THREE.BufferAttribute(sparkPos2, 3));
+      var sparkMat2 = new THREE.PointsMaterial({
+        color: 0x00e5ff, size: 0.03, transparent: true, opacity: 0.5,
+        blending: THREE.AdditiveBlending,
+      });
+      var sparks = new THREE.Points(sparkGeo2, sparkMat2);
+      radar.add(sparks);
+
+      // ── 9. Broken Scan Ring ──
+      var ringMat2 = new THREE.MeshPhysicalMaterial({
+        color: 0x00e5ff, emissive: 0x00e5ff, emissiveIntensity: 0.08,
+        transparent: true, opacity: 0.25,
+      });
+      var ring2 = new THREE.Mesh(
+        new THREE.TorusGeometry(0.9, 0.012, 6, 40, Math.PI * 1.3),
+        ringMat2
+      );
+      ring2.position.set(0, 0.1, 0);
+      ring2.rotation.x = Math.PI * 0.15;
+      ring2.rotation.z = 0.3;
+      radar.add(ring2);
+
+      // Initial tilt
+      radar.rotation.x = 0.12;
+      radar.rotation.z = -0.15;
 
       // ─── Mouse ───
       let mouseX = 0, mouseY = 0;
@@ -258,9 +430,11 @@ import Layout from '../layouts/Layout.astro';
         else armGroup.rotation.y += 0.003;
 
         var pulse = Math.sin(time * 3) * 0.3 + 0.6;
-        tipMat.emissiveIntensity = pulse;
+        tipMat2.emissiveIntensity = pulse;
+        // Amber warning light blinks
+        warnLight.material.emissiveIntensity = 0.3 + Math.sin(time * 4) * 0.7;
 
-        ringMat.opacity = 0.15 + Math.sin(time * 2) * 0.1;
+        ringMat2.opacity = 0.15 + Math.sin(time * 2) * 0.1;
 
         camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.01;
         camera.position.y += (-mouseY * 0.2 + 1.5 - camera.position.y) * 0.01;
