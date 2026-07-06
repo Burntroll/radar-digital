@@ -19,6 +19,7 @@
 - [x] **Setup Astro + Tailwind** — Projeto criado, build funcional (07/07)
 - [x] **Design da Home** — Hero com gradiente, glass cards, placeholder artigos, newsletter (07/07)
 - [x] **Sistema de Tema Dark/Light** — CSS variables + toggle + localStorage (07/07)
+- [x] **Repositório GitHub criado** — `github.com/Burntroll/radar-digital` (07/07)
 
 ---
 
