@@ -242,10 +242,17 @@ import Layout from '../layouts/Layout.astro';
         requestAnimationFrame(animate);
         time += 0.005;
 
-        radar.position.x = Math.sin(time * 0.3) * 0.03;
-        radar.position.y = Math.cos(time * 0.2) * 0.02;
-        radar.rotation.x = 0.15 + Math.sin(time * 0.5) * 0.02;
-        radar.rotation.z = -0.2 + Math.cos(time * 0.4) * 0.015;
+        // Radar floats freely across the screen like drifting in space
+        var driftX = Math.sin(time * 0.15) * 1.8 + Math.sin(time * 0.07) * 1.2;
+        var driftY = Math.cos(time * 0.12) * 1.2 + Math.sin(time * 0.09) * 0.8;
+        var driftZ = Math.sin(time * 0.05) * 0.5;
+        radar.position.x = driftX;
+        radar.position.y = driftY;
+        radar.position.z = driftZ;
+        // Slow tumbling rotation
+        radar.rotation.x = 0.15 + Math.sin(time * 0.1) * 0.15;
+        radar.rotation.y = Math.sin(time * 0.08) * 0.3;
+        radar.rotation.z = -0.2 + Math.cos(time * 0.09) * 0.12;
 
         if (Math.sin(time * 5) > 0) armGroup.rotation.y += 0.01;
         else armGroup.rotation.y += 0.003;
@@ -257,7 +264,7 @@ import Layout from '../layouts/Layout.astro';
 
         camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.01;
         camera.position.y += (-mouseY * 0.2 + 1.5 - camera.position.y) * 0.01;
-        camera.lookAt(radar.position.x, radar.position.y, 0);
+        camera.lookAt(radar.position.x, radar.position.y, radar.position.z);
 
         stars.rotation.y += 0.00003;
 
