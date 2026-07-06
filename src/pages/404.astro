@@ -1,0 +1,236 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página não encontrada" description="404 - Página não encontrada no Radar Digital">
+  <!-- Three.js Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 z-0"></canvas>
+
+  <!-- 404 Content Overlay -->
+  <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+    <!-- Glow behind 404 -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none"
+         style="background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 60%);">
+    </div>
+
+    <div class="relative">
+      <!-- 404 Number -->
+      <h1 class="text-[10rem] sm:text-[14rem] md:text-[18rem] font-black leading-none tracking-tighter gradient-text select-none">
+        404
+      </h1>
+
+      <!-- Decorative line -->
+      <div class="flex items-center gap-3 justify-center my-4">
+        <span class="h-px w-12" style="background: linear-gradient(90deg, transparent, var(--color-border));"></span>
+        <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse-cyan"></span>
+        <span class="h-px w-12" style="background: linear-gradient(90deg, var(--color-border), transparent);"></span>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="text-text-secondary text-lg sm:text-xl font-medium transition-colors">
+        Sinal não encontrado no radar
+      </p>
+      <p class="text-text-muted text-sm mt-2 max-w-md mx-auto transition-colors">
+        A página que você procura não está mais no ar, foi movida ou nunca existiu.
+      </p>
+
+      <!-- Actions -->
+      <div class="flex flex-wrap gap-4 justify-center mt-10">
+        <a href="/" 
+           class="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
+                  bg-cyan-500/10 text-cyan-500 border border-cyan-500/30 
+                  hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300">
+          <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Voltar ao Radar
+        </a>
+        <button onclick="window.history.back()"
+                class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
+                       text-text-secondary border border-surface hover:border-cyan-500/30 hover:text-cyan-500
+                       transition-all duration-300 cursor-pointer">
+          Página anterior
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client script: Three.js scene -->
+  <script>
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) throw new Error('Canvas not found');
+
+    // ─── Scene setup ───
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0b0f);
+
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ 
+      canvas, 
+      alpha: false,
+      antialias: true,
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // ─── Lights ───
+    const ambientLight = new THREE.AmbientLight(0x222244, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0x00e5ff, 2, 20);
+    pointLight.position.set(2, 3, 4);
+    scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0x7c3aed, 1.5, 20);
+    pointLight2.position.set(-3, -1, 2);
+    scene.add(pointLight2);
+
+    // ─── Main Object: Torus Knot ───
+    const geometry = new THREE.TorusKnotGeometry(1, 0.35, 128, 16);
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0x00e5ff,
+      emissive: 0x00e5ff,
+      emissiveIntensity: 0.15,
+      metalness: 0.3,
+      roughness: 0.4,
+      transparent: true,
+      opacity: 0.7,
+      wireframe: false,
+    });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
+
+    // ─── Wireframe overlay ───
+    const wireGeo = new THREE.TorusKnotGeometry(1.02, 0.37, 64, 8);
+    const wireMat = new THREE.MeshBasicMaterial({
+      color: 0x00e5ff,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.15,
+    });
+    const wireKnot = new THREE.Mesh(wireGeo, wireMat);
+    scene.add(wireKnot);
+
+    // ─── Particle System ───
+    const particleCount = 800;
+    const particlesGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      // Distribute in a sphere
+      const radius = 4 + Math.random() * 6;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+
+      positions[i] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[i + 2] = radius * Math.cos(phi);
+
+      // Color: mostly cyan, some purple
+      const isCyan = Math.random() > 0.3;
+      colors[i] = isCyan ? 0 : 0.5;     // R
+      colors[i + 1] = isCyan ? 0.9 : 0.2; // G
+      colors[i + 2] = isCyan ? 1.0 : 0.9; // B
+    }
+
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.06,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      sizeAttenuation: true,
+    });
+    const particles = new THREE.Points(particlesGeo, particleMat);
+    scene.add(particles);
+
+    // ─── Small inner ring particles ───
+    const innerCount = 200;
+    const innerGeo = new THREE.BufferGeometry();
+    const innerPos = new Float32Array(innerCount * 3);
+    for (let i = 0; i < innerCount * 3; i += 3) {
+      const radius = 2 + Math.random() * 2;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      innerPos[i] = radius * Math.sin(phi) * Math.cos(theta);
+      innerPos[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      innerPos[i + 2] = radius * Math.cos(phi);
+    }
+    innerGeo.setAttribute('position', new THREE.BufferAttribute(innerPos, 3));
+    const innerMat = new THREE.PointsMaterial({
+      color: 0x00e5ff,
+      size: 0.03,
+      transparent: true,
+      opacity: 0.4,
+      blending: THREE.AdditiveBlending,
+    });
+    const innerParticles = new THREE.Points(innerGeo, innerMat);
+    scene.add(innerParticles);
+
+    // ─── Animation ───
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.005;
+
+      // Rotate main objects
+      torusKnot.rotation.x += 0.004;
+      torusKnot.rotation.y += 0.007;
+      wireKnot.rotation.x = torusKnot.rotation.x;
+      wireKnot.rotation.y = torusKnot.rotation.y;
+
+      // Rotate particles slowly
+      particles.rotation.y += 0.0005;
+      innerParticles.rotation.x += 0.0003;
+      innerParticles.rotation.y += 0.0004;
+
+      // Subtle mouse parallax
+      torusKnot.rotation.x += (mouseY * 0.05 - torusKnot.rotation.x) * 0.02;
+      torusKnot.rotation.y += (mouseX * 0.05 - torusKnot.rotation.y) * 0.02;
+      wireKnot.rotation.x = torusKnot.rotation.x;
+      wireKnot.rotation.y = torusKnot.rotation.y;
+
+      // Pulse emissive intensity
+      const pulse = Math.sin(time * 2) * 0.08 + 0.15;
+      material.emissiveIntensity = pulse;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // ─── Resize ───
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // ─── Theme sync ───
+    function updateBg() {
+      const isDark = document.documentElement.classList.contains('dark');
+      scene.background = new THREE.Color(isDark ? 0x0a0b0f : 0xf8fafc);
+    }
+    const observer = new MutationObserver(() => updateBg());
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    updateBg();
+  </script>
+</Layout>
