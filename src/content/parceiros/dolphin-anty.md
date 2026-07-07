@@ -13,7 +13,7 @@ draft: false
 
 # Dolphin Anty
 
-O **Dolphin{Anty}** é provavelmente o antidetect browser mais usado por afiliados brasileiros hoje. Time brasileiro, suporte em português, interface em PT-BR, e preço agressivo comparado a concorrentes como Multilogin.
+O **Dolphin Anty** é provavelmente o antidetect browser mais usado por afiliados brasileiros hoje. Time brasileiro, suporte em português, interface em PT-BR, e preço agressivo comparado a concorrentes como Multilogin.
 
 Foco forte em **automação**: API robusta pra criar/deletar profiles em massa, scripts integrados (via Selenium/Playwright), e sincronização cloud (você cria um profile no PC, abre em outro lugar). Integra direto com proxies mobile e residential.
 
