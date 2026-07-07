@@ -13,17 +13,6 @@ const parceirosPorCategoria: Record<string, number> = {};
 for (const p of todosParceiros) {
   parceirosPorCategoria[p.data.category] = (parceirosPorCategoria[p.data.category] || 0) + 1;
 }
-
-const slugEmoji: Record<string, string> = {
-  'trackers': '📊',
-  'antidetect-browsers': '🎭',
-  'spy-services': '🔍',
-  'criacao-de-criativos': '🎨',
-  'gateways-de-pagamento': '💳',
-  'proxies': '🌐',
-  'sms-verificacao': '📱',
-  'cursos-e-comunidades': '🎓',
-};
 ---
 
 <Layout 
@@ -50,9 +39,6 @@ const slugEmoji: Record<string, string> = {
       </nav>
 
       <div class="flex items-center gap-3 mb-6">
-        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-          <span class="text-2xl">🤝</span>
-        </div>
         <span class="tag-pill">Diretório curado</span>
       </div>
 
@@ -105,9 +91,6 @@ const slugEmoji: Record<string, string> = {
             >
               <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                  <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl">
-                    {slugEmoji[cat.data.slug] || '🔹'}
-                  </div>
                   {!temParceiros ? (
                     <span class="inline-block px-2 py-0.5 rounded-md text-[9px] font-semibold uppercase tracking-wider bg-text-muted/10 text-text-muted border border-text-muted/20">
                       Em breve
