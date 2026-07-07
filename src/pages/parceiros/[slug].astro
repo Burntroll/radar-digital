@@ -16,15 +16,11 @@ interface Props {
 
 const { categoria } = Astro.props;
 
-// Parceiros filtrados por categoria
+// Parceiros filtrados por categoria, em ordem alfabetica
 const todosParceiros = await getCollection('parceiros', ({ data }) => data.draft === false);
 const parceiros = todosParceiros
   .filter((p) => p.data.category === categoria.slug)
-  .sort((a, b) => {
-    if (a.data.featured && !b.data.featured) return -1;
-    if (!a.data.featured && b.data.featured) return 1;
-    return a.data.name.localeCompare(b.data.name);
-  });
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, 'pt-BR', { sensitivity: 'base' }));
 
 // Pega a próxima categoria pra "Ver também"
 const todasCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
