@@ -111,18 +111,18 @@ const outrasCategorias = todasCategorias
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {parceiros.map((parceiro) => (
             <article class={`glass-card overflow-hidden group flex flex-col ${parceiro.data.featured ? 'ring-1 ring-cyan-500/30' : ''}`}>
-              <!-- Header quadrado pra logo (180px) -->
-              <div class="relative h-[180px] bg-gradient-to-br from-cyan-500/10 via-surface-elevated to-surface flex items-center justify-center border-b transition-colors" style="border-color: var(--color-border);">
+              <!-- Header quadrado pra logo -->
+              <div class="relative h-[220px] bg-gradient-to-br from-cyan-500/10 via-surface-elevated to-surface flex items-center justify-center border-b transition-colors" style="border-color: var(--color-border);">
                 {parceiro.data.logo ? (
                   <img
                     src={parceiro.data.logo}
                     alt={`${parceiro.data.name} logo`}
-                    class="w-24 h-24 rounded-2xl object-contain bg-surface-elevated border transition-colors group-hover:scale-105 transition-transform"
+                    class="w-28 h-28 rounded-2xl object-contain bg-surface-elevated border transition-colors group-hover:scale-105 transition-transform"
                     style="border-color: var(--color-border);"
                     loading="lazy"
                   />
                 ) : (
-                  <div class="w-24 h-24 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-3xl font-black text-cyan-500">
+                  <div class="w-28 h-28 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-4xl font-black text-cyan-500">
                     {parceiro.data.name.charAt(0).toUpperCase()}
                   </div>
                 )}
