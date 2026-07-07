@@ -35,6 +35,12 @@
 - [x] **8 categorias planejadas** — Trackers, Antidetect, Spy, Criativos, Gateways, Proxies, SMS, Cursos (08/07)
 - [x] **6 parceiros reais publicados** — Binom/Keitaro/BeMob (Trackers) + Dolphin Anty/AdsPower/Multilogin (Antidetect) (08/07)
 - [x] **Header expandido** — Link "Parceiros" no nav, card extra na home (08/07)
+- [x] **Cards de parceiros com header 180px** — Logo quadrada, badge Destaque, ordem alfabética (08/07)
+- [x] **Acessibilidade do nav** — Texto text-base (16px), logo text-xl (20px), gap-6 (24px) (08/07)
+- [x] **i18n PT/ES completo** — Estrutura bilíngue: PT na raiz (/, /parceiros, /artigos), ES em (/es/...). 19 páginas geradas. (08/07)
+- [x] **Locale switcher no nav** — Dropdown com bandeirinha e bandeiras PT/ES, hreflang automático, og:locale dinâmico (08/07)
+- [x] **Dicionário i18n** — `src/i18n/ui.ts` com ~50 chaves PT/ES (nav, footer, home, categorias, parceiros) (08/07)
+- [x] **Schema com locale** — Campo `locale` adicionado em todas collections + `slugEs` opcional pra slugs traduzidos (08/07)
 
 ---
 
@@ -42,6 +48,7 @@
 
 - [ ] **Light mode** — refinamento fino (contraste, paleta)
 - [ ] **Mais parceiros reais** — Popular 2-3 das outras 6 categorias (Spy, Criativos, Proxies, etc.)
+- [ ] **Tradução de conteúdo** — Artigos .md duplicados em /es/ com locale: 'es' e slugEs
 
 ---
 
@@ -49,7 +56,7 @@
 
 1. **Conteúdo**
    - Segundo artigo real dos 16 stubs restantes
-   - Criar fluxo de trabalho: escrever seção por seção com IA
+   - Traduzir artigos PT → ES conforme prioridade
 
 2. **Setup técnico**
    - Adicionar `@astrojs/mdx` e `@astrojs/sitemap`
@@ -59,7 +66,7 @@
 
 3. **Infraestrutura**
    - Deploy Vercel + domínio
-   - Google Search Console + Analytics
+   - Google Search Console + Analytics (com suporte a múltiplos locales)
 
 ---
 
@@ -115,6 +122,7 @@
 | Busca | Pagefind | Planejado |
 | Comentários | Giscus (GitHub Discussions) | Planejado |
 | Analytics | Plausible ou Umami | Planejado |
+| Idiomas | PT (default) + ES | ✅ Implementado |
 
 ---
 
