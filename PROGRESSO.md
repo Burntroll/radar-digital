@@ -1,7 +1,5 @@
 # 🚧 Progresso — Radar Digital (Marketing Digital, IA & Monetização)
 
-# 🚧 Progresso — Radar Digital (Marketing Digital, IA & Monetização)
-
 > **Stack:** Astro + Headless CMS (a definir)  
 > **Hospedagem:** Vercel / Cloudflare Pages  
 > **Última atualização:** 08/07/2026  
@@ -42,8 +40,6 @@
 - [x] **Locale switcher no nav** — Dropdown com bandeirinha e bandeiras PT/ES, hreflang automático, og:locale dinâmico (08/07)
 - [x] **Dicionário i18n** — `src/i18n/ui.ts` com ~50 chaves PT/ES (nav, footer, home, categorias, parceiros) (08/07)
 - [x] **Schema com locale** — Campo `locale` adicionado em todas collections + `slugEs` opcional pra slugs traduzidos (08/07)
-- [x] **Auditoria técnica i18n** — Validação completa: 19 páginas (10 PT + 9 ES), lang/hreflang/canonical/x-default/og:locale todos corretos, locale switcher leva pra página equivalente, sem vazamento PT↔ES, filtro de collections funcionando, padrão de URL conforme combinado (08/07)
-- [x] **Bugs i18n corrigidos** — Home PT tinha "señal" e placeholder "tu@email.com" vazado; canonical adicionado em todas as páginas (08/07)
 - [x] **Auditoria técnica i18n** — Validação completa: 19 páginas (10 PT + 9 ES), lang/hreflang/canonical/x-default/og:locale todos corretos, locale switcher leva pra página equivalente, sem vazamento PT↔ES, filtro de collections funcionando, padrão de URL conforme combinado (08/07)
 - [x] **Bugs i18n corrigidos** — Home PT tinha "señal" e placeholder "tu@email.com" vazado; canonical adicionado em todas as páginas (08/07)
 
