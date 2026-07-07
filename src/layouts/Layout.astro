@@ -98,12 +98,9 @@ parceiroCategorias.sort((a, b) => a.data.order - b.data.order);
                   {parceiroCategorias.map((cat) => (
                     <a
                       href={`/parceiros/${cat.slug}`}
-                      class="flex items-center justify-between px-4 py-2.5 text-sm text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500 transition-colors"
+                      class="block px-4 py-2.5 text-sm text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500 transition-colors"
                     >
-                      <span>{cat.data.title}</span>
-                      <svg class="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-                      </svg>
+                      {cat.data.title}
                     </a>
                   ))}
                 </div>
