@@ -111,31 +111,32 @@ const outrasCategorias = todasCategorias
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {parceiros.map((parceiro) => (
             <article class={`glass-card overflow-hidden group flex flex-col ${parceiro.data.featured ? 'ring-1 ring-cyan-500/30' : ''}`}>
-              <div class="p-6 flex-1 flex flex-col">
-                <!-- Logo + featured -->
-                <div class="flex items-start justify-between mb-4">
-                  {parceiro.data.logo ? (
-                    <img
-                      src={parceiro.data.logo}
-                      alt={`${parceiro.data.name} logo`}
-                      class="w-14 h-14 rounded-xl object-cover bg-surface-elevated"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl font-bold text-cyan-500">
-                      {parceiro.data.name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                  {parceiro.data.featured && (
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[9px] font-semibold uppercase tracking-wider bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">
-                      <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                      Destaque
-                    </span>
-                  )}
-                </div>
+              <!-- Header quadrado pra logo (180px) -->
+              <div class="relative h-[180px] bg-gradient-to-br from-cyan-500/10 via-surface-elevated to-surface flex items-center justify-center border-b transition-colors" style="border-color: var(--color-border);">
+                {parceiro.data.logo ? (
+                  <img
+                    src={parceiro.data.logo}
+                    alt={`${parceiro.data.name} logo`}
+                    class="w-24 h-24 rounded-2xl object-contain bg-surface-elevated border transition-colors group-hover:scale-105 transition-transform"
+                    style="border-color: var(--color-border);"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-24 h-24 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-3xl font-black text-cyan-500">
+                    {parceiro.data.name.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                {parceiro.data.featured && (
+                  <span class="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[9px] font-semibold uppercase tracking-wider bg-cyan-500/10 text-cyan-500 border border-cyan-500/20 backdrop-blur">
+                    <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Destaque
+                  </span>
+                )}
+              </div>
 
+              <div class="p-6 flex-1 flex flex-col">
                 <!-- Nome + excerpt -->
                 <h3 class="font-bold text-lg text-text-primary leading-tight mb-2">
                   {parceiro.data.name}
