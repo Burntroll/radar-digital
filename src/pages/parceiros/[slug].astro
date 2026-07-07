@@ -15,7 +15,6 @@ interface Props {
 }
 
 const { categoria } = Astro.props;
-const { Content } = await categoria.render();
 
 // Parceiros filtrados por categoria
 const todosParceiros = await getCollection('parceiros', ({ data }) => data.draft === false);
@@ -92,19 +91,6 @@ const outrasCategorias = todasCategorias
       </div>
     </div>
   </section>
-
-  <!-- ════════════════════════════════════════════════ -->
-  <!-- INTRODUÇÃO DO NICHO (markdown do .md) -->
-  <!-- ════════════════════════════════════════════════ -->
-  {parceiros.length > 0 && (
-    <section class="py-12 bg-surface transition-colors duration-300">
-      <div class="max-w-3xl mx-auto px-6">
-        <div class="prose-radar">
-          <Content />
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- ════════════════════════════════════════════════ -->
   <!-- CARDS DOS PARCEIROS -->
