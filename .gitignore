@@ -28,3 +28,6 @@ npm-debug.log*
 .tmp
 .cache
 tested-tower/
+
+# Astro
+.astro/
