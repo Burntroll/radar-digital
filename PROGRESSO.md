@@ -31,20 +31,24 @@
 - [x] **Rota dinâmica `/artigos/[...slug]`** — Renderiza artigo individual com tipografia dedicada (08/07)
 - [x] **Páginas de categoria refatoradas** — Agora puxam do `getCollection()` (não mais hardcoded) (08/07)
 - [x] **Build validado** — `astro build` passa; rota dinâmica gera página só pra `draft: false` (08/07)
+- [x] **Seção Parceiros & Ferramentas** — 2 collections (parceiros + parceiroCategorias) + 3 páginas (`/parceiros`, `/parceiros/[slug]`, cards filtrados) (08/07)
+- [x] **8 categorias planejadas** — Trackers, Antidetect, Spy, Criativos, Gateways, Proxies, SMS, Cursos (08/07)
+- [x] **6 parceiros reais publicados** — Binom/Keitaro/BeMob (Trackers) + Dolphin Anty/AdsPower/Multilogin (Antidetect) (08/07)
+- [x] **Header expandido** — Link "Parceiros" no nav, card extra na home (08/07)
 
 ---
 
 ## 🟡 Em andamento
 
 - [ ] **Light mode** — refinamento fino (contraste, paleta)
-- [ ] **Primeiro artigo de verdade** — Escolher um dos 18, preencher conteúdo, mudar `draft: false`, publicar
+- [ ] **Mais parceiros reais** — Popular 2-3 das outras 6 categorias (Spy, Criativos, Proxies, etc.)
 
 ---
 
 ## 🔴 Próximos Passos
 
 1. **Conteúdo**
-   - Primeiro artigo real (preencher esqueleto de um dos 18)
+   - Segundo artigo real dos 16 stubs restantes
    - Criar fluxo de trabalho: escrever seção por seção com IA
 
 2. **Setup técnico**

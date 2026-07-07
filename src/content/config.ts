@@ -1,5 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 
+// ═══════════════════════════════════════════════════════════
+// ARTIGOS DO BLOG
+// ═══════════════════════════════════════════════════════════
 const artigos = defineCollection({
   type: 'content',
   schema: z.object({
@@ -15,4 +18,38 @@ const artigos = defineCollection({
   }),
 });
 
-export const collections = { artigos };
+// ═══════════════════════════════════════════════════════════
+// PARCEIROS
+// ═══════════════════════════════════════════════════════════
+const parceiros = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    category: z.string(), // slug da categoria (ex: 'trackers', 'antidetect-browsers')
+    excerpt: z.string(),
+    website: z.string().url(),
+    logo: z.string().optional(), // caminho /public/... ou URL externa
+    featured: z.boolean().default(false),
+    languages: z.array(z.string()).default(['pt-BR']), // ex: ['pt-BR', 'en', 'es']
+    tags: z.array(z.string()).default([]),
+    buttonText: z.string().default('Conhecer'),
+    draft: z.boolean().default(true),
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════
+// CATEGORIAS DE PARCEIROS
+// ═══════════════════════════════════════════════════════════
+const parceiroCategorias = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    // slug vem do filename (trackers.md → "trackers")
+    description: z.string(),
+    order: z.number().default(99),
+    draft: z.boolean().default(true),
+    // O body da categoria é a introdução explicativa do nicho (opcional)
+  }),
+});
+
+export const collections = { artigos, parceiros, parceiroCategorias };
