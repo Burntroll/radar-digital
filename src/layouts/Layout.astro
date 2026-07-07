@@ -43,6 +43,9 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     ))}
     <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(localizePath(altPath, defaultLocale), Astro.site).toString() : localizePath(altPath, defaultLocale)} />
 
+    <!-- canonical: aponta pra propria versao dessa pagina -->
+    <link rel="canonical" href={Astro.site ? new URL(currentPath, Astro.site).toString() : currentPath} />
+
     <title>{title} — Radar Digital</title>
 
     <!-- Inline script to prevent FOUC (flash of unstyled content) -->
