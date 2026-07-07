@@ -15,6 +15,10 @@ const artigos = defineCollection({
     draft: z.boolean().default(true),
     color: z.enum(['cyan', 'purple', 'amber']),
     emoji: z.string().optional(),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+    // Slug traduzido opcional. Se não tiver, gera URL no locale correspondente
+    // usando o filename + aviso de "sem versão nesse idioma"
+    slugEs: z.string().optional(),
   }),
 });
 
@@ -34,6 +38,8 @@ const parceiros = defineCollection({
     tags: z.array(z.string()).default([]),
     buttonText: z.string().default('Conhecer'),
     draft: z.boolean().default(true),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+    slugEs: z.string().optional(),
   }),
 });
 
@@ -48,6 +54,7 @@ const parceiroCategorias = defineCollection({
     description: z.string(),
     order: z.number().default(99),
     draft: z.boolean().default(true),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     // O body da categoria é a introdução explicativa do nicho (opcional)
   }),
 });

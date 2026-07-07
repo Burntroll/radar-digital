@@ -1,8 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getLocaleFromUrl, localizePath, t, defaultLocale, type Locale } from '../i18n/utils';
+
+const locale: Locale = getLocaleFromUrl(Astro.url);
+const prefix = locale === defaultLocale ? '' : `/${locale}`;
 ---
 
-<Layout title="Radar Digital" description="Seu radar de tendências em marketing digital, inteligência artificial e monetização — análises, estratégias e ferramentas para crescer no digital.">
+<Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}>
   <!-- ════════════════════════════════════════════════ -->
   <!-- HERO SECTION -->
   <!-- ════════════════════════════════════════════════ -->
@@ -31,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Tag -->
         <div class="flex items-center gap-2 mb-6">
           <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse-cyan"></span>
-          <span class="text-xs uppercase tracking-[0.2em] text-cyan-500/80 font-medium">Seu Radar de Tendências</span>
+          <span class="text-xs uppercase tracking-[0.2em] text-cyan-500/80 font-medium">{t('home.hero.badge', locale)}</span>
         </div>
 
         <!-- Main title -->
@@ -43,26 +47,26 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Subtitle -->
         <p class="text-lg sm:text-xl text-text-secondary mt-6 max-w-xl leading-relaxed transition-colors">
-          Marketing digital, inteligência artificial e monetização — 
-          <span class="text-text-primary">o que realmente funciona, explicado sem enrolação.</span>
+          {t('home.hero.subtitle', locale).split('.')[0]}.<br />
+          <span class="text-text-primary">{t('home.hero.subtitle', locale).split('.').slice(1).join('.').trim()}</span>
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-wrap gap-4 mt-10">
-          <a href="#categorias" 
+          <a href={`${prefix}/#categorias`} 
              class="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
                     bg-cyan-500/10 text-cyan-500 border border-cyan-500/30 
                     hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300">
-            Explorar Categorias
+            {t('home.sections.title', locale)}
             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
           </a>
-          <a href="#artigos" 
+          <a href={`${prefix}/#artigos`} 
              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
                     text-text-secondary border border-surface hover:border-cyan-500/30 hover:text-cyan-500
                     transition-all duration-300">
-            Últimos Artigos
+            {t('home.articles.title', locale)}
           </a>
         </div>
 
@@ -91,25 +95,27 @@ import Layout from '../layouts/Layout.astro';
   <section id="categorias" class="py-24 relative bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
-        <span class="tag-pill">Navegue por tema</span>
-        <h2 class="section-title mt-4 text-text-primary transition-colors">Três pilares, um <span class="text-cyan-500">radar</span></h2>
+        <span class="tag-pill">{locale === 'pt-BR' ? 'Navegue por tema' : 'Navega por tema'}</span>
+        <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Três pilares, um' : 'Tres pilares, un'} <span class="text-cyan-500">radar</span></h2>
         <p class="section-subtitle mx-auto">
-          Tudo que você precisa para dominar o marketing digital, entender IA e construir fontes de renda reais.
+          {locale === 'pt-BR' 
+            ? 'Tudo que você precisa para dominar o marketing digital, entender IA e construir fontes de renda reais.' 
+            : 'Todo lo que necesitas para dominar el marketing digital, entender la IA y construir fuentes de ingreso reales.'}
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Card 1: Marketing Digital -->
-        <a href="/marketing-digital" class="glass-card p-8 group glow-border">
+        <a href={`${prefix}/marketing-digital`} class="glass-card p-8 group glow-border">
           <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-5 group-hover:bg-cyan-500/20 transition-all">
             <svg class="w-6 h-6 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">Marketing Digital</h3>
-          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">SEO, tráfego pago, redes sociais, email marketing, funis de venda e estratégias que geram resultados mensuráveis.</p>
+          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">{t('cat.marketing.name', locale)}</h3>
+          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">{t('home.card.marketing.desc', locale)}</p>
           <div class="flex items-center gap-2 text-cyan-500 text-sm font-medium">
-            Explorar
+            {t('home.card.explorar', locale)}
             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
@@ -117,16 +123,16 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- Card 2: Inteligência Artificial -->
-        <a href="/inteligencia-artificial" class="glass-card p-8 group glow-border">
+        <a href={`${prefix}/inteligencia-artificial`} class="glass-card p-8 group glow-border">
           <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-5 group-hover:bg-purple-500/20 transition-all">
             <svg class="w-6 h-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">Inteligência Artificial</h3>
-          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">Ferramentas de IA, automação, chatbots, geração de conteúdo e como aplicar machine learning no seu negócio.</p>
+          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">{t('cat.ia.name', locale)}</h3>
+          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">{t('home.card.ia.desc', locale)}</p>
           <div class="flex items-center gap-2 text-purple-500 text-sm font-medium">
-            Explorar
+            {t('home.card.explorar', locale)}
             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
@@ -134,16 +140,16 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- Card 3: Monetização -->
-        <a href="/monetizacao" class="glass-card p-8 group glow-border">
+        <a href={`${prefix}/monetizacao`} class="glass-card p-8 group glow-border">
           <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-all">
             <svg class="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">Monetização</h3>
-          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">Infoprodutos, afiliados, assinaturas, dropshipping, publicidade digital e modelos de negócio escaláveis.</p>
+          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">{t('cat.monetizacao.name', locale)}</h3>
+          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">{t('home.card.monetizacao.desc', locale)}</p>
           <div class="flex items-center gap-2 text-amber-500 text-sm font-medium">
-            Explorar
+            {t('home.card.explorar', locale)}
             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
@@ -151,16 +157,16 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- Card 4: Parceiros & Ferramentas -->
-        <a href="/parceiros" class="glass-card p-8 group glow-border">
+        <a href={`${prefix}/parceiros`} class="glass-card p-8 group glow-border">
           <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-5 group-hover:bg-cyan-500/20 transition-all">
             <svg class="w-6 h-6 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">Parceiros</h3>
-          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">Trackers, antidetect, spy services, criativos, gateways, proxies. Ferramentas curadas por nicho.</p>
+          <h3 class="text-xl font-bold text-text-primary transition-colors mb-2">{t('nav.parceiros', locale)}</h3>
+          <p class="text-sm text-text-secondary transition-colors leading-relaxed mb-5">{t('home.card.parceiros.desc', locale)}</p>
           <div class="flex items-center gap-2 text-cyan-500 text-sm font-medium">
-            Ver diretório
+            {t('home.card.diretorio', locale)}
             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
@@ -174,76 +180,41 @@ import Layout from '../layouts/Layout.astro';
   <!-- ÚLTIMOS ARTIGOS -->
   <!-- ════════════════════════════════════════════════ -->
   <section id="artigos" class="py-24 relative bg-surface transition-colors duration-300">
-    <!-- Background subtle divider -->
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.02] to-transparent pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-14">
         <div>
-          <span class="tag-pill">Conteúdo recente</span>
-          <h2 class="section-title mt-4 text-text-primary transition-colors">Últimos do <span class="text-cyan-500">Radar</span></h2>
+          <span class="tag-pill">{locale === 'pt-BR' ? 'Conteúdo recente' : 'Contenido reciente'}</span>
+          <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Últimos do' : 'Últimos del'} <span class="text-cyan-500">Radar</span></h2>
         </div>
-        <a href="/artigos" class="hidden sm:flex items-center gap-2 text-sm text-text-secondary hover:text-cyan-500 transition-colors">
-          Ver todos
+        <a href={`${prefix}/#artigos`} class="hidden sm:flex items-center gap-2 text-sm text-text-secondary hover:text-cyan-500 transition-colors">
+          {t('home.articles.all', locale)}
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </a>
       </div>
 
-      <!-- Placeholder articles grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Article card placeholder 1 -->
-        <article class="glass-card overflow-hidden group">
-          <div class="h-44 bg-gradient-to-br from-cyan-500/10 via-blue-600/5 to-surface-elevated flex items-center justify-center transition-colors">
-            <svg class="w-10 h-10 text-text-muted transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
-            </svg>
-          </div>
-          <div class="p-5">
-            <span class="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-surface-elevated text-text-muted transition-colors mb-3">Em breve</span>
-            <h3 class="font-semibold text-text-primary group-hover:text-cyan-500 transition-colors">Primeiro artigo sendo escrito</h3>
-            <p class="text-xs text-text-muted mt-2 leading-relaxed transition-colors">O Radar Digital está captando sinais. Em breve, conteúdo fresco sobre marketing, IA e monetização.</p>
-          </div>
-        </article>
-
-        <!-- Article card placeholder 2 -->
-        <article class="glass-card overflow-hidden group">
-          <div class="h-44 bg-gradient-to-br from-purple-500/10 via-pink-600/5 to-surface-elevated flex items-center justify-center transition-colors">
-            <svg class="w-10 h-10 text-text-muted transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-            </svg>
-          </div>
-          <div class="p-5">
-            <span class="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-surface-elevated text-text-muted transition-colors mb-3">Em breve</span>
-            <h3 class="font-semibold text-text-primary group-hover:text-purple-500 transition-colors">Ferramentas de IA explicadas</h3>
-            <p class="text-xs text-text-muted mt-2 leading-relaxed transition-colors">Análises práticas de ferramentas de IA — o que realmente entrega valor vs. hype.</p>
-          </div>
-        </article>
-
-        <!-- Article card placeholder 3 -->
-        <article class="glass-card overflow-hidden group">
-          <div class="h-44 bg-gradient-to-br from-amber-500/10 via-orange-600/5 to-surface-elevated flex items-center justify-center transition-colors">
-            <svg class="w-10 h-10 text-text-muted transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m0 0v9m0-9h-1.5m0 0h-1.5m6 0h-1.5m0 0h-1.5" />
-            </svg>
-          </div>
-          <div class="p-5">
-            <span class="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-surface-elevated text-text-muted transition-colors mb-3">Em breve</span>
-            <h3 class="font-semibold text-text-primary group-hover:text-amber-500 transition-colors">Estratégias de monetização</h3>
-            <p class="text-xs text-text-muted mt-2 leading-relaxed transition-colors">Modelos de negócio digital que geram receita — de afiliados a infoprodutos.</p>
-          </div>
-        </article>
-      </div>
-
-      <!-- Mobile "ver todos" -->
-      <div class="mt-8 text-center sm:hidden">
-        <a href="/artigos" class="inline-flex items-center gap-2 text-sm text-cyan-500 hover:text-cyan-400 transition-colors">
-          Ver todos os artigos
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
+        {[
+          { color: 'cyan', title: locale === 'pt-BR' ? 'Primeiro artigo sendo escrito' : 'Primer artículo en preparación', desc: locale === 'pt-BR' ? 'O Radar Digital está captando sinais. Em breve, conteúdo fresco sobre marketing, IA e monetização.' : 'El Radar Digital está captando señales. Próximamente, contenido fresco sobre marketing, IA y monetización.' },
+          { color: 'purple', title: locale === 'pt-BR' ? 'Ferramentas de IA explicadas' : 'Herramientas de IA explicadas', desc: locale === 'pt-BR' ? 'Análises práticas de ferramentas de IA — o que realmente entrega valor vs. hype.' : 'Análisis prácticos de herramientas de IA — lo que realmente entrega valor vs. hype.' },
+          { color: 'amber', title: locale === 'pt-BR' ? 'Estratégias de monetização' : 'Estrategias de monetización', desc: locale === 'pt-BR' ? 'Modelos de negócio digital que geram receita — de afiliados a infoprodutos.' : 'Modelos de negocio digital que generan ingresos — de afiliados a infoproductos.' },
+        ].map((item, i) => (
+          <article class="glass-card overflow-hidden group">
+            <div class={`h-44 bg-gradient-to-br ${i === 0 ? 'from-cyan-500/10 via-blue-600/5' : i === 1 ? 'from-purple-500/10 via-pink-600/5' : 'from-amber-500/10 via-orange-600/5'} to-surface-elevated flex items-center justify-center transition-colors`}>
+              <svg class="w-10 h-10 text-text-muted transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+              </svg>
+            </div>
+            <div class="p-5">
+              <span class="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-surface-elevated text-text-muted transition-colors mb-3">{t('cat.tag.em-breve', locale)}</span>
+              <h3 class={`font-semibold text-text-primary group-hover:text-${item.color}-500 transition-colors`}>{item.title}</h3>
+              <p class="text-xs text-text-muted mt-2 leading-relaxed transition-colors">{item.desc}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -266,16 +237,18 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <div class="relative z-10">
-          <span class="tag-pill">Fique ligado</span>
-          <h2 class="section-title mt-4 text-text-primary transition-colors">Receba o <span class="text-cyan-500">sinal</span></h2>
+          <span class="tag-pill">{locale === 'pt-BR' ? 'Fique ligado' : 'Mantente al tanto'}</span>
+          <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Receba o' : 'Recibe la'} <span class="text-cyan-500">señal</span></h2>
           <p class="text-text-secondary mt-3 max-w-lg mx-auto text-sm leading-relaxed transition-colors">
-            Assine e seja o primeiro a saber quando novos artigos chegarem no Radar Digital. Sem spam, só conteúdo de verdade.
+            {locale === 'pt-BR' 
+              ? 'Assine e seja o primeiro a saber quando novos artigos chegarem no Radar Digital. Sem spam, só conteúdo de verdade.' 
+              : 'Suscríbete y sé el primero en saber cuando lleguen nuevos artículos al Radar Digital. Sin spam, solo contenido real.'}
           </p>
 
           <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Newsletter em breve! 🚀')">
             <input 
               type="email" 
-              placeholder="seu@email.com" 
+              placeholder="tu@email.com" 
               class="flex-1 px-5 py-3 rounded-xl text-sm transition-all duration-300"
               style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);"
               required
@@ -286,7 +259,7 @@ import Layout from '../layouts/Layout.astro';
                      border border-cyan-500/30 text-cyan-500 text-sm font-semibold
                      hover:from-cyan-500/30 hover:to-cyan-600/30 hover:border-cyan-500/50
                      transition-all duration-300">
-              Assinar
+              {locale === 'pt-BR' ? 'Assinar' : 'Suscribirse'}
             </button>
           </form>
         </div>
@@ -301,7 +274,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-6 text-center">
       <p class="text-xs text-text-muted uppercase tracking-[0.15em] mb-3 transition-colors">Radar Digital © 2026</p>
       <p class="text-text-secondary text-sm max-w-md mx-auto transition-colors">
-        Feito por <span class="text-text-primary">Francisco Silva</span> — captando sinais, entregando valor.
+        {locale === 'pt-BR' 
+          ? <>Feito por <span class="text-text-primary">Francisco Silva</span> — captando sinais, entregando valor.</>
+          : <>Hecho por <span class="text-text-primary">Francisco Silva</span> — captando señales, entregando valor.</>}
       </p>
     </div>
   </section>
