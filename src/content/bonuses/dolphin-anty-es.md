@@ -8,7 +8,10 @@ benefit: "20% de descuento en el primer mes de cualquier plan."
 website: "https://dolphin-anty.com"
 logo: "/images/bonuses/dolphin-anty.png"
 featured: true
-expiresAt: null
+expiresAt:
+verifiedAt: "2026-07-08"
+sourceUrl: "https://dolphin-anty.com"
+status: "unconfirmed"
 buttonText: "Usar código"
 draft: false
 order: 1

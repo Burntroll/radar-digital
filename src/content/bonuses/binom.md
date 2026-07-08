@@ -8,7 +8,10 @@ benefit: "15% de desconto na licença vitalícia."
 website: "https://binom.org"
 logo: "/images/bonuses/binom-logo.png"
 featured: false
-expiresAt: null
+expiresAt:
+verifiedAt: "2026-07-08"
+sourceUrl: "https://binom.org"
+status: "unconfirmed"
 buttonText: "Usar código"
 draft: false
 order: 2
