@@ -25,7 +25,7 @@ export interface Props {
   url?: string;
 }
 
-const { type, items, title, description, datePublished, dateModified, authorName = 'Francisco Silva', imageUrl, url } = Astro.props;
+const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', imageUrl, url } = Astro.props;
 
 const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
 

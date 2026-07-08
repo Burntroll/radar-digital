@@ -24,7 +24,7 @@ export const ui = {
   'nav.parceiros':      { 'pt-BR': 'Parceiros',      'es': 'Socios' },
 
   // Footer
-  'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026 / Francisco Silva', 'es': 'Radar Digital © 2026 / Francisco Silva' },
+  'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
   'footer.privacidade': { 'pt-BR': 'Privacidade',    'es': 'Privacidad' },
   'footer.termos':      { 'pt-BR': 'Termos',         'es': 'Términos' },
   'footer.contato':     { 'pt-BR': 'Contato',        'es': 'Contacto' },
