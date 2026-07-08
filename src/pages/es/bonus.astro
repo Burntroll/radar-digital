@@ -57,10 +57,6 @@ const bonusesDoLocale = bonuses
           <div class="text-2xl font-bold text-text-primary transition-colors">{bonusesDoLocale.length}</div>
           <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('bonus.stats.bonuses', locale)}</div>
         </div>
-        <div>
-          <div class="text-2xl font-bold text-text-primary transition-colors">{bonusesDoLocale.filter(b => b.data.featured).length}</div>
-          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('bonus.featured', locale)}</div>
-        </div>
       </div>
     </div>
   </section>
@@ -125,14 +121,6 @@ const bonusesDoLocale = bonuses
                        style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2);">
                     {bonus.data.productName.charAt(0)}
                   </div>
-
-                  <!-- Featured badge -->
-                  {bonus.data.featured && (
-                    <span class="inline-block px-2 py-0.5 rounded-md text-[9px] font-semibold uppercase tracking-wider mb-3"
-                          style="background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.25);">
-                      {t('bonus.featured', locale)}
-                    </span>
-                  )}
 
                   <!-- Product name -->
                   <h3 class="font-bold text-text-primary transition-colors text-base mb-1">
