@@ -102,6 +102,18 @@ body {
     radial-gradient(circle at 1px 1px, rgba(0, 229, 255, 0.12) 1px, transparent 0);
 }
 
+/* ─── Locale dropdown: active dims when hovering the list ─── */
+.group:hover .locale-active {
+  color: var(--color-text-secondary) !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+}
+.group:hover .locale-active:hover {
+  color: rgb(0 229 255) !important;
+  background: rgba(0, 229, 255, 0.1) !important;
+  font-weight: 600 !important;
+}
+
 /* ─── Glass card ─── */
 .glass-card {
   @apply rounded-2xl border backdrop-blur-xl;

@@ -167,7 +167,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
                   return (
                     <a
                       href={href}
-                      class={`block px-4 py-2.5 text-sm transition-colors ${isCurrent ? 'text-cyan-500 font-semibold bg-cyan-500/10' : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
+                      class={`block px-4 py-2.5 text-sm transition-colors ${isCurrent ? 'text-cyan-500 font-semibold bg-cyan-500/10 locale-active' : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
                       aria-current={isCurrent ? 'true' : 'false'}
                     >
                       <span class="flex items-center justify-between">
