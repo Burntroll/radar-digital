@@ -3,7 +3,7 @@
 > **Stack:** Astro + Tailwind  
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)  
 > **Domínio:** radardigital.ai  
-> **Última atualização:** 08/07/2026  
+> **Última atualização:** 08/07/2026 (sessão 2)  
 > **Idiomas:** PT (default) + ES ✅
 
 ## 🟢 Concluído
@@ -33,8 +33,9 @@
 - [x] **18 stubs de artigos** — Markdown com frontmatter completo (08/07)
 - [x] **Sistema draft: true** — Artigos não publicam até virar a chave
 - [x] **6 parceiros reais publicados** — Binom/Keitaro/BeMob (Trackers) + Dolphin Anty/AdsPower/Multilogin (Antidetect)
-- [x] **2 artigos publicados** — "Email marketing ainda vale a pena?" + "Como gerenciar múltiplas contas de redes sociais"
-- [x] **Home dinâmica** — "Últimos do Radar" puxa artigos reais do banco
+- [x] **3 artigos publicados em PT** — Email marketing, Gerenciar múltiplas contas, Prompts que funcionam
+- [x] **3 artigos traduzidos para ES** — Mesmos artigos em espanhol com locale: 'es'
+- [x] **Home dinâmica** — "Últimos do Radar" puxa artigos reais do banco, filtrado por locale
 
 ### i18n PT/ES
 - [x] **Estrutura bilíngue completa** — PT na raiz, ES em `/es/...`. 21 páginas geradas
@@ -43,6 +44,7 @@
 - [x] **Schema com locale** — Campo `locale` em todas collections + `slugEs` opcional
 - [x] **Auditoria técnica i18n** — lang/hreflang/canonical/x-default/og:locale validados
 - [x] **Empty state ES** — Categorias sem artigos mostram "Próximamente"
+- [x] **Rotas PT/ES filtradas por locale** — Artigos ES não vazam pra URL PT e vice-versa
 
 ### SEO & Performance
 - [x] **Sitemap.xml** — `@astrojs/sitemap` instalado, 20 URLs, sem drafts, sem 404
@@ -63,13 +65,13 @@
 
 - [ ] **Light mode** — refinamento fino (contraste, paleta)
 - [ ] **Mais parceiros reais** — Popular 2-3 das outras 6 categorias (Spy, Criativos, Proxies, etc.)
-- [ ] **Tradução de conteúdo** — Artigos .md duplicados em /es/ com locale: 'es' e slugEs
+- [x] **Tradução de conteúdo** — 3 artigos PT → ES com locale: 'es', rotas filtradas por locale
 
 ## 🔴 Próximos Passos
 
 1. **Conteúdo**
-   - Terceiro artigo real (14 stubs restantes)
-   - Traduzir artigos PT → ES conforme prioridade
+   - Quarto artigo real (14 stubs restantes)
+   - Versão ES dos próximos artigos (criar junto com o PT)
 
 2. **Setup técnico**
    - RSS feed
