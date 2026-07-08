@@ -1,17 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, localizePath, t, languages, defaultLocale, getAlternates, type Locale } from '../i18n/utils';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title: string;
   description?: string;
+  breadcrumbItems?: { name: string; href: string }[];
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, breadcrumbItems, noindex } = Astro.props;
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const currentPath = Astro.url.pathname;
 const altPath = Astro.url.pathname.replace(/^\/es/, '').replace(/^\/pt-BR/, '') || '/';
-const alternates = getAlternates(altPath);
+
+// 404 e outras páginas sem equivalente ES nao devem ter hreflang es
+// Adicione mais paths aqui se criar páginas sem versão em espanhol
+const isOnlyPT = currentPath === '/404' || currentPath.startsWith('/404/');
+const alternates = isOnlyPT
+  ? [{ lang: defaultLocale, href: localizePath(altPath, defaultLocale) }]
+  : getAlternates(altPath);
 
 // Puxa categorias de parceiros só do mesmo locale
 const parceiroCategoriasAll = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
@@ -28,6 +37,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description || (locale === 'pt-BR' ? 'Radar Digital — Marketing Digital, IA e Monetização' : 'Radar Digital — Marketing Digital, IA y Monetización')} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#0a0b0f" id="theme-color" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -41,10 +51,18 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     {alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.lang} href={Astro.site ? new URL(alt.href, Astro.site).toString() : alt.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(localizePath(altPath, defaultLocale), Astro.site).toString() : localizePath(altPath, defaultLocale)} />
+    {isOnlyPT ? null : (
+      <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(localizePath(altPath, defaultLocale), Astro.site).toString() : localizePath(altPath, defaultLocale)} />
+    )}
 
     <!-- canonical: aponta pra propria versao dessa pagina -->
     <link rel="canonical" href={Astro.site ? new URL(currentPath, Astro.site).toString() : currentPath} />
+
+    <!-- Schema.org JSON-LD: WebSite (presente em todas as paginas) -->
+    <SEO type="website" />
+
+    {/* BreadcrumbList + Article passam via prop breadcrumbItems / slot <head> */}
+    {breadcrumbItems && <SEO type="breadcrumb" items={breadcrumbItems} />}
 
     <title>{title} — Radar Digital</title>
 

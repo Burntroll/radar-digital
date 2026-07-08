@@ -1,0 +1,96 @@
+---
+/**
+ * Componente <SEO />
+ *
+ * Gera Schema.org JSON-LD pra Google Rich Results.
+ * Tipos: Article (posts), BreadcrumbList (toda pagina), WebSite (home).
+ *
+ * Uso:
+ *   <SEO type="breadcrumb" items={[{name: 'Início', href: '/'}, ...]} />
+ *   <SEO type="article" artigo={artigo} />
+ *   <SEO type="website" />
+ */
+
+export interface Props {
+  type: 'article' | 'breadcrumb' | 'website';
+  // breadcrumb
+  items?: { name: string; href: string }[];
+  // article
+  title?: string;
+  description?: string;
+  datePublished?: Date;
+  dateModified?: Date;
+  authorName?: string;
+  imageUrl?: string;
+  url?: string;
+}
+
+const { type, items, title, description, datePublished, dateModified, authorName = 'Francisco Silva', imageUrl, url } = Astro.props;
+
+const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
+
+// Mapeia o pathname do breadcrumb pra inferir o tipo (PT/ES)
+function inferLanguageFromPath(href: string): string {
+  if (href.startsWith('/es/') || href === '/es') return 'es-ES';
+  return 'pt-BR';
+}
+
+let jsonLd: Record<string, any> | null = null;
+
+if (type === 'breadcrumb' && items && items.length > 0) {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: {
+        '@id': `${SITE_URL}${item.href}`,
+        '@language': inferLanguageFromPath(item.href),
+      },
+    })),
+  };
+} else if (type === 'article' && title && description) {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    image: imageUrl ? [`${SITE_URL}${imageUrl}`] : undefined,
+    datePublished: datePublished?.toISOString(),
+    dateModified: (dateModified || datePublished)?.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: authorName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Radar Digital',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/favicon.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url ? `${SITE_URL}${url}` : undefined,
+    },
+  };
+} else if (type === 'website') {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Radar Digital',
+    description: 'Marketing digital, IA e monetização sem enrolação.',
+    url: SITE_URL,
+    inLanguage: ['pt-BR', 'es'],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Radar Digital',
+    },
+  };
+}
+---
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

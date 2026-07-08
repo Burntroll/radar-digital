@@ -87,7 +87,19 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {todos.map((artigo) => (
+        {todos.length === 0 ? (
+          <div class="col-span-full glass-card p-12 text-center">
+            <div class="text-5xl mb-4">🚧</div>
+            <h3 class="text-xl font-bold text-text-primary mb-2">{t('cat.empty.title', locale)}</h3>
+            <p class="text-text-muted text-sm max-w-md mx-auto">
+              {t('cat.empty.desc', locale)}
+            </p>
+            <p class="text-text-muted text-xs mt-4 italic">
+              {locale === 'pt-BR' ? 'Mientras tanto, puedes leer los artículos en español disponibles abajo.' : 'Mientras tanto, puedes leer los artículos en español disponibles abajo.'}
+            </p>
+          </div>
+        ) : (
+          todos.map((artigo) => (
           <article class="glass-card overflow-hidden group">
             <a href={artigo.data.draft ? `#` : `${prefix}/artigos/${artigo.slug}`} class="block">
               <div class="h-40 bg-gradient-to-br from-cyan-500/15 via-blue-600/5 to-surface-elevated flex items-center justify-center transition-colors">
@@ -122,7 +134,8 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
               </div>
             </a>
           </article>
-        ))}
+        ))
+        )}
       </div>
 
       <!-- CTA voltar -->
