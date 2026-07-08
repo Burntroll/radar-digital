@@ -10,7 +10,7 @@ logo: ""
 featured: false
 expiresAt: null
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 2
 locale: "pt-BR"
 ---
