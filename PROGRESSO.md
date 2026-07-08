@@ -3,7 +3,7 @@
 > **Stack:** Astro + Tailwind  
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)  
 > **Domínio:** radardigital.ai  
-> **Última atualização:** 08/07/2026 (sessão 2)  
+> **Última atualização:** 08/07/2026 (sessão 3)  
 > **Idiomas:** PT (default) + ES ✅
 
 ## 🟢 Concluído
@@ -36,26 +36,54 @@
 - [x] **3 artigos publicados em PT** — Email marketing, Gerenciar múltiplas contas, Prompts que funcionam
 - [x] **3 artigos traduzidos para ES** — Mesmos artigos em espanhol com locale: 'es'
 - [x] **Home dinâmica** — "Últimos do Radar" puxa artigos reais do banco, filtrado por locale
+- [x] **contentType explícito** — Todos os 24 artigos têm contentType: "article" | "guide" no frontmatter
 
 ### i18n PT/ES
-- [x] **Estrutura bilíngue completa** — PT na raiz, ES em `/es/...`. 21 páginas geradas
+- [x] **Estrutura bilíngue completa** — PT na raiz, ES em `/es/...`. 25 páginas geradas
 - [x] **Locale switcher** — Dropdown com bandeiras PT/ES, hreflang automático
-- [x] **Dicionário i18n** — ~50 chaves PT/ES (nav, footer, home, categorias, parceiros)
+- [x] **Dicionário i18n** — ~100+ chaves PT/ES (nav, footer, home, categorias, parceiros, bonus, guias)
 - [x] **Schema com locale** — Campo `locale` em todas collections + `slugEs` opcional
 - [x] **Auditoria técnica i18n** — lang/hreflang/canonical/x-default/og:locale validados
 - [x] **Empty state ES** — Categorias sem artigos mostram "Próximamente"
 - [x] **Rotas PT/ES filtradas por locale** — Artigos ES não vazam pra URL PT e vice-versa
-- [x] **Seção Bônus** — Página /bonus e /es/bonus com filtros por categoria, espaço pra anúncio, grid de cards promo
+- [x] **Categorias de parceiros sem filtro de locale** — São estruturais, aparecem nos dois idiomas
 
 ### SEO & Performance
-- [x] **Sitemap.xml** — `@astrojs/sitemap` instalado, 20 URLs, sem drafts, sem 404
+- [x] **Sitemap.xml** — `@astrojs/sitemap` instalado, sem drafts, sem 404
 - [x] **Domínio** — `radardigital.ai` configurado no astro.config.mjs
 - [x] **Schema.org JSON-LD** — Componente SEO.astro com WebSite + BreadcrumbList + Article
-- [x] **BreadcrumbList** — JSON-LD em home, categorias, parceiros, artigos (PT + ES)
+- [x] **BreadcrumbList** — JSON-LD em home, categorias, parceiros, artigos, bonus, guias (PT + ES)
 - [x] **Article JSON-LD** — Apenas em artigos publicados, com headline/description/datePublished/publisher
 - [x] **Canonical** — Em todas as páginas com URL canônica
 - [x] **404 sem hreflang ES falso** — Apenas hreflang pt-BR + noindex
 - [x] **Nome do autor removido** — Projeto sem identificação pessoal
+
+### Bônus & Códigos Promocionais
+- [x] **Seção Bônus** — Página /bonus e /es/bonus com:
+  - Hero com título + stats (categorias, bônus disponíveis)
+  - 10 filtros por categoria (traduzidos PT/ES)
+  - Espaço reservado para anúncio
+  - Grid de cards com placeholder 640×320 (2:1) + slot central para logo
+  - Card com: imagem/logo, nome, código promocional, descrição, benefício, categoria, CTA
+- [x] **9 cards publicados** (PT + ES): Dolphin{anty}, Binom, Keitaro, RedTrack, AdHeart, Anstrex, Proxy-Seller, SMS-Activate, AdCreative.ai
+- [x] **Schema atualizado** — verifiedAt, sourceUrl, status (verified/unconfirmed/expired)
+- [x] **Logos salvos** — Keitaro (SVG), Anstrex (SVG), AdCreative.ai (SVG), Dolphin (PNG), Binom (PNG)
+
+### Parceiros / Ferramentas
+- [x] **6 parceiros em PT** — Binom/Keitaro/BeMob (Trackers) + Dolphin Anty/AdsPower/Multilogin (Antidetect)
+- [x] **6 parceiros em ES** — Mesmos, com conteúdo traduzido
+- [x] **Nav dropdown com categorias** — Funciona nos dois idiomas
+
+### Guias
+- [x] **Seção Guias** — Página /guias e /es/guias com:
+  - Hero simples + stats
+  - Campo de busca client-side (filtra por título, excerpt, tags)
+  - 24 filtros por tema (chips, traduzidos PT/ES)
+  - Espaço reservado para anúncio
+  - Grid de cards (3/2/1 colunas)
+  - Busca + filtro funcionam juntos
+- [x] **contentType: "article" | "guide"** — Guias não aparecem em home/categorias; artigos não aparecem em Guias
+- [x] **2 guias de teste draft:true** — Sem rota pública, sem sitemap
 
 ### Infraestrutura
 - [x] **Deploy Vercel** — https://radar-digital-lemon.vercel.app
@@ -66,13 +94,15 @@
 
 - [ ] **Light mode** — refinamento fino (contraste, paleta)
 - [ ] **Mais parceiros reais** — Popular 2-3 das outras 6 categorias (Spy, Criativos, Proxies, etc.)
-- [x] **Tradução de conteúdo** — 3 artigos PT → ES com locale: 'es', rotas filtradas por locale
+- [ ] **Próximo artigo real** — 14 stubs restantes
+- [ ] **Publicar guias de verdade** — 2 guias de teste em draft
 
 ## 🔴 Próximos Passos
 
 1. **Conteúdo**
    - Quarto artigo real (14 stubs restantes)
-   - Versão ES dos próximos artigos (criar junto com o PT)
+   - Publicar guias (trocar draft: false nos 2 guias de teste)
+   - Versão ES dos próximos conteúdos
 
 2. **Setup técnico**
    - RSS feed
@@ -94,6 +124,7 @@
 | Hospedagem | Vercel ✅ | Deploy feito |
 | Idiomas | PT (default) + ES | ✅ Implementado |
 | Nav "Parceiros" | "Ferramentas" (PT) / "Herramientas" (ES) | ✅ |
+| Tipo de conteúdo | contentType: "article" \| "guide" | ✅ |
 | CMS | Decap CMS (Git-based) ou Strapi | A definir |
 | Busca | Pagefind | Planejado |
 | Comentários | Giscus (GitHub Discussions) | Planejado |
