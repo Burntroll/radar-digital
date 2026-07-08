@@ -6,7 +6,7 @@ promoCode: "RADAR15"
 description: "Tracker self-hosted para campañas de afiliados y tráfico pagado. Servidor propio, datos ilimitados y sin tarifas mensuales."
 benefit: "15% de descuento en la licencia vitalicia."
 website: "https://binom.org"
-logo: ""
+logo: "/images/bonuses/binom-logo.png"
 featured: false
 expiresAt: null
 buttonText: "Usar código"
