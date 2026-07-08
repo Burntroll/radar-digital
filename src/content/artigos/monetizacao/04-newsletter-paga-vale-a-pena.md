@@ -8,6 +8,8 @@ readTime: "8 min"
 draft: true
 color: "amber"
 emoji: "📨"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Newsletter paga: vale a pena em 2026?

@@ -8,6 +8,8 @@ readTime: "11 min"
 draft: true
 color: "amber"
 emoji: "📦"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Dropshipping vs. produto próprio: a conta que ninguém faz

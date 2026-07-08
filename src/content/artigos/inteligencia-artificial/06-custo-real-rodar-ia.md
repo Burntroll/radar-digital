@@ -8,6 +8,8 @@ readTime: "8 min"
 draft: true
 color: "purple"
 emoji: "💰"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Custo real de rodar IA na sua empresa (planilha aberta)

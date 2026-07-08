@@ -8,6 +8,8 @@ readTime: "11 min"
 draft: true
 color: "cyan"
 emoji: "✍️"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Copywriting que converte: frameworks testados

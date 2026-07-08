@@ -8,6 +8,8 @@ readTime: "10 min"
 draft: true
 color: "amber"
 emoji: "🎯"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Como validar um infoproduto antes de criar (e perder dinheiro)

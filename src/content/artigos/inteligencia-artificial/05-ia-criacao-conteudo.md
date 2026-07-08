@@ -8,6 +8,8 @@ readTime: "10 min"
 draft: true
 color: "purple"
 emoji: "🎨"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # IA para criação de conteúdo: workflow completo

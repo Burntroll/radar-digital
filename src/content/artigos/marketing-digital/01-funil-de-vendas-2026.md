@@ -8,6 +8,8 @@ readTime: "8 min"
 draft: true
 color: "cyan"
 emoji: "📡"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Como estruturar um funil de vendas em 2026

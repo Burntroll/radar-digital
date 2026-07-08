@@ -8,6 +8,8 @@ readTime: "10 min"
 draft: true
 color: "cyan"
 emoji: "💸"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Tráfego pago sem queimar dinheiro: lições práticas

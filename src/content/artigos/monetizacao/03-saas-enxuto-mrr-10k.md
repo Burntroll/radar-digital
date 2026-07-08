@@ -8,6 +8,8 @@ readTime: "15 min"
 draft: true
 color: "amber"
 emoji: "🚀"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # SaaS enxuto: do MVP ao MRR de R$10k/mês

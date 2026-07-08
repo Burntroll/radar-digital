@@ -8,6 +8,8 @@ readTime: "18 min"
 draft: true
 color: "purple"
 emoji: "🧠"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # RAG na prática: construindo um assistente com seus dados

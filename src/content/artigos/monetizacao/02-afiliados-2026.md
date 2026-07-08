@@ -8,6 +8,8 @@ readTime: "12 min"
 draft: true
 color: "amber"
 emoji: "🤝"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Afiliados: o modelo que continua gerando renda em 2026

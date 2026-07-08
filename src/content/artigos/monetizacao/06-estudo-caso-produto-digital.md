@@ -8,6 +8,8 @@ readTime: "13 min"
 draft: true
 color: "amber"
 emoji: "📊"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Criei um produto digital do zero: quanto gastei, quanto lucrei

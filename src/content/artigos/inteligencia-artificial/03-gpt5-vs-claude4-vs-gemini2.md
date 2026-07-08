@@ -8,6 +8,8 @@ readTime: "11 min"
 draft: true
 color: "purple"
 emoji: "⚖️"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # GPT-5 vs Claude 4.5 vs Gemini 2.5: qual usar em cada caso

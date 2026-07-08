@@ -8,6 +8,8 @@ readTime: "9 min"
 draft: true
 color: "cyan"
 emoji: "📱"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # O fim do alcance orgânico no Instagram?

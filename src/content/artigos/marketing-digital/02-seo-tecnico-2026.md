@@ -8,6 +8,8 @@ readTime: "12 min"
 draft: true
 color: "cyan"
 emoji: "🔍"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # SEO técnico: o que o Google realmente rankeia hoje

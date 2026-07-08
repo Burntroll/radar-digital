@@ -8,6 +8,8 @@ readTime: "14 min"
 draft: true
 color: "purple"
 emoji: "🤖"
+locale: "pt-BR"
+contentType: "article"
 ---
 
 # Os 10 agentes de IA que estão rodando empresas em 2026
