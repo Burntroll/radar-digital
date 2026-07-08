@@ -132,6 +132,18 @@ export const ui = {
   'bonus.featured':     { 'pt-BR': 'Destaque',       'es': 'Destacado' },
   'bonus.stats.bonuses': { 'pt-BR': 'Bônus disponíveis', 'es': 'Bonos disponibles' },
 
+  // Bonus - categorias (traduzidas)
+  'bonus.cat.antidetect-browsers':  { 'pt-BR': 'Antidetect Browsers', 'es': 'Navegadores Antidetect' },
+  'bonus.cat.cloaking':             { 'pt-BR': 'Cloaking',            'es': 'Cloaking' },
+  'bonus.cat.trackers':             { 'pt-BR': 'Trackers',            'es': 'Trackers' },
+  'bonus.cat.spy-services':         { 'pt-BR': 'Spy Services',        'es': 'Spy Services' },
+  'bonus.cat.criativos':            { 'pt-BR': 'Criativos',           'es': 'Creativos' },
+  'bonus.cat.proxies':              { 'pt-BR': 'Proxies',             'es': 'Proxies' },
+  'bonus.cat.gateways-pagamento':   { 'pt-BR': 'Gateways de Pagamento', 'es': 'Pasarelas de Pago' },
+  'bonus.cat.contas-verificacao':   { 'pt-BR': 'Contas e Verificação', 'es': 'Cuentas y Verificación' },
+  'bonus.cat.automacao':            { 'pt-BR': 'Automação',           'es': 'Automatización' },
+  'bonus.cat.afiliados-cpa':        { 'pt-BR': 'Afiliados e CPA',     'es': 'Afiliados y CPA' },
+
   // Locale switcher
   'locale.switcher.label': { 'pt-BR': 'Idioma', 'es': 'Idioma' },
   'locale.unavailable':    { 'pt-BR': 'Em breve em', 'es': 'Próximamente en' },
