@@ -22,6 +22,7 @@ export const ui = {
   'nav.ia':             { 'pt-BR': 'IA',             'es': 'IA' },
   'nav.monetizacao':    { 'pt-BR': 'Monetização',    'es': 'Monetización' },
   'nav.parceiros':      { 'pt-BR': 'Ferramentas',  'es': 'Herramientas' },
+  'nav.guias':          { 'pt-BR': 'Guias',         'es': 'Guías' },
   'nav.bonus':          { 'pt-BR': 'Bônus',         'es': 'Bonos' },
 
   // Footer
@@ -147,6 +148,44 @@ export const ui = {
   // Locale switcher
   'locale.switcher.label': { 'pt-BR': 'Idioma', 'es': 'Idioma' },
   'locale.unavailable':    { 'pt-BR': 'Em breve em', 'es': 'Próximamente en' },
+
+  // Guias
+  'guias.title':        { 'pt-BR': 'Guias práticos para operações digitais', 'es': 'Guías prácticas para operaciones digitales' },
+  'guias.subtitle':     {
+    'pt-BR': 'Encontre tutoriais, checklists e conteúdos práticos sobre marketing digital, IA, monetização, tráfego pago, afiliados e ferramentas.',
+    'es': 'Encuentra tutoriales, checklists y contenidos prácticos sobre marketing digital, IA, monetización, tráfico pago, afiliados y herramientas.',
+  },
+  'guias.search.placeholder': { 'pt-BR': 'Pesquisar guia, tema ou ferramenta...', 'es': 'Buscar guía, tema o herramienta...' },
+  'guias.filter.all':  { 'pt-BR': 'Todos', 'es': 'Todos' },
+  'guias.ad.placeholder': { 'pt-BR': 'Espaço reservado para anúncio', 'es': 'Espacio reservado para anuncio' },
+  'guias.cta.read':    { 'pt-BR': 'Ler guia', 'es': 'Leer guía' },
+  'guias.noresults':   { 'pt-BR': 'Nenhum guia encontrado. Tente buscar por outro tema ou remover alguns filtros.', 'es': 'No se encontró ninguna guía. Intenta buscar otro tema o quitar algunos filtros.' },
+  'guias.empty.title': { 'pt-BR': 'Nenhum guia disponível ainda', 'es': 'Ninguna guía disponible aún' },
+
+  // Guias - filtros
+  'guias.filter.meta-ads':           { 'pt-BR': 'Meta Ads',           'es': 'Meta Ads' },
+  'guias.filter.tiktok-ads':         { 'pt-BR': 'TikTok Ads',         'es': 'TikTok Ads' },
+  'guias.filter.google-ads':         { 'pt-BR': 'Google Ads',         'es': 'Google Ads' },
+  'guias.filter.seo':                { 'pt-BR': 'SEO',                'es': 'SEO' },
+  'guias.filter.redes-sociais':      { 'pt-BR': 'Redes Sociais',      'es': 'Redes Sociales' },
+  'guias.filter.youtube':            { 'pt-BR': 'YouTube',            'es': 'YouTube' },
+  'guias.filter.email-marketing':    { 'pt-BR': 'Email Marketing',    'es': 'Email Marketing' },
+  'guias.filter.inteligencia-artificial': { 'pt-BR': 'Inteligência Artificial', 'es': 'Inteligencia Artificial' },
+  'guias.filter.prompts':            { 'pt-BR': 'Prompts',            'es': 'Prompts' },
+  'guias.filter.automacao':          { 'pt-BR': 'Automação',          'es': 'Automatización' },
+  'guias.filter.afiliados-cpa':      { 'pt-BR': 'Afiliados e CPA',    'es': 'Afiliados y CPA' },
+  'guias.filter.igaming-betting':    { 'pt-BR': 'iGaming e Betting',  'es': 'iGaming y Betting' },
+  'guias.filter.crypto':             { 'pt-BR': 'Crypto',             'es': 'Crypto' },
+  'guias.filter.e-commerce':         { 'pt-BR': 'E-commerce',         'es': 'E-commerce' },
+  'guias.filter.marketplaces':       { 'pt-BR': 'Marketplaces',       'es': 'Marketplaces' },
+  'guias.filter.monetizacao':        { 'pt-BR': 'Monetização',        'es': 'Monetización' },
+  'guias.filter.analytics-tracking': { 'pt-BR': 'Analytics e Tracking', 'es': 'Analytics y Tracking' },
+  'guias.filter.ferramentas':        { 'pt-BR': 'Ferramentas',        'es': 'Herramientas' },
+  'guias.filter.proxies':            { 'pt-BR': 'Proxies',            'es': 'Proxies' },
+  'guias.filter.antidetect':         { 'pt-BR': 'Antidetect Browsers', 'es': 'Antidetect Browsers' },
+  'guias.filter.criativos':          { 'pt-BR': 'Criativos',          'es': 'Creativos' },
+  'guias.filter.seguranca-contas':   { 'pt-BR': 'Segurança de Contas', 'es': 'Seguridad de Cuentas' },
+  'guias.filter.conteudo':           { 'pt-BR': 'Conteúdo',           'es': 'Contenido' },
 } as const;
 
 export type UIKey = keyof typeof ui;

@@ -9,8 +9,10 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "es"
+isGuide: true
+guideTags: ["email-marketing", "conteudo", "monetizacao"]
+guideType: "guia"
 ---
-
 # ¿El email marketing sigue valiendo la pena? (datos reales)
 
 **La respuesta corta: sí, de lejos. Pero solo si dejas de tratar el email como panfleto digital y empiezas a tratarlo como una relación.**
