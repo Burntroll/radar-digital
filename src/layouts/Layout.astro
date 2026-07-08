@@ -32,11 +32,9 @@ const alternates = isOnlyPT
   ? [{ lang: defaultLocale, href: localizePath(altPath, defaultLocale) }]
   : getAlternates(altPath);
 
-// Puxa categorias de parceiros só do mesmo locale
-const parceiroCategoriasAll = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
-const parceiroCategorias = parceiroCategoriasAll
-  .filter((c) => (c.data.locale || 'pt-BR') === locale)
-  .sort((a, b) => a.data.order - b.data.order);
+// Puxa categorias de parceiros (sem filtro de locale — são estruturais)
+const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false)
+  .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 ---

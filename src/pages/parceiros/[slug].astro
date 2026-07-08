@@ -26,7 +26,7 @@ const parceiros = todosParceiros
 
 const todasCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
 const outrasCategorias = todasCategorias
-  .filter((c) => c.slug !== categoria.slug && (c.data.locale || 'pt-BR') === locale)
+  .filter((c) => c.slug !== categoria.slug)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
 ---

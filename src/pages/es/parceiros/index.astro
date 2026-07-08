@@ -8,7 +8,6 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
 const todasCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
 const categoriasPublicadas = todasCategorias
-  .filter((c) => (c.data.locale || 'pt-BR') === locale)
   .sort((a, b) => a.data.order - b.data.order);
 
 const todosParceiros = await getCollection('parceiros', ({ data }) => data.draft === false);
