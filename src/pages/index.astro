@@ -6,7 +6,8 @@ const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 ---
 
-<Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}>
+<Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}
+  breadcrumbItems={[{name: t('nav.home', locale), href: prefix + '/'}]}>
   <!-- ════════════════════════════════════════════════ -->
   <!-- HERO SECTION -->
   <!-- ════════════════════════════════════════════════ -->

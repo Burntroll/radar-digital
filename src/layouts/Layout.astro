@@ -9,9 +9,18 @@ interface Props {
   description?: string;
   breadcrumbItems?: { name: string; href: string }[];
   noindex?: boolean;
+  articleData?: {
+    title: string;
+    description: string;
+    datePublished: Date;
+    dateModified?: Date;
+    authorName?: string;
+    imageUrl?: string;
+    categoria: string;
+  };
 }
 
-const { title, description, breadcrumbItems, noindex } = Astro.props;
+const { title, description, breadcrumbItems, noindex, articleData } = Astro.props;
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const currentPath = Astro.url.pathname;
 const altPath = Astro.url.pathname.replace(/^\/es/, '').replace(/^\/pt-BR/, '') || '/';
@@ -64,6 +73,18 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
     {/* BreadcrumbList + Article passam via prop breadcrumbItems / slot <head> */}
     {breadcrumbItems && <SEO type="breadcrumb" items={breadcrumbItems} />}
+
+    {articleData && (
+      <SEO type="article"
+        title={articleData.title}
+        description={articleData.description}
+        datePublished={articleData.datePublished}
+        dateModified={articleData.dateModified}
+        authorName={articleData.authorName}
+        imageUrl={articleData.imageUrl}
+        url={currentPath}
+      />
+    )}
 
     <title>{title} — Radar Digital</title>
 

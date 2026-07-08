@@ -24,6 +24,10 @@ for (const p of todosParceiros) {
 <Layout 
   title={t('parceiros.title', locale)} 
   description={t('parceiros.subtitle', locale)}
+  breadcrumbItems={[
+    {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
+    {name: t('nav.parceiros', locale), href: prefix + '/parceiros'}
+  ]}
 >
   <section class="relative pt-32 pb-20 overflow-hidden bg-surface transition-colors duration-300">
     <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl pointer-events-none" 

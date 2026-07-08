@@ -25,6 +25,10 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 <Layout 
   title={categoriaInfo.name} 
   description={categoriaInfo.description}
+  breadcrumbItems={[
+    {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
+    {name: categoriaInfo.name, href: prefix + '/' + categoria}
+  ]}
 >
   <!-- ════════════════════════════════════════════════ -->
   <!-- HERO DA CATEGORIA -->
