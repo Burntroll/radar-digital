@@ -9,9 +9,7 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "es"
-isGuide: true
-guideTags: ["email-marketing", "conteudo", "monetizacao"]
-guideType: "guia"
+contentType: "article"
 ---
 # ¿El email marketing sigue valiendo la pena? (datos reales)
 

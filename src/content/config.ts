@@ -17,9 +17,9 @@ const artigos = defineCollection({
     emoji: z.string().optional(),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     slugEs: z.string().optional(),
-    isGuide: z.boolean().default(false),
+    contentType: z.enum(['article', 'guide']).default('article'),
+    guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia', 'comparacao', 'passo-a-passo']).optional(),
     guideTags: z.array(z.string()).default([]),
-    guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia']).optional(),
   }),
 });
 

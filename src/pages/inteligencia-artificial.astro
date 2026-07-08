@@ -16,7 +16,7 @@ const categoriaInfo = {
 };
 
 const todos = await getCollection('artigos', ({ data }) =>
-  data.categoria === categoria && data.draft === false && (data.locale || 'pt-BR') === locale
+  data.categoria === categoria && data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
 );
 todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 ---

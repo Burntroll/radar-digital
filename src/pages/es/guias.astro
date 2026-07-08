@@ -6,7 +6,7 @@ import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/util
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
-const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.isGuide === true);
+const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.contentType === 'guide');
 const guias = artigos
   .filter((a) => (a.data.locale || 'pt-BR') === locale)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

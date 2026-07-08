@@ -9,9 +9,7 @@ draft: false
 color: "cyan"
 emoji: "🔐"
 locale: "es"
-isGuide: true
-guideTags: ["redes-sociais", "seguranca-contas", "antidetect", "ferramentas"]
-guideType: "guia"
+contentType: "article"
 ---
 # Cómo gestionar múltiples cuentas de redes sociales con organización y seguridad
 

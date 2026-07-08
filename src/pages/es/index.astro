@@ -7,7 +7,7 @@ const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
 const artigosRecentes = (await getCollection('artigos', ({ data }) =>
-  data.draft === false && (data.locale || 'pt-BR') === locale
+  data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
 ))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);

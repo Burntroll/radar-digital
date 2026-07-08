@@ -9,9 +9,7 @@ draft: false
 color: "purple"
 emoji: "💬"
 locale: "pt-BR"
-isGuide: true
-guideTags: ["prompts", "inteligencia-artificial", "conteudo", "ferramentas"]
-guideType: "tutorial"
+contentType: "article"
 ---
 
 # Como criar prompts que realmente funcionam
