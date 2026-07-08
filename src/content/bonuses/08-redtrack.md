@@ -12,7 +12,7 @@ verifiedAt: "2026-07-08"
 sourceUrl: "https://github.com/AdTechGuru/Redtrack-Coupon"
 status: "verified"
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 8
 locale: "pt-BR"
 ---

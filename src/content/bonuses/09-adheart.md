@@ -12,7 +12,7 @@ verifiedAt: "2026-07-08"
 sourceUrl: "https://techjury.net/ad-spy-coupons/adheart/"
 status: "verified"
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 9
 locale: "pt-BR"
 ---

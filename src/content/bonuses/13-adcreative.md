@@ -12,7 +12,7 @@ verifiedAt: "2026-07-08"
 sourceUrl: "https://techjury.net/ai-coupons/adcreative/"
 status: "verified"
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 13
 locale: "pt-BR"
 ---

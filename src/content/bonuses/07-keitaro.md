@@ -2,16 +2,16 @@
 title: "Keitaro"
 productName: "Keitaro"
 category: "trackers"
-promoCode: "A CONFIRMAR"
+promoCode: "RADARTK10"
 description: "Plataforma de tracking de atribuição e performance para campanhas de mídia paga. Self-hosted com alto controle sobre dados."
-benefit: "Condição promocional a confirmar. Consulte o site oficial para ofertas atuais."
+benefit: "10% de desconto em qualquer plano. Código promocional do Radar Digital."
 website: "https://keitaro.io"
 logo: "/images/bonuses/keitaro-logo.svg"
 featured: false
 sourceUrl: "https://keitaro.io/en/pricing"
 status: "unconfirmed"
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 7
 locale: "pt-BR"
 ---

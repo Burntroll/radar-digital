@@ -13,7 +13,7 @@ verifiedAt: "2026-07-08"
 sourceUrl: "https://www.couponbricks.com/anstrex-coupons"
 status: "verified"
 buttonText: "Usar código"
-draft: true
+draft: false
 order: 10
 locale: "pt-BR"
 ---
