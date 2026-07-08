@@ -45,6 +45,7 @@
 - [x] **Auditoria técnica i18n** — lang/hreflang/canonical/x-default/og:locale validados
 - [x] **Empty state ES** — Categorias sem artigos mostram "Próximamente"
 - [x] **Rotas PT/ES filtradas por locale** — Artigos ES não vazam pra URL PT e vice-versa
+- [x] **Seção Bônus** — Página /bonus e /es/bonus com filtros por categoria, espaço pra anúncio, grid de cards promo
 
 ### SEO & Performance
 - [x] **Sitemap.xml** — `@astrojs/sitemap` instalado, 20 URLs, sem drafts, sem 404

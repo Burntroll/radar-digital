@@ -22,6 +22,7 @@ export const ui = {
   'nav.ia':             { 'pt-BR': 'IA',             'es': 'IA' },
   'nav.monetizacao':    { 'pt-BR': 'Monetização',    'es': 'Monetización' },
   'nav.parceiros':      { 'pt-BR': 'Ferramentas',  'es': 'Herramientas' },
+  'nav.bonus':          { 'pt-BR': 'Bônus',         'es': 'Bonos' },
 
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
@@ -116,6 +117,20 @@ export const ui = {
   'parceiros.category.cta':     { 'pt-BR': 'Ver parceiros',  'es': 'Ver socios' },
   'parceiros.detail.cta.see':   { 'pt-BR': 'Ver diretório completo', 'es': 'Ver directorio completo' },
   'parceiros.detail.dropdown.title': { 'pt-BR': 'Categorias',  'es': 'Categorías' },
+
+  // Bonus
+  'bonus.title':        { 'pt-BR': 'Bônus e Códigos Promocionais', 'es': 'Bonos y Códigos Promocionales' },
+  'bonus.subtitle':     {
+    'pt-BR': 'Cupons, descontos, bônus e condições especiais de ferramentas úteis para marketing digital, afiliados, tráfego pago, automação, monetização e operações digitais.',
+    'es': 'Cupones, descuentos, bonos y condiciones especiales de herramientas útiles para marketing digital, afiliados, tráfico pagado, automatización, monetización y operaciones digitales.',
+  },
+  'bonus.filter.all':   { 'pt-BR': 'Todos',          'es': 'Todos' },
+  'bonus.ad.placeholder': { 'pt-BR': 'Espaço reservado para anúncio', 'es': 'Espacio reservado para anuncio' },
+  'bonus.cta.use':      { 'pt-BR': 'Usar código',    'es': 'Usar código' },
+  'bonus.expires':      { 'pt-BR': 'Expira',         'es': 'Expira' },
+  'bonus.noresults':    { 'pt-BR': 'Nenhum bônus encontrado para esta categoria.', 'es': 'Ningún bono encontrado para esta categoría.' },
+  'bonus.featured':     { 'pt-BR': 'Destaque',       'es': 'Destacado' },
+  'bonus.stats.bonuses': { 'pt-BR': 'Bônus disponíveis', 'es': 'Bonos disponibles' },
 
   // Locale switcher
   'locale.switcher.label': { 'pt-BR': 'Idioma', 'es': 'Idioma' },

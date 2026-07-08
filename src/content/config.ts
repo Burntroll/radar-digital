@@ -16,8 +16,6 @@ const artigos = defineCollection({
     color: z.enum(['cyan', 'purple', 'amber']),
     emoji: z.string().optional(),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
-    // Slug traduzido opcional. Se não tiver, gera URL no locale correspondente
-    // usando o filename + aviso de "sem versão nesse idioma"
     slugEs: z.string().optional(),
   }),
 });
@@ -29,12 +27,12 @@ const parceiros = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    category: z.string(), // slug da categoria (ex: 'trackers', 'antidetect-browsers')
+    category: z.string(),
     excerpt: z.string(),
     website: z.string().url(),
-    logo: z.string().optional(), // caminho /public/... ou URL externa
+    logo: z.string().optional(),
     featured: z.boolean().default(false),
-    languages: z.array(z.string()).default(['pt-BR']), // ex: ['pt-BR', 'en', 'es']
+    languages: z.array(z.string()).default(['pt-BR']),
     tags: z.array(z.string()).default([]),
     buttonText: z.string().default('Conhecer'),
     draft: z.boolean().default(true),
@@ -50,13 +48,49 @@ const parceiroCategorias = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    // slug vem do filename (trackers.md → "trackers")
     description: z.string(),
     order: z.number().default(99),
     draft: z.boolean().default(true),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
-    // O body da categoria é a introdução explicativa do nicho (opcional)
   }),
 });
 
-export const collections = { artigos, parceiros, parceiroCategorias };
+// ═══════════════════════════════════════════════════════════
+// CATEGORIAS DE BÔNUS
+// ═══════════════════════════════════════════════════════════
+const bonusCategorias = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    order: z.number().default(99),
+    draft: z.boolean().default(true),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════
+// BÔNUS / CÓDIGOS PROMOCIONAIS
+// ═══════════════════════════════════════════════════════════
+const bonuses = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    productName: z.string(),
+    category: z.string(),
+    promoCode: z.string(),
+    description: z.string(),
+    benefit: z.string().optional(),
+    website: z.string().url(),
+    logo: z.string().optional(),
+    image: z.string().optional(),
+    featured: z.boolean().default(false),
+    expiresAt: z.date().nullable().default(null),
+    buttonText: z.string().default('Usar código'),
+    draft: z.boolean().default(true),
+    order: z.number().default(99),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+  }),
+});
+
+export const collections = { artigos, parceiros, parceiroCategorias, bonusCategorias, bonuses };
