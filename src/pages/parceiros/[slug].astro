@@ -63,7 +63,7 @@ const outrasCategorias = todasCategorias
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
         <div>
           <div class="text-2xl font-bold text-text-primary transition-colors">{parceiros.length}</div>
-          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('parceiros.stats.parceiros', locale).replace(' listados', '').replace(' listados', '').replace('listados', '').replace(' listados', '').trim() || (locale === 'pt-BR' ? 'Parceiros' : 'Socios')}</div>
+          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('parceiros.stats.parceiros', locale).replace(' listados', '').replace(' listados', '').replace('listados', '').replace(' listados', '').trim() || (locale === 'pt-BR' ? 'Ferramentas' : 'Herramientas')}</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-cyan-500">{parceiros.filter(p => p.data.featured).length}</div>

@@ -21,7 +21,7 @@ export const ui = {
   'nav.marketing':      { 'pt-BR': 'Marketing',      'es': 'Marketing' },
   'nav.ia':             { 'pt-BR': 'IA',             'es': 'IA' },
   'nav.monetizacao':    { 'pt-BR': 'Monetização',    'es': 'Monetización' },
-  'nav.parceiros':      { 'pt-BR': 'Parceiros',      'es': 'Socios' },
+  'nav.parceiros':      { 'pt-BR': 'Ferramentas',  'es': 'Herramientas' },
 
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
@@ -106,7 +106,7 @@ export const ui = {
     'es': 'Curaduría de herramientas, servicios y plataformas que recomendamos por nicho. Cada socio listado aquí pasó por criterio: utilidad real, mercado activo, reputación consistente.',
   },
   'parceiros.stats.categorias': { 'pt-BR': 'Categorias',     'es': 'Categorías' },
-  'parceiros.stats.parceiros':  { 'pt-BR': 'Parceiros listados', 'es': 'Socios listados' },
+  'parceiros.stats.parceiros':  { 'pt-BR': 'Ferramentas listadas', 'es': 'Herramientas listadas' },
   'parceiros.stats.destaques':  { 'pt-BR': 'Em destaque',    'es': 'Destacados' },
   'parceiros.sections.title':   { 'pt-BR': 'Escolha o nicho', 'es': 'Elige el nicho' },
   'parceiros.sections.subtitle': {
