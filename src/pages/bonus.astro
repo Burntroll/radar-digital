@@ -119,11 +119,22 @@ const bonusesDoLocale = bonuses
                 <!-- Imagem de topo com slot para logo -->
                 <div class="relative w-full overflow-hidden" style="aspect-ratio: 2/1; background: transparent;">
                   <img 
-                    src={bonus.data.logo || '/images/bonuses/placeholder-card.svg'} 
-                    alt={bonus.data.productName}
+                    src="/images/bonuses/placeholder-card.svg" 
+                    alt=""
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
+                  {bonus.data.logo && (
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <img 
+                        src={bonus.data.logo}
+                        alt={bonus.data.productName}
+                        class="w-20 h-20 object-contain rounded-full"
+                        style="background: rgba(10, 11, 15, 0.6); border: 1.5px solid rgba(0, 229, 255, 0.3);"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div class="p-5 flex flex-col flex-1">
 
