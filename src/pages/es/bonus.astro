@@ -115,12 +115,16 @@ const bonusesDoLocale = bonuses
             const catTitle = t(('bonus.cat.' + bonus.data.category) as any, locale);
             return (
               <article class="glass-card overflow-hidden group flex flex-col" data-category={bonus.data.category}>
-                <div class="p-6 flex flex-col flex-1">
-                  <!-- Logo / Image placeholder -->
-                  <div class="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold mb-4"
-                       style="background: rgba(0, 229, 255, 0.1); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.2);">
-                    {bonus.data.productName.charAt(0)}
-                  </div>
+                <!-- Imagen de cabecera con espacio para logo -->
+                <div class="relative w-full overflow-hidden" style="aspect-ratio: 2/1; background: transparent;">
+                  <img 
+                    src={bonus.data.logo || '/images/bonuses/placeholder-card.svg'} 
+                    alt={bonus.data.productName}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-5 flex flex-col flex-1">
 
                   <!-- Product name -->
                   <h3 class="font-bold text-text-primary transition-colors text-base mb-1">
