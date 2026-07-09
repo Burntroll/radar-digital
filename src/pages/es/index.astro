@@ -288,53 +288,101 @@ const [artigoPrincipal, ...artigosSecundarios] = artigosRecentes;
     </div>
   </section>
 
-  <section id="artigos" class="py-24 relative bg-surface transition-colors duration-300">
+  <section id="artigos" class="py-16 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-end justify-between mb-14">
-        <div>
-          <span class="tag-pill">{locale === 'pt-BR' ? 'Conteúdo recente' : 'Contenido reciente'}</span>
-          <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Últimos do' : 'Últimos del'} <span class="text-cyan-500">Radar</span></h2>
+
+      <!-- Section label -->
+      <div class="flex items-center gap-3 mb-8">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Últimas publicaciones</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      {artigosPublicados.length === 0 ? (
+        <p class="text-sm text-text-muted text-center py-12">Ningún artículo publicado aún. Vuelve pronto.</p>
+      ) : (
+        <div class="grid lg:grid-cols-3 gap-10">
+
+          <!-- COLUMNA PRINCIPAL: Lista editorial -->
+          <div class="lg:col-span-2">
+            <div class="flex flex-col">
+              {artigosPublicados
+                .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+                .map((artigo, idx) => {
+                  const dateStr = artigo.data.date.toLocaleDateString('es-ES', {
+                    day: '2-digit', month: 'short', year: 'numeric'
+                  });
+                  return (
+                    <div>
+                      <a
+                        href={`${prefix}/artigos/${artigo.slug}`}
+                        class="group block py-5 first:pt-0"
+                      >
+                        <div class="flex items-center gap-2 text-xs text-text-muted mb-1.5">
+                          <span class="font-semibold uppercase tracking-wider">{artigo.data.subtema}</span>
+                          <span>·</span>
+                          <span>{artigo.data.readTime}</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug">
+                          {artigo.data.title}
+                        </h3>
+                        <p class="text-sm text-text-secondary mt-1.5 leading-relaxed line-clamp-2">
+                          {artigo.data.excerpt}
+                        </p>
+                        <time class="text-xs text-text-muted mt-2 block">{dateStr}</time>
+                      </a>
+                      {idx < artigosPublicados.length - 1 && (
+                        <div class="h-px" style="background: var(--color-border);"></div>
+                      )}
+                    </div>
+                  );
+                })}
+
+              <!-- AdSlot in-feed después de la lista -->
+              <div class="mt-8">
+                <AdSlot variant="in-feed" />
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMNA LATERAL: Recomendados -->
+          <div class="lg:col-span-1">
+            <div class="glass-card p-5">
+              <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-text-muted mb-4">
+                Recomendados por la redacción
+              </h3>
+              <div class="flex flex-col gap-3">
+                {artigosPublicados
+                  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+                  .slice(0, 3)
+                  .map((artigo) => {
+                    const dateStr = artigo.data.date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+                    const colorAccent = artigo.data.color === 'purple' ? 'text-purple-500' :
+                      artigo.data.color === 'amber' ? 'text-amber-500' : 'text-cyan-500';
+                    return (
+                      <a
+                        href={`${prefix}/artigos/${artigo.slug}`}
+                        class="group flex items-start gap-3"
+                      >
+                        <span class={`text-lg shrink-0 mt-0.5 ${colorAccent}`}>·</span>
+                        <div class="min-w-0 flex-1">
+                          <h4 class="text-sm font-semibold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug line-clamp-2">
+                            {artigo.data.title}
+                          </h4>
+                          <div class="flex items-center gap-1.5 text-[10px] text-text-muted mt-1">
+                            <span class="font-medium uppercase tracking-wider">{artigo.data.subtema}</span>
+                            <span>·</span>
+                            <time>{dateStr}</time>
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {artigosRecentes.length === 0 ? (
-          <p class="col-span-full text-center text-text-muted text-sm py-12">Ningún artículo publicado aún. Vuelve pronto.</p>
-        ) : (
-          artigosRecentes.map((artigo) => {
-            const colorMap = {
-              cyan: 'from-cyan-500/10 via-blue-600/5',
-              purple: 'from-purple-500/10 via-pink-600/5',
-              amber: 'from-amber-500/10 via-orange-600/5',
-            };
-            const grad = colorMap[artigo.data.color] || colorMap.cyan;
-            const dateStr = artigo.data.date.toLocaleDateString('es-ES', {
-              day: '2-digit', month: 'short', year: 'numeric'
-            });
-            return (
-              <article class="glass-card overflow-hidden group">
-                <a href={`${prefix}/artigos/${artigo.slug}`} class="block">
-                  <div class={`h-44 bg-gradient-to-br ${grad} to-surface-elevated flex items-center justify-center transition-colors`}>
-                    <span class="text-4xl">{artigo.data.emoji || '📡'}</span>
-                  </div>
-                  <div class="p-5">
-                    <div class="flex items-center gap-2 text-xs text-text-muted mb-2">
-                      <span class="font-medium uppercase tracking-wider">{artigo.data.subtema}</span>
-                      <span>·</span>
-                      <span>{artigo.data.readTime}</span>
-                    </div>
-                    <h3 class="font-semibold text-text-primary group-hover:text-cyan-500 transition-colors">{artigo.data.title}</h3>
-                    <p class="text-xs text-text-muted mt-2 leading-relaxed line-clamp-2">{artigo.data.excerpt}</p>
-                    <div class="flex items-center justify-between mt-4 pt-3 border-t border-surface">
-                      <span class="text-[11px] text-text-muted">{dateStr}</span>
-                      <span class="text-xs font-medium text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">Leer</span>
-                    </div>
-                  </div>
-                </a>
-              </article>
-            );
-          })
-        )}
-      </div>
+      )}
     </div>
   </section>
 
