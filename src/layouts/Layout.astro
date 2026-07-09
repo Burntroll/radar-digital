@@ -46,13 +46,13 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description || (locale === 'pt-BR' ? 'Radar Digital — Marketing Digital, IA e Monetização' : 'Radar Digital — Marketing Digital, IA y Monetización')} />
+    <meta name="description" content={description || t('layout.meta.desc', locale)} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#0a0b0f" id="theme-color" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description || (locale === 'pt-BR' ? 'Seu radar de tendências em marketing, inteligência artificial e monetização digital.' : 'Tu radar de tendencias en marketing, inteligencia artificial y monetización digital.')} />
+    <meta property="og:description" content={description || t('layout.meta.ogdesc', locale)} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={locale === 'pt-BR' ? 'pt_BR' : 'es_ES'} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -189,7 +189,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
               </svg>
-              <span class="text-xs font-semibold uppercase">{locale === 'pt-BR' ? 'PT' : 'ES'}</span>
+              <span class="text-xs font-semibold uppercase">{t('layout.locale.label', locale)}</span>
             </button>
 
             <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -206,7 +206,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
                     >
                       <span class="flex items-center justify-between">
                         <span>{languages[lang]}</span>
-                        <span class="text-[10px] font-bold uppercase opacity-60">{lang === 'pt-BR' ? 'PT' : 'ES'}</span>
+                        <span class="text-[10px] font-bold uppercase opacity-60">{t('layout.locale.label', lang)}</span>
                       </span>
                     </a>
                   );

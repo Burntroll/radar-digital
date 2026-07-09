@@ -157,6 +157,17 @@ export const ui = {
   // Home — CTA final
   'home.cta.tagline':         { 'pt-BR': 'Captando sinais, entregando valor.', 'es': 'Captando señales, entregando valor.' },
 
+  // Layout — meta defaults
+  'layout.meta.desc': {
+    'pt-BR': 'Radar Digital — Marketing Digital, IA e Monetização',
+    'es': 'Radar Digital — Marketing Digital, IA y Monetización',
+  },
+  'layout.meta.ogdesc': {
+    'pt-BR': 'Seu radar de tendências em marketing, inteligência artificial e monetização digital.',
+    'es': 'Tu radar de tendencias en marketing, inteligencia artificial y monetización digital.',
+  },
+  'layout.locale.label': { 'pt-BR': 'PT', 'es': 'ES' },
+
   // Categorias (genérico)
   'cat.articles.planned': { 'pt-BR': 'Artigos planejados', 'es': 'Artículos planejados' },
   'cat.articles.published': { 'pt-BR': 'Publicados', 'es': 'Publicados' },
