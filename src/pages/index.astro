@@ -40,7 +40,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 ---
 
-<Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}
+<Layout title="Radar Digital" description={t('home.meta.desc', locale)}
   breadcrumbItems={[{name: t('nav.home', locale), href: prefix + '/'}]}>
 
   <AdSlot variant="horizontal" />
@@ -57,13 +57,13 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <span class="gradient-text">Digital</span>
         </h1>
         <p class="text-sm text-text-secondary mt-1.5 max-w-xl">
-          Marketing, IA, monetização e ferramentas para quem trabalha na internet.
+          {t('home.masthead.desc', locale)}
         </p>
       </div>
 
       <!-- Section label: Leia primeiro -->
       <div class="flex items-center gap-3 mb-6">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Leia primeiro</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.leia', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
@@ -100,7 +100,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
                     {artigoPrincipal.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}
                   </time>
                   <span class="text-xs font-medium text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {locale === 'pt-BR' ? 'Ler' : 'Leer'}
+                    {t('home.article.read', locale)}
                   </span>
                 </div>
               </div>
@@ -151,7 +151,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center gap-1.5 text-[10px] text-purple-500 font-semibold uppercase tracking-wider mb-1">
-                    <span>Guia</span>
+                    <span>{t('home.article.guide.badge', locale)}</span>
                     <span>·</span>
                     <span>{guiaRecente.data.readTime}</span>
                   </div>
@@ -167,7 +167,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         </div>
       ) : (
         <p class="text-sm text-text-muted text-center py-12">
-          Nenhum artigo publicado ainda.
+          {t('home.empty.articles', locale)}
         </p>
       )}
     </div>
@@ -180,7 +180,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
     <div class="max-w-6xl mx-auto px-6">
       <!-- Section label -->
       <div class="flex items-center gap-3 mb-8">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">O que você quer resolver hoje?</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.intencao', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
@@ -189,8 +189,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/marketing-digital`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">📈</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero gerar mais tráfego</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Estratégias para atrair mais visitantes, cliques e oportunidades.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.trafego.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.trafego.desc', locale)}</p>
           </div>
         </a>
 
@@ -198,8 +198,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/inteligencia-artificial`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">🤖</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero usar IA no trabalho</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Prompts, ferramentas e fluxos práticos para ganhar produtividade.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.ia.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.ia.desc', locale)}</p>
           </div>
         </a>
 
@@ -207,8 +207,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/monetizacao`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">💰</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero monetizar conteúdo</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Ideias para transformar audiência, blogs e projetos digitais em receita.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.monetizar.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.monetizar.desc', locale)}</p>
           </div>
         </a>
 
@@ -216,8 +216,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/guias`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-purple-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">📋</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-purple-500 transition-colors">Quero organizar operações digitais</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Guias e checklists para trabalhar melhor com contas, acessos e processos.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-purple-500 transition-colors">{t('home.card.organizar.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.organizar.desc', locale)}</p>
           </div>
         </a>
 
@@ -225,8 +225,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/parceiros`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">🧰</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero encontrar ferramentas</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Categorias de ferramentas úteis para marketing, tráfego e monetização.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.ferramentas.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.ferramentas.desc', locale)}</p>
           </div>
         </a>
 
@@ -234,8 +234,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         <a href={`${prefix}/bonus`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">🎁</span>
           <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero ver bônus e códigos</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Condições promocionais e benefícios verificados.</p>
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.bonus.title', locale)}</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.bonus.desc', locale)}</p>
           </div>
         </a>
       </div>
@@ -250,13 +250,13 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
 
       <!-- Section label -->
       <div class="flex items-center gap-3 mb-8">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Últimas publicações</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.ultimas', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       {artigosPublicados.length === 0 ? (
         <p class="text-sm text-text-muted text-center py-12 transition-colors">
-          Nenhum artigo publicado ainda. Volte em breve.
+          {t('home.empty.articles.soon', locale)}
         </p>
       ) : (
         <div class="grid lg:grid-cols-3 gap-10">
@@ -307,7 +307,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <div class="lg:col-span-1">
             <div class="glass-card p-5">
               <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-text-muted mb-4">
-                Recomendados pela redação
+                {t('home.section.recomendados', locale)}
               </h3>
               <div class="flex flex-col gap-3">
                 {artigosPublicados
@@ -352,12 +352,12 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
     <section class="py-14 bg-surface transition-colors duration-300">
       <div class="max-w-6xl mx-auto px-6">
         <div class="flex items-center gap-3 mb-6">
-          <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Guias práticos</h2>
+          <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.guias', locale)}</h2>
           <div class="h-px flex-1" style="background: var(--color-border);"></div>
         </div>
 
         <p class="text-sm text-text-secondary mb-6 max-w-xl">
-          Checklists e passo a passo para aplicar no dia a dia.
+          {t('home.guides.desc', locale)}
         </p>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -377,14 +377,14 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
               </h3>
               <p class="text-xs text-text-muted mt-1 line-clamp-2">{guiaRecente.data.excerpt}</p>
               <span class="text-xs text-purple-500 font-medium mt-2 inline-block group-hover:underline">
-                {locale === 'pt-BR' ? 'Ler guia' : 'Leer guía'}
+                {t('home.article.guide.read', locale)}
               </span>
             </div>
           </a>
         </div>
 
         <a href={`${prefix}/guias`} class="inline-flex items-center gap-1 text-xs font-medium text-purple-500 hover:underline mt-4 transition-colors">
-          {locale === 'pt-BR' ? 'Ver todos os guias' : 'Ver todas las guías'}
+          {t('home.guides.all', locale)}
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
           </svg>
@@ -395,7 +395,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
     <section class="py-14 bg-surface transition-colors duration-300">
       <div class="max-w-6xl mx-auto px-6">
         <div class="flex items-center gap-3 mb-6">
-          <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Guias práticos</h2>
+          <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.guias', locale)}</h2>
           <div class="h-px flex-1" style="background: var(--color-border);"></div>
         </div>
 
@@ -403,10 +403,10 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <span class="text-2xl shrink-0">📋</span>
           <div class="min-w-0 flex-1">
             <p class="text-sm text-text-secondary leading-relaxed">
-              {locale === 'pt-BR' ? 'Checklists e passo a passo para aplicar no dia a dia.' : 'Checklists y paso a paso para aplicar en el día a día.'}
+              {t('home.guides.desc', locale)}
             </p>
             <span class="text-xs font-medium text-purple-500 mt-1 inline-flex items-center gap-1 group-hover:underline">
-              {locale === 'pt-BR' ? 'Ver todos os guias' : 'Ver todas las guías'}
+              {t('home.guides.all', locale)}
               <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
               </svg>
@@ -423,12 +423,12 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <section class="py-14 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center gap-3 mb-4">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Ferramentas na prática</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.ferramentas', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       <p class="text-sm text-text-secondary mb-5 max-w-xl">
-        Categorias úteis para operações digitais, conteúdo, tráfego e monetização.
+        {t('home.tools.desc', locale)}
       </p>
 
       {parceiroCategorias.length > 0 ? (
@@ -444,11 +444,11 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           ))}
         </div>
       ) : (
-        <p class="text-sm text-text-muted mb-4">Diretório em construção.</p>
+        <p class="text-sm text-text-muted mb-4">{t('home.tools.empty', locale)}</p>
       )}
 
       <a href={`${prefix}/parceiros`} class="inline-flex items-center gap-1 text-xs font-medium text-cyan-500 hover:underline transition-colors">
-        Ver ferramentas
+        {t('home.tools.cta', locale)}
         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
@@ -462,12 +462,12 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <section class="py-14 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center gap-3 mb-4">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Bônus e códigos promocionais</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.bonus', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       <p class="text-sm text-text-secondary mb-5 max-w-xl">
-        Condições úteis para ferramentas do mercado digital, com status claro.
+        {t('home.bonus.desc', locale)}
       </p>
 
       {bonusDestaques.length > 0 ? (
@@ -480,16 +480,16 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
             >
               <div class="text-xs font-semibold text-text-primary group-hover:text-cyan-500 transition-colors mb-1">{bonus.data.productName}</div>
               <div class="text-[10px] font-mono text-amber-500 font-semibold tracking-wide">{bonus.data.promoCode}</div>
-              <div class="text-[9px] uppercase tracking-wider text-green-500 mt-1 font-medium">✓ verificado</div>
+              <div class="text-[9px] uppercase tracking-wider text-green-500 mt-1 font-medium">{t('home.bonus.verified', locale)}</div>
             </a>
           ))}
         </div>
       ) : (
-        <p class="text-sm text-text-muted mb-4">Nenhum bônus verificado no momento.</p>
+        <p class="text-sm text-text-muted mb-4">{t('home.bonus.empty', locale)}</p>
       )}
 
       <a href={`${prefix}/bonus`} class="inline-flex items-center gap-1 text-xs font-medium text-cyan-500 hover:underline transition-colors">
-        Ver bônus
+        {t('home.bonus.cta', locale)}
         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
@@ -503,12 +503,12 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <section class="py-14 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center gap-3 mb-6">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Radar Market</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.market', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       <p class="text-sm text-text-secondary mb-5 max-w-xl">
-        Produtos, cursos e soluções para quem trabalha com marketing, IA e monetização.
+        {t('home.market.desc', locale)}
       </p>
 
       {marketCategorias.length > 0 ? (
@@ -522,11 +522,11 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           ))}
         </div>
       ) : (
-        <p class="text-sm text-text-muted mb-4">Categorias em construção.</p>
+        <p class="text-sm text-text-muted mb-4">{t('home.market.empty', locale)}</p>
       )}
 
       <a href={`${prefix}/market`} class="inline-flex items-center gap-1 text-xs font-medium text-cyan-500 hover:underline transition-colors">
-        Explorar Radar Market
+        {t('home.market.cta', locale)}
         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
@@ -552,29 +552,27 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         </div>
 
         <div class="relative z-10">
-          <span class="tag-pill">{locale === 'pt-BR' ? 'Fique ligado' : 'Mantente al tanto'}</span>
-          <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Receba o' : 'Recibe la'} <span class="text-cyan-500">{locale === 'pt-BR' ? 'sinal' : 'señal'}</span></h2>
+          <span class="tag-pill">{t('home.newsletter.badge', locale)}</span>
+          <h2 class="section-title mt-4 text-text-primary transition-colors">{t('home.newsletter.title.prefix', locale)} <span class="text-cyan-500">{t('home.newsletter.title.word', locale)}</span></h2>
           <p class="text-text-secondary mt-3 max-w-lg mx-auto text-sm leading-relaxed transition-colors">
-            {locale === 'pt-BR' 
-              ? 'Assine e seja o primeiro a saber quando novos artigos chegarem no Radar Digital. Sem spam, só conteúdo de verdade.' 
-              : 'Suscríbete y sé el primero en saber cuando lleguen nuevos artículos al Radar Digital. Sin spam, solo contenido real.'}
+            {t('home.newsletter.desc', locale)}
           </p>
 
           <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Newsletter em breve! 🚀')">
-            <input 
-              type="email" 
-              placeholder={locale === 'pt-BR' ? 'seu@email.com' : 'tu@email.com'} 
+            <input
+              type="email"
+              placeholder={t('home.newsletter.placeholder', locale)}
               class="flex-1 px-5 py-3 rounded-xl text-sm transition-all duration-300"
               style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);"
               required
             />
-            <button 
-              type="submit" 
-              class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 
+            <button
+              type="submit"
+              class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-cyan-600/20
                      border border-cyan-500/30 text-cyan-500 text-sm font-semibold
                      hover:from-cyan-500/30 hover:to-cyan-600/30 hover:border-cyan-500/50
                      transition-all duration-300">
-              {locale === 'pt-BR' ? 'Assinar' : 'Suscribirse'}
+              {t('home.newsletter.cta', locale)}
             </button>
           </form>
         </div>
@@ -587,11 +585,9 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <!-- ════════════════════════════════════════════════ -->
   <section class="pb-14 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <p class="text-xs text-text-muted uppercase tracking-[0.15em] mb-3 transition-colors">Radar Digital © 2026</p>
+      <p class="text-xs text-text-muted uppercase tracking-[0.15em] mb-3 transition-colors">Radar Digital &copy; 2026</p>
       <p class="text-text-secondary text-sm max-w-md mx-auto transition-colors">
-        {locale === 'pt-BR'
-          ? <>Captando sinais, entregando valor.</>
-          : <>Captando señales, entregando valor.</>}
+        {t('home.cta.tagline', locale)}
       </p>
     </div>
   </section>

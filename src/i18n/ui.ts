@@ -68,6 +68,95 @@ export const ui = {
   'home.card.explorar': { 'pt-BR': 'Explorar', 'es': 'Explorar' },
   'home.card.diretorio': { 'pt-BR': 'Ver diretório', 'es': 'Ver directorio' },
 
+  // Home — masthead & meta
+  'home.masthead.desc': {
+    'pt-BR': 'Marketing, IA, monetização e ferramentas para quem trabalha na internet.',
+    'es': 'Marketing, IA, monetización y herramientas para quien trabaja en internet.',
+  },
+  'home.meta.desc': {
+    'pt-BR': 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.',
+    'es': 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.',
+  },
+
+  // Home — section labels
+  'home.section.leia':      { 'pt-BR': 'Leia primeiro',  'es': 'Lee primero' },
+  'home.section.intencao':  { 'pt-BR': 'O que você quer resolver hoje?', 'es': '¿Qué quieres resolver hoy?' },
+  'home.section.ultimas':   { 'pt-BR': 'Últimas publicações', 'es': 'Últimas publicaciones' },
+  'home.section.recomendados': { 'pt-BR': 'Recomendados pela redação', 'es': 'Recomendados por la redacción' },
+  'home.section.guias':     { 'pt-BR': 'Guias práticos', 'es': 'Guías prácticas' },
+  'home.section.ferramentas': { 'pt-BR': 'Ferramentas na prática', 'es': 'Herramientas en la práctica' },
+  'home.section.bonus':     { 'pt-BR': 'Bônus e códigos promocionais', 'es': 'Bonos y códigos promocionales' },
+  'home.section.market':    { 'pt-BR': 'Radar Market',    'es': 'Radar Market' },
+
+  // Home — nav cards (intenção)
+  'home.card.trafego.title':    { 'pt-BR': 'Quero gerar mais tráfego',  'es': 'Quiero generar más tráfico' },
+  'home.card.trafego.desc':     { 'pt-BR': 'Estratégias para atrair mais visitantes, cliques e oportunidades.', 'es': 'Estrategias para atraer más visitantes, clics y oportunidades.' },
+  'home.card.ia.title':         { 'pt-BR': 'Quero usar IA no trabalho', 'es': 'Quiero usar IA en el trabajo' },
+  'home.card.ia.desc':          { 'pt-BR': 'Prompts, ferramentas e fluxos práticos para ganhar produtividade.', 'es': 'Prompts, herramientas y flujos prácticos para ganar productividad.' },
+  'home.card.monetizar.title':  { 'pt-BR': 'Quero monetizar conteúdo',  'es': 'Quiero monetizar contenido' },
+  'home.card.monetizar.desc':   { 'pt-BR': 'Ideias para transformar audiência, blogs e projetos digitais em receita.', 'es': 'Ideas para transformar audiencia, blogs y proyectos digitales en ingresos.' },
+  'home.card.organizar.title':  { 'pt-BR': 'Quero organizar operações digitais', 'es': 'Quiero organizar operaciones digitales' },
+  'home.card.organizar.desc':   { 'pt-BR': 'Guias e checklists para trabalhar melhor com contas, acessos e processos.', 'es': 'Guías y checklists para trabajar mejor con cuentas, accesos y procesos.' },
+  'home.card.ferramentas.title': { 'pt-BR': 'Quero encontrar ferramentas', 'es': 'Quiero encontrar herramientas' },
+  'home.card.ferramentas.desc':  { 'pt-BR': 'Categorias de ferramentas úteis para marketing, tráfego e monetização.', 'es': 'Categorías de herramientas útiles para marketing, tráfico y monetización.' },
+  'home.card.bonus.title':      { 'pt-BR': 'Quero ver bônus e códigos', 'es': 'Quiero ver bonos y códigos' },
+  'home.card.bonus.desc':       { 'pt-BR': 'Condições promocionais e benefícios verificados.', 'es': 'Condiciones promocionales y beneficios verificados.' },
+
+  // Home — article / guide labels
+  'home.article.read':          { 'pt-BR': 'Ler',                'es': 'Leer' },
+  'home.article.guide.badge':   { 'pt-BR': 'Guia',               'es': 'Guía' },
+  'home.article.guide.read':    { 'pt-BR': 'Ler guia',           'es': 'Leer guía' },
+
+  // Home — guides section
+  'home.guides.desc': {
+    'pt-BR': 'Checklists e passo a passo para aplicar no dia a dia.',
+    'es': 'Checklists y paso a paso para aplicar en el día a día.',
+  },
+  'home.guides.all':            { 'pt-BR': 'Ver todos os guias', 'es': 'Ver todas las guías' },
+
+  // Home — tools section
+  'home.tools.desc': {
+    'pt-BR': 'Categorias úteis para operações digitais, conteúdo, tráfego e monetização.',
+    'es': 'Categorías útiles para operaciones digitales, contenido, tráfico y monetización.',
+  },
+  'home.tools.empty':           { 'pt-BR': 'Diretório em construção.', 'es': 'Directorio en construcción.' },
+  'home.tools.cta':             { 'pt-BR': 'Ver ferramentas',    'es': 'Ver herramientas' },
+
+  // Home — bonus section
+  'home.bonus.desc': {
+    'pt-BR': 'Condições úteis para ferramentas do mercado digital, com status claro.',
+    'es': 'Condiciones útiles para herramientas del mercado digital, con estado claro.',
+  },
+  'home.bonus.verified':        { 'pt-BR': '✓ verificado',       'es': '✓ verificado' },
+  'home.bonus.empty':           { 'pt-BR': 'Nenhum bônus verificado no momento.', 'es': 'Ningún bono verificado por el momento.' },
+  'home.bonus.cta':             { 'pt-BR': 'Ver bônus',          'es': 'Ver bonos' },
+
+  // Home — market section
+  'home.market.desc': {
+    'pt-BR': 'Produtos, cursos e soluções para quem trabalha com marketing, IA e monetização.',
+    'es': 'Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.',
+  },
+  'home.market.empty':          { 'pt-BR': 'Categorias em construção.', 'es': 'Categorías en construcción.' },
+  'home.market.cta':            { 'pt-BR': 'Explorar Radar Market', 'es': 'Explorar Radar Market' },
+
+  // Home — newsletter
+  'home.newsletter.badge':        { 'pt-BR': 'Fique ligado',        'es': 'Mantente al tanto' },
+  'home.newsletter.title.prefix': { 'pt-BR': 'Receba o',            'es': 'Recibe la' },
+  'home.newsletter.title.word':   { 'pt-BR': 'sinal',               'es': 'señal' },
+  'home.newsletter.desc': {
+    'pt-BR': 'Assine e seja o primeiro a saber quando novos artigos chegarem no Radar Digital. Sem spam, só conteúdo de verdade.',
+    'es': 'Suscríbete y sé el primero en saber cuando lleguen nuevos artículos al Radar Digital. Sin spam, solo contenido real.',
+  },
+  'home.newsletter.placeholder':  { 'pt-BR': 'seu@email.com',       'es': 'tu@email.com' },
+  'home.newsletter.cta':          { 'pt-BR': 'Assinar',             'es': 'Suscribirse' },
+
+  // Home — empty states
+  'home.empty.articles':      { 'pt-BR': 'Nenhum artigo publicado ainda.', 'es': 'Ningún artículo publicado aún.' },
+  'home.empty.articles.soon': { 'pt-BR': 'Nenhum artigo publicado ainda. Volte em breve.', 'es': 'Ningún artículo publicado aún. Vuelve pronto.' },
+
+  // Home — CTA final
+  'home.cta.tagline':         { 'pt-BR': 'Captando sinais, entregando valor.', 'es': 'Captando señales, entregando valor.' },
+
   // Categorias (genérico)
   'cat.articles.planned': { 'pt-BR': 'Artigos planejados', 'es': 'Artículos planejados' },
   'cat.articles.published': { 'pt-BR': 'Publicados', 'es': 'Publicados' },
