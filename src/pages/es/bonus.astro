@@ -1,7 +1,8 @@
 ---
 // ═══════════════════════════════════════════════════════════
-// REDIRECT 301: URL antiga → nova
-// /es/bonus/ → /es/bonos/
+// REDIRECT FALLBACK (local dev)
+// Em produção, o vercel.json faz o redirect 301 real no edge.
+// Esta página existe apenas para o astro dev local.
 // ═══════════════════════════════════════════════════════════
 ---
 <!DOCTYPE html>
@@ -10,7 +11,6 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
   <meta http-equiv="refresh" content="0; url=/es/bonos/" />
-  <script>window.location.replace('/es/bonos/');</script>
 </head>
 <body>
   <p>Redirigiendo a <a href="/es/bonos/">/es/bonos/</a>...</p>
