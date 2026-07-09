@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { getLocaleFromUrl, localizePath, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
+import { routePath } from '../i18n/utils';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const categoria = 'marketing-digital';
@@ -93,7 +94,7 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {todos.map((artigo) => (
           <article class="glass-card overflow-hidden group">
-            <a href={artigo.data.draft ? `#` : `${prefix}/artigos/${artigo.slug}`} class="block">
+            <a href={artigo.data.draft ? `#` : routePath('artigos', locale, artigo.slug)} class="block">
               <div class="h-40 bg-gradient-to-br from-cyan-500/15 via-blue-600/5 to-surface-elevated flex items-center justify-center transition-colors">
                 <svg class="w-9 h-9 text-cyan-500/40 group-hover:text-cyan-500/70 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>

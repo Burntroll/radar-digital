@@ -1,244 +1,29 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../../i18n/utils';
-import { routePath, type RouteKey } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+// ═══════════════════════════════════════════════════════════
+// REDIRECT FALLBACK (local dev)
+// Gera uma página de redirect para cada artigo ES no slug
+// antigo. Em producao, o vercel.json faz o redirect 308 real.
+// ═══════════════════════════════════════════════════════════
 
 export async function getStaticPaths() {
   const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.locale === 'es');
   return artigos.map((artigo) => ({
     params: { slug: artigo.slug },
-    props: { artigo },
   }));
 }
 
-interface Props {
-  artigo: CollectionEntry<'artigos'>;
-}
-
-const { artigo } = Astro.props;
-const locale: Locale = (artigo.data.locale || 'pt-BR') as Locale;
-const requestLocale: Locale = getLocaleFromUrl(Astro.url);
-const prefix = locale === defaultLocale ? '' : `/${locale}`;
-const { Content } = await artigo.render();
-
-const colorMap: Record<string, { accent: string; text: string; bg: string; border: string }> = {
-  cyan:   { accent: 'cyan-500',   text: 'text-cyan-500',   bg: 'bg-cyan-500/10',   border: 'border-cyan-500/20' },
-  purple: { accent: 'purple-500', text: 'text-purple-500', bg: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  amber:  { accent: 'amber-500',  text: 'text-amber-500',  bg: 'bg-amber-500/10',  border: 'border-amber-500/20' },
-};
-
-const c = colorMap[artigo.data.color] || colorMap.cyan;
-
-// Categoria name mapping for breadcrumb
-const catNameKey: Record<string, string> = {
-  'marketing-digital': 'cat.marketing.name',
-  'inteligencia-artificial': 'cat.ia.name',
-  'monetizacao': 'cat.monetizacao.name',
-};
-const categoriaNome = t(catNameKey[artigo.data.categoria] as any, locale);
-
-const dateStr = artigo.data.date.toLocaleDateString(getDateLocale(locale), {
-  day: '2-digit',
-  month: 'long',
-  year: 'numeric',
-});
-
-// Aviso de actualización
-let updatedStr: string | null = null;
-if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
-  const upd = artigo.data.updatedAt;
-  const d = upd.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
-  const t = upd.toLocaleTimeString(getDateLocale(locale), { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
-  updatedStr = `Actualizado el ${d} a las ${t}`;
-}
-
-// Hreflang alternates: busca o artigo PT que tem este slug como slugEs
-const artigosPT = (await getCollection('artigos', ({ data }) =>
-  data.draft === false && data.locale !== 'es' && data.slugEs === artigo.slug
-));
-const ptMatch = artigosPT[0];
-const alternateUrls = ptMatch
-  ? [
-      { lang: 'pt-BR', href: `/artigos/${ptMatch.slug}` },
-      { lang: 'es', href: `/es/artigos/${artigo.slug}` },
-    ]
-  : undefined;
+const { slug } = Astro.params;
 ---
-
-<Layout 
-  title={artigo.data.title} 
-  description={artigo.data.excerpt}
-  breadcrumbItems={[
-    {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
-    {name: categoriaNome, href: routePath(artigo.data.categoria as RouteKey, locale)},
-    {name: artigo.data.title, href: prefix + '/artigos/' + artigo.slug}
-  ]}
-  alternateUrls={alternateUrls}
-  articleData={{
-    title: artigo.data.title,
-    description: artigo.data.excerpt,
-    datePublished: artigo.data.date,
-    dateModified: artigo.data.updatedAt,
-    authorName: artigo.data.author,
-    imageUrl: artigo.data.image,
-    categoria: artigo.data.categoria,
-  }}
->
-  <!-- ════════════════════════════════════════════════ -->
-  <!-- HERO DO ARTIGO -->
-  <!-- ════════════════════════════════════════════════ -->
-  <article class="bg-surface transition-colors duration-300">
-    <header class="relative pt-32 pb-12 overflow-hidden">
-      <!-- Glow da categoria -->
-      <div class={`absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl pointer-events-none`}
-           style={`background: radial-gradient(circle, var(--color-accent-glow, rgba(0, 229, 255, 0.25)) 0%, transparent 60%);`}></div>
-
-      <div class="max-w-3xl mx-auto px-6 relative z-10">
-        <nav class="flex items-center gap-2 text-xs text-text-muted mb-8 transition-colors">
-            <a href={`${prefix}/`} class="hover:text-text-primary transition-colors">{t('cat.breadcrumb.home', locale)}</a>
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-            </svg>
-            <a href={routePath(artigo.data.categoria as RouteKey, locale)} class={`hover:${c.text} transition-colors capitalize`}>
-              {artigo.data.categoria.replace('-', ' ')}
-            </a>
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-            </svg>
-            <span class={`${c.text} truncate`}>{artigo.data.subtema}</span>
-          </nav>
-
-        <!-- Subtema pill -->
-        <div class="flex items-center gap-2 mb-5">
-          <span class={`inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider ${c.bg} ${c.text} border ${c.border}`}>
-            {artigo.data.subtema}
-          </span>
-          {artigo.data.emoji && <span class="text-lg">{artigo.data.emoji}</span>}
-        </div>
-
-        <!-- Título -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 text-text-primary transition-colors">
-          {artigo.data.title}
-        </h1>
-
-        <!-- Excerpt -->
-        <p class="text-lg text-text-secondary leading-relaxed mb-8 transition-colors">
-          {artigo.data.excerpt}
-        </p>
-
-        <!-- Meta -->
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-text-muted pt-6 border-t transition-colors" style="border-color: var(--color-border);">
-          <time datetime={artigo.data.date.toISOString()} class="flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-            </svg>
-            {dateStr}
-          </time>
-          {updatedStr && (
-            <span class="flex items-center gap-1.5 text-amber-500">
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/>
-              </svg>
-              <span>{updatedStr}</span>
-            </span>
-          )}
-          <span class="flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            {artigo.data.readTime} {locale === 'pt-BR' ? 'de leitura' : 'de lectura'}
-          </span>
-        </div>
-      </div>
-    </header>
-
-    <!-- ════════════════════════════════════════════════ -->
-    <!-- CONTEÚDO DO ARTIGO -->
-    <!-- ════════════════════════════════════════════════ -->
-    <div class="pb-20">
-      <div class="max-w-3xl mx-auto px-6">
-        <div class="prose-radar">
-          <Content />
-        </div>
-      </div>
-    </div>
-
-    <!-- ════════════════════════════════════════════════ -->
-    <!-- FOOTER DO ARTIGO -->
-    <!-- ════════════════════════════════════════════════ -->
-    <div class="max-w-3xl mx-auto px-6 pb-20">
-      <div class="pt-10 border-t transition-colors" style="border-color: var(--color-border);">
-        <a href={routePath(artigo.data.categoria as RouteKey, locale)} class={`inline-flex items-center gap-2 text-sm ${c.text} hover:underline transition-colors`}>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-          </svg>
-          {t('cat.cta.see.more', locale)} {artigo.data.categoria.replace('-', ' ')}
-        </a>
-      </div>
-    </div>
-  </article>
-</Layout>
-
-<style is:global>
-  /* Tipografia do conteúdo do artigo */
-  .prose-radar {
-    color: var(--color-text-primary);
-    line-height: 1.75;
-    font-size: 1.0625rem;
-  }
-  .prose-radar h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-text-primary);
-    letter-spacing: -0.02em;
-  }
-  .prose-radar h3 {
-    font-size: 1.375rem;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-text-primary);
-  }
-  .prose-radar p {
-    margin-bottom: 1.25rem;
-  }
-  .prose-radar ul, .prose-radar ol {
-    margin: 1.25rem 0 1.25rem 1.5rem;
-  }
-  .prose-radar ul { list-style: disc; }
-  .prose-radar ol { list-style: decimal; }
-  .prose-radar li {
-    margin-bottom: 0.5rem;
-  }
-  .prose-radar blockquote {
-    border-left: 3px solid var(--color-accent, #00e5ff);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    color: var(--color-text-secondary);
-    font-style: italic;
-  }
-  .prose-radar code {
-    background: var(--color-surface-elevated, #15171f);
-    padding: 0.15rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.9em;
-    font-family: ui-monospace, SFMono-Regular, monospace;
-  }
-  .prose-radar a {
-    color: var(--color-accent, #00e5ff);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .prose-radar hr {
-    border: none;
-    border-top: 1px solid var(--color-border, #1e2130);
-    margin: 2rem 0;
-  }
-  .prose-radar strong {
-    color: var(--color-text-primary);
-    font-weight: 700;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="refresh" content={`0; url=/es/articulos/${slug}/`} />
+</head>
+<body>
+  <p>Redirigiendo a <a href={`/es/articulos/${slug}/`}>/es/articulos/{slug}/</a>...</p>
+</body>
+</html>

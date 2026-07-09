@@ -1,11 +1,11 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
-import { routePath, type RouteKey } from '../../i18n/utils';
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../../i18n/utils';
+import { routePath, type RouteKey } from '../../../i18n/utils';
 
 export async function getStaticPaths() {
-  const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.locale !== 'es');
+  const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.locale === 'es');
   return artigos.map((artigo) => ({
     params: { slug: artigo.slug },
     props: { artigo },
@@ -44,21 +44,24 @@ const dateStr = artigo.data.date.toLocaleDateString(getDateLocale(locale), {
   year: 'numeric',
 });
 
-// Aviso de atualização
+// Aviso de actualización
 let updatedStr: string | null = null;
 if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
   const upd = artigo.data.updatedAt;
-  const d = upd.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
-  const t = upd.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
-  updatedStr = `${locale === 'pt-BR' ? 'Atualizado em' : 'Actualizado el'} ${d} ${locale === 'pt-BR' ? 'às' : 'a las'} ${t}`;
+  const d = upd.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+  const t = upd.toLocaleTimeString(getDateLocale(locale), { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
+  updatedStr = `Actualizado el ${d} a las ${t}`;
 }
 
-// Hreflang alternates: se o artigo tem slugEs, gera URL correta para ES
-const slugEs = artigo.data.slugEs;
-const alternateUrls = slugEs
+// Hreflang alternates: busca o artigo PT que tem este slug como slugEs
+const artigosPT = (await getCollection('artigos', ({ data }) =>
+  data.draft === false && data.locale !== 'es' && data.slugEs === artigo.slug
+));
+const ptMatch = artigosPT[0];
+const alternateUrls = ptMatch
   ? [
-      { lang: 'pt-BR', href: routePath('artigos', 'pt-BR', artigo.slug) },
-      { lang: 'es', href: routePath('artigos', 'es', slugEs) },
+      { lang: 'pt-BR', href: routePath('artigos', 'pt-BR', ptMatch.slug) },
+      { lang: 'es', href: routePath('artigos', 'es', artigo.slug) },
     ]
   : undefined;
 ---

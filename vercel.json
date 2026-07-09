@@ -13,6 +13,11 @@
       "source": "/es/monetizacao",
       "destination": "/es/monetizacion",
       "permanent": true
+    },
+    {
+      "source": "/es/artigos/:slug*",
+      "destination": "/es/articulos/:slug*",
+      "permanent": true
     }
   ]
 }

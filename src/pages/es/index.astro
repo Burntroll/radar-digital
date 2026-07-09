@@ -74,7 +74,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <!-- COLUMNA PRINCIPAL (2/3): Artículo Principal -->
           <div class="lg:col-span-2">
             <a
-              href={`${prefix}/artigos/${artigoPrincipal.slug}`}
+              href={routePath('artigos', locale, artigoPrincipal.slug)}
               class="group block glass-card overflow-hidden"
             >
               <div class={`h-52 sm:h-64 bg-gradient-to-br ${
@@ -112,7 +112,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
             {artigosSecundarios.map((artigo) => {
               const dateStr = artigo.data.date.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: 'short' });              return (
                 <a
-                  href={`${prefix}/artigos/${artigo.slug}`}
+                  href={routePath('artigos', locale, artigo.slug)}
                   class="group flex gap-4 glass-card p-4 items-start"
                 >
                   <div class={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${
@@ -140,7 +140,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
             <!-- Card de Guía (si hay publicado) -->
             {guiaRecente && (
               <a
-                href={`${prefix}/artigos/${guiaRecente.slug}`}
+                href={routePath('artigos', locale, guiaRecente.slug)}
                 class="group flex gap-4 glass-card p-4 items-start"
                 style="border-color: rgba(168, 85, 247, 0.2);"
               >
@@ -266,7 +266,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
                   return (
                     <div>
                       <a
-                        href={`${prefix}/artigos/${artigo.slug}`}
+                        href={routePath('artigos', locale, artigo.slug)}
                         class="group block py-5 first:pt-0"
                       >
                         <div class="flex items-center gap-2 text-xs text-text-muted mb-1.5">
@@ -312,7 +312,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
                       artigo.data.color === 'amber' ? 'text-amber-500' : 'text-cyan-500';
                     return (
                       <a
-                        href={`${prefix}/artigos/${artigo.slug}`}
+                        href={routePath('artigos', locale, artigo.slug)}
                         class="group flex items-start gap-3"
                       >
                         <span class={`text-lg shrink-0 mt-0.5 ${colorAccent}`}>·</span>
@@ -355,7 +355,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <a
-            href={`${prefix}/artigos/${guiaRecente.slug}`}
+            href={routePath('artigos', locale, guiaRecente.slug)}
             class="glass-card p-5 group flex items-start gap-4"
             style="border-color: rgba(168, 85, 247, 0.2);"
           >
