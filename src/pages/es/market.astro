@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/utils';
+
+const locale: Locale = getLocaleFromUrl(Astro.url);
+const prefix = locale === defaultLocale ? '' : `/${locale}`;
+
+const categorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'pt-BR')
+  .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
+---
+
+<Layout
+  title="Radar Market"
+  description="Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización."
+  breadcrumbItems={[
+    {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
+    {name: 'Radar Market', href: prefix + '/market'}
+  ]}
+>
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ════════════════════════════════════════════════ -->
+  <section class="relative pt-32 pb-16 overflow-hidden bg-surface transition-colors duration-300">
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl pointer-events-none"
+         style="background: radial-gradient(circle, rgba(0, 229, 255, 0.25) 0%, rgba(124, 58, 237, 0.1) 40%, transparent 60%);"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <nav class="flex items-center gap-2 text-xs text-text-muted mb-8 transition-colors">
+        <a href={`${prefix}/`} class="hover:text-cyan-500 transition-colors">{t('cat.breadcrumb.home', locale)}</a>
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+        </svg>
+        <span class="text-cyan-500">Radar Market</span>
+      </nav>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6">
+        <span class="text-text-primary">Radar</span>{' '}
+        <span class="gradient-text">Market</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary max-w-2xl leading-relaxed">
+        Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.
+      </p>
+      <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
+        <div>
+          <div class="text-2xl font-bold text-text-primary">{categorias.length}</div>
+          <div class="text-xs text-text-muted mt-0.5">Categorías</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-text-primary">0</div>
+          <div class="text-xs text-text-muted mt-0.5">Productos disponibles</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- CATEGORÍAS -->
+  <!-- ════════════════════════════════════════════════ -->
+  <section class="pb-20 bg-surface transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-8">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Categorías</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      {categorias.length === 0 ? (
+        <p class="text-sm text-text-muted text-center py-12">Ninguna categoría disponible aún.</p>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {categorias.map((cat) => (
+            <div class="rounded-xl border p-5 transition-colors" style="border-color: var(--color-border); background: var(--color-surface-card);">
+              {cat.data.emoji && <span class="text-2xl block mb-3">{cat.data.emoji}</span>}
+              <h3 class="text-sm font-bold text-text-primary mb-1.5">{cat.data.title}</h3>
+              <p class="text-xs text-text-secondary leading-relaxed">{cat.data.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Empty state editorial -->
+      <div class="mt-12 text-center">
+        <p class="text-sm text-text-muted max-w-md mx-auto">
+          Estamos seleccionando los primeros productos y soluciones para Radar Market.
+          <br />Vuelve pronto.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

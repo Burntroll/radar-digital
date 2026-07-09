@@ -100,4 +100,44 @@ const bonuses = defineCollection({
   }),
 });
 
-export const collections = { artigos, parceiros, parceiroCategorias, bonusCategorias, bonuses };
+// ═══════════════════════════════════════════════════════════
+// RADAR MARKET — CATEGORIAS
+// ═══════════════════════════════════════════════════════════
+const marketCategorias = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    emoji: z.string().optional(),
+    order: z.number().default(99),
+    draft: z.boolean().default(true),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════
+// RADAR MARKET — ITENS
+// ═══════════════════════════════════════════════════════════
+const marketItems = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    partnerName: z.string().optional(),
+    productType: z.enum(['curso', 'servico', 'produto-digital', 'template', 'ferramenta', 'outro']).default('outro'),
+    price: z.string().optional(),
+    currency: z.string().default('BRL'),
+    ctaLabel: z.string().default('Conhecer'),
+    ctaUrl: z.string().url().optional(),
+    status: z.enum(['verified', 'unconfirmed', 'draft', 'expired']).default('draft'),
+    verifiedAt: z.string().optional(),
+    sourceUrl: z.string().optional(),
+    disclaimer: z.string().optional(),
+    order: z.number().default(99),
+    draft: z.boolean().default(true),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+  }),
+});
+
+export const collections = { artigos, parceiros, parceiroCategorias, bonusCategorias, bonuses, marketCategorias, marketItems };

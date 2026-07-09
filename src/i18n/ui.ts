@@ -24,6 +24,7 @@ export const ui = {
   'nav.parceiros':      { 'pt-BR': 'Ferramentas',  'es': 'Herramientas' },
   'nav.guias':          { 'pt-BR': 'Guias',         'es': 'Guías' },
   'nav.bonus':          { 'pt-BR': 'Bônus',         'es': 'Bonos' },
+  'nav.market':         { 'pt-BR': 'Radar Market',  'es': 'Radar Market' },
 
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
