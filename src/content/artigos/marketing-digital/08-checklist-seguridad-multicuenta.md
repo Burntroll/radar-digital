@@ -16,7 +16,7 @@ guideTags: ["seguranca-contas", "antidetect", "ferramentas", "analytics-tracking
 
 Si gestionas más de una cuenta profesional — ya seas social media, afiliado, gestor de tráfico, agencia o equipo de monetización — la seguridad no es opcional. Es rutina.
 
-Este checklist no promete bloqueos ni prohibiciones evitadas. Nadie puede prometer eso. Lo que sí hace es organizar las prácticas que reducen el riesgo y te dan visibilidad sobre lo que ocurre con cada cuenta.
+Este checklist no promete evitar bloqueos ni suspensiones. Nadie puede prometer eso. Lo que sí hace es organizar las prácticas que reducen el riesgo y te dan visibilidad sobre lo que ocurre con cada cuenta.
 
 > **Cómo usarlo:** repasa punto por punto. Marca lo que ya haces, implementa lo que falta. Vuelve cada 30 días.
 
@@ -24,7 +24,7 @@ Este checklist no promete bloqueos ni prohibiciones evitadas. Nadie puede promet
 
 ## 1. Contraseñas y acceso
 
-La base de todo. Si la contraseña se filtra, el resto no sostiene.
+La base de todo. Si la contraseña se filtra, el resto no se sostiene.
 
 - [ ] **Contraseña única por cuenta.** Nunca repitas la misma contraseña en cuentas diferentes. Usa un gestor (Bitwarden, 1Password, KeePass).
 - [ ] **Mínimo 16 caracteres.** Combina mayúsculas, minúsculas, números y símbolos. El gestor lo hace por ti.
@@ -50,7 +50,7 @@ La contraseña se filtra. El 2FA es la segunda barrera.
 
 ## 3. Perfiles y aislamiento de cuentas
 
-Que las cuentas profesionales convivan en el mismo navegador que las personales es un riesgo seguro.
+Que las cuentas profesionales compartan el mismo navegador que las personales es un riesgo seguro.
 
 - [ ] **Navegador o perfil separado para cada operación.** Firefox Containers, perfiles de Chrome, o navegadores con aislamiento de perfil (Dolphin Anty, AdsPower, Multilogin).
 - [ ] **Caché, cookies y localStorage separados.** Cuentas del mismo servicio (ej.: dos cuentas de Google) no deben compartir almacenamiento.
@@ -75,7 +75,7 @@ Si no monitoreas, no sabes si te han comprometido.
 
 ## 5. Buenas prácticas operativas
 
-La seguridad también es proceso, no solo herramienta.
+La seguridad también es un proceso, no solo una herramienta.
 
 - [ ] **Política clara de quién accede a qué.** En agencia o equipo, define qué miembro accede a cada cuenta y con qué nivel de permiso.
 - [ ] **Contraseñas no compartidas por mensaje.** Nada de "mándame la contraseña por WhatsApp". Usa un gestor compartido (Bitwarden Organizations, LastPass Teams).
@@ -92,7 +92,7 @@ No es cuestión de _si_ ocurrirá, sino de _cuándo_. Estate preparado.
 
 - [ ] **Flujo definido de recuperación de cuenta.** ¿Sabes el paso a paso para recuperar cada plataforma? Anótalo en un documento accesible offline.
 - [ ] **Códigos de respaldo guardados.** Ya lo mencionamos en 2FA, pero insisto: tenlos offline.
-- [ ] **Contacto de soporte de las plataformas guardado.** Facebook Business Support, Google Ads Soporte, TikTok Creator Support — ten los enlaces a mano.
+- [ ] **Contacto de soporte de las plataformas guardado.** El soporte de Facebook Business, la ayuda de Google Ads y el soporte de TikTok Creator — ten los enlaces a mano.
 - [ ] **Plan de comunicación en caso de invasión.** Si una cuenta es comprometida, a quién avisar, qué publicar, cómo comunicarlo a clientes o socios.
 - [ ] **Registro de fecha y hora de cualquier incidente.** Para documentar y, si es necesario, reportar a la plataforma.
 - [ ] **Prueba periódica de recuperación.** Simula la pérdida de acceso a una cuenta menos crítica y verifica que el proceso de recuperación funciona.
