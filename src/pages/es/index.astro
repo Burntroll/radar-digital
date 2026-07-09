@@ -34,6 +34,10 @@ const bonusDestaques = (await getCollection('bonuses', ({ data }) =>
 ))
   .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
   .slice(0, 3);
+
+// Categorías de Radar Market
+const marketCategorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'pt-BR')
+  .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 ---
 
 <Layout title="Radar Digital" description="Tu radar de tendencias en marketing digital, inteligencia artificial y monetización."
@@ -507,6 +511,43 @@ const bonusDestaques = (await getCollection('bonuses', ({ data }) =>
 
       <a href={`${prefix}/bonus`} class="inline-flex items-center gap-1 text-xs font-medium text-cyan-500 hover:underline transition-colors">
         Ver bonos
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- RADAR MARKET -->
+  <!-- ════════════════════════════════════════════════ -->
+  <section class="py-14 bg-surface transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Radar Market</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      <p class="text-sm text-text-secondary mb-5 max-w-xl">
+        Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.
+      </p>
+
+      {marketCategorias.length > 0 ? (
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          {marketCategorias.map((cat) => (
+            <div class="rounded-xl border p-4 transition-colors" style="border-color: var(--color-border); background: var(--color-surface-card);">
+              {cat.data.emoji && <span class="text-lg block mb-2">{cat.data.emoji}</span>}
+              <h3 class="text-xs font-bold text-text-primary mb-0.5">{cat.data.title}</h3>
+              <p class="text-[10px] text-text-muted leading-relaxed line-clamp-2">{cat.data.description}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="text-sm text-text-muted mb-4">Categorías en construcción.</p>
+      )}
+
+      <a href={`${prefix}/market`} class="inline-flex items-center gap-1 text-xs font-medium text-cyan-500 hover:underline transition-colors">
+        Explorar Radar Market
         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
