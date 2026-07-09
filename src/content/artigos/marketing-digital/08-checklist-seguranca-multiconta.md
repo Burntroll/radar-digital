@@ -2,7 +2,7 @@
 title: "Checklist de segurança multi-conta para operações digitais"
 categoria: "marketing-digital"
 subtema: "Segurança"
-excerpt: "Um checklist prático com 30 itens para organizar a segurança das suas contas profissionais — desde senhas e 2FA até monitoramento e resposta a incidentes."
+excerpt: "Um checklist prático com 35 itens para organizar a segurança das suas contas profissionais — desde senhas e 2FA até monitoramento e resposta a incidentes."
 date: 2026-07-09
 readTime: "8 min"
 draft: false
@@ -99,7 +99,7 @@ Não é questão de _se_ vai acontecer, mas _quando_. Esteja preparado.
 
 ---
 
-## 📋 Resumo dos 30 itens
+## 📋 Resumo dos 35 itens
 
 | Categoria | Itens |
 |-----------|-------|
@@ -110,7 +110,7 @@ Não é questão de _se_ vai acontecer, mas _quando_. Esteja preparado.
 | Boas práticas operacionais | 6 |
 | Resposta a incidentes | 6 |
 
-**Total:** 30 itens para revisar mensalmente.
+**Total:** 35 itens para revisar mensalmente.
 
 ---
 
