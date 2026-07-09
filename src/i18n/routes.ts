@@ -16,7 +16,7 @@ export const routeMap = {
 
   // Páginas estruturais
   'bonus':                   { 'pt-BR': 'bonus',                   'es': 'bonos' },
-  'parceiros':               { 'pt-BR': 'parceiros',               'es': 'herramientas' },
+  'parceiros':               { 'pt-BR': 'ferramentas',             'es': 'herramientas' },
   'guias':                   { 'pt-BR': 'guias',                   'es': 'guias' },
   'market':                  { 'pt-BR': 'market',                  'es': 'market' },
 

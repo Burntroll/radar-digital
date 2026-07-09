@@ -18,6 +18,26 @@
       "source": "/es/artigos/:slug*",
       "destination": "/es/articulos/:slug*",
       "permanent": true
+    },
+    {
+      "source": "/parceiros",
+      "destination": "/ferramentas",
+      "permanent": true
+    },
+    {
+      "source": "/parceiros/:slug*",
+      "destination": "/ferramentas/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/es/parceiros",
+      "destination": "/es/herramientas",
+      "permanent": true
+    },
+    {
+      "source": "/es/parceiros/:slug*",
+      "destination": "/es/herramientas/:slug*",
+      "permanent": true
     }
   ]
 }
