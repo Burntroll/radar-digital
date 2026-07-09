@@ -13,6 +13,16 @@ const artigosPublicados = await getCollection('artigos', ({ data }) =>
 const artigosRecentes = artigosPublicados
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+// Guias publicados (para o card de guia no Leia primeiro)
+const guiasPublicados = await getCollection('artigos', ({ data }) =>
+  data.draft === false && data.contentType === 'guide' && (data.locale || 'pt-BR') === locale
+);
+const guiaRecente = guiasPublicados
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 1)[0];
+
+const [artigoPrincipal, ...artigosSecundarios] = artigosRecentes;
 ---
 
 <Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}
@@ -21,78 +31,130 @@ const artigosRecentes = artigosPublicados
   <AdSlot variant="horizontal" />
 
   <!-- ════════════════════════════════════════════════ -->
-  <!-- HERO SECTION -->
+  <!-- ABERTURA EDITORIAL -->
   <!-- ════════════════════════════════════════════════ -->
-  <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-surface transition-colors duration-300">
-    <!-- Background glow -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 blur-3xl pointer-events-none" 
-         style="background: radial-gradient(circle, rgba(0, 229, 255, 0.3) 0%, rgba(124, 58, 237, 0.1) 40%, transparent 70%);"></div>
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full opacity-10 blur-3xl pointer-events-none"
-         style="background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 60%);"></div>
-
-    <!-- Radar animation SVG -->
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none opacity-[0.04] dark:opacity-[0.04] opacity-[0.07]">
-      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="250" r="240" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="4 8"/>
-        <circle cx="250" cy="250" r="180" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="4 8"/>
-        <circle cx="250" cy="250" r="120" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="4 8"/>
-        <circle cx="250" cy="250" r="60" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="4 8"/>
-        <line x1="250" y1="250" x2="250" y2="10" stroke="#00e5ff" stroke-width="1" opacity="0.3">
-          <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="8s" repeatCount="indefinite"/>
-        </line>
-      </svg>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
-      <div class="max-w-3xl">
-        <!-- Main title -->
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight">
-          <span class="text-text-primary transition-colors">Radar</span>
-          <br />
+  <section class="pt-8 pb-6 bg-surface transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Masthead -->
+      <div class="border-b pb-6 mb-8" style="border-color: var(--color-border);">
+        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
+          <span class="text-text-primary">Radar</span>{' '}
           <span class="gradient-text">Digital</span>
         </h1>
-
-        <!-- Subtitle -->
-        <p class="text-lg sm:text-xl text-text-secondary mt-6 max-w-xl leading-relaxed transition-colors">
-          {t('home.hero.subtitle', locale).split('.')[0]}.<br />
-          <span class="text-text-primary">{t('home.hero.subtitle', locale).split('.').slice(1).join('.').trim()}</span>
+        <p class="text-sm text-text-secondary mt-1.5 max-w-xl">
+          Marketing, IA, monetização e ferramentas para quem trabalha na internet.
         </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-4 mt-10">
-          <a href={`${prefix}/#categorias`} 
-             class="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
-                    bg-cyan-500/10 text-cyan-500 border border-cyan-500/30 
-                    hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300">
-            {t('home.sections.title', locale)}
-            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-          <a href={`${prefix}/#artigos`} 
-             class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm 
-                    text-text-secondary border border-surface hover:border-cyan-500/30 hover:text-cyan-500
-                    transition-all duration-300">
-            {t('home.articles.title', locale)}
-          </a>
-        </div>
-
-        <!-- Stats row -->
-        <div class="flex flex-wrap gap-8 md:gap-12 mt-16 pt-10 border-t transition-colors duration-300" style="border-color: var(--color-border);">
-          <div>
-            <div class="text-2xl font-bold text-text-primary transition-colors">3</div>
-            <div class="text-xs text-text-muted mt-0.5 transition-colors">Categorias</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-text-primary transition-colors">{artigosPublicados.length}</div>
-            <div class="text-xs text-text-muted mt-0.5 transition-colors">Artigos</div>
-          </div>
-          <div class="text-2xl font-bold text-text-primary transition-colors">
-            <div>100%</div>
-            <div class="text-xs text-text-muted mt-0.5 font-normal transition-colors">Sem enrolação</div>
-          </div>
-        </div>
       </div>
+
+      <!-- Section label: Leia primeiro -->
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Leia primeiro</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      {artigoPrincipal ? (
+        <div class="grid lg:grid-cols-3 gap-6">
+
+          <!-- COLUNA PRINCIPAL (2/3): Artigo Principal -->
+          <div class="lg:col-span-2">
+            <a
+              href={`${prefix}/artigos/${artigoPrincipal.slug}`}
+              class="group block glass-card overflow-hidden"
+            >
+              <div class={`h-52 sm:h-64 bg-gradient-to-br ${
+                artigoPrincipal.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
+                artigoPrincipal.data.color === 'amber' ? 'from-amber-500/10 via-orange-600/5' :
+                'from-cyan-500/10 via-blue-600/5'
+              } to-surface-elevated flex items-center justify-center transition-colors`}>
+                <span class="text-5xl sm:text-6xl">{artigoPrincipal.data.emoji || '📡'}</span>
+              </div>
+              <div class="p-5 sm:p-6">
+                <div class="flex items-center gap-2 text-xs text-text-muted mb-2 transition-colors">
+                  <span class="font-semibold uppercase tracking-wider">{artigoPrincipal.data.subtema}</span>
+                  <span>·</span>
+                  <span>{artigoPrincipal.data.readTime}</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug">
+                  {artigoPrincipal.data.title}
+                </h3>
+                <p class="text-sm text-text-secondary mt-2 leading-relaxed transition-colors line-clamp-2">
+                  {artigoPrincipal.data.excerpt}
+                </p>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t transition-colors" style="border-color: var(--color-border);">
+                  <time class="text-xs text-text-muted">
+                    {artigoPrincipal.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                  </time>
+                  <span class="text-xs font-medium text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {locale === 'pt-BR' ? 'Ler' : 'Leer'}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- COLUNA LATERAL (1/3): Secundários + Guia -->
+          <div class="flex flex-col gap-4">
+
+            {artigosSecundarios.map((artigo) => {
+              const dateStr = artigo.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+              return (
+                <a
+                  href={`${prefix}/artigos/${artigo.slug}`}
+                  class="group flex gap-4 glass-card p-4 items-start"
+                >
+                  <div class={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${
+                    artigo.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
+                    artigo.data.color === 'amber' ? 'from-amber-500/10 via-orange-600/5' :
+                    'from-cyan-500/10 via-blue-600/5'
+                  } to-surface-elevated flex items-center justify-center transition-colors`}>
+                    <span class="text-xl">{artigo.data.emoji || '📡'}</span>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-1.5 text-[10px] text-text-muted uppercase tracking-wider mb-1">
+                      <span>{artigo.data.subtema}</span>
+                      <span>·</span>
+                      <span>{artigo.data.readTime}</span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug line-clamp-2">
+                      {artigo.data.title}
+                    </h3>
+                    <time class="text-[10px] text-text-muted mt-1 block">{dateStr}</time>
+                  </div>
+                </a>
+              );
+            })}
+
+            <!-- Card de Guia (se houver publicado) -->
+            {guiaRecente && (
+              <a
+                href={`${prefix}/artigos/${guiaRecente.slug}`}
+                class="group flex gap-4 glass-card p-4 items-start"
+                style="border-color: rgba(168, 85, 247, 0.2);"
+              >
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                  <span class="text-xl">{guiaRecente.data.emoji || '📋'}</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-1.5 text-[10px] text-purple-500 font-semibold uppercase tracking-wider mb-1">
+                    <span>Guia</span>
+                    <span>·</span>
+                    <span>{guiaRecente.data.readTime}</span>
+                  </div>
+                  <h3 class="text-sm font-semibold text-text-primary group-hover:text-purple-500 transition-colors leading-snug line-clamp-2">
+                    {guiaRecente.data.title}
+                  </h3>
+                </div>
+              </a>
+            )}
+
+          </div>
+
+        </div>
+      ) : (
+        <p class="text-sm text-text-muted text-center py-12">
+          Nenhum artigo publicado ainda.
+        </p>
+      )}
     </div>
   </section>
 
