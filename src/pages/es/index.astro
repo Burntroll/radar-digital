@@ -6,9 +6,10 @@ import { getLocaleFromUrl, localizePath, t, defaultLocale, type Locale } from '.
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
-const artigosRecentes = (await getCollection('artigos', ({ data }) =>
-  data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
-))
+const artigosPublicados = await getCollection('artigos', ({ data }) =>
+  data.draft === false && data.contentType === 'article' && (data.locale || 'pt-BR') === locale
+);
+const artigosRecentes = artigosPublicados
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 ---
