@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import { getLocaleFromUrl, localizePath, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
-import { routePath } from '../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
+import { routePath } from '../../i18n/utils';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
@@ -42,8 +42,7 @@ const bonusesDoLocale = bonuses
       </nav>
 
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6">
-        <span class="text-text-primary transition-colors">{t('bonus.title', locale).split(' e ')[0]} &</span>
-        <span class="gradient-text"> {t('bonus.title', locale).split(' e ')[1] || ''}</span>
+        <span class="text-text-primary transition-colors">{t('bonus.title', locale)}</span>
       </h1>
 
       <p class="text-lg sm:text-xl text-text-secondary max-w-2xl leading-relaxed transition-colors">
@@ -70,7 +69,7 @@ const bonusesDoLocale = bonuses
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Filtros por categoria -->
-      <div id="bonus-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Filtrar por categoria">
+      <div id="bonus-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Filtrar por categoría">
         <button 
           class="filter-chip active px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
           style="background: rgba(0, 229, 255, 0.12); color: #00e5ff; border-color: rgba(0, 229, 255, 0.3);"
@@ -117,7 +116,7 @@ const bonusesDoLocale = bonuses
             const catTitle = t(('bonus.cat.' + bonus.data.category) as any, locale);
             return (
               <article class="glass-card overflow-hidden group flex flex-col" data-category={bonus.data.category}>
-                <!-- Imagem de topo com slot para logo -->
+                <!-- Imagen de cabecera con espacio para logo -->
                 <div class="relative w-full overflow-hidden" style="aspect-ratio: 2/1; background: transparent;">
                   <img 
                     src="/images/bonuses/placeholder-card.svg" 
@@ -167,7 +166,7 @@ const bonusesDoLocale = bonuses
                     </p>
                   )}
 
-                  <!-- Category tag -->
+                  <!-- Category tag + Expiry -->
                   <div class="mt-auto pt-4 border-t transition-colors" style="border-color: var(--color-border);">
                     <div class="flex items-center justify-between">
                       <span class="flex items-center gap-1.5">
@@ -215,7 +214,6 @@ const bonusesDoLocale = bonuses
       chip.addEventListener('click', function() {
         const category = this.dataset.category;
 
-        // Update chip styles
         chips.forEach(c => {
           c.style.background = 'transparent';
           c.style.color = 'var(--color-text-secondary, #94a3b8)';
@@ -227,7 +225,6 @@ const bonusesDoLocale = bonuses
         this.style.borderColor = 'rgba(0, 229, 255, 0.3)';
         this.setAttribute('aria-selected', 'true');
 
-        // Filter cards
         let visibleCount = 0;
         cards.forEach(card => {
           if (category === 'all' || card.dataset.category === category) {
@@ -238,7 +235,6 @@ const bonusesDoLocale = bonuses
           }
         });
 
-        // Show/hide no results
         if (noResults) {
           noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         }

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { getLocaleFromUrl, localizePath, t, languages, defaultLocale, getAlternates, type Locale } from '../i18n/utils';
+import { getLocaleFromUrl, localizePath, t, languages, defaultLocale, getAlternates, routePath, type Locale } from '../i18n/utils';
 import SEO from '../components/SEO.astro';
 import '../styles/global.css';
 
@@ -174,8 +174,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
           <a href={`${prefix}/guias`} class="text-base text-text-secondary hover:text-purple-500 transition-colors">{t('nav.guias', locale)}</a>
 
           <!-- Bonus -->
-          <a href={`${prefix}/bonus`} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">
-            {t('nav.bonus', locale)}
+          <a href={routePath('bonus', locale)} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">            {t('nav.bonus', locale)}
           </a>
 
           <!-- Radar Market -->
