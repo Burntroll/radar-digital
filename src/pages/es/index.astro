@@ -339,37 +339,6 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   </section>
 
   <!-- ════════════════════════════════════════════════ -->
-  <!-- SECCIONES DEL RADAR -->
-  <!-- ════════════════════════════════════════════════ -->
-  <section class="py-14 bg-surface transition-colors duration-300">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-center gap-3 mb-6">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Secciones del Radar</h2>
-        <div class="h-px flex-1" style="background: var(--color-border);"></div>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <a href={`${prefix}/marketing-digital`} class="rounded-xl border p-4 flex items-center gap-3 group transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-xl shrink-0">📈</span>
-          <span class="text-sm font-semibold text-text-primary group-hover:text-cyan-500 transition-colors">{t('cat.marketing.name', locale)}</span>
-        </a>
-        <a href={`${prefix}/inteligencia-artificial`} class="rounded-xl border p-4 flex items-center gap-3 group transition-colors hover:border-purple-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-xl shrink-0">🤖</span>
-          <span class="text-sm font-semibold text-text-primary group-hover:text-purple-500 transition-colors">{t('cat.ia.name', locale)}</span>
-        </a>
-        <a href={`${prefix}/monetizacao`} class="rounded-xl border p-4 flex items-center gap-3 group transition-colors hover:border-amber-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-xl shrink-0">💰</span>
-          <span class="text-sm font-semibold text-text-primary group-hover:text-amber-500 transition-colors">{t('cat.monetizacao.name', locale)}</span>
-        </a>
-        <a href={`${prefix}/parceiros`} class="rounded-xl border p-4 flex items-center gap-3 group transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-xl shrink-0">🧰</span>
-          <span class="text-sm font-semibold text-text-primary group-hover:text-cyan-500 transition-colors">{t('nav.parceiros', locale)}</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════ -->
   <!-- GUÍAS PRÁCTICAS -->
   <!-- ════════════════════════════════════════════════ -->
   {guiaRecente ? (
