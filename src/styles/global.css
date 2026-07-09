@@ -19,7 +19,7 @@
    THEME: Light (default) & Dark (.dark)
    ═══════════════════════════════════════════════════ */
 :root {
-  --color-surface: #f0ece4;
+  --color-surface: #f7f8fc;
   --color-surface-card: #f8f4ec;
   --color-surface-elevated: #e8e3d9;
   --color-text-primary: #1e1e2a;
