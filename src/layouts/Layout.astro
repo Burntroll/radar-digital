@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   breadcrumbItems?: { name: string; href: string }[];
   noindex?: boolean;
+  alternateUrls?: { lang: string; href: string }[];
   articleData?: {
     title: string;
     description: string;
@@ -20,7 +21,7 @@ interface Props {
   };
 }
 
-const { title, description, breadcrumbItems, noindex, articleData } = Astro.props;
+const { title, description, breadcrumbItems, noindex, alternateUrls, articleData } = Astro.props;
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const currentPath = Astro.url.pathname;
 const altPath = Astro.url.pathname.replace(/^\/es/, '').replace(/^\/pt-BR/, '') || '/';
@@ -28,9 +29,10 @@ const altPath = Astro.url.pathname.replace(/^\/es/, '').replace(/^\/pt-BR/, '') 
 // 404 e outras páginas sem equivalente ES nao devem ter hreflang es
 // Adicione mais paths aqui se criar páginas sem versão em espanhol
 const isOnlyPT = currentPath === '/404' || currentPath.startsWith('/404/');
-const alternates = isOnlyPT
+// Se alternateUrls foi passado explicitamente, usa ele; senao usa logica atual
+const alternates = alternateUrls || (isOnlyPT
   ? [{ lang: defaultLocale, href: localizePath(altPath, defaultLocale) }]
-  : getAlternates(altPath);
+  : getAlternates(altPath));
 
 // Puxa categorias de parceiros (sem filtro de locale — são estruturais)
 const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false)
@@ -60,7 +62,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
       <link rel="alternate" hreflang={alt.lang} href={Astro.site ? new URL(alt.href, Astro.site).toString() : alt.href} />
     ))}
     {isOnlyPT ? null : (
-      <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(localizePath(altPath, defaultLocale), Astro.site).toString() : localizePath(altPath, defaultLocale)} />
+      <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(alternateUrls ? alternateUrls.find(a => a.lang === defaultLocale)?.href || localizePath(altPath, defaultLocale) : localizePath(altPath, defaultLocale), Astro.site).toString() : (alternateUrls ? alternateUrls.find(a => a.lang === defaultLocale)?.href || localizePath(altPath, defaultLocale) : localizePath(altPath, defaultLocale))} />
     )}
 
     <!-- canonical: aponta pra propria versao dessa pagina -->

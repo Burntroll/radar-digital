@@ -51,6 +51,15 @@ if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
   const t = upd.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
   updatedStr = `${locale === 'pt-BR' ? 'Atualizado em' : 'Actualizado el'} ${d} ${locale === 'pt-BR' ? 'às' : 'a las'} ${t}`;
 }
+
+// Hreflang alternates: se o artigo tem slugEs, gera URL correta para ES
+const slugEs = artigo.data.slugEs;
+const alternateUrls = slugEs
+  ? [
+      { lang: 'pt-BR', href: `/artigos/${artigo.slug}` },
+      { lang: 'es', href: `/es/artigos/${slugEs}` },
+    ]
+  : undefined;
 ---
 
 <Layout 
@@ -61,6 +70,7 @@ if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
     {name: categoriaNome, href: prefix + '/' + artigo.data.categoria},
     {name: artigo.data.title, href: prefix + '/artigos/' + artigo.slug}
   ]}
+  alternateUrls={alternateUrls}
   articleData={{
     title: artigo.data.title,
     description: artigo.data.excerpt,

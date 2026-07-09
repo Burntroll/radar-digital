@@ -10,6 +10,7 @@ draft: false
 color: "purple"
 emoji: "💬"
 locale: "pt-BR"
+slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
 contentType: "article"
 ---
 

@@ -9,6 +9,7 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "pt-BR"
+slugEs: "marketing-digital/04-email-marketing-vale-la-pena"
 contentType: "article"
 ---
 

@@ -9,6 +9,7 @@ draft: false
 color: "cyan"
 emoji: "✅"
 locale: "pt-BR"
+slugEs: "marketing-digital/08-checklist-seguridad-multicuenta"
 contentType: "guide"
 guideType: "checklist"
 guideTags: ["seguranca-contas", "antidetect", "ferramentas", "analytics-tracking"]

@@ -51,6 +51,18 @@ if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
   const t = upd.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
   updatedStr = `Actualizado el ${d} a las ${t}`;
 }
+
+// Hreflang alternates: busca o artigo PT que tem este slug como slugEs
+const artigosPT = (await getCollection('artigos', ({ data }) =>
+  data.draft === false && data.locale !== 'es' && data.slugEs === artigo.slug
+));
+const ptMatch = artigosPT[0];
+const alternateUrls = ptMatch
+  ? [
+      { lang: 'pt-BR', href: `/artigos/${ptMatch.slug}` },
+      { lang: 'es', href: `/es/artigos/${artigo.slug}` },
+    ]
+  : undefined;
 ---
 
 <Layout 
@@ -61,6 +73,7 @@ if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
     {name: categoriaNome, href: prefix + '/' + artigo.data.categoria},
     {name: artigo.data.title, href: prefix + '/artigos/' + artigo.slug}
   ]}
+  alternateUrls={alternateUrls}
   articleData={{
     title: artigo.data.title,
     description: artigo.data.excerpt,
