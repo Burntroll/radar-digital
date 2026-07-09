@@ -7,9 +7,11 @@
  *
  * Uso:
  *   <SEO type="breadcrumb" items={[{name: 'Início', href: '/'}, ...]} />
- *   <SEO type="article" artigo={artigo} />
+ *   <SEO type="article" {...articleProps} />
  *   <SEO type="website" />
  */
+
+import { locales, defaultLocale } from '../i18n/config';
 
 export interface Props {
   type: 'article' | 'breadcrumb' | 'website';
@@ -29,10 +31,15 @@ const { type, items, title, description, datePublished, dateModified, authorName
 
 const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
 
-// Mapeia o pathname do breadcrumb pra inferir o tipo (PT/ES)
+// Mapeia o pathname pra inferir o locale usando config central
 function inferLanguageFromPath(href: string): string {
-  if (href.startsWith('/es/') || href === '/es') return 'es-ES';
-  return 'pt-BR';
+  const [, lang] = href.split('/');
+  for (const [key, cfg] of Object.entries(locales)) {
+    if (cfg.prefix && cfg.prefix === lang) {
+      return key;
+    }
+  }
+  return defaultLocale;
 }
 
 let jsonLd: Record<string, any> | null = null;
@@ -51,13 +58,12 @@ if (type === 'breadcrumb' && items && items.length > 0) {
       },
     })),
   };
-} else if (type === 'article' && title && description) {
+} else if (type === 'article' && title) {
   jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    description: description,
-    image: imageUrl ? [`${SITE_URL}${imageUrl}`] : undefined,
+    description: description || '',
     datePublished: datePublished?.toISOString(),
     dateModified: (dateModified || datePublished)?.toISOString(),
     author: {
@@ -74,23 +80,14 @@ if (type === 'breadcrumb' && items && items.length > 0) {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': url ? `${SITE_URL}${url}` : undefined,
-    },
-  };
-} else if (type === 'website') {
-  jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Radar Digital',
-    description: 'Marketing digital, IA e monetização sem enrolação.',
-    url: SITE_URL,
-    inLanguage: ['pt-BR', 'es'],
-    publisher: {
-      '@type': 'Organization',
-      name: 'Radar Digital',
+      '@id': url ? `${SITE_URL}${url}` : SITE_URL,
     },
   };
 }
 ---
 
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+{
+  jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )
+}

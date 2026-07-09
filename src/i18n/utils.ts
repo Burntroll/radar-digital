@@ -1,42 +1,67 @@
-import { ui, languages, defaultLocale, type Locale, type UIKey } from './ui';
+import { ui, type UIKey } from './ui';
+import { locales, defaultLocale, enabledLocales, type Locale } from './config';
+
+export type { Locale, UIKey };
+
+/**
+ * Retorna o conjunto de idiomas habilitados no formato { locale: label }.
+ * Mantido para compatibilidade com código que usa `languages`.
+ */
+export const languages = Object.fromEntries(
+  enabledLocales.map((l) => [l, locales[l].label])
+) as Record<Locale, string>;
+
+export { defaultLocale };
+
+/**
+ * Retorna o dateLocale (formato de data) para um dado locale.
+ */
+export function getDateLocale(locale: Locale): string {
+  return locales[locale].dateLocale;
+}
 
 /**
  * Extrai o locale a partir do pathname atual.
- * Ex: '/es/parceiros' -> 'es'; '/parceiros' -> 'pt-BR'
+ * Ex: '/es/parceiros' -> 'es'; '/en/bonus' -> 'en'; '/' -> 'pt-BR'
  */
 export function getLocaleFromUrl(url: URL): Locale {
   const [, lang] = url.pathname.split('/');
-  if (lang === 'es') return 'es';
-  return defaultLocale;
+  // Procura entre os locales habilitados cujo prefixo não seja vazio
+  const match = enabledLocales.find(
+    (l) => locales[l].prefix && locales[l].prefix === lang
+  );
+  return match || defaultLocale;
 }
 
 /**
  * Gera o path equivalente em outro locale.
- * - Se a URL atual é '/parceiros' e o target é 'es', retorna '/es/parceiros'
- * - Se a URL atual é '/es/parceiros' e o target é 'pt-BR', retorna '/parceiros'
+ * - locale padrão (pt-BR): sem prefixo
+ * - demais locales: /{prefix}/...
  * - Preserva o restante do path (slug de artigo, categoria, etc.)
  */
 export function localizePath(path: string, targetLocale: Locale): string {
-  // Remove barra inicial pra padronizar
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   const segments = cleanPath.split('/').filter(Boolean);
 
-  // Se o primeiro segmento é um locale conhecido, tira ele
-  if (segments[0] === 'es' || segments[0] === 'pt-BR') {
-    segments.shift();
+  // Remove prefixo de locale do início, se existir (qualquer locale habilitado)
+  for (const l of enabledLocales) {
+    const p = locales[l].prefix;
+    if (p && segments[0] === p) {
+      segments.shift();
+      break;
+    }
   }
 
   const basePath = '/' + segments.join('/');
 
-  if (targetLocale === defaultLocale) {
+  if (targetLocale === defaultLocale || !locales[targetLocale].prefix) {
     return basePath || '/';
   }
-  return `/${targetLocale}${basePath === '/' ? '' : basePath}`;
+  return `/${locales[targetLocale].prefix}${basePath === '/' ? '' : basePath}`;
 }
 
 /**
  * Traduz uma chave da UI.
- * t(ui, 'nav.home', 'es') -> 'Inicio'
  * Fallback automático pro PT se a chave não tiver tradução.
  */
 export function t(key: UIKey, locale: Locale): string {
@@ -45,18 +70,15 @@ export function t(key: UIKey, locale: Locale): string {
     console.warn(`[i18n] Missing UI key: ${key}`);
     return key;
   }
-  return entry[locale] ?? entry[defaultLocale];
+  return (entry as any)[locale] ?? (entry as any)[defaultLocale];
 }
 
 /**
- * Helper pra gerar hreflang tags.
+ * Gera hreflang alternates para todos os idiomas habilitados.
  */
 export function getAlternates(path: string): { lang: string; href: string }[] {
-  return (Object.keys(languages) as Locale[]).map((lang) => ({
+  return enabledLocales.map((lang) => ({
     lang,
     href: localizePath(path, lang),
   }));
 }
-
-export { ui, languages, defaultLocale };
-export type { Locale, UIKey };

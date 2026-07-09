@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/utils';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
@@ -141,7 +141,7 @@ const colorAccent: Record<string, string> = {
             const categoriaNome = guia.data.categoria === 'marketing-digital' ? t('cat.marketing.name', locale)
               : guia.data.categoria === 'inteligencia-artificial' ? t('cat.ia.name', locale)
               : t('cat.monetizacao.name', locale);
-            const dateStr = guia.data.date.toLocaleDateString(locale === 'pt-BR' ? 'pt-BR' : 'es-ES', {
+            const dateStr = guia.data.date.toLocaleDateString(getDateLocale(locale), {
               day: '2-digit', month: 'short', year: 'numeric'
             });
             const tags = guia.data.guideTags || [];

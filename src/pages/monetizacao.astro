@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../i18n/utils';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const categoria = 'monetizacao';
@@ -112,7 +112,7 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
                 </p>
                 <div class="mt-4 pt-4 border-t transition-colors flex items-center justify-between" style="border-color: var(--color-border);">
                   <span class="text-[10px] text-text-muted uppercase tracking-wider transition-colors">
-                    {artigo.data.draft ? t('cat.tag.em-breve', locale) : artigo.data.date.toLocaleDateString(locale === 'pt-BR' ? 'pt-BR' : 'es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
+                    {artigo.data.draft ? t('cat.tag.em-breve', locale) : artigo.data.date.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: 'short', year: 'numeric' })}
                   </span>
                   <span class="text-amber-500 text-xs font-medium flex items-center gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
                     {artigo.data.draft ? t('cat.tag.em-breve', locale) : (locale === 'pt-BR' ? 'Ler' : 'Leer')}

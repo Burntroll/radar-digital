@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../../i18n/utils';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../../i18n/utils';
 
 export async function getStaticPaths() {
   const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.locale === 'es');
@@ -37,7 +37,7 @@ const catNameKey: Record<string, string> = {
 };
 const categoriaNome = t(catNameKey[artigo.data.categoria] as any, locale);
 
-const dateStr = artigo.data.date.toLocaleDateString(locale === 'pt-BR' ? 'pt-BR' : 'es-ES', {
+const dateStr = artigo.data.date.toLocaleDateString(getDateLocale(locale), {
   day: '2-digit',
   month: 'long',
   year: 'numeric',
@@ -47,8 +47,8 @@ const dateStr = artigo.data.date.toLocaleDateString(locale === 'pt-BR' ? 'pt-BR'
 let updatedStr: string | null = null;
 if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
   const upd = artigo.data.updatedAt;
-  const d = upd.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
-  const t = upd.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
+  const d = upd.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+  const t = upd.toLocaleTimeString(getDateLocale(locale), { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
   updatedStr = `Actualizado el ${d} a las ${t}`;
 }
 
