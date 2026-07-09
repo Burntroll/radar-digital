@@ -5,7 +5,7 @@ subtema: "Seguridad"
 excerpt: "Un checklist práctico con 35 puntos para organizar la seguridad de tus cuentas profesionales — desde contraseñas y 2FA hasta monitoreo y respuesta a incidentes."
 date: 2026-07-09
 readTime: "8 min"
-draft: true
+draft: false
 color: "cyan"
 emoji: "✅"
 locale: "es"
