@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, localizePath, t, defaultLocale, type Locale } from '../i18n/utils';
 
@@ -16,6 +17,9 @@ const artigosRecentes = artigosPublicados
 
 <Layout title="Radar Digital" description={locale === 'pt-BR' ? 'Seu radar de tendências em marketing digital, inteligência artificial e monetização.' : 'Tu radar de tendencias en marketing digital, inteligencia artificial y monetización.'}
   breadcrumbItems={[{name: t('nav.home', locale), href: prefix + '/'}]}>
+
+  <AdSlot variant="horizontal" />
+
   <!-- ════════════════════════════════════════════════ -->
   <!-- HERO SECTION -->
   <!-- ════════════════════════════════════════════════ -->

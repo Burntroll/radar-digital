@@ -1,0 +1,108 @@
+---
+/**
+ * AdSlot — Espaço reservado para publicidade.
+ *
+ * Uso:
+ *   <AdSlot variant="horizontal" />
+ *   <AdSlot variant="in-feed" />
+ *   <AdSlot variant="sidebar" />
+ *
+ * Variantes:
+ *   horizontal — leaderboard full-width (padrão)
+ *   in-feed    — entre conteúdo, altura média
+ *   sidebar    — vertical, mais estreito
+ */
+
+export interface Props {
+  variant?: 'horizontal' | 'in-feed' | 'sidebar';
+}
+
+const { variant = 'horizontal' } = Astro.props;
+
+const heightClass: Record<string, string> = {
+  horizontal: 'min-h-[90px] md:min-h-[100px]',
+  'in-feed': 'min-h-[120px] md:min-h-[160px]',
+  sidebar: 'min-h-[200px] md:min-h-[280px]',
+};
+
+const widthClass: Record<string, string> = {
+  horizontal: '',
+  'in-feed': '',
+  sidebar: 'max-w-[300px] mx-auto',
+};
+
+const labelMap: Record<string, string> = {
+  horizontal: 'Publicidade — Leaderboard',
+  'in-feed': 'Publicidade — In-feed',
+  sidebar: 'Publicidade — Sidebar',
+};
+---
+
+<div
+  class={`ad-slot ${widthClass[variant]} ${heightClass[variant]}`}
+  role="region"
+  aria-label={labelMap[variant]}
+>
+  <span class="ad-slot__label" aria-hidden="true">Publicidade</span>
+  <div class="ad-slot__inner">
+    <svg class="ad-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>
+    <span class="ad-slot__text">Espaço reservado</span>
+  </div>
+</div>
+
+<style is:global>
+  .ad-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px dashed var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 0.2s ease;
+  }
+
+  .ad-slot:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  .ad-slot__label {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  .ad-slot__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px;
+  }
+
+  .ad-slot__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-muted);
+    opacity: 0.3;
+  }
+
+  .ad-slot__text {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    opacity: 0.3;
+    letter-spacing: 0.04em;
+  }
+</style>
