@@ -202,7 +202,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
         </a>
 
         <!-- 3. Monetizar -->
-        <a href={`${prefix}/monetizacao`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
+        <a href={routePath('monetizacao', locale)} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
           <span class="text-2xl shrink-0 mt-0.5">💰</span>
           <div class="min-w-0 flex-1">
             <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.monetizar.title', locale)}</h3>

@@ -8,6 +8,11 @@
       "source": "/es/bonus",
       "destination": "/es/bonos",
       "permanent": true
+    },
+    {
+      "source": "/es/monetizacao",
+      "destination": "/es/monetizacion",
+      "permanent": true
     }
   ]
 }

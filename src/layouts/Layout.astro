@@ -131,7 +131,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
           <a href={`${prefix}/`} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">{t('nav.home', locale)}</a>
           <a href={`${prefix}/marketing-digital`} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">{t('nav.marketing', locale)}</a>
           <a href={`${prefix}/inteligencia-artificial`} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">{t('nav.ia', locale)}</a>
-          <a href={`${prefix}/monetizacao`} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">{t('nav.monetizacao', locale)}</a>
+          <a href={routePath('monetizacao', locale)} class="text-base text-text-secondary hover:text-cyan-500 transition-colors">{t('nav.monetizacao', locale)}</a>
 
           <!-- Parceiros com dropdown -->
           <div class="relative group">
