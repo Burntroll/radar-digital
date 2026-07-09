@@ -3,7 +3,8 @@ title: "Cómo gestionar múltiples cuentas de redes sociales con organización y
 categoria: "marketing-digital"
 subtema: "Social"
 excerpt: "Inicios de sesión mezclados, riesgo de publicar en el perfil equivocado, bloqueos por exceso de cuentas — una guía práctica para agencias y profesionales que manejan varios perfiles sin perder el control."
-date: 2026-08-10
+date: 2026-07-08
+updatedAt: 2026-07-09T06:22:00
 readTime: "12 min"
 draft: false
 color: "cyan"

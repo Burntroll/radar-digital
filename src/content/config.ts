@@ -11,6 +11,7 @@ const artigos = defineCollection({
     subtema: z.string(),
     excerpt: z.string(),
     date: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
     readTime: z.string(),
     draft: z.boolean().default(true),
     color: z.enum(['cyan', 'purple', 'amber']),

@@ -3,7 +3,8 @@ title: "Como criar prompts que realmente funcionam"
 categoria: "inteligencia-artificial"
 subtema: "Prompting"
 excerpt: "A anatomia de um prompt profissional: contexto, restrições, exemplos e estrutura. Framework testado em produção."
-date: 2026-08-05
+date: 2026-07-07
+updatedAt: 2026-07-08T14:30:00
 readTime: "9 min"
 draft: false
 color: "purple"

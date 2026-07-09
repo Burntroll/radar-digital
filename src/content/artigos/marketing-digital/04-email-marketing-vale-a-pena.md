@@ -3,7 +3,7 @@ title: "Email marketing ainda vale a pena? (dados reais)"
 categoria: "marketing-digital"
 subtema: "Email"
 excerpt: "Comparativo de ROI entre email, social ads e SEO. Spoiler: email ainda é o canal com melhor retorno em 2026 — se você fizer direito."
-date: 2026-07-24
+date: 2026-07-06
 readTime: "7 min"
 draft: false
 color: "cyan"
