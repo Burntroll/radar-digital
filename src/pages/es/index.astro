@@ -156,6 +156,75 @@ const [artigoPrincipal, ...artigosSecundarios] = artigosRecentes;
     </div>
   </section>
 
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- NAVEGACIÓN POR INTENCIÓN -->
+  <!-- ════════════════════════════════════════════════ -->
+  <section class="py-16 bg-surface transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Section label -->
+      <div class="flex items-center gap-3 mb-8">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">¿Qué quieres resolver hoy?</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 1. Tráfico -->
+        <a href={`${prefix}/marketing-digital`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">📈</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quiero generar más tráfico</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Estrategias para atraer más visitantes, clics y oportunidades.</p>
+          </div>
+        </a>
+
+        <!-- 2. IA -->
+        <a href={`${prefix}/inteligencia-artificial`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🤖</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quiero usar IA en el trabajo</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Prompts, herramientas y flujos prácticos para ganar productividad.</p>
+          </div>
+        </a>
+
+        <!-- 3. Monetizar -->
+        <a href={`${prefix}/monetizacao`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">💰</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quiero monetizar contenido</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Ideas para transformar audiencia, blogs y proyectos digitales en ingresos.</p>
+          </div>
+        </a>
+
+        <!-- 4. Guías -->
+        <a href={`${prefix}/guias`} class="group flex items-start gap-4 glass-card p-5" style="border-color: rgba(168, 85, 247, 0.15);">
+          <span class="text-2xl shrink-0 mt-0.5">📋</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-purple-500 transition-colors">Quiero organizar operaciones digitales</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Guías y checklists para trabajar mejor con cuentas, accesos y procesos.</p>
+          </div>
+        </a>
+
+        <!-- 5. Herramientas -->
+        <a href={`${prefix}/parceiros`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🧰</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quiero encontrar herramientas</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Categorías de herramientas útiles para marketing, tráfico y monetización.</p>
+          </div>
+        </a>
+
+        <!-- 6. Bonos -->
+        <a href={`${prefix}/bonus`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🎁</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quiero ver bonos y códigos</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Condiciones promocionales y beneficios verificados.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="categorias" class="py-24 relative bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">

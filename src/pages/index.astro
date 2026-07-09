@@ -159,6 +159,75 @@ const [artigoPrincipal, ...artigosSecundarios] = artigosRecentes;
   </section>
 
   <!-- ════════════════════════════════════════════════ -->
+  <!-- NAVEGAÇÃO POR INTENÇÃO -->
+  <!-- ════════════════════════════════════════════════ -->
+  <section class="py-16 bg-surface transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Section label -->
+      <div class="flex items-center gap-3 mb-8">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">O que você quer resolver hoje?</h2>
+        <div class="h-px flex-1" style="background: var(--color-border);"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 1. Tráfego -->
+        <a href={`${prefix}/marketing-digital`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">📈</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero gerar mais tráfego</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Estratégias para atrair mais visitantes, cliques e oportunidades.</p>
+          </div>
+        </a>
+
+        <!-- 2. IA -->
+        <a href={`${prefix}/inteligencia-artificial`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🤖</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero usar IA no trabalho</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Prompts, ferramentas e fluxos práticos para ganhar produtividade.</p>
+          </div>
+        </a>
+
+        <!-- 3. Monetizar -->
+        <a href={`${prefix}/monetizacao`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">💰</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero monetizar conteúdo</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Ideias para transformar audiência, blogs e projetos digitais em receita.</p>
+          </div>
+        </a>
+
+        <!-- 4. Guias -->
+        <a href={`${prefix}/guias`} class="group flex items-start gap-4 glass-card p-5" style="border-color: rgba(168, 85, 247, 0.15);">
+          <span class="text-2xl shrink-0 mt-0.5">📋</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-purple-500 transition-colors">Quero organizar operações digitais</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Guias e checklists para trabalhar melhor com contas, acessos e processos.</p>
+          </div>
+        </a>
+
+        <!-- 5. Ferramentas -->
+        <a href={`${prefix}/parceiros`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🧰</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero encontrar ferramentas</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Categorias de ferramentas úteis para marketing, tráfego e monetização.</p>
+          </div>
+        </a>
+
+        <!-- 6. Bônus -->
+        <a href={`${prefix}/bonus`} class="group flex items-start gap-4 glass-card p-5">
+          <span class="text-2xl shrink-0 mt-0.5">🎁</span>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">Quero ver bônus e códigos</h3>
+            <p class="text-xs text-text-muted mt-1 leading-relaxed">Condições promocionais e benefícios verificados.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════ -->
   <!-- CATEGORIAS -->
   <!-- ════════════════════════════════════════════════ -->
   <section id="categorias" class="py-24 relative bg-surface transition-colors duration-300">
