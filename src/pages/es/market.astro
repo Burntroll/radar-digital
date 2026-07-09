@@ -11,11 +11,11 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
 ---
 
 <Layout
-  title="Radar Market"
-  description="Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización."
+  title={t('market.title', locale)}
+  description={t('market.description', locale)}
   breadcrumbItems={[
     {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
-    {name: 'Radar Market', href: prefix + '/market'}
+    {name: t('market.title', locale), href: prefix + '/market'}
   ]}
 >
   <!-- ════════════════════════════════════════════════ -->
@@ -31,7 +31,7 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
         </svg>
-        <span class="text-cyan-500">Radar Market</span>
+        <span class="text-cyan-500">{t('market.title', locale)}</span>
       </nav>
 
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6">
@@ -39,19 +39,19 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
         <span class="gradient-text">Market</span>
       </h1>
       <p class="text-lg sm:text-xl text-text-secondary max-w-2xl leading-relaxed">
-        Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.
+        {t('market.description', locale)}
       </p>
       <p class="text-sm text-text-muted mt-4 max-w-xl leading-relaxed">
-        Curaduría editorial de productos, cursos, servicios y soluciones de socios del mercado digital. Cada publicación pasa por evaluación de utilidad, reputación y transparencia.
+        {t('market.hero.desc', locale)}
       </p>
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
         <div>
           <div class="text-2xl font-bold text-text-primary">{categorias.length}</div>
-          <div class="text-xs text-text-muted mt-0.5">Categorías</div>
+          <div class="text-xs text-text-muted mt-0.5">{t('market.stats.categorias', locale)}</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-text-primary">0</div>
-          <div class="text-xs text-text-muted mt-0.5">Productos disponibles</div>
+          <div class="text-xs text-text-muted mt-0.5">{t('market.stats.produtos', locale)}</div>
         </div>
       </div>
     </div>
@@ -63,12 +63,12 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
   <section class="pb-16 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center gap-3 mb-8">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Categorías</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('market.section.categorias', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       {categorias.length === 0 ? (
-        <p class="text-sm text-text-muted text-center py-12">Ninguna categoría disponible aún.</p>
+        <p class="text-sm text-text-muted text-center py-12">{t('market.empty', locale)}</p>
       ) : (
         <div class="grid sm:grid-cols-2 gap-6">
           {categorias.map((cat) => (
@@ -93,34 +93,34 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
   <section class="pb-16 bg-surface transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-center gap-3 mb-6">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Lo que podrá aparecer aquí</h2>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('market.section.placeholder', locale)}</h2>
         <div class="h-px flex-1" style="background: var(--color-border);"></div>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">🤖</span>
-          <span class="text-sm text-text-secondary">Agentes de IA</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.ia', locale)}</span>
         </div>
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">⚡</span>
-          <span class="text-sm text-text-secondary">Automatizaciones y templates</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.automacao', locale)}</span>
         </div>
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">🛡️</span>
-          <span class="text-sm text-text-secondary">Proxies e infraestructura</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.proxies', locale)}</span>
         </div>
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">📱</span>
-          <span class="text-sm text-text-secondary">Productos para social y contenido</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.social', locale)}</span>
         </div>
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">🎓</span>
-          <span class="text-sm text-text-secondary">Cursos de e-commerce, afiliados e IA</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.cursos', locale)}</span>
         </div>
         <div class="flex items-center gap-3 rounded-xl border p-4" style="border-color: var(--color-border);">
           <span class="text-xl shrink-0">📊</span>
-          <span class="text-sm text-text-secondary">Tráfico pago y monetización</span>
+          <span class="text-sm text-text-secondary">{t('market.placeholder.trafego', locale)}</span>
         </div>
       </div>
     </div>
@@ -137,9 +137,9 @@ const categorias = await getCollection('marketCategorias', ({ data }) => data.dr
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
           </svg>
           <div>
-            <h3 class="text-sm font-bold text-text-primary mb-1">Curaduría editorial</h3>
+            <h3 class="text-sm font-bold text-text-primary mb-1">{t('market.notice.title', locale)}</h3>
             <p class="text-sm text-text-secondary leading-relaxed">
-              Los productos y ofertas de Radar Market pasan por curaduría editorial. Cuando una oferta esté disponible, deberá informar socio, beneficio, estado y fuente de verificación siempre que sea aplicable.
+              {t('market.notice.desc', locale)}
             </p>
           </div>
         </div>

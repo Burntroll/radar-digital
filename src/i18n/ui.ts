@@ -168,6 +168,33 @@ export const ui = {
   },
   'layout.locale.label': { 'pt-BR': 'PT', 'es': 'ES' },
 
+  // Market
+  'market.title':                { 'pt-BR': 'Radar Market', 'es': 'Radar Market' },
+  'market.description': {
+    'pt-BR': 'Produtos, cursos e soluções para quem trabalha com marketing, IA e monetização.',
+    'es': 'Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.',
+  },
+  'market.hero.desc': {
+    'pt-BR': 'Curadoria editorial de produtos, cursos, serviços e soluções de parceiros do mercado digital. Cada item publicado passa por avaliação de utilidade, reputação e transparência.',
+    'es': 'Curaduría editorial de productos, cursos, servicios y soluciones de socios del mercado digital. Cada publicación pasa por evaluación de utilidad, reputación y transparencia.',
+  },
+  'market.stats.categorias':      { 'pt-BR': 'Categorias', 'es': 'Categorías' },
+  'market.stats.produtos':        { 'pt-BR': 'Produtos disponíveis', 'es': 'Productos disponibles' },
+  'market.section.categorias':    { 'pt-BR': 'Categorias', 'es': 'Categorías' },
+  'market.empty':                 { 'pt-BR': 'Nenhuma categoria disponível ainda.', 'es': 'Ninguna categoría disponible aún.' },
+  'market.section.placeholder':   { 'pt-BR': 'O que poderá aparecer aqui', 'es': 'Lo que podrá aparecer aquí' },
+  'market.placeholder.ia':        { 'pt-BR': 'Agentes de IA', 'es': 'Agentes de IA' },
+  'market.placeholder.automacao': { 'pt-BR': 'Automações e templates', 'es': 'Automatizaciones y templates' },
+  'market.placeholder.proxies':   { 'pt-BR': 'Proxies e infraestrutura', 'es': 'Proxies e infraestructura' },
+  'market.placeholder.social':    { 'pt-BR': 'Produtos para social e conteúdo', 'es': 'Productos para social y contenido' },
+  'market.placeholder.cursos':    { 'pt-BR': 'Cursos de e-commerce, afiliados e IA', 'es': 'Cursos de e-commerce, afiliados e IA' },
+  'market.placeholder.trafego':   { 'pt-BR': 'Tráfego pago e monetização', 'es': 'Tráfico pago y monetización' },
+  'market.notice.title':          { 'pt-BR': 'Curadoria editorial', 'es': 'Curaduría editorial' },
+  'market.notice.desc': {
+    'pt-BR': 'Os produtos e ofertas do Radar Market passam por curadoria editorial. Quando uma oferta estiver disponível, ela deverá informar parceiro, benefício, status e fonte de verificação sempre que aplicável.',
+    'es': 'Los productos y ofertas de Radar Market pasan por curaduría editorial. Cuando una oferta esté disponible, deberá informar socio, beneficio, estado y fuente de verificación siempre que sea aplicable.',
+  },
+
   // Categorias (genérico)
   'cat.articles.planned': { 'pt-BR': 'Artigos planejados', 'es': 'Artículos planejados' },
   'cat.articles.published': { 'pt-BR': 'Publicados', 'es': 'Publicados' },
