@@ -1,7 +1,26 @@
 import { ui, type UIKey } from './ui';
 import { locales, defaultLocale, enabledLocales, type Locale } from './config';
+import { routeMap, type RouteKey } from './routes';
 
-export type { Locale, UIKey };
+/**
+ * Gera o path público de uma rota localizada.
+ *
+ * Exemplos:
+ *   routePath('monetizacao', 'es')           → '/es/monetizacion'
+ *   routePath('artigos', 'es', 'meu-slug')   → '/es/articulos/meu-slug'
+ *   routePath('bonus', 'pt-BR')              → '/bonus'
+ *
+ * Usa locales[].prefix da config central, então zh-CN usará /zh-cn/ automaticamente.
+ */
+export function routePath(key: RouteKey, locale: Locale, ...segments: string[]): string {
+  const slug = routeMap[key][locale];
+  const prefix = locales[locale].prefix;
+  const base = prefix ? `/${prefix}/${slug}` : `/${slug}`;
+  if (segments.length === 0) return base;
+  return base + '/' + segments.join('/');
+}
+
+export type { RouteKey, Locale, UIKey };
 
 /**
  * Retorna o conjunto de idiomas habilitados no formato { locale: label }.
