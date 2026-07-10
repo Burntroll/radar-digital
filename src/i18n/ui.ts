@@ -224,7 +224,7 @@ export const ui = {
   'cat.monetizacao.tagline': { 'pt-BR': 'Modelos de negócio digital', 'es': 'Modelos de negocio digital' },
   'cat.monetizacao.desc':    {
     'pt-BR': 'Infoprodutos, afiliados, assinaturas, dropshipping, SaaS e modelos de negócio escaláveis que funcionam de verdade.',
-    'es': 'Infoproductos, afiliados, suscripciones, dropshipping, SaaS y modelos de negocio escalables que funcionan de la verdad.',
+    'es': 'Infoproductos, afiliados, suscripciones, dropshipping, SaaS y modelos de negocio escalables que realmente funcionan.',
   },
 
   // Parceiros
