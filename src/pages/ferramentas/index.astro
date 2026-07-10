@@ -74,7 +74,7 @@ for (const p of todosParceiros) {
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-12">
         <span class="tag-pill">{t('parceiros.stats.categorias', locale)}</span>
-        <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Escolha o' : 'Elige el'} <span class="text-cyan-500">nicho</span></h2>
+        <h2 class="section-title mt-4 text-text-primary transition-colors">{t('parceiros.sections.title.prefix', locale)} <span class="text-cyan-500">nicho</span></h2>
         <p class="section-subtitle">{t('parceiros.sections.subtitle', locale)}</p>
       </div>
 
@@ -95,7 +95,7 @@ for (const p of todosParceiros) {
                     </span>
                   ) : (
                     <span class="inline-block px-2 py-0.5 rounded-md text-[9px] font-semibold uppercase tracking-wider bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">
-                      {qtd} {locale === 'pt-BR' ? (qtd === 1 ? 'parceiro' : 'parceiros') : (qtd === 1 ? 'socio' : 'socios')}
+                      {qtd} {qtd === 1 ? t('parceiros.count.singular', locale) : t('parceiros.count.plural', locale)}
                     </span>
                   )}
                 </div>
@@ -109,7 +109,7 @@ for (const p of todosParceiros) {
 
                 <div class="mt-5 pt-4 border-t transition-colors flex items-center justify-between" style="border-color: var(--color-border);">
                   <span class="text-[10px] text-text-muted uppercase tracking-wider transition-colors">
-                    {locale === 'pt-BR' ? 'Categoria' : 'Categoría'} {String(cat.data.order).padStart(2, '0')}
+                    {t('parceiros.category.label', locale)} {String(cat.data.order).padStart(2, '0')}
                   </span>
                   {temParceiros ? (
                     <span class="text-cyan-500 text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">

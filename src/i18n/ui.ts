@@ -247,6 +247,20 @@ export const ui = {
   'parceiros.detail.cta.see':   { 'pt-BR': 'Ver diretório completo', 'es': 'Ver directorio completo' },
   'parceiros.detail.dropdown.title': { 'pt-BR': 'Categorias',  'es': 'Categorías' },
 
+  // Parceiros - UI labels da página de ferramentas
+  'parceiros.sections.title':       { 'pt-BR': 'Escolha o nicho',           'es': 'Elige el nicho' },
+  'parceiros.sections.title.prefix': { 'pt-BR': 'Escolha o',               'es': 'Elige el' },
+  'parceiros.category.label':       { 'pt-BR': 'Categoria',                'es': 'Categoría' },
+  'parceiros.count.singular':       { 'pt-BR': 'ferramenta',               'es': 'herramienta' },
+  'parceiros.count.plural':         { 'pt-BR': 'ferramentas',              'es': 'herramientas' },
+  'parceiros.stats.tools':          { 'pt-BR': 'Ferramentas',              'es': 'Herramientas' },
+  'parceiros.slug.section.prefix':  { 'pt-BR': 'Parceiros do',             'es': 'Socios del' },
+  'parceiros.slug.other':           { 'pt-BR': 'Outras categorias',        'es': 'Otras categorías' },
+  'parceiros.slug.empty': {
+    'pt-BR': 'Estamos curando os parceiros desta categoria. Volte em alguns dias.',
+    'es': 'Estamos curando los socios de esta categoría. Vuelve en unos días.',
+  },
+
   // Bonus
   'bonus.title':        { 'pt-BR': 'Bônus e Códigos Promocionais', 'es': 'Bonos y Códigos Promocionales' },
   'bonus.subtitle':     {

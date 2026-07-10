@@ -69,7 +69,7 @@ const outrasCategorias = todasCategorias
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
         <div>
           <div class="text-2xl font-bold text-text-primary transition-colors">{parceiros.length}</div>
-          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('parceiros.stats.parceiros', locale).replace(' listados', '').replace(' listados', '').replace('listados', '').replace(' listados', '').trim() || (locale === 'pt-BR' ? 'Ferramentas' : 'Herramientas')}</div>
+          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('parceiros.stats.tools', locale)}</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-cyan-500">{parceiros.filter(p => p.data.featured).length}</div>
@@ -83,7 +83,7 @@ const outrasCategorias = todasCategorias
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <h2 class="section-title text-text-primary transition-colors">{locale === 'pt-BR' ? 'Parceiros do' : 'Socios del'} <span class="text-cyan-500">{locale === 'pt-BR' ? 'segmento' : 'segmento'}</span></h2>
+          <h2 class="section-title text-text-primary transition-colors">{t('parceiros.slug.section.prefix', locale)} <span class="text-cyan-500">segmento</span></h2>
         </div>
       </div>
 
@@ -92,9 +92,7 @@ const outrasCategorias = todasCategorias
           <div class="text-5xl mb-4">🚧</div>
           <h3 class="text-xl font-bold text-text-primary mb-2">{t('cat.empty.title', locale)}</h3>
           <p class="text-text-muted text-sm max-w-md mx-auto">
-            {locale === 'pt-BR' 
-              ? 'Estamos curando os parceiros desta categoria. Volte em alguns dias.' 
-              : 'Estamos curando los socios de esta categoría. Vuelve en unos días.'}
+            {t('parceiros.slug.empty', locale)}
           </p>
         </div>
       ) : (
@@ -159,7 +157,7 @@ const outrasCategorias = todasCategorias
   {outrasCategorias.length > 0 && (
     <section class="py-16 border-t transition-colors" style="border-color: var(--color-border);">
       <div class="max-w-6xl mx-auto px-6">
-        <h3 class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-6">{locale === 'pt-BR' ? 'Outras categorias' : 'Otras categorías'}</h3>
+        <h3 class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-6">{t('parceiros.slug.other', locale)}</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
           {outrasCategorias.map((outra) => (
             <a href={routePath('parceiros', locale) + '/' + outra.slug} class="px-4 py-3 rounded-lg bg-surface-elevated border hover:border-cyan-500/30 hover:text-cyan-500" style="border-color: var(--color-border);">
