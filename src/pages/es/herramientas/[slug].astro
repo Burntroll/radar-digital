@@ -30,7 +30,10 @@ const outrasCategorias = todasCategorias
   .filter((c) => c.slug !== categoria.slug)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
-const catDesc = locale === 'es' ? (categoria.data.descriptionEs || categoria.data.description) : categoria.data.description;
+const catDesc = categoria.data.descriptionEs;
+if (!catDesc && !categoria.data.draft) {
+  throw new Error(`[i18n] Missing descriptionEs for published category "${categoria.slug}"`);
+}
 ---
 
 <Layout 
