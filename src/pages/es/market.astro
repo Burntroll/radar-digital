@@ -6,7 +6,7 @@ import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/util
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
-const categorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'pt-BR')
+const categorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'es')
   .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 ---
 

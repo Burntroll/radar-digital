@@ -37,7 +37,7 @@ const bonusDestaques = (await getCollection('bonuses', ({ data }) =>
   .slice(0, 3);
 
 // Categorías de Radar Market
-const marketCategorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'pt-BR')
+const marketCategorias = await getCollection('marketCategorias', ({ data }) => data.draft === false && data.locale === 'es')
   .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 ---
 
