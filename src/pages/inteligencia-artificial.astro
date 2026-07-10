@@ -15,13 +15,10 @@ const categoriaInfo = {
   description: t('cat.ia.desc', locale),
   color: 'purple',
 };
-
-const todos = await getCollection('artigos', ({ data }) =>
-  data.categoria === categoria && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
+const publicados = await getCollection('artigos', ({ data }) =>
+  data.categoria === categoria && data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
 );
-todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
-const publicados = todos.filter(a => !a.data.draft);
-const hasDrafts = todos.length > publicados.length;
+publicados.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 ---
 
 <Layout 
@@ -66,9 +63,6 @@ const hasDrafts = todos.length > publicados.length;
       <!-- Stats da categoria -->
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
         <div>
-          <div class="text-2xl font-bold text-text-primary transition-colors">{todos.length}</div>
-          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('cat.articles.planned', locale)}</div>
-        </div>
         <div>
           <div class="text-2xl font-bold text-purple-500">
             {publicados.length}
@@ -86,7 +80,6 @@ const hasDrafts = todos.length > publicados.length;
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-12">
         <div>
-          {hasDrafts && <span class="tag-pill" style="background: rgba(124, 58, 237, 0.08); border-color: rgba(124, 58, 237, 0.15);">{locale === 'pt-BR' ? 'Em breve' : 'Próximamente'}</span>}
           <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Artigos do' : 'Artículos del'} <span class="text-purple-500">radar</span></h2>
           <p class="section-subtitle">{t('cat.ia.desc', locale)}</p>
         </div>
