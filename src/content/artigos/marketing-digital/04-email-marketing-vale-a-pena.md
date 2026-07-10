@@ -13,7 +13,6 @@ slugEs: "marketing-digital/04-email-marketing-vale-la-pena"
 contentType: "article"
 ---
 
-# Email marketing ainda vale a pena? (dados reais)
 
 **A resposta curta: sim, disparado. Mas só se você parar de tratar email como panfleto digital e começar a tratar como relacionamento.**
 

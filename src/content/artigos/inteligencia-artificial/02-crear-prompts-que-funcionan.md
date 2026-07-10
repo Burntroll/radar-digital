@@ -11,7 +11,6 @@ emoji: "💬"
 locale: "es"
 contentType: "article"
 ---
-# Cómo crear prompts que realmente funcionan
 
 **La mayoría de la gente trata el prompt como "una petición informal a la IA". Por eso los resultados son mediocres. Un prompt profesional es ingeniería de instrucción: tiene estructura, tiene variables, tiene especificación de salida.**
 

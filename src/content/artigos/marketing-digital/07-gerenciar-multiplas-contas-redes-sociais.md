@@ -13,7 +13,6 @@ slugEs: "marketing-digital/07-gestionar-multiples-cuentas-redes-sociales"
 contentType: "article"
 ---
 
-# Como gerenciar múltiplas contas de redes sociais com organização e segurança
 
 **Se você gerencia mais de três perfis de redes sociais, já sentiu aquela sensação de abrir o Instagram e não saber se está na conta do cliente A ou do cliente B. Aos poucos as abas se misturam, os logins se acumulam e um erro que parecia impossível acontece: você publica conteúdo pessoal no perfil profissional — ou pior, o post de um cliente vai parar na conta de outro.**
 

@@ -14,7 +14,6 @@ slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
 contentType: "article"
 ---
 
-# Como criar prompts que realmente funcionam
 
 **A maioria das pessoas trata prompt como "pedido informal pra IA". Por isso os resultados são medianos. Prompt profissional é engenharia de instrução: tem estrutura, tem variáveis, tem especificação de saída.**
 

@@ -12,7 +12,6 @@ emoji: "🔐"
 locale: "es"
 contentType: "article"
 ---
-# Cómo gestionar múltiples cuentas de redes sociales con organización y seguridad
 
 **Si gestionas más de tres perfiles de redes sociales, ya has sentido esa sensación de abrir Instagram y no saber si estás en la cuenta del cliente A o del cliente B. Poco a poco las pestañas se mezclan, los inicios de sesión se acumulan y un error que parecía imposible ocurre: publicas contenido personal en el perfil profesional — o peor, el post de un cliente termina en la cuenta de otro.**
 
