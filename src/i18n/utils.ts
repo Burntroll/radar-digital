@@ -57,6 +57,9 @@ export function getLocaleFromUrl(url: URL): Locale {
  * - locale padrão (pt-BR): sem prefixo
  * - demais locales: /{prefix}/...
  * - Preserva o restante do path (slug de artigo, categoria, etc.)
+ *
+ * @deprecated Use localizeRoutePath() para rotas públicas que precisam
+ *             de tradução de slug via routeMap.
  */
 export function localizePath(path: string, targetLocale: Locale): string {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
@@ -68,6 +71,55 @@ export function localizePath(path: string, targetLocale: Locale): string {
     if (p && segments[0] === p) {
       segments.shift();
       break;
+    }
+  }
+
+  const basePath = '/' + segments.join('/');
+
+  if (targetLocale === defaultLocale || !locales[targetLocale].prefix) {
+    return basePath || '/';
+  }
+  return `/${locales[targetLocale].prefix}${basePath === '/' ? '' : basePath}`;
+}
+
+/**
+ * Localiza uma rota pública traduzindo o primeiro segmento via routeMap.
+ *
+ * Exemplos:
+ *   localizeRoutePath('/bonus/', 'es')                  → '/es/bonos/'
+ *   localizeRoutePath('/es/bonos/', 'pt-BR')            → '/bonus/'
+ *   localizeRoutePath('/ferramentas/trackers/', 'es')   → '/es/herramientas/trackers/'
+ *   localizeRoutePath('/marketing-digital/', 'es')      → '/es/marketing-digital/'
+ *   localizeRoutePath('/artigos/meu-slug/', 'es')       → '/es/articulos/meu-slug/'
+ *
+ * Fallback para localizePath() quando o primeiro segmento
+ * não corresponde a nenhuma rota do routeMap.
+ */
+export function localizeRoutePath(path: string, targetLocale: Locale): string {
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const segments = cleanPath.split('/').filter(Boolean);
+
+  // Detecta e remove prefixo de locale
+  for (const l of enabledLocales) {
+    const p = locales[l].prefix;
+    if (p && segments[0] === p) {
+      segments.shift();
+      break;
+    }
+  }
+
+  // Se há primeiro segmento, tenta traduzir via routeMap
+  if (segments.length > 0) {
+    const first = segments[0];
+    for (const key of Object.keys(routeMap) as RouteKey[]) {
+      const mapping = routeMap[key] as Record<string, string>;
+      for (const localeKey of enabledLocales) {
+        if (mapping[localeKey] === first) {
+          segments[0] = mapping[targetLocale] ?? first;
+          break;
+        }
+      }
+      if (segments[0] !== first) break;
     }
   }
 
@@ -93,11 +145,12 @@ export function t(key: UIKey, locale: Locale): string {
 }
 
 /**
- * Gera hreflang alternates para todos os idiomas habilitados.
+ * Gera hreflang alternates para todos os idiomas habilitados,
+ * usando localizeRoutePath() para traduzir slugs via routeMap.
  */
 export function getAlternates(path: string): { lang: string; href: string }[] {
   return enabledLocales.map((lang) => ({
     lang,
-    href: localizePath(path, lang),
+    href: localizeRoutePath(path, lang),
   }));
 }

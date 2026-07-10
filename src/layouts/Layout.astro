@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import { getLocaleFromUrl, localizePath, t, languages, defaultLocale, getAlternates, routePath, type Locale } from '../i18n/utils';
+import { getLocaleFromUrl, localizeRoutePath, t, languages, defaultLocale, getAlternates, routePath, type Locale } from '../i18n/utils';
+import { enabledLocales, locales } from '../i18n/config';
 import SEO from '../components/SEO.astro';
 import '../styles/global.css';
 
@@ -24,15 +25,25 @@ interface Props {
 const { title, description, breadcrumbItems, noindex, alternateUrls, articleData } = Astro.props;
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const currentPath = Astro.url.pathname;
-const altPath = Astro.url.pathname.replace(/^\/es/, '').replace(/^\/pt-BR/, '') || '/';
 
-// 404 e outras páginas sem equivalente ES nao devem ter hreflang es
-// Adicione mais paths aqui se criar páginas sem versão em espanhol
+// Páginas sem equivalente em outros idiomas
 const isOnlyPT = currentPath === '/404' || currentPath.startsWith('/404/');
-// Se alternateUrls foi passado explicitamente, usa ele; senao usa logica atual
+
+// Resolve alternates: prioridade para prop explícita, depois fallback automático via routeMap
 const alternates = alternateUrls || (isOnlyPT
-  ? [{ lang: defaultLocale, href: localizePath(altPath, defaultLocale) }]
-  : getAlternates(altPath));
+  ? [{ lang: defaultLocale, href: localizeRoutePath(currentPath, defaultLocale) }]
+  : getAlternates(currentPath));
+
+// Mapa para lookup O(1) por locale
+const alternateMap = new Map(alternates.map(a => [a.lang, a.href]));
+
+// x-default: aponta para a URL PT-BR (quando existe)
+const xDefaultHref = isOnlyPT ? null : alternateMap.get(defaultLocale);
+
+// Mapa de labels para o seletor de idioma
+const localeLabels: Record<string, string> = Object.fromEntries(
+  enabledLocales.map((l) => [l, locales[l].label])
+);
 
 // Puxa categorias de parceiros (sem filtro de locale — são estruturais)
 const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false)
@@ -61,8 +72,8 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     {alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.lang} href={Astro.site ? new URL(alt.href, Astro.site).toString() : alt.href} />
     ))}
-    {isOnlyPT ? null : (
-      <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(alternateUrls ? alternateUrls.find(a => a.lang === defaultLocale)?.href || localizePath(altPath, defaultLocale) : localizePath(altPath, defaultLocale), Astro.site).toString() : (alternateUrls ? alternateUrls.find(a => a.lang === defaultLocale)?.href || localizePath(altPath, defaultLocale) : localizePath(altPath, defaultLocale))} />
+    {xDefaultHref && (
+      <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(xDefaultHref, Astro.site).toString() : xDefaultHref} />
     )}
 
     <!-- canonical: aponta pra propria versao dessa pagina -->
@@ -194,18 +205,19 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
             <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <div class="w-40 rounded-xl border shadow-2xl overflow-hidden transition-colors"
                    style="background: var(--color-surface-elevated, #15171f); border-color: var(--color-border, #1e2130);">
-                {(Object.keys(languages) as Locale[]).map((lang) => {
-                  const href = localizePath(altPath, lang);
-                  const isCurrent = lang === locale;
+                {alternates.map((alt) => {
+                  const isCurrent = alt.lang === locale;
+                  const label = localeLabels[alt.lang];
+                  if (!label) return null;
                   return (
                     <a
-                      href={href}
+                      href={alt.href}
                       class={`block px-4 py-2.5 text-sm transition-colors ${isCurrent ? 'text-cyan-500 font-semibold bg-cyan-500/10 locale-active' : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
                       aria-current={isCurrent ? 'true' : 'false'}
                     >
                       <span class="flex items-center justify-between">
-                        <span>{languages[lang]}</span>
-                        <span class="text-[10px] font-bold uppercase opacity-60">{t('layout.locale.label', lang)}</span>
+                        <span>{label}</span>
+                        <span class="text-[10px] font-bold uppercase opacity-60">{t('layout.locale.label', alt.lang)}</span>
                       </span>
                     </a>
                   );
