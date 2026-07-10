@@ -206,13 +206,15 @@ const colorAccent: Record<string, string> = {
 <!-- Client-side search + filter logic -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('guide-search');
-    const chips = document.querySelectorAll('#guide-filters .filter-chip');
-    const cards = document.querySelectorAll('#guide-grid > article');
+    const searchInput = document.querySelector<HTMLInputElement>('#guide-search');
+    const chips = document.querySelectorAll<HTMLButtonElement>('#guide-filters .filter-chip');
+    const cards = document.querySelectorAll<HTMLElement>('#guide-grid > article');
 
     function filterCards() {
-      const query = (searchInput?.value || '').toLowerCase().trim();
-      const activeTag = document.querySelector('#guide-filters .filter-chip.active')?.dataset?.tag || 'all';
+      if (!searchInput) return;
+      const query = (searchInput.value || '').toLowerCase().trim();
+      const activeChip = document.querySelector<HTMLButtonElement>('#guide-filters .filter-chip.active');
+      const activeTag = activeChip?.dataset?.tag || 'all';
 
       let visibleCount = 0;
       cards.forEach(card => {
@@ -235,7 +237,7 @@ const colorAccent: Record<string, string> = {
       });
 
       // Show/hide no results
-      const noResults = document.querySelector('#guide-grid > p');
+      const noResults = document.querySelector<HTMLElement>('#guide-grid > p');
       if (noResults) {
         noResults.style.display = visibleCount === 0 ? 'block' : 'none';
       }
@@ -248,7 +250,7 @@ const colorAccent: Record<string, string> = {
 
     // Filter chips handler
     chips.forEach(chip => {
-      chip.addEventListener('click', function() {
+      chip.addEventListener('click', function(this: HTMLButtonElement) {
         // Update active chip
         chips.forEach(c => {
           c.style.background = 'transparent';

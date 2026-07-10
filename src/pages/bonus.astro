@@ -207,12 +207,12 @@ const bonusesDoLocale = bonuses
 <!-- Client-side filter logic -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const chips = document.querySelectorAll('.filter-chip');
-    const cards = document.querySelectorAll('#bonus-grid > article');
-    const noResults = document.querySelector('#bonus-grid > p');
+    const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
+    const cards = document.querySelectorAll<HTMLElement>('#bonus-grid > article');
+    const noResults = document.querySelector<HTMLElement>('#bonus-grid > p');
 
     chips.forEach(chip => {
-      chip.addEventListener('click', function() {
+      chip.addEventListener('click', function(this: HTMLButtonElement) {
         const category = this.dataset.category;
 
         // Update chip styles
