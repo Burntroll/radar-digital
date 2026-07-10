@@ -63,7 +63,9 @@ const alternateUrls = ptMatch
       { lang: 'pt-BR', href: routePath('artigos', 'pt-BR', ptMatch.slug) },
       { lang: 'es', href: routePath('artigos', 'es', artigo.slug) },
     ]
-  : undefined;
+  : [
+      { lang: 'es', href: routePath('artigos', 'es', artigo.slug) },
+    ];
 ---
 
 <Layout 
