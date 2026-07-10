@@ -261,6 +261,11 @@ export const ui = {
   'bonus.featured':     { 'pt-BR': 'Destaque',       'es': 'Destacado' },
   'bonus.stats.bonuses': { 'pt-BR': 'Bônus disponíveis', 'es': 'Bonos disponibles' },
 
+  // Bonus - UI labels
+  'bonus.stats.categorias': { 'pt-BR': 'Categorias', 'es': 'Categorías' },
+  'bonus.filter.label':     { 'pt-BR': 'Filtrar por categoria', 'es': 'Filtrar por categoría' },
+  'bonus.code.label':       { 'pt-BR': 'Código', 'es': 'Código' },
+
   // Bonus - categorias (traduzidas)
   'bonus.cat.antidetect-browsers':  { 'pt-BR': 'Antidetect Browsers', 'es': 'Navegadores Antidetect' },
   'bonus.cat.cloaking':             { 'pt-BR': 'Cloaking',            'es': 'Cloaking' },

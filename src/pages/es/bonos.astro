@@ -52,7 +52,7 @@ const bonusesDoLocale = bonuses
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">
         <div>
           <div class="text-2xl font-bold text-cyan-500">{categoriasPublicadas.length}</div>
-          <div class="text-xs text-text-muted mt-0.5 transition-colors">{locale === 'pt-BR' ? 'Categorias' : 'Categorías'}</div>
+          <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('bonus.stats.categorias', locale)}</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-text-primary transition-colors">{bonusesDoLocale.length}</div>
@@ -69,7 +69,7 @@ const bonusesDoLocale = bonuses
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Filtros por categoria -->
-      <div id="bonus-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Filtrar por categoría">
+      <div id="bonus-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label={t('bonus.filter.label', locale)}>
         <button 
           class="filter-chip active px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
           style="background: rgba(0, 229, 255, 0.12); color: #00e5ff; border-color: rgba(0, 229, 255, 0.3);"
@@ -150,7 +150,7 @@ const bonusesDoLocale = bonuses
 
                   <!-- Promo code -->
                   <div class="mb-4">
-                    <span class="text-[10px] uppercase tracking-wider font-semibold text-text-muted block mb-1">{locale === 'pt-BR' ? 'Código' : 'Código'}</span>
+                    <span class="text-[10px] uppercase tracking-wider font-semibold text-text-muted block mb-1">{t('bonus.code.label', locale)}</span>
                     <div class="flex items-center gap-2">
                       <code class="px-3 py-1.5 rounded-lg text-sm font-mono font-bold tracking-wide"
                             style="background: rgba(0, 229, 255, 0.08); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.2);">
