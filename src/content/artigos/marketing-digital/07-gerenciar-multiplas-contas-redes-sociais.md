@@ -143,7 +143,7 @@ Isso é especialmente útil quando:
 
 Essas ferramentas são um degrau acima dos perfis de navegador comuns e valem o investimento para quem vive de operações em escala.
 
-➡️ Na seção [Ferramentas](/parceiros) do Radar Digital você encontra uma curadoria de navegadores antidetect e outras soluções para operações profissionais.
+➡️ Na seção [Ferramentas](/ferramentas) do Radar Digital você encontra uma curadoria de navegadores antidetect e outras soluções para operações profissionais.
 
 ## Conclusão prática
 
