@@ -292,6 +292,10 @@ export const ui = {
   'bonus.cat.automacao':            { 'pt-BR': 'Automação',           'es': 'Automatización' },
   'bonus.cat.afiliados-cpa':        { 'pt-BR': 'Afiliados e CPA',     'es': 'Afiliados y CPA' },
 
+  // AdSlot
+  'adslot.label':       { 'pt-BR': 'Publicidade',      'es': 'Publicidad' },
+  'adslot.placeholder': { 'pt-BR': 'Espaço reservado', 'es': 'Espacio reservado' },
+
   // Locale switcher
   'locale.switcher.label': { 'pt-BR': 'Idioma', 'es': 'Idioma' },
   'locale.unavailable':    { 'pt-BR': 'Em breve em', 'es': 'Próximamente en' },

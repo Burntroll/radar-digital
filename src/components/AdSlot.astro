@@ -1,4 +1,6 @@
 ---
+import { getLocaleFromUrl, t, type Locale } from '../i18n/utils';
+
 /**
  * AdSlot — Espaço reservado para publicidade.
  *
@@ -18,6 +20,7 @@ export interface Props {
 }
 
 const { variant = 'horizontal' } = Astro.props;
+const locale: Locale = getLocaleFromUrl(Astro.url);
 
 const heightClass: Record<string, string> = {
   horizontal: 'min-h-[90px] md:min-h-[100px]',
@@ -31,10 +34,11 @@ const widthClass: Record<string, string> = {
   sidebar: 'max-w-[300px] mx-auto',
 };
 
+const adLabel = t('adslot.label', locale);
 const labelMap: Record<string, string> = {
-  horizontal: 'Publicidade — Leaderboard',
-  'in-feed': 'Publicidade — In-feed',
-  sidebar: 'Publicidade — Sidebar',
+  horizontal: `${adLabel} — Leaderboard`,
+  'in-feed': `${adLabel} — In-feed`,
+  sidebar: `${adLabel} — Sidebar`,
 };
 ---
 
@@ -43,14 +47,14 @@ const labelMap: Record<string, string> = {
   role="region"
   aria-label={labelMap[variant]}
 >
-  <span class="ad-slot__label" aria-hidden="true">Publicidade</span>
+  <span class="ad-slot__label" aria-hidden="true">{adLabel}</span>
   <div class="ad-slot__inner">
     <svg class="ad-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
       <polyline points="21 15 16 10 5 21"/>
     </svg>
-    <span class="ad-slot__text">Espaço reservado</span>
+    <span class="ad-slot__text">{t('adslot.placeholder', locale)}</span>
   </div>
 </div>
 
