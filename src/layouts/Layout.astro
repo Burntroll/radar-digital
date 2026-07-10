@@ -54,6 +54,10 @@ const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) 
   .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
 
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
+
+// URL canônica absoluta para reúso em OG e Twitter
+const SITE_BASE = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
+const canonicalUrl = `${SITE_BASE}${currentPath}`;
 ---
 
 <!DOCTYPE html>
@@ -66,11 +70,20 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     <meta name="theme-color" content="#0a0b0f" id="theme-color" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description || t('layout.meta.ogdesc', locale)} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={articleData ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Radar Digital" />
     <meta property="og:locale" content={locale === 'pt-BR' ? 'pt_BR' : 'es_ES'} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {articleData?.imageUrl && <meta property="og:image" content={`${SITE_BASE}${articleData.imageUrl}`} />}
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content={articleData?.imageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description || t('layout.meta.ogdesc', locale)} />
+    {articleData?.imageUrl && <meta name="twitter:image" content={`${SITE_BASE}${articleData.imageUrl}`} />}
 
     <!-- hreflang para SEO internacional -->
     {alternates.map((alt) => (
@@ -81,7 +94,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     )}
 
     <!-- canonical: aponta pra propria versao dessa pagina -->
-    <link rel="canonical" href={Astro.site ? new URL(currentPath, Astro.site).toString() : currentPath} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Schema.org JSON-LD: WebSite (apenas nas home pages) -->
     {isHomePage && <SEO type="website" description={description || t('layout.meta.desc', locale)} locale={locale} />}
