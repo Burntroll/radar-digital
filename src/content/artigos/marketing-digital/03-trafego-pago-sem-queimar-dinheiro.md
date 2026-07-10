@@ -12,7 +12,6 @@ locale: "pt-BR"
 contentType: "article"
 ---
 
-# Tráfego pago sem queimar dinheiro: lições práticas
 
 > **Status:** Rascunho em construção. Este artigo está sendo estruturado e revisado antes da publicação.
 

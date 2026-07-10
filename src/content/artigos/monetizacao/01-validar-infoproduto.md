@@ -12,7 +12,6 @@ locale: "pt-BR"
 contentType: "article"
 ---
 
-# Como validar um infoproduto antes de criar (e perder dinheiro)
 
 > **Status:** Rascunho em construção. Este artigo está sendo estruturado e revisado antes da publicação.
 

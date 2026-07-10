@@ -14,7 +14,6 @@ guideType: "passo-a-passo"
 guideTags: ["afiliados-cpa", "meta-ads", "analytics-tracking", "monetizacao"]
 ---
 
-# Guia rápido de tráfego pago para afiliados iniciantes
 
 > **Teste de estrutura — guia em draft para validação do layout.**
 

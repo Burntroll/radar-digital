@@ -12,7 +12,6 @@ locale: "pt-BR"
 contentType: "article"
 ---
 
-# Afiliados: o modelo que continua gerando renda em 2026
 
 > **Status:** Rascunho em construção. Este artigo está sendo estruturado e revisado antes da publicação.
 

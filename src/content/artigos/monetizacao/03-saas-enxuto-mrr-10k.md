@@ -12,7 +12,6 @@ locale: "pt-BR"
 contentType: "article"
 ---
 
-# SaaS enxuto: do MVP ao MRR de R$10k/mês
 
 > **Status:** Rascunho em construção. Este artigo está sendo estruturado e revisado antes da publicação.
 

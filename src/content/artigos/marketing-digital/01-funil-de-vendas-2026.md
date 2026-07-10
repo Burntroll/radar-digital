@@ -12,7 +12,6 @@ locale: "pt-BR"
 contentType: "article"
 ---
 
-# Como estruturar um funil de vendas em 2026
 
 > **Status:** Rascunho em construção. Este artigo está sendo estruturado e revisado antes da publicação.
 
