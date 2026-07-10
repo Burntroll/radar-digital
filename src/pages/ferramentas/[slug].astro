@@ -30,11 +30,12 @@ const outrasCategorias = todasCategorias
   .filter((c) => c.slug !== categoria.slug)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
+const catDesc = locale === 'es' ? (categoria.data.descriptionEs || categoria.data.description) : categoria.data.description;
 ---
 
 <Layout 
   title={`${categoria.data.title} — ${t('nav.parceiros', locale)}`} 
-  description={categoria.data.description}
+  description={catDesc}
   breadcrumbItems={[
     {name: t('cat.breadcrumb.home', locale), href: prefix + '/'},
     {name: t('nav.parceiros', locale), href: routePath('parceiros', locale)},
@@ -63,7 +64,7 @@ const outrasCategorias = todasCategorias
       </h1>
 
       <p class="text-lg sm:text-xl text-text-secondary max-w-3xl leading-relaxed transition-colors">
-        {categoria.data.description}
+        {catDesc}
       </p>
 
       <div class="flex flex-wrap gap-8 mt-10 pt-8 border-t transition-colors" style="border-color: var(--color-border);">

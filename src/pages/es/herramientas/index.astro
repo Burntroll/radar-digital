@@ -104,7 +104,7 @@ for (const p of todosParceiros) {
                   {cat.data.title}
                 </h3>
                 <p class="text-xs text-text-muted leading-relaxed line-clamp-3 transition-colors">
-                  {cat.data.description}
+                  {locale === 'es' ? (cat.data.descriptionEs || cat.data.description) : cat.data.description}
                 </p>
 
                 <div class="mt-5 pt-4 border-t transition-colors flex items-center justify-between" style="border-color: var(--color-border);">

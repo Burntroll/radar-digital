@@ -55,6 +55,7 @@ const parceiroCategorias = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    descriptionEs: z.string().optional(),
     order: z.number().default(99),
     draft: z.boolean().default(true),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
