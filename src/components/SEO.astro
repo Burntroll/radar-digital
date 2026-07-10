@@ -25,9 +25,11 @@ export interface Props {
   authorName?: string;
   imageUrl?: string;
   url?: string;
+  // website
+  locale?: string;
 }
 
-const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', url } = Astro.props;
+const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', url, locale: websiteLocale } = Astro.props;
 
 const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
 
@@ -82,6 +84,16 @@ if (type === 'breadcrumb' && items && items.length > 0) {
       '@type': 'WebPage',
       '@id': url ? `${SITE_URL}${url}` : SITE_URL,
     },
+  };
+} else if (type === 'website') {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: 'Radar Digital',
+    description: description || '',
+    inLanguage: websiteLocale || defaultLocale,
   };
 }
 ---

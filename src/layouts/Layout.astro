@@ -45,6 +45,10 @@ const localeLabels: Record<string, string> = Object.fromEntries(
   enabledLocales.map((l) => [l, locales[l].label])
 );
 
+// Detecta se é home page (com ou sem locale prefix)
+const normalizedPath = currentPath.replace(/\/+$/, '') || '/';
+const isHomePage = normalizedPath === '/' || normalizedPath === '/es';
+
 // Puxa categorias de parceiros (sem filtro de locale — são estruturais)
 const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false)
   .then(cats => cats.sort((a, b) => a.data.order - b.data.order));
@@ -79,8 +83,8 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
     <!-- canonical: aponta pra propria versao dessa pagina -->
     <link rel="canonical" href={Astro.site ? new URL(currentPath, Astro.site).toString() : currentPath} />
 
-    <!-- Schema.org JSON-LD: WebSite (presente em todas as paginas) -->
-    <SEO type="website" />
+    <!-- Schema.org JSON-LD: WebSite (apenas nas home pages) -->
+    {isHomePage && <SEO type="website" description={description || t('layout.meta.desc', locale)} locale={locale} />}
 
     {/* BreadcrumbList + Article passam via prop breadcrumbItems / slot <head> */}
     {breadcrumbItems && <SEO type="breadcrumb" items={breadcrumbItems} />}
