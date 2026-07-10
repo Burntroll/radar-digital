@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 10/07/2026 (sessão 9 — finalização dos quality gates)
+> **Última atualização:** 10/07/2026 (sessão 10 — push + CI + deploy)
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 
@@ -96,7 +96,9 @@
 - [x] **vercel.json** — Config para Astro
 - [x] **CSS bundling corrigido** — Import via Astro
 - [x] **`.astro/` removido do rastreamento Git** — settings.json e types.d.ts não são mais versionados
-- [x] **Push autorizado** — Branch master sincronizada com origin/master (7 commits enviados)
+- [x] **Push autorizado** — Branch master sincronizada com origin/master (9 commits enviados)
+- [x] **GitHub Actions** — Workflow "Quality Check" criado e validado (push → `npm ci` → `npm run check` → `npm run build` ✅)
+- [x] **Vercel deploy automático** — CI aprovou, Vercel inicia deploy automaticamente
 
 ## 🟡 Próximas pendências
 
