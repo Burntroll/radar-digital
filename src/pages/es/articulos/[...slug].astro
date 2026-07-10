@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
-import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../../i18n/utils';
+import { t, defaultLocale, getDateLocale, type Locale } from '../../../i18n/utils';
 import { routePath, type RouteKey } from '../../../i18n/utils';
 
 export async function getStaticPaths() {
@@ -12,13 +12,8 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {
-  artigo: CollectionEntry<'artigos'>;
-}
-
 const { artigo } = Astro.props;
 const locale: Locale = (artigo.data.locale || 'pt-BR') as Locale;
-const requestLocale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 const { Content } = await artigo.render();
 

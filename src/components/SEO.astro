@@ -27,7 +27,7 @@ export interface Props {
   url?: string;
 }
 
-const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', imageUrl, url } = Astro.props;
+const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', url } = Astro.props;
 
 const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
 
@@ -88,6 +88,6 @@ if (type === 'breadcrumb' && items && items.length > 0) {
 
 {
   jsonLd && (
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   )
 }

@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import { getCollection } from 'astro:content';
-import { getLocaleFromUrl, localizePath, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
+import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
 import { routePath } from '../../i18n/utils';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);

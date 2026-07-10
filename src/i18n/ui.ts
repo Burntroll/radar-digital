@@ -54,8 +54,8 @@ export const ui = {
     'es': 'SEO, tráfico pagado, redes sociales, email marketing, embudos de venta y todo lo que mueve el indicador de tu negocio digital.',
   },
   'home.card.ia.desc': {
-    'pt-BR': 'Ferramentas, prompts, automações, agentes e tudo que está mudando (de verdade) com IA em 2026.',
-    'es': 'Herramientas, prompts, automatizaciones, agentes y todo lo que está cambiando (de verdad) con IA en 2026.',
+    'pt-BR': 'Prompts, ferramentas e fluxos práticos para ganhar produtividade.',
+    'es': 'Prompts, herramientas y flujos prácticos para ganar productividad.',
   },
   'home.card.monetizacao.desc': {
     'pt-BR': 'Infoprodutos, afiliados, assinaturas, dropshipping, publicidade digital e modelos de negócio escaláveis.',
@@ -92,7 +92,6 @@ export const ui = {
   'home.card.trafego.title':    { 'pt-BR': 'Quero gerar mais tráfego',  'es': 'Quiero generar más tráfico' },
   'home.card.trafego.desc':     { 'pt-BR': 'Estratégias para atrair mais visitantes, cliques e oportunidades.', 'es': 'Estrategias para atraer más visitantes, clics y oportunidades.' },
   'home.card.ia.title':         { 'pt-BR': 'Quero usar IA no trabalho', 'es': 'Quiero usar IA en el trabajo' },
-  'home.card.ia.desc':          { 'pt-BR': 'Prompts, ferramentas e fluxos práticos para ganhar produtividade.', 'es': 'Prompts, herramientas y flujos prácticos para ganar productividad.' },
   'home.card.monetizar.title':  { 'pt-BR': 'Quero monetizar conteúdo',  'es': 'Quiero monetizar contenido' },
   'home.card.monetizar.desc':   { 'pt-BR': 'Ideias para transformar audiência, blogs e projetos digitais em receita.', 'es': 'Ideas para transformar audiencia, blogs y proyectos digitales en ingresos.' },
   'home.card.organizar.title':  { 'pt-BR': 'Quero organizar operações digitais', 'es': 'Quiero organizar operaciones digitales' },
@@ -196,7 +195,7 @@ export const ui = {
   },
 
   // Categorias (genérico)
-  'cat.articles.planned': { 'pt-BR': 'Artigos planejados', 'es': 'Artículos planejados' },
+  'cat.articles.planned': { 'pt-BR': 'Artigos planejados', 'es': 'Artículos planeados' },
   'cat.articles.published': { 'pt-BR': 'Publicados', 'es': 'Publicados' },
   'cat.breadcrumb.home':  { 'pt-BR': 'Início', 'es': 'Inicio' },
   'cat.breadcrumb.youarehere': { 'pt-BR': 'Você está em', 'es': 'Estás en' },
@@ -238,7 +237,6 @@ export const ui = {
   'parceiros.stats.categorias': { 'pt-BR': 'Categorias',     'es': 'Categorías' },
   'parceiros.stats.parceiros':  { 'pt-BR': 'Ferramentas listadas', 'es': 'Herramientas listadas' },
   'parceiros.stats.destaques':  { 'pt-BR': 'Em destaque',    'es': 'Destacados' },
-  'parceiros.sections.title':   { 'pt-BR': 'Escolha o nicho', 'es': 'Elige el nicho' },
   'parceiros.sections.subtitle': {
     'pt-BR': 'Cada categoria traz uma explicação do segmento e os parceiros que recomendamos.',
     'es': 'Cada categoría trae una explicación del segmento y los socios que recomendamos.',

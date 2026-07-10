@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { getLocaleFromUrl, localizeRoutePath, t, languages, defaultLocale, getAlternates, routePath, type Locale } from '../i18n/utils';
+import { getLocaleFromUrl, localizeRoutePath, t, defaultLocale, getAlternates, routePath, type Locale } from '../i18n/utils';
 import { enabledLocales, locales } from '../i18n/config';
 import SEO from '../components/SEO.astro';
 import '../styles/global.css';
@@ -217,7 +217,7 @@ const prefix = locale === defaultLocale ? '' : `/${locale}`;
                     >
                       <span class="flex items-center justify-between">
                         <span>{label}</span>
-                        <span class="text-[10px] font-bold uppercase opacity-60">{t('layout.locale.label', alt.lang)}</span>
+                        <span class="text-[10px] font-bold uppercase opacity-60">{t('layout.locale.label', alt.lang as Locale)}</span>
                       </span>
                     </a>
                   );

@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
@@ -139,7 +139,6 @@ const colorAccent: Record<string, string> = {
           guias.map((guia) => {
             const grad = colorMap[guia.data.color] || colorMap.cyan;
             const accent = colorAccent[guia.data.color] || colorAccent.cyan;
-            const catNameKey = 'cat.' + guia.data.categoria.replace('-', '') + '.name';
             const categoriaNome = guia.data.categoria === 'marketing-digital' ? t('cat.marketing.name', locale)
               : guia.data.categoria === 'inteligencia-artificial' ? t('cat.ia.name', locale)
               : t('cat.monetizacao.name', locale);

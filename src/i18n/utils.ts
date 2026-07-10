@@ -13,7 +13,7 @@ import { routeMap, type RouteKey } from './routes';
  * Usa locales[].prefix da config central, então zh-CN usará /zh-cn/ automaticamente.
  */
 export function routePath(key: RouteKey, locale: Locale, ...segments: string[]): string {
-  const slug = routeMap[key][locale];
+  const slug = routeMap[key][locale as keyof (typeof routeMap)[typeof key]];
   const prefix = locales[locale].prefix;
   const base = prefix ? `/${prefix}/${slug}` : `/${slug}`;
   if (segments.length === 0) return base;

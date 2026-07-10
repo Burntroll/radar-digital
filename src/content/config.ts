@@ -21,6 +21,8 @@ const artigos = defineCollection({
     contentType: z.enum(['article', 'guide']).default('article'),
     guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia', 'comparacao', 'passo-a-passo']).optional(),
     guideTags: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    author: z.string().optional(),
   }),
 });
 
