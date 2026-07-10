@@ -17,9 +17,11 @@ const categoriaInfo = {
 };
 
 const todos = await getCollection('artigos', ({ data }) =>
-  data.categoria === categoria && data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
+  data.categoria === categoria && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
 );
 todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const publicados = todos.filter(a => !a.data.draft);
+const hasDrafts = todos.length > publicados.length;
 ---
 
 <Layout 
@@ -68,7 +70,7 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
         </div>
         <div>
           <div class="text-2xl font-bold text-amber-500">
-            {todos.filter(a => !a.data.draft).length}
+            {publicados.length}
           </div>
           <div class="text-xs text-text-muted mt-0.5 transition-colors">{t('cat.articles.published', locale)}</div>
         </div>
@@ -83,14 +85,14 @@ todos.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <span class="tag-pill" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.15); color: #f59e0b;">{locale === 'pt-BR' ? 'Em breve' : 'Próximamente'}</span>
+          {hasDrafts && <span class="tag-pill" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.15); color: #f59e0b;">{locale === 'pt-BR' ? 'Em breve' : 'Próximamente'}</span>}
           <h2 class="section-title mt-4 text-text-primary transition-colors">{locale === 'pt-BR' ? 'Artigos do' : 'Artículos del'} <span class="text-amber-500">radar</span></h2>
           <p class="section-subtitle">{t('cat.monetizacao.desc', locale)}</p>
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {todos.map((artigo) => (
+        {publicados.map((artigo) => (
           <article class="glass-card overflow-hidden group">
             <a href={artigo.data.draft ? `#` : routePath('artigos', locale, artigo.slug)} class="block">
               <div class="h-40 bg-gradient-to-br from-amber-500/15 via-orange-600/5 to-surface-elevated flex items-center justify-center transition-colors">
