@@ -10,6 +10,8 @@ color: "purple"
 emoji: "💬"
 locale: "es"
 primaryHub: ai-automation
+topics:
+  - prompts
 contentType: "article"
 ---
 

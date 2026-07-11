@@ -10,6 +10,9 @@ color: "cyan"
 emoji: "📧"
 locale: "es"
 primaryHub: digital-marketing
+topics:
+  - email-marketing
+  - analytics-tracking
 contentType: "article"
 ---
 

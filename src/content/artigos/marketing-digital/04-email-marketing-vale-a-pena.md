@@ -11,6 +11,9 @@ emoji: "📧"
 locale: "pt-BR"
 slugEs: "marketing-digital/04-email-marketing-vale-la-pena"
 primaryHub: digital-marketing
+topics:
+  - email-marketing
+  - analytics-tracking
 contentType: "article"
 ---
 

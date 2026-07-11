@@ -12,6 +12,8 @@ emoji: "💬"
 locale: "pt-BR"
 slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
 primaryHub: ai-automation
+topics:
+  - prompts
 contentType: "article"
 ---
 

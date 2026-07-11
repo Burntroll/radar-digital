@@ -11,6 +11,10 @@ emoji: "✅"
 locale: "pt-BR"
 slugEs: "marketing-digital/08-checklist-seguridad-multicuenta"
 primaryHub: contingency-infrastructure
+topics:
+  - account-security
+  - antidetect
+  - analytics-tracking
 contentType: "guide"
 guideType: "checklist"
 guideTags: ["seguranca-contas", "antidetect", "ferramentas", "analytics-tracking"]

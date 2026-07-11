@@ -11,6 +11,10 @@ color: "cyan"
 emoji: "🔐"
 locale: "es"
 primaryHub: digital-marketing
+topics:
+  - social-media
+  - account-security
+  - antidetect
 contentType: "article"
 ---
 

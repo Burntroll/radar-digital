@@ -1,8 +1,13 @@
 import { defineCollection, z } from 'astro:content';
 import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
+import { editorialTopics, type EditorialTopicId } from '../config/editorialTopics';
 
 const isValidHubId = (val: unknown): val is EditorialHubId =>
   typeof val === 'string' && editorialHubs.some((h) => h.id === val);
+
+const isValidTopicId = (val: unknown): val is EditorialTopicId =>
+  typeof val === 'string' &&
+  editorialTopics.some((topic) => topic.id === val);
 
 // ═══════════════════════════════════════════════════════════
 // ARTIGOS DO BLOG
@@ -31,6 +36,11 @@ const artigos = defineCollection({
     relatedHubs: z.array(
       z.custom<EditorialHubId>(isValidHubId, {
         message: 'relatedHubs must contain only registered editorial hub IDs',
+      })
+    ).optional(),
+    topics: z.array(
+      z.custom<EditorialTopicId>(isValidTopicId, {
+        message: 'topics must contain only registered editorial topic IDs',
       })
     ).optional(),
     image: z.string().optional(),
@@ -89,6 +99,46 @@ const artigos = defineCollection({
           code: z.ZodIssueCode.custom,
           message: 'relatedHubs cannot include primaryHub',
           path: ['relatedHubs'],
+        });
+      }
+    }
+
+    // topics validations
+    if (data.draft === false) {
+      if (!data.topics || data.topics.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'topics is required for published content (draft: false)',
+          path: ['topics'],
+        });
+      }
+    }
+
+    if (data.topics !== undefined) {
+      // topics empty when provided
+      if (data.topics.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'topics must contain at least 1 topic when provided',
+          path: ['topics'],
+        });
+      }
+
+      // topics too many
+      if (data.topics.length > 5) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'topics cannot contain more than 5 topics',
+          path: ['topics'],
+        });
+      }
+
+      // topics duplicates
+      if (new Set(data.topics).size !== data.topics.length) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'topics cannot contain duplicate topic IDs',
+          path: ['topics'],
         });
       }
     }

@@ -2,8 +2,7 @@
 // Registro central de tópicos editoriais
 //
 // Este arquivo é a fonte de verdade para os tópicos controlados do Radar Digital.
-// Ele não está conectado ao schema, conteúdos, componentes ou rotas — é apenas um
-// registro tipado que outras partes do sistema podem consultar futuramente.
+// Está conectado ao schema da collection artigos e validado em runtime.
 //
 // TIPAGEM DERIVADA:
 //   EditorialTopicId e EditorialTopic são derivados do registro (editorialTopics).

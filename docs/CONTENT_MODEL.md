@@ -132,7 +132,7 @@ interface EditorialHub {
 - Tópicos **não duplicam** hubs editoriais.
 - `paid-traffic`, `affiliates`, `ecommerce`, `monetization`, `seo-content` etc. não são tópicos (são hubs).
 - `guideType` (checklist, tutorial, etc.) permanece separado dos tópicos.
-- **O registro ainda não está conectado** ao schema, conteúdos, filtros ou interface.
+- **O registro está conectado ao schema, validado em runtime durante o build.**
 
 ## 5. Modelo atual da collection editorial
 
@@ -156,10 +156,12 @@ const artigos = defineCollection({
     emoji: z.string().optional(),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     slugEs: z.string().optional(),
-    primaryHub: z.custom<EditorialHubId>(...).optional(),  // ← NOVO
+    primaryHub: z.custom<EditorialHubId>(...).optional(),
     contentType: z.enum(['article', 'guide']).default('article'),
     guideType: z.enum([...]).optional(),
     guideTags: z.array(z.string()).default([]),
+    relatedHubs: z.array(z.custom<EditorialHubId>(...)).optional(),
+    topics: z.array(z.custom<EditorialTopicId>(...)).optional(),
     image: z.string().optional(),
     author: z.string().optional(),
   }),
@@ -206,6 +208,32 @@ const artigos = defineCollection({
 | Repete `primaryHub` | `relatedHubs cannot include primaryHub` |
 | Sem `primaryHub` | `relatedHubs requires primaryHub` |
 
+### `topics`
+
+- `topics` é um campo **opcional** na collection `artigos` para conteúdos com `draft: true`.
+- Para conteúdos **publicados** (`draft: false`), `topics` é **obrigatório** — o build falha se ausente.
+- Tipo inferido: `EditorialTopicId[] | undefined`.
+- Quando informado, deve conter de **1 a 5** IDs de tópicos registrados.
+- Todos os IDs devem existir em `editorialTopics` — validado em runtime.
+- Não pode haver IDs duplicados na lista.
+- A ordem declarada no frontmatter é preservada.
+- O campo não tem valor padrão — é `undefined` quando não informado.
+- O validador reutiliza `isValidTopicId`, derivado do registro central.
+- `topics` **não altera** interface pública, filtros, rotas, breadcrumbs, canonical, hreflang ou sitemap nesta etapa.
+- `guideTags` continua existindo e não foi substituído nesta etapa.
+- **8 publicações publicadas** foram migradas com `topics`.
+- **Drafts** ainda não foram migrados.
+
+**Mensagens de erro:**
+
+| Condição | Mensagem |
+|----------|----------|
+| Publicado sem tópicos | `topics is required for published content (draft: false)` |
+| ID inválido | `topics must contain only registered editorial topic IDs` |
+| Lista vazia | `topics must contain at least 1 topic when provided` |
+| Mais de 5 itens | `topics cannot contain more than 5 topics` |
+| Tópicos duplicados | `topics cannot contain duplicate topic IDs` |
+
 ## 7. Piloto concluído
 
 `primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
@@ -234,8 +262,6 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 
 ## 9. Funcionalidades ainda não implementadas
 
-- Conexão de `topics` ao schema
-- Migração de tópicos nos conteúdos existentes
 - `translationKey` (substituir `slugEs`)
 - Nova rota canônica `/publicacoes/<slug>/`
 - Páginas públicas de tópicos
@@ -262,8 +288,8 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 
 1. Tornar `primaryHub` obrigatório para publicações publicadas ✅
 2. Implementar `relatedHubs` no schema ✅
-3. Conectar `topics` ao schema (validação runtime)
-4. Migrar `topics` nos conteúdos existentes
+3. Conectar `topics` ao schema (validação runtime) ✅
+4. Migrar `topics` nas 8 publicações publicadas ✅
 5. Implementar `translationKey` e migrar de `slugEs`
 6. Criar rota `/publicacoes/<slug>/` com redirects
 7. Criar páginas de hubs (templates)
