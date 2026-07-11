@@ -1,6 +1,9 @@
 import { defineCollection, z } from 'astro:content';
 import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
 
+const isValidHubId = (val: unknown): val is EditorialHubId =>
+  typeof val === 'string' && editorialHubs.some((h) => h.id === val);
+
 // ═══════════════════════════════════════════════════════════
 // ARTIGOS DO BLOG
 // ═══════════════════════════════════════════════════════════
@@ -19,27 +22,77 @@ const artigos = defineCollection({
     emoji: z.string().optional(),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     slugEs: z.string().optional(),
-    primaryHub: z.custom<EditorialHubId>(
-      (val) => typeof val === 'string' && editorialHubs.some((h) => h.id === val),
-      { message: 'primaryHub must match a registered editorial hub ID' }
-    ).optional(),
+    primaryHub: z.custom<EditorialHubId>(isValidHubId, {
+      message: 'primaryHub must match a registered editorial hub ID',
+    }).optional(),
     contentType: z.enum(['article', 'guide']).default('article'),
     guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia', 'comparacao', 'passo-a-passo']).optional(),
     guideTags: z.array(z.string()).default([]),
+    relatedHubs: z.array(
+      z.custom<EditorialHubId>(isValidHubId, {
+        message: 'relatedHubs must contain only registered editorial hub IDs',
+      })
+    ).optional(),
     image: z.string().optional(),
     author: z.string().optional(),
-  }).refine(
-    (data) => {
-      if (data.draft === false && !data.primaryHub) {
-        return false;
-      }
-      return true;
-    },
-    {
-      message: 'primaryHub is required for published content (draft: false)',
-      path: ['primaryHub'],
+  }).superRefine((data, ctx) => {
+    // primaryHub required for published content
+    if (data.draft === false && !data.primaryHub) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'primaryHub is required for published content (draft: false)',
+        path: ['primaryHub'],
+      });
     }
-  ),
+
+    // relatedHubs validations
+    if (data.relatedHubs !== undefined) {
+      // relatedHubs requires primaryHub
+      if (!data.primaryHub) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'relatedHubs requires primaryHub',
+          path: ['relatedHubs'],
+        });
+      }
+
+      // relatedHubs empty when provided
+      if (data.relatedHubs.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'relatedHubs must contain at least 1 hub when provided',
+          path: ['relatedHubs'],
+        });
+      }
+
+      // relatedHubs too many
+      if (data.relatedHubs.length > 3) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'relatedHubs cannot contain more than 3 hubs',
+          path: ['relatedHubs'],
+        });
+      }
+
+      // relatedHubs duplicates
+      if (new Set(data.relatedHubs).size !== data.relatedHubs.length) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'relatedHubs cannot contain duplicate hub IDs',
+          path: ['relatedHubs'],
+        });
+      }
+
+      // relatedHubs includes primaryHub
+      if (data.primaryHub && data.relatedHubs.includes(data.primaryHub)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'relatedHubs cannot include primaryHub',
+          path: ['relatedHubs'],
+        });
+      }
+    }
+  }),
 });
 
 // ═══════════════════════════════════════════════════════════

@@ -166,19 +166,45 @@ const artigos = defineCollection({
 });
 ```
 
-## 6. Regra atual de `primaryHub`
+## 6. Regra atual de `primaryHub` e `relatedHubs`
+
+### `primaryHub`
 
 - `primaryHub` é opcional no schema da collection `artigos` para conteúdos com `draft: true`.
 - Para conteúdos **publicados** (`draft: false`), `primaryHub` é **obrigatório** — o build falha se ausente.
 - A validação é feita em duas camadas:
   1. **Campo:** `z.custom<EditorialHubId>()` valida contra `editorialHubs` (rejeita IDs inválidos).
-  2. **Objeto:** `.refine()` verifica que `draft: false` implica `primaryHub` presente.
+  2. **Objeto:** `.superRefine()` verifica que `draft: false` implica `primaryHub` presente.
 - O tipo inferido continua `EditorialHubId | undefined` (para compatibilidade com drafts).
 - A mensagem de erro para publicado sem hub: `"primaryHub is required for published content (draft: false)"`.
 - IDs inválidos produzem erro com mensagem: `"primaryHub must match a registered editorial hub ID"`.
-- Nenhum ID de hub é duplicado manualmente no schema — usa `z.custom()` com `.refine()`.
-- `primaryHub` **não altera** interface pública, rotas, breadcrumbs ou sitemap.
-- `categoria` continua sendo usada para breadcrumbs e links.
+- Nenhum ID de hub é duplicado manualmente no schema — usa `z.custom(isValidHubId)` com `.superRefine()`.
+
+### `relatedHubs`
+
+- `relatedHubs` é um campo **opcional** na collection `artigos`.
+- Finalidade: distribuição editorial secundária — permite associar uma publicação a hubs adicionais além do `primaryHub`.
+- Quando informado, deve conter de **1 a 3** IDs de hubs editoriais registrados.
+- Nenhum ID pode ser duplicado dentro da lista.
+- Nenhum item pode ser igual ao `primaryHub` da publicação.
+- `relatedHubs` **não pode** ser informado se `primaryHub` estiver ausente.
+- A ordem informada no YAML é preservada (sem ordenação automática).
+- O campo não tem valor padrão — é `undefined` quando não informado.
+- A reutiliza o mesmo validador `isValidHubId` usado por `primaryHub`.
+- Nenhuma validação depende de `relatedHubs` para conteúdos que não o utilizam.
+- `relatedHubs` **não altera** interface pública, rotas, breadcrumbs, canonical, hreflang ou sitemap nesta etapa.
+- Nenhuma publicação ainda utiliza `relatedHubs`.
+
+**Mensagens de erro:**
+
+| Condição | Mensagem |
+|----------|----------|
+| ID inválido | `relatedHubs must contain only registered editorial hub IDs` |
+| Lista vazia | `relatedHubs must contain at least 1 hub when provided` |
+| Mais de 3 itens | `relatedHubs cannot contain more than 3 hubs` |
+| IDs duplicados | `relatedHubs cannot contain duplicate hub IDs` |
+| Repete `primaryHub` | `relatedHubs cannot include primaryHub` |
+| Sem `primaryHub` | `relatedHubs requires primaryHub` |
 
 ## 7. Piloto concluído
 
@@ -208,7 +234,6 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 
 ## 9. Funcionalidades ainda não implementadas
 
-- `relatedHubs` (distribuição editorial secundária)
 - Conexão de `topics` ao schema
 - Migração de tópicos nos conteúdos existentes
 - `translationKey` (substituir `slugEs`)
@@ -235,8 +260,8 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 
 ## 11. Sequência prevista de evolução
 
-1. Tornar `primaryHub` obrigatório para publicações publicadas
-2. Implementar `relatedHubs` no schema
+1. Tornar `primaryHub` obrigatório para publicações publicadas ✅
+2. Implementar `relatedHubs` no schema ✅
 3. Conectar `topics` ao schema (validação runtime)
 4. Migrar `topics` nos conteúdos existentes
 5. Implementar `translationKey` e migrar de `slugEs`
