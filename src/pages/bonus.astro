@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
+import AdSlot from '../components/AdSlot.astro';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
@@ -93,17 +94,8 @@ const bonusesDoLocale = bonuses
         ))}
       </div>
 
-      <!-- Espaço reservado para anúncio -->
-      <div class="w-full rounded-xl border overflow-hidden mb-10 transition-colors flex items-center justify-center"
-           style="min-height: 100px; background: var(--color-surface-elevated, '#15171f'); border-color: var(--color-border, '#1e2130');">
-        <div class="text-center py-6">
-          <svg class="w-5 h-5 mx-auto mb-1.5" style="color: var(--color-text-muted, '#64748b');" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m0 0V5.625m0 0a1.125 1.125 0 011.125-1.125h3.75c.621 0 1.125.504 1.125 1.125m-6.75 0V19.5m6.75-13.875v13.875m0 0h3.75c.621 0 1.125-.504 1.125-1.125V7.5c0-.621-.504-1.125-1.125-1.125h-3.75"/>
-          </svg>
-          <span class="text-[11px] uppercase tracking-wider font-medium" style="color: var(--color-text-muted, '#64748b');">
-            {t('bonus.ad.placeholder', locale)}
-          </span>
-        </div>
+      <div class="mb-10">
+        <AdSlot variant="in-feed" />
       </div>
 
       <!-- Grid de cards -->
