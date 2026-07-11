@@ -100,7 +100,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
                   <time class="text-xs text-text-muted">
                     {artigoPrincipal.data.date.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: 'short', year: 'numeric' })}
                   </time>
-                  <span class="text-xs font-medium text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">{t('home.article.read', locale)}</span>
+                  <span class="text-xs font-medium text-cyan-500 opacity-75 group-hover:opacity-100 transition-opacity">{t('home.article.read', locale)}</span>
                 </div>
               </div>
             </a>

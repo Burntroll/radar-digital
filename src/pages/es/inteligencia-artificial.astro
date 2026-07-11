@@ -125,7 +125,7 @@ publicados.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
                   <span class="text-[10px] text-text-muted uppercase tracking-wider transition-colors">
                     {artigo.data.draft ? t('cat.tag.em-breve', locale) : artigo.data.date.toLocaleDateString(getDateLocale(locale), { day: '2-digit', month: 'short', year: 'numeric' })}
                   </span>
-                  <span class="text-purple-500 text-xs font-medium flex items-center gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <span class="text-purple-500 text-xs font-medium flex items-center gap-1 opacity-75 group-hover:opacity-100 transition-opacity">
                     {artigo.data.draft ? t('cat.tag.em-breve', locale) : (locale === 'pt-BR' ? 'Ler' : 'Leer')}
                     <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
