@@ -28,7 +28,18 @@ const artigos = defineCollection({
     guideTags: z.array(z.string()).default([]),
     image: z.string().optional(),
     author: z.string().optional(),
-  }),
+  }).refine(
+    (data) => {
+      if (data.draft === false && !data.primaryHub) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'primaryHub is required for published content (draft: false)',
+      path: ['primaryHub'],
+    }
+  ),
 });
 
 // ═══════════════════════════════════════════════════════════

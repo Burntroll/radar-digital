@@ -4,7 +4,7 @@
 >
 > **Fonte de verdade:** Plano de Ação 2.0 (arquitetura conceitual) + implementação real no repositório.
 >
-> **Última revisão:** 12/07/2026 (commit `8dbec2b`)
+> **Última revisão:** 12/07/2026 (pós-commit `primaryHub` obrigatório)
 
 ## 1. Distinção entre hubs, tópicos, formatos e Recursos
 
@@ -168,11 +168,15 @@ const artigos = defineCollection({
 
 ## 6. Regra atual de `primaryHub`
 
-- `primaryHub` é um campo **opcional** na collection `artigos`.
-- É validado em **runtime** durante `npm run build` contra o array `editorialHubs`.
-- O tipo inferido é `EditorialHubId | undefined` (não `string | undefined`).
+- `primaryHub` é opcional no schema da collection `artigos` para conteúdos com `draft: true`.
+- Para conteúdos **publicados** (`draft: false`), `primaryHub` é **obrigatório** — o build falha se ausente.
+- A validação é feita em duas camadas:
+  1. **Campo:** `z.custom<EditorialHubId>()` valida contra `editorialHubs` (rejeita IDs inválidos).
+  2. **Objeto:** `.refine()` verifica que `draft: false` implica `primaryHub` presente.
+- O tipo inferido continua `EditorialHubId | undefined` (para compatibilidade com drafts).
+- A mensagem de erro para publicado sem hub: `"primaryHub is required for published content (draft: false)"`.
 - IDs inválidos produzem erro com mensagem: `"primaryHub must match a registered editorial hub ID"`.
-- A validação usa `z.custom<EditorialHubId>()` com `refine`, sem duplicar IDs manualmente.
+- Nenhum ID de hub é duplicado manualmente no schema — usa `z.custom()` com `.refine()`.
 - `primaryHub` **não altera** interface pública, rotas, breadcrumbs ou sitemap.
 - `categoria` continua sendo usada para breadcrumbs e links.
 
@@ -204,7 +208,6 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 
 ## 9. Funcionalidades ainda não implementadas
 
-- Obrigatoriedade de `primaryHub` para publicações publicadas
 - `relatedHubs` (distribuição editorial secundária)
 - Conexão de `topics` ao schema
 - Migração de tópicos nos conteúdos existentes
