@@ -6,6 +6,10 @@
 // registro tipado que outras partes do sistema podem consultar futuramente.
 //
 // Seções: Setores (sectors), Operação (operations), Verticais (verticals)
+//
+// TIPAGEM DERIVADA:
+//   EditorialHubId e EditorialHub são derivados do registro (editorialHubs).
+//   Nunca edite a union manualmente — altere apenas os objetos no array.
 // ═════════════════════════════════════════════════════════════════════════════
 
 // ─── Tipos base ───────────────────────────────────────────────────────────────
@@ -19,59 +23,35 @@ export type EditorialGroup =
 
 export type EditorialHubStatus = 'active' | 'planned';
 
-// ─── Hub ID (union de todos os IDs) ───────────────────────────────────────────
+// ─── Tipos de definição (discriminam seção com/sem group) ────────────────────
 
-export type EditorialHubId =
-  // Setores
-  | 'ecommerce'
-  | 'artificial-intelligence'
-  | 'crypto'
-  | 'igaming'
-  // Operação — Aquisição e Crescimento
-  | 'digital-marketing'
-  | 'paid-traffic'
-  | 'affiliates'
-  | 'seo-content'
-  // Operação — Construção e Monetização
-  | 'sites-portals'
-  | 'monetization'
-  // Operação — Tecnologia e Performance
-  | 'ai-automation'
-  | 'contingency-infrastructure'
-  | 'data-conversion'
-  // Verticais
-  | 'nutra'
-  | 'adult'
-  | 'extra-income'
-  | 'other-verticals';
-
-// ─── Estrutura de cada hub ────────────────────────────────────────────────────
-
-export interface EditorialHub {
-  /** ID interno estável (não muda com idioma) */
-  id: EditorialHubId;
-  /** Seção à qual o hub pertence */
-  section: EditorialSection;
-  /** Grupo dentro da seção (apenas para hubs de Operação) */
-  group?: EditorialGroup;
-  /** Label em português */
+type BaseHubDefinition = {
+  id: string;
   labelPt: string;
-  /** Label em espanhol */
   labelEs: string;
-  /** Slug público em português */
   slugPt: string;
-  /** Slug público em espanhol */
   slugEs: string;
-  /** Status do hub */
   status: EditorialHubStatus;
-}
+};
 
-// ─── Registro ─────────────────────────────────────────────────────────────────
+type OperationsHubDefinition = BaseHubDefinition & {
+  section: 'operations';
+  group: EditorialGroup;
+};
 
-export const editorialHubs: EditorialHub[] = [
-  // ═══════════════════════════════════════════════════════════════════════════
+type NonOperationsHubDefinition = BaseHubDefinition & {
+  section: 'sectors' | 'verticals';
+  group?: never;
+};
+
+type EditorialHubDefinition = OperationsHubDefinition | NonOperationsHubDefinition;
+
+// ─── Registro (fonte de verdade única) ─────────────────────────────────────
+
+export const editorialHubs = [
+  // ═════════════════════════════════════════════════════════════════════════
   // SETORES
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   {
     id: 'ecommerce',
     section: 'sectors',
@@ -109,9 +89,9 @@ export const editorialHubs: EditorialHub[] = [
     status: 'planned',
   },
 
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   // OPERAÇÃO — Aquisição e Crescimento
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   {
     id: 'digital-marketing',
     section: 'operations',
@@ -153,9 +133,9 @@ export const editorialHubs: EditorialHub[] = [
     status: 'planned',
   },
 
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   // OPERAÇÃO — Construção e Monetização
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   {
     id: 'sites-portals',
     section: 'operations',
@@ -177,9 +157,9 @@ export const editorialHubs: EditorialHub[] = [
     status: 'active',
   },
 
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   // OPERAÇÃO — Tecnologia e Performance
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   {
     id: 'ai-automation',
     section: 'operations',
@@ -211,9 +191,9 @@ export const editorialHubs: EditorialHub[] = [
     status: 'planned',
   },
 
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   // VERTICAIS
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ═════════════════════════════════════════════════════════════════════════
   {
     id: 'nutra',
     section: 'verticals',
@@ -250,13 +230,18 @@ export const editorialHubs: EditorialHub[] = [
     slugEs: 'otras-verticales',
     status: 'planned',
   },
-];
+] as const satisfies readonly EditorialHubDefinition[];
+
+// ─── Tipos derivados do registro ──────────────────────────────────────────
+
+export type EditorialHub = (typeof editorialHubs)[number];
+export type EditorialHubId = EditorialHub['id'];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /**
  * Retorna um hub pelo seu ID interno.
- * Útil para consultar labels, slugs e metadata sem percorrer o array manualmente.
+ * Apenas IDs existentes no registro são aceitos.
  */
 export function getEditorialHub(id: EditorialHubId): EditorialHub | undefined {
   return editorialHubs.find((h) => h.id === id);
@@ -265,20 +250,20 @@ export function getEditorialHub(id: EditorialHubId): EditorialHub | undefined {
 /**
  * Retorna todos os hubs de uma seção.
  */
-export function getHubsBySection(section: EditorialSection): EditorialHub[] {
+export function getHubsBySection(section: EditorialSection): readonly EditorialHub[] {
   return editorialHubs.filter((h) => h.section === section);
 }
 
 /**
  * Retorna todos os hubs de um grupo (válido apenas para Operação).
  */
-export function getHubsByGroup(group: EditorialGroup): EditorialHub[] {
-  return editorialHubs.filter((h) => h.group === group);
+export function getHubsByGroup(group: EditorialGroup): readonly EditorialHub[] {
+  return editorialHubs.filter((h): h is typeof h & { group: EditorialGroup } => h.section === 'operations' && h.group === group);
 }
 
 /**
  * Retorna apenas hubs com status 'active'.
  */
-export function getActiveHubs(): EditorialHub[] {
+export function getActiveHubs(): readonly EditorialHub[] {
   return editorialHubs.filter((h) => h.status === 'active');
 }
