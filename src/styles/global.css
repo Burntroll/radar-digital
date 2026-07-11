@@ -203,3 +203,72 @@ body {
 .theme-toggle .moon-icon { display: block; }
 .dark .theme-toggle .sun-icon { display: block; }
 .dark .theme-toggle .moon-icon { display: none; }
+
+/* ─── Filter bar (mobile: scroll horizontal; md+: wrap) ─── */
+.filter-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 768px) {
+  .filter-bar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding-bottom: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ─── Filter chip (neutral) ─── */
+.filter-chip {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  background: rgba(124, 58, 237, 0.06);
+  border-color: var(--color-text-muted);
+}
+
+.filter-chip:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ─── Filter chip — purple active (Guias) ─── */
+.filter-chip--purple.active {
+  background: rgba(124, 58, 237, 0.12);
+  color: #a855f7;
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+.filter-chip--purple.active:hover {
+  background: rgba(124, 58, 237, 0.18);
+}
+
+/* ─── Filter chip — cyan active (Bônus) ─── */
+.filter-chip--cyan.active {
+  background: rgba(0, 229, 255, 0.12);
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.filter-chip--cyan.active:hover {
+  background: rgba(0, 229, 255, 0.18);
+}

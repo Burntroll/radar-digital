@@ -95,10 +95,10 @@ const colorAccent: Record<string, string> = {
       </div>
 
       <!-- Filtros por tema -->
-      <div id="guide-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Filtrar por tema">
+      <div id="guide-filters" class="filter-bar" role="tablist" aria-label="Filtrar por tema">
         <button
-          class="filter-chip active px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
-          style="background: rgba(124, 58, 237, 0.12); color: #a855f7; border-color: rgba(124, 58, 237, 0.3);"
+          class="filter-chip filter-chip--purple active"
+          type="button"
           data-tag="all"
           role="tab"
           aria-selected="true"
@@ -107,8 +107,8 @@ const colorAccent: Record<string, string> = {
         </button>
         {filterTags.map((tag) => (
           <button
-            class="filter-chip px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
-            style="background: transparent; color: var(--color-text-secondary, '#94a3b8'); border-color: var(--color-border, '#1e293b');"
+            class="filter-chip filter-chip--purple"
+            type="button"
             data-tag={tag}
             role="tab"
             aria-selected="false"
@@ -232,18 +232,14 @@ const colorAccent: Record<string, string> = {
       searchInput.addEventListener('input', filterCards);
     }
 
+    // Filter chips handler
     chips.forEach(chip => {
       chip.addEventListener('click', function(this: HTMLButtonElement) {
+        // Update active chip
         chips.forEach(c => {
-          c.style.background = 'transparent';
-          c.style.color = 'var(--color-text-secondary, #94a3b8)';
-          c.style.borderColor = 'var(--color-border, #1e293b)';
           c.classList.remove('active');
           c.setAttribute('aria-selected', 'false');
         });
-        this.style.background = 'rgba(124, 58, 237, 0.12)';
-        this.style.color = '#a855f7';
-        this.style.borderColor = 'rgba(124, 58, 237, 0.3)';
         this.classList.add('active');
         this.setAttribute('aria-selected', 'true');
 

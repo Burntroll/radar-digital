@@ -72,10 +72,10 @@ const bonusesDoLocale = bonuses
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Filtros por categoria -->
-      <div id="bonus-filters" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label={t('bonus.filter.label', locale)}>
+      <div id="bonus-filters" class="filter-bar" role="tablist" aria-label={t('bonus.filter.label', locale)}>
         <button 
-          class="filter-chip active px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
-          style="background: rgba(0, 229, 255, 0.12); color: #00e5ff; border-color: rgba(0, 229, 255, 0.3);"
+          class="filter-chip filter-chip--cyan active"
+          type="button"
           data-category="all"
           role="tab"
           aria-selected="true"
@@ -84,8 +84,8 @@ const bonusesDoLocale = bonuses
         </button>
         {categoriasPublicadas.map((cat) => (
           <button
-            class="filter-chip px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer"
-            style="background: transparent; color: var(--color-text-secondary, '#94a3b8'); border-color: var(--color-border, '#1e293b');"
+            class="filter-chip filter-chip--cyan"
+            type="button"
             data-category={cat.slug}
             role="tab"
             aria-selected="false"
@@ -208,16 +208,12 @@ const bonusesDoLocale = bonuses
       chip.addEventListener('click', function(this: HTMLButtonElement) {
         const category = this.dataset.category;
 
-        // Update chip styles
+        // Update active chip
         chips.forEach(c => {
-          c.style.background = 'transparent';
-          c.style.color = 'var(--color-text-secondary, #94a3b8)';
-          c.style.borderColor = 'var(--color-border, #1e293b)';
+          c.classList.remove('active');
           c.setAttribute('aria-selected', 'false');
         });
-        this.style.background = 'rgba(0, 229, 255, 0.12)';
-        this.style.color = '#00e5ff';
-        this.style.borderColor = 'rgba(0, 229, 255, 0.3)';
+        this.classList.add('active');
         this.setAttribute('aria-selected', 'true');
 
         // Filter cards
