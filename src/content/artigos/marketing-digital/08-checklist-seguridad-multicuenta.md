@@ -9,6 +9,7 @@ draft: false
 color: "cyan"
 emoji: "✅"
 locale: "es"
+primaryHub: contingency-infrastructure
 contentType: "guide"
 guideType: "checklist"
 guideTags: ["seguranca-contas", "antidetect", "ferramentas", "analytics-tracking"]

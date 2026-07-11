@@ -10,6 +10,7 @@ color: "cyan"
 emoji: "✅"
 locale: "pt-BR"
 slugEs: "marketing-digital/08-checklist-seguridad-multicuenta"
+primaryHub: contingency-infrastructure
 contentType: "guide"
 guideType: "checklist"
 guideTags: ["seguranca-contas", "antidetect", "ferramentas", "analytics-tracking"]
