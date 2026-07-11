@@ -9,11 +9,12 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "es"
+primaryHub: digital-marketing
 contentType: "article"
 ---
 
-**La respuesta corta: sí, de lejos. Pero solo si dejas de tratar el email como panfleto digital y empiezas a tratarlo como una relación.**
 
+**La respuesta corta: sí, de lejos. Pero solo si dejas de tratar el email como panfleto digital y empiezas a tratarlo como una relación.**
 Estudios sectoriales de marketing de los últimos años (DMA, Litmus, HubSpot State of Marketing) colocan consistentemente al email en lo más alto del ranking de ROI entre canales digitales — alrededor de **$36 a $42 retornados por cada $1 invertido**. Es más que SEO, más que social ads, más que display. ¿Por qué? Porque el email es el único canal donde le hablas directamente a quien **ya ha demostrado interés** en lo que haces.
 
 Aun así, mucha gente insiste en declarar muerto al email marketing. Este artículo es para poner los números sobre la mesa y mostrar lo que funciona en 2026 — sin prometer "fórmula mágica" y sin romantizar el "boom del email en los 2000".
