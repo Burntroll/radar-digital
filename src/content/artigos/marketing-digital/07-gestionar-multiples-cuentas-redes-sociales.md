@@ -10,6 +10,7 @@ draft: false
 color: "cyan"
 emoji: "🔐"
 locale: "es"
+primaryHub: digital-marketing
 contentType: "article"
 ---
 

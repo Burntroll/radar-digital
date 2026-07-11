@@ -10,6 +10,7 @@ color: "cyan"
 emoji: "🔐"
 locale: "pt-BR"
 slugEs: "marketing-digital/07-gestionar-multiples-cuentas-redes-sociales"
+primaryHub: digital-marketing
 contentType: "article"
 ---
 
