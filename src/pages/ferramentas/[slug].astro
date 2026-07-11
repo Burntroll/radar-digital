@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/utils';
 import { routePath } from '../../i18n/utils';
+import EmptyState from '../../components/EmptyState.astro';
 
 export async function getStaticPaths() {
   const categorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false);
@@ -89,13 +90,11 @@ const catDesc = categoria.data.description;
       </div>
 
       {parceiros.length === 0 ? (
-        <div class="glass-card p-12 text-center">
-          <div class="text-5xl mb-4">🚧</div>
-          <h3 class="text-xl font-bold text-text-primary mb-2">{t('cat.empty.title', locale)}</h3>
-          <p class="text-text-muted text-sm max-w-md mx-auto">
-            {t('parceiros.slug.empty', locale)}
-          </p>
-        </div>
+        <EmptyState
+          icon="🚧"
+          title={t('cat.empty.title', locale)}
+          description={t('parceiros.slug.empty', locale)}
+        />
       ) : (
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {parceiros.map((parceiro) => (

@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
 import AdSlot from '../components/AdSlot.astro';
+import EmptyState from '../components/EmptyState.astro';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
@@ -98,14 +99,15 @@ const bonusesDoLocale = bonuses
         <AdSlot variant="in-feed" />
       </div>
 
+      <EmptyState
+        id="bonus-empty-state"
+        title={t('bonus.noresults', locale)}
+        hidden={bonusesDoLocale.length !== 0}
+      />
+
       <!-- Grid de cards -->
       <div id="bonus-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {bonusesDoLocale.length === 0 ? (
-          <p class="col-span-full text-center text-text-muted text-sm py-16 transition-colors">
-            {t('bonus.noresults', locale)}
-          </p>
-        ) : (
-          bonusesDoLocale.map((bonus) => {
+        {bonusesDoLocale.length !== 0 && bonusesDoLocale.map((bonus) => {
             const catTitle = t(('bonus.cat.' + bonus.data.category) as any, locale);
             return (
               <article class="glass-card overflow-hidden group flex flex-col" data-category={bonus.data.category}>
@@ -189,8 +191,7 @@ const bonusesDoLocale = bonuses
                 </a>
               </article>
             );
-          })
-        )}
+          })}
       </div>
     </div>
   </section>
@@ -201,7 +202,7 @@ const bonusesDoLocale = bonuses
   document.addEventListener('DOMContentLoaded', function() {
     const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
     const cards = document.querySelectorAll<HTMLElement>('#bonus-grid > article');
-    const noResults = document.querySelector<HTMLElement>('#bonus-grid > p');
+    const emptyState = document.getElementById('bonus-empty-state');
 
     chips.forEach(chip => {
       chip.addEventListener('click', function(this: HTMLButtonElement) {
@@ -231,8 +232,8 @@ const bonusesDoLocale = bonuses
         });
 
         // Show/hide no results
-        if (noResults) {
-          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        if (emptyState) {
+          emptyState.hidden = visibleCount !== 0;
         }
       });
     });
