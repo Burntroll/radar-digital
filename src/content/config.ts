@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
 
 // ═══════════════════════════════════════════════════════════
 // ARTIGOS DO BLOG
@@ -18,6 +19,10 @@ const artigos = defineCollection({
     emoji: z.string().optional(),
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     slugEs: z.string().optional(),
+    primaryHub: z.custom<EditorialHubId>(
+      (val) => typeof val === 'string' && editorialHubs.some((h) => h.id === val),
+      { message: 'primaryHub must match a registered editorial hub ID' }
+    ).optional(),
     contentType: z.enum(['article', 'guide']).default('article'),
     guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia', 'comparacao', 'passo-a-passo']).optional(),
     guideTags: z.array(z.string()).default([]),
