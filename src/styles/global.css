@@ -236,14 +236,9 @@ body {
   border: 1px solid var(--color-border);
   background: transparent;
   color: var(--color-text-secondary);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
-}
-
-.filter-chip:hover {
-  background: rgba(124, 58, 237, 0.06);
-  border-color: var(--color-text-muted);
 }
 
 .filter-chip:focus-visible {
@@ -258,10 +253,6 @@ body {
   border-color: rgba(124, 58, 237, 0.3);
 }
 
-.filter-chip--purple.active:hover {
-  background: rgba(124, 58, 237, 0.18);
-}
-
 /* ─── Filter chip — cyan active (Bônus) ─── */
 .filter-chip--cyan.active {
   background: rgba(0, 229, 255, 0.12);
@@ -269,6 +260,22 @@ body {
   border-color: rgba(0, 229, 255, 0.3);
 }
 
-.filter-chip--cyan.active:hover {
-  background: rgba(0, 229, 255, 0.18);
+@media (hover: hover) {
+  .filter-chip--purple:not(.active):hover {
+    background: rgba(124, 58, 237, 0.06);
+    border-color: var(--color-text-muted);
+  }
+
+  .filter-chip--cyan:not(.active):hover {
+    background: rgba(0, 229, 255, 0.06);
+    border-color: var(--color-text-muted);
+  }
+
+  .filter-chip--purple.active:hover {
+    background: rgba(124, 58, 237, 0.18);
+  }
+
+  .filter-chip--cyan.active:hover {
+    background: rgba(0, 229, 255, 0.18);
+  }
 }
