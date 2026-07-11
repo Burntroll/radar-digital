@@ -9,6 +9,7 @@ draft: false
 color: "purple"
 emoji: "💬"
 locale: "es"
+primaryHub: ai-automation
 contentType: "article"
 ---
 
