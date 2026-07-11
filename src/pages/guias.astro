@@ -147,7 +147,7 @@ const colorAccent: Record<string, string> = {
             });
             const tags = guia.data.guideTags || [];
             return (
-              <article class="glass-card overflow-hidden group flex flex-col" data-tags={tags.join(',')}>
+              <article class="glass-card interactive-card overflow-hidden group flex flex-col" data-tags={tags.join(',')}>
                 <a href={routePath('artigos', locale, guia.slug)} class="block flex flex-col flex-1">
                   <div class={`h-36 bg-gradient-to-br ${grad} to-surface-elevated flex items-center justify-center transition-colors`}>
                     <span class="text-3xl">{guia.data.emoji || '📡'}</span>

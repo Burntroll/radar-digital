@@ -75,7 +75,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <div class="lg:col-span-2">
             <a
               href={routePath('artigos', locale, artigoPrincipal.slug)}
-              class="group block glass-card overflow-hidden"
+              class="group block glass-card interactive-card overflow-hidden"
             >
               <div class={`h-52 sm:h-64 bg-gradient-to-br ${
                 artigoPrincipal.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
@@ -116,7 +116,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
               return (
                 <a
                   href={routePath('artigos', locale, artigo.slug)}
-                  class="group flex gap-4 glass-card p-4 items-start"
+                  class="group flex gap-4 glass-card interactive-card p-4 items-start"
                 >
                   <div class={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${
                     artigo.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
@@ -144,7 +144,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
             {guiaRecente && (
               <a
                 href={routePath('artigos', locale, guiaRecente.slug)}
-                class="group flex gap-4 glass-card p-4 items-start"
+                class="group flex gap-4 glass-card interactive-card p-4 items-start"
                 style="border-color: rgba(168, 85, 247, 0.2);"
               >
                 <div class="w-12 h-12 shrink-0 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
@@ -365,7 +365,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <!-- Card do guia mais recente -->
           <a
             href={routePath('artigos', locale, guiaRecente.slug)}
-            class="glass-card p-5 group flex items-start gap-4"
+            class="glass-card interactive-card p-5 group flex items-start gap-4"
             style="border-color: rgba(168, 85, 247, 0.2);"
           >
             <span class="text-2xl shrink-0 mt-0.5">{guiaRecente.data.emoji || '📋'}</span>
@@ -400,7 +400,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
           <div class="h-px flex-1" style="background: var(--color-border);"></div>
         </div>
 
-        <a href={`${prefix}/guias`} class="glass-card p-5 flex items-center gap-4 group hover:border-purple-500/20 transition-colors">
+        <a href={`${prefix}/guias`} class="glass-card interactive-card p-5 flex items-center gap-4 group hover:border-purple-500/20 transition-colors">
           <span class="text-2xl shrink-0">📋</span>
           <div class="min-w-0 flex-1">
             <p class="text-sm text-text-secondary leading-relaxed">
