@@ -1,0 +1,245 @@
+# Modelo Editorial — Radar Digital
+
+> **Propósito:** Documentar a arquitetura editorial do Radar Digital para que outra pessoa ou IA compreenda o modelo sem depender do histórico das conversas.
+>
+> **Fonte de verdade:** Plano de Ação 2.0 (arquitetura conceitual) + implementação real no repositório.
+>
+> **Última revisão:** 12/07/2026 (commit `8dbec2b`)
+
+## 1. Distinção entre hubs, tópicos, formatos e Recursos
+
+O modelo editorial tem quatro dimensões distintas que não devem ser confundidas:
+
+| Dimensão | O que é | Exemplos |
+|---|---|---|
+| **Hub** | Destino editorial amplo. Gera página pública. | Marketing Digital, IA, Monetização |
+| **Tópico** | Assunto específico e controlado. Não gera página pública automaticamente. | `prompts`, `email-marketing`, `social-media` |
+| **Formato** | Tipo editorial da publicação. | `article`, `guide`, `news`, `case`, `interview`, `review` |
+| **Recurso** | Área utilitária ou comercial separada dos hubs. | Ferramentas, Bônus |
+
+**Regras:**
+- Hubs são registrados em `src/config/editorialHubs.ts`.
+- Tópicos são registrados em `src/config/editorialTopics.ts`.
+- Formatos são definidos no schema da collection (`contentType`).
+- Recursos (Ferramentas, Bônus, Radar Market, Institucional) ficam fora do registro de hubs.
+- Guias, Cases, Entrevistas, Reviews, Notícias e Artigos são **formatos**, não hubs.
+
+## 2. Seções da arquitetura
+
+A arquitetura editorial possui seis seções:
+
+1. **Setores** — Análise setorial por indústria (E-commerce, IA, Crypto, iGaming)
+2. **Operação** — Conteúdo prático sobre execução e processos
+3. **Verticais** — Nichos específicos (Nutra, Adult, Renda Extra)
+4. **Recursos** — Ferramentas, Bônus, Guias, Cases, Entrevistas, Reviews
+5. **Radar Market** — Marketplace de produtos e serviços
+6. **Institucional** — Sobre, Contato, Política Editorial, Privacidade, Termos
+
+Apenas **Setores**, **Operação** e **Verticais** pertencem ao registro de hubs editoriais.
+
+## 3. Registro central de hubs
+
+**Arquivo:** `src/config/editorialHubs.ts`
+
+**Estrutura:**
+
+```typescript
+interface EditorialHub {
+  id: EditorialHubId;      // ID estável (não muda com idioma)
+  section: EditorialSection; // 'sectors' | 'operations' | 'verticals'
+  group?: EditorialGroup;    // Apenas para hubs de Operação
+  labelPt: string;
+  labelEs: string;
+  slugPt: string;
+  slugEs: string;
+  status: EditorialHubStatus; // 'active' | 'planned'
+}
+```
+
+**Tipos derivados:** `EditorialHub`, `EditorialHubId` e `EditorialHubStatus` são derivados diretamente do array `editorialHubs`, não declarados manualmente.
+
+### Hubs por seção
+
+#### Setores (sectors)
+
+| ID | Label PT | Status |
+|---|---|---|
+| `ecommerce` | E-commerce | planned |
+| `artificial-intelligence` | Inteligência Artificial | **active** |
+| `crypto` | Crypto | planned |
+| `igaming` | iGaming | planned |
+
+#### Operação (operations)
+
+**Grupo: Aquisição e Crescimento (acquisition-growth)**
+
+| ID | Label PT | Status |
+|---|---|---|
+| `digital-marketing` | Marketing Digital | **active** |
+| `paid-traffic` | Tráfego Pago | planned |
+| `affiliates` | Afiliados | planned |
+| `seo-content` | SEO e Conteúdo | planned |
+
+**Grupo: Construção e Monetização (building-monetization)**
+
+| ID | Label PT | Status |
+|---|---|---|
+| `sites-portals` | Sites e Portais | planned |
+| `monetization` | Monetização | **active** |
+
+**Grupo: Tecnologia e Performance (technology-performance)**
+
+| ID | Label PT | Status |
+|---|---|---|
+| `ai-automation` | IA e Automação | planned |
+| `contingency-infrastructure` | Contingência e Infraestrutura | planned |
+| `data-conversion` | Dados e Conversão | planned |
+
+#### Verticais (verticals)
+
+| ID | Label PT | Status |
+|---|---|---|
+| `nutra` | Nutra | planned |
+| `adult` | Adult | planned |
+| `extra-income` | Renda Extra | planned |
+| `other-verticals` | Outras Verticais | planned |
+
+**Totais:** 17 hubs | 3 active | 14 planned
+
+**Regras de validação:**
+- Hubs de `operations` **exigem** `group` (tipado).
+- Hubs de `sectors` ou `verticals` **não podem** ter `group`.
+- O registro está protegido com `as const satisfies readonly EditorialHubDefinition[]`.
+
+**O registro ainda não está conectado a:** rotas, navbar, sitemap, breadcrumbs ou páginas públicas de hubs.
+
+## 4. Registro central de tópicos
+
+**Arquivo:** `src/config/editorialTopics.ts`
+
+**Tópicos registrados (todos active):**
+
+| ID | Label PT | Label ES |
+|---|---|---|
+| `prompts` | Prompts | Prompts |
+| `email-marketing` | Email Marketing | Email Marketing |
+| `social-media` | Redes Sociais | Redes Sociales |
+| `account-security` | Segurança de Contas | Seguridad de Cuentas |
+| `analytics-tracking` | Analytics e Tracking | Analytics y Tracking |
+| `antidetect` | Antidetect Browsers | Antidetect Browsers |
+
+**Regras:**
+- Tópicos **não duplicam** hubs editoriais.
+- `paid-traffic`, `affiliates`, `ecommerce`, `monetization`, `seo-content` etc. não são tópicos (são hubs).
+- `guideType` (checklist, tutorial, etc.) permanece separado dos tópicos.
+- **O registro ainda não está conectado** ao schema, conteúdos, filtros ou interface.
+
+## 5. Modelo atual da collection editorial
+
+**Arquivo:** `src/content/config.ts`
+
+**Collection `artigos`:**
+
+```typescript
+const artigos = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    categoria: z.enum(['marketing-digital', 'inteligencia-artificial', 'monetizacao']),
+    subtema: z.string(),
+    excerpt: z.string(),
+    date: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    readTime: z.string(),
+    draft: z.boolean().default(true),
+    color: z.enum(['cyan', 'purple', 'amber']),
+    emoji: z.string().optional(),
+    locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
+    slugEs: z.string().optional(),
+    primaryHub: z.custom<EditorialHubId>(...).optional(),  // ← NOVO
+    contentType: z.enum(['article', 'guide']).default('article'),
+    guideType: z.enum([...]).optional(),
+    guideTags: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    author: z.string().optional(),
+  }),
+});
+```
+
+## 6. Regra atual de `primaryHub`
+
+- `primaryHub` é um campo **opcional** na collection `artigos`.
+- É validado em **runtime** durante `npm run build` contra o array `editorialHubs`.
+- O tipo inferido é `EditorialHubId | undefined` (não `string | undefined`).
+- IDs inválidos produzem erro com mensagem: `"primaryHub must match a registered editorial hub ID"`.
+- A validação usa `z.custom<EditorialHubId>()` com `refine`, sem duplicar IDs manualmente.
+- `primaryHub` **não altera** interface pública, rotas, breadcrumbs ou sitemap.
+- `categoria` continua sendo usada para breadcrumbs e links.
+
+## 7. Piloto concluído
+
+`primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
+
+| Par PT/ES | `primaryHub` | Conteúdo |
+|---|---|---|
+| `04-email-marketing-vale-a-pena.md` + ES | `digital-marketing` | Artigo: Email Marketing |
+| `07-gerenciar-multiplas-contas-redes-sociais.md` + ES | `digital-marketing` | Artigo: Múltiplas Contas |
+| `02-prompts-que-funcionam.md` + ES | `ai-automation` | Artigo: Prompts |
+| `08-checklist-seguranca-multiconta.md` + ES | `contingency-infrastructure` | Guia: Checklist Segurança |
+
+Todos os 8 commits do piloto foram validados com CI verde e deploy na Vercel.
+
+## 8. Campos legados temporariamente preservados
+
+Durante a transição, estes campos continuam existindo e sendo usados:
+
+| Campo | Função atual | Futuro |
+|---|---|---|
+| `categoria` | Obrigatório. Usado em breadcrumbs e links. | Será derivado de `primaryHub` ou removido |
+| `subtema` | Obrigatório. Badge principal dos cards. | Pode ser substituído por `topics[0]` |
+| `contentType` | Inalterado (`article` / `guide`) | Permanecerá |
+| `guideType` | Subtipo de guia | Permanecerá |
+| `guideTags` | Filtros de Guias | Será substituído por `topics` |
+| `slugEs` | Link PT→ES | Será substituído por `translationKey` |
+
+## 9. Funcionalidades ainda não implementadas
+
+- Obrigatoriedade de `primaryHub` para publicações publicadas
+- `relatedHubs` (distribuição editorial secundária)
+- Conexão de `topics` ao schema
+- Migração de tópicos nos conteúdos existentes
+- `translationKey` (substituir `slugEs`)
+- Nova rota canônica `/publicacoes/<slug>/`
+- Páginas públicas de tópicos
+- Páginas públicas e templates de hubs individuais
+- Conexão dos hubs ao navbar
+- Conexão dos hubs ao sitemap
+- Breadcrumbs baseados em `primaryHub`
+- Migração dos drafts (14 stubs)
+- Obrigatoriedade geral de metadados editoriais
+
+## 10. Regras para futuras mudanças
+
+- Hubs editoriais **não devem** ser duplicados como tópicos.
+- `guideType` **não deve** virar tópico (é formato/subtipo).
+- Recursos (Ferramentas, Bônus) **não são** hubs editoriais.
+- O registro `editorialHubs.ts` é a **única fonte de verdade** para IDs de hubs.
+- O registro `editorialTopics.ts` é a **única fonte de verdade** para IDs de tópicos.
+- Nenhum ID deve ser duplicado manualmente no schema — usar `z.custom()` com `refine`.
+- A validação runtime contra o registro é obrigatória (não apenas type-level).
+- Mudanças de rota devem ser acompanhadas de redirect 308.
+- Conteúdo sem tradução não deve gerar hreflang falso.
+
+## 11. Sequência prevista de evolução
+
+1. Tornar `primaryHub` obrigatório para publicações publicadas
+2. Implementar `relatedHubs` no schema
+3. Conectar `topics` ao schema (validação runtime)
+4. Migrar `topics` nos conteúdos existentes
+5. Implementar `translationKey` e migrar de `slugEs`
+6. Criar rota `/publicacoes/<slug>/` com redirects
+7. Criar páginas de hubs (templates)
+8. Atualizar navbar com nova estrutura de navegação
+9. Atualizar sitemap para incluir hubs
+10. Migrar breadcrumbs para usar `primaryHub`
+11. Migrar drafts completando metadados editoriais
