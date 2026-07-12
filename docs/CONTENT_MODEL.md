@@ -279,11 +279,11 @@ const artigos = defineCollection({
 - **Drafts** ainda não foram migrados e não exigem `authorId`.
 - Nenhuma byline visível foi adicionada nesta etapa.
 - Nenhuma página de autor foi criada.
-- Autoria pessoal, revisão, fontes e disclosure continuam pendentes.
+- Autoria pessoal, revisão e disclosure continuam pendentes. O schema de fontes está implementado; o uso em conteúdos ainda não foi iniciado.
 
 ### `sources`
 
-**Status:** Contrato aprovado — ainda não implementado no schema nem no frontmatter de nenhum conteúdo.
+**Status:** Implementado no schema da collection `artigos` — ainda não utilizado no frontmatter de nenhum conteúdo.
 
 **Propósito:** Metadado editorial estruturado para registrar fontes verificáveis que sustentam afirmações factuais e numéricas no corpo do artigo.
 
@@ -330,6 +330,19 @@ type EditorialSource = {
 - Um estudo sobre tema semelhante **não pode** ser usado para justificar um número diferente.
 - Fontes pagas podem ser utilizadas desde que exista uma URL específica e que limitações de acesso sejam registradas em `note`.
 
+**Mensagens de validação implementadas:**
+
+| Condição | Mensagem |
+|----------|----------|
+| title vazio | `source title must not be empty` |
+| publisher vazio | `source publisher must not be empty` |
+| URL absoluta inválida | `source url must be a valid absolute URL` |
+| Protocolo diferente de HTTP/HTTPS | `source url must use HTTP or HTTPS` |
+| note vazio | `source note must not be empty` |
+| array vazio | `sources must contain at least 1 source when provided` |
+| Mais de 20 fontes | `sources cannot contain more than 20 sources` |
+| URL duplicada | `sources cannot contain duplicate URLs` |
+
 **Escopo adiado (não pertence à primeira versão):**
 
 - `author` da fonte
@@ -345,7 +358,7 @@ type EditorialSource = {
 - `disclosures`
 - Política editorial completa
 
-**Exemplo documental (ilustra o contrato — não implementa o campo no schema):**
+**Exemplo funcional (YAML válido no frontmatter — equivale ao schema implementado):**
 
 ```yaml
 sources:

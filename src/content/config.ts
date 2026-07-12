@@ -14,6 +14,27 @@ const isValidAuthorId = (val: unknown): val is EditorialAuthorId =>
   typeof val === 'string' &&
   editorialAuthors.some((author) => author.id === val);
 
+// ─── Sources schema ────────────────────────────────────────────────────
+const editorialSourceSchema = z.object({
+  title: z.string().trim().min(1, 'source title must not be empty'),
+  publisher: z.string().trim().min(1, 'source publisher must not be empty'),
+  url: z
+    .string()
+    .trim()
+    .url('source url must be a valid absolute URL')
+    .refine(
+      (val) => val.startsWith('http://') || val.startsWith('https://'),
+      'source url must use HTTP or HTTPS'
+    ),
+  publishedAt: z.coerce.date().optional(),
+  accessedAt: z.coerce.date().optional(),
+  note: z
+    .string()
+    .trim()
+    .min(1, 'source note must not be empty')
+    .optional(),
+});
+
 // ═══════════════════════════════════════════════════════════
 // ARTIGOS DO BLOG
 // ═══════════════════════════════════════════════════════════
@@ -51,6 +72,7 @@ const artigos = defineCollection({
     authorId: z.custom<EditorialAuthorId>(isValidAuthorId, {
       message: 'authorId must match a registered editorial author ID',
     }).optional(),
+    sources: z.array(editorialSourceSchema).optional(),
     translationKey: z
       .string()
       .min(3)
@@ -167,6 +189,37 @@ const artigos = defineCollection({
         message: 'authorId is required for published content (draft: false)',
         path: ['authorId'],
       });
+    }
+
+    // sources validations
+    if (data.sources !== undefined) {
+      // sources empty when provided
+      if (data.sources.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'sources must contain at least 1 source when provided',
+          path: ['sources'],
+        });
+      }
+
+      // sources too many
+      if (data.sources.length > 20) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'sources cannot contain more than 20 sources',
+          path: ['sources'],
+        });
+      }
+
+      // sources duplicate URLs (exact string match after trim)
+      const urls = data.sources.map((s) => s.url.trim());
+      if (new Set(urls).size !== urls.length) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'sources cannot contain duplicate URLs',
+          path: ['sources'],
+        });
+      }
     }
   }),
 });
