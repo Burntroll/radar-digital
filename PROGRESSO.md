@@ -3,132 +3,92 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 12/07/2026 — checkpoint documental (sessão 11)
-> **Commit validado:** `8dbec2b` — `feat: add primary hub to security checklists`
-> **GitHub Actions:** Run #19 ✅ success — 19 runs, todas verdes
+> **Última atualização:** 12/07/2026 — autoria institucional concluída (sessão 16)
+> **Último commit:** `b8a789a` — `fix: TS comparison in authorType resolution`
+> **GitHub Actions:** 21 runs, 20 success ✅, 1 failure (corrigido)
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 
 ## 🟢 Concluído
 
 ### Setup & Fundação
-- [x] **Pesquisa de stack** (03/07) — Comparação: Astro, WordPress, Next.js, Ghost, Hugo
-- [x] **Stack definida** → Astro + Tailwind + TypeScript
-- [x] **Projeto criado** + PROGRESSO.md
-- [x] **Nome:** Radar Digital
-- [x] **Setup Astro + Tailwind** — Build funcional
-- [x] **Repositório GitHub** — `github.com/Burntroll/radar-digital`
+- [x] **Stack:** Astro + Tailwind + TypeScript
+- [x] **Repositório:** `github.com/Burntroll/radar-digital`
+- [x] **Deploy Vercel** — Preview automático via CI
+- [x] **GitHub Actions** — Workflow quality-check.yml (npm ci → check → build)
+- [x] **vercel.json** — Redirects ES + fallback
 
 ### Design & UI
-- [x] **Sistema de tema Dark/Light** — CSS variables + toggle + localStorage
-- [x] **Light mode** — Paleta creme quente (`#f0ece4`), refinamento fino
-- [x] **Acessibilidade do nav** — text-base (16px), logo text-xl (20px), gap-6
+- [x] **Tema Dark/Light** — CSS variables + toggle + localStorage
+- [x] **Light mode** — Paleta creme quente (`#f0ece4`)
 - [x] **Página 404** — Three.js com radar estilizado + noindex
-- [x] **Nav renomeado** — "Parceiros" → "Ferramentas" (PT) / "Herramientas" (ES)
-- [x] **Dropdown "Categorias" removido** do menu Ferramentas
-- [x] **Locale switcher hover** — Item ativo apaga ao passar mouse no dropdown
-- [x] **Badge "Tendências" removido** do hero da home
-
-### Home Editorial
-- [x] **AdSlot reutilizável** — Componente com variantes horizontal, in-feed, sidebar
-- [x] **Abertura editorial** + Leia primeiro + Últimas publicações + Guias
-- [x] **Navegação por intenção** — 6 cards: tráfego, IA, monetizar, guias, ferramentas, bônus
-- [x] **Bloco Radar Market** na home
-- [x] **Espaçamento padronizado** — py-14, cards limpos
-- [x] **Fechamento duplicado removido** das homes PT e ES
+- [x] **Nav renomeado** — "Ferramentas" (PT) / "Herramientas" (ES)
+- [x] **Locale switcher** — Dropdown PT/ES com hreflang
+- [x] **Componentes padronizados** — glass-card, interactive-card, AdSlot, EmptyState, CategoryArticleCard
 
 ### Conteúdo & Collections
-- [x] **Content Collections configuradas** — Schema Zod para todas as coleções
-- [x] **Sistema draft** — Controle granular de publicação
-- [x] **18 stubs de artigos** — Markdown com frontmatter completo
-- [x] **8 publicações publicadas** (4 pares PT/ES): Email Marketing, Múltiplas Contas, Prompts, Checklist Segurança
+- [x] **Content Collections** — Zod schemas para todas as coleções
+- [x] **8 publicações PT + ES** (4 pares): Email Marketing, Múltiplas Contas, Prompts, Checklist Segurança
+- [x] **17 drafts** em 3 categorias
 - [x] **6 parceiros PT + ES** — Trackers e Antidetect Browsers
-- [x] **9 bônus PT + ES** — Códigos promocionais com status, verifiedAt, sourceUrl
-- [x] **2 guias publicados** — Checklist de segurança (PT + ES)
-- [x] **1 guia em draft** — Guia de tráfego pago para afiliados
+- [x] **9 bônus PT + ES** — Códigos promocionais com status
+- [x] **2 guias publicados + 1 draft**
+- [x] **Radar Market** — Coleção + página + bloco na home
 
 ### i18n PT/ES
-- [x] **Estrutura bilíngue** — PT na raiz, ES em `/es/...` (41 páginas)
-- [x] **Locale switcher** + dicionário i18n (~100+ chaves)
-- [x] **Schema com locale** em todas as collections
-- [x] **Auditoria i18n** — lang/hreflang/canonical/x-default/og:locale validados
-- [x] **Rotas filtradas por locale** + categorias ES
+- [x] **Estrutura bilíngue** — PT na raiz, ES em `/es/`
+- [x] **Dicionário i18n** — ~100+ chaves PT/ES
+- [x] **Route map** — `artigos`→`articulos`, `bonus`→`bonos`, etc.
+- [x] **hreflang bidirecional** + x-default apontando para PT
+- [x] **5 idiomas configurados** — PT, ES (ativos) + EN, VI, ZH-CN (desativados)
 
-### SEO & Performance
-- [x] **Sitemap.xml** — 28 URLs, sem drafts, sem 404
-- [x] **Schema.org JSON-LD** — WebSite, Article, BreadcrumbList
-- [x] **Open Graph + Twitter Cards** — Em todas as páginas
-- [x] **Canonical** — Em todas as páginas
-- [x] **`astro check` como quality gate** — 0 erros
-- [x] **Contadores de categoria corrigidos** — Só `draft: false`
+### 🔧 Arquitetura editorial
 
-### Guias, Bônus, Ferramentas, Radar Market
-- [x] **Seção Guias** — Busca + filtros por tema (22 tags)
-- [x] **Seção Bônus** — Hero + filtros por categoria + grid de cards
-- [x] **Ferramentas** — Páginas de categoria com parceiros
-- [x] **Radar Market** — Página + coleções + bloco na home
+#### Registros centrais
+- [x] **`editorialHubs.ts`** — 17 hubs (3 active, 14 planned)
+- [x] **`editorialTopics.ts`** — 6 tópicos (todos active)
+- [x] **`editorialAuthors.ts`** — 1 autor institucional (`radar-digital`, Organization)
 
-### Infraestrutura
-- [x] **Deploy Vercel** — Preview ativo
-- [x] **vercel.json** — Config para Astro
-- [x] **CSS bundling** — Import via Astro
-- [x] **Push autorizado** — Branch master sincronizada
-- [x] **GitHub Actions** — Workflow "Quality Check" (19 runs, todas verdes)
-- [x] **Vercel deploy automático** — CI aprovou, Vercel deploya automaticamente
+#### Schema (collection `artigos`)
+- [x] **`primaryHub`** — Opcional em drafts, obrigatório em publicados
+- [x] **`relatedHubs`** — Opcional, 1–3 IDs, ≠ primaryHub, exige primaryHub
+- [x] **`topics`** — Opcional em drafts, obrigatório em publicados, 1–5 IDs
+- [x] **`translationKey`** — Opcional, lowercase kebab-case, 3–64 chars
+- [x] **`authorId`** — Opcional em drafts, obrigatório em publicados, validado contra registro central
+- [x] **Validação `.superRefine()`** — Unifica todas as regras cross-field
+- [x] **Validação global `validatePublishedTranslationGroups()`** — Duplicatas e grupos órfãos
 
-### 🔧 Padronização visual (11/jul)
-- [x] **`glass-card` e `interactive-card` separados** — Superfície passiva vs interativa
-- [x] **CTAs editoriais visíveis sem hover** — `opacity-75` em vez de `opacity-0`
-- [x] **AdSlot componentizado** — Placeholders manuais substituídos
-- [x] **`EmptyState` padronizado** — Componente compartilhado
-- [x] **`CategoryArticleCard` reutilizado** — 6 páginas -> 1 componente
-- [x] **Filtros com CSS (sem inline)** — `filter-bar`, `filter-chip`, variantes roxo/ciano
-- [x] **Hover por variante** — `@media (hover: hover)` específico por cor
-- [x] **Mini-cards de Bônus e Market melhorados** — Tipografia maior, 1 coluna mobile
-- [x] **`commercial-cta` padronizado** — Bônus e Ferramentas compartilham classe
+#### SEO
+- [x] **JSON-LD Article** — Autor como `Organization` (não mais `Person`), com `url`
+- [x] **JSON-LD BreadcrumbList** — Em todas as páginas
+- [x] **JSON-LD WebSite** — Nas homes
+- [x] **Campos legados preservados** — `slugEs`, `author` (string), `guideTags`
 
-### 🏗️ Arquitetura editorial
-- [x] **Registro central de hubs** — `src/config/editorialHubs.ts` (17 hubs)
-- [x] **Tipos derivados do registro** — `EditorialHubId` é union dos IDs do array
-- [x] **Registro central de tópicos** — `src/config/editorialTopics.ts` (6 tópicos)
-- [x] **`primaryHub` no schema** — Opcional, validado runtime contra `editorialHubs`
-- [x] **Validação negativa** — ID inválido rejeitado com mensagem clara
-- [x] **Piloto concluído** — `primaryHub` preenchido em 8 publicações (4 pares PT/ES)
-
-### 📋 Piloto `primaryHub` — 8 publicações
-
-| Par | `primaryHub` | Arquivos |
-|---|---|---|
-| Email Marketing | `digital-marketing` | `04-email-marketing-vale-a-pena.md` + `vale-la-pena.md` |
-| Múltiplas Contas | `digital-marketing` | `07-gerenciar-multiplas-contas.md` + `gestionar-multiples-cuentas.md` |
-| Prompts | `ai-automation` | `02-prompts-que-funcionam.md` + `02-crear-prompts-que-funcionan.md` |
-| Checklist Segurança | `contingency-infrastructure` | `08-checklist-seguranca-multiconta.md` + `seguridad-multicuenta.md` |
+### Migrações concluídas
+- [x] **`primaryHub`** — 8 publicações migradas (4 pares PT/ES)
+- [x] **`topics`** — 8 publicações migradas (equivalência PT/ES)
+- [x] **`translationKey`** — 8 publicações migradas (4 chaves)
+- [x] **`authorId`** — 8 publicações migradas (`radar-digital`)
 
 ## 🟡 Pendências imediatas
 
-### Arquitetura editorial
-- [ ] **Tornar `primaryHub` obrigatório** para conteúdos publicados (opcional em drafts)
-- [ ] **`relatedHubs`** — Implementar campo + validação
-- [ ] **Conectar `topics` ao schema** — Validar contra `editorialTopics.ts`
-- [ ] **Migrar tópicos nos conteúdos** — Preencher `topics` baseado em `subtema` e `guideTags`
-- [ ] **`translationKey`** — Substituir `slugEs` por chave bidirecional
-
 ### Conteúdo & Rotas
-- [ ] **Nova rota canônica** `/publicacoes/<slug>/` com redirect de `/artigos/...`
+- [ ] **Migração dos drafts (17)** — Preencher metadados editoriais
+- [ ] **Nova rota canônica** `/publicacoes/<slug>/` com redirect
 - [ ] **Páginas públicas de hubs** — Templates para hubs ativos
-- [ ] **Conectar hubs ao navbar** — Nova estrutura de navegação
+- [ ] **Conectar hubs ao navbar**
 - [ ] **Conectar hubs ao sitemap**
 - [ ] **Breadcrumbs baseados em `primaryHub`**
-- [ ] **Migração dos drafts** — Preencher metadados editoriais
+- [ ] **Remover `slugEs`** — Após migração total para `translationKey`
 - [ ] **Publicar mais artigos** — 14 stubs restantes
-- [ ] **Paridade ES** dos próximos conteúdos
+- [ ] **Autores pessoais** — Registro, byline, página de autor
 
 ### Setup técnico
 - [ ] **Páginas legais** — Privacidade, Termos, Contato
-- [ ] **Newsletter funcional** — Formulário hoje é placeholder
-- [ ] **robots.txt** — Somente próximo ao lançamento
-- [ ] **RSS feed** — Planejado
-- [ ] **Pagefind** — Busca interna (planejado)
+- [ ] **Newsletter funcional**
+- [ ] **robots.txt**
+- [ ] **RSS feed**
+- [ ] **Pagefind** — Busca interna
 - [ ] **Schema Article com image**
 
 ### Radar Market
@@ -147,20 +107,22 @@
 ## 📌 Decisões Tomadas
 
 | Decisão | Opção | Status |
-|---|---|---|
+|---------|-------|--------|
 | Nome | **Radar Digital** | ✅ |
 | Stack | Astro + Tailwind + TypeScript | ✅ |
-| Domínio | `radardigital.ai` | Definido (não conectado) |
+| Domínio | radardigital.ai | Definido (não conectado) |
 | Hospedagem | Vercel | Preview ativo |
 | Idiomas ativos | PT (raiz) + ES (`/es/`) | ✅ |
 | Idiomas futuros | EN, VI, ZH-CN | Desativados (schema pronto) |
 | Quality gate | `astro check` + `astro build` | ✅ |
-| `primaryHub` | Opcional, validado runtime | ✅ Implementado |
-| `relatedHubs` | Não implementado | Pendente |
-| `topics` | Registro criado, não conectado | Pendente |
-| `translationKey` | Não implementado | Pendente |
+| `primaryHub` | Obrigatório p/ publicados, opcional em drafts | ✅ |
+| `relatedHubs` | Opcional, 1–3 IDs, validado runtime | ✅ |
+| `topics` | Obrigatório p/ publicados, validado runtime | ✅ |
+| `translationKey` | Opcional, kebab-case, associado via helper global | ✅ |
+| `authorId` | Obrigatório p/ publicados, Organization no JSON-LD | ✅ |
+| Autores futuros | Registro central suporta Person | Estrutura pronta |
 | Rotas de hubs | Planas (não hierárquicas) | Aprovado, não implementado |
 
 ---
 
-> **Próxima task recomendada:** Tornar `primaryHub` obrigatório para conteúdos publicados, mantendo opcional em drafts.
+> **Próxima task recomendada:** Migrar drafts (17) com metadados editoriais ou implementar páginas de hubs.
