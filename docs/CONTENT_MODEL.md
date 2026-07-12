@@ -281,6 +281,82 @@ const artigos = defineCollection({
 - Nenhuma página de autor foi criada.
 - Autoria pessoal, revisão, fontes e disclosure continuam pendentes.
 
+### `sources`
+
+**Status:** Contrato aprovado — ainda não implementado no schema nem no frontmatter de nenhum conteúdo.
+
+**Propósito:** Metadado editorial estruturado para registrar fontes verificáveis que sustentam afirmações factuais e numéricas no corpo do artigo.
+
+**Natureza do campo:**
+
+- Opcional tanto para conteúdos publicados quanto para drafts.
+- Quando informado, deve conter entre **1 e 20 itens**.
+- Destinado exclusivamente a fontes editoriais verificáveis.
+- **Não representa:** links internos, links contextuais comuns, CTAs, links de afiliados, links comerciais ou links promocionais.
+- Não terá efeito público na primeira implementação (sem bloco de referências, sem JSON-LD `citation`, sem links visíveis).
+- Não será herdado automaticamente entre traduções — cada entrada de conteúdo declara suas próprias fontes.
+- Não haverá validação global de paridade entre idiomas na primeira versão.
+
+**Formato conceitual de cada fonte:**
+
+```typescript
+type EditorialSource = {
+  title: string;
+  publisher: string;
+  url: string;
+  publishedAt?: Date;
+  accessedAt?: Date;
+  note?: string;
+};
+```
+
+**Regras de cada campo:**
+
+| Campo | Obrigatório | Regras |
+|-------|-------------|--------|
+| `title` | ✅ Sim | Título específico da página, relatório, estudo ou documento. Não pode ser apenas o nome genérico da organização. Deve preservar preferencialmente o título original da fonte. |
+| `publisher` | ✅ Sim | Organização, veículo, projeto ou entidade responsável pela publicação. Exemplos conceituais: Litmus, Mailchimp, Apple. Não confundir com o autor do conteúdo do Radar Digital. |
+| `url` | ✅ Sim (v1) | URL absoluta. Somente protocolos HTTP ou HTTPS. Deve apontar para a fonte específica — homepage genérica não é suficiente quando existe página específica. URLs duplicadas dentro do mesmo conteúdo serão rejeitadas. |
+| `publishedAt` | ❌ Não | Data de publicação ou atualização declarada pela fonte. Deve ser usada quando disponível; não deve ser inventada. |
+| `accessedAt` | ❌ Não | Data em que a fonte foi consultada ou verificada. Recomendada para benchmarks, preços, documentação viva e páginas que podem mudar. Não substitui `publishedAt`. |
+| `note` | ❌ Não | Contexto editorial curto. Pode registrar limitações, metodologia, paywall ou escopo do dado. Será metadata interna na primeira versão. Não deve ser usada para copiar grandes trechos da fonte. |
+
+**Regras de governança:**
+
+- O schema **não tentará detectar automaticamente** estatísticas, percentuais ou afirmações factuais no corpo Markdown.
+- A necessidade editorial de fontes depende de **política e revisão humana**, não de validação automatizada.
+- `sources` permanece **opcional** no schema inicial — ausência de fontes não significa automaticamente que o conteúdo está errado.
+- Presença de fontes não valida por si só que a afirmação está corretamente representada — fontes precisam realmente sustentar a afirmação associada.
+- Um estudo sobre tema semelhante **não pode** ser usado para justificar um número diferente.
+- Fontes pagas podem ser utilizadas desde que exista uma URL específica e que limitações de acesso sejam registradas em `note`.
+
+**Escopo adiado (não pertence à primeira versão):**
+
+- `author` da fonte
+- `sourceType` (research, article, official-doc, survey etc.)
+- Identificador próprio da fonte
+- Fontes sem URL pública
+- Herança entre traduções
+- Validação de equivalência PT/ES
+- Detecção automática de afirmações
+- Exibição pública (componente visual de referências)
+- `citation` no JSON-LD
+- `reviewedBy`
+- `disclosures`
+- Política editorial completa
+
+**Exemplo documental (ilustra o contrato — não implementa o campo no schema):**
+
+```yaml
+sources:
+  - title: "The ROI of Email Marketing"
+    publisher: "Litmus"
+    url: "https://www.litmus.com/blog/infographic-the-roi-of-email-marketing"
+    publishedAt: 2025-07-16
+    accessedAt: 2026-07-12
+    note: "Resultados de pesquisa apresentados por faixas de retorno."
+```
+
 ## 7. Piloto concluído
 
 `primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
