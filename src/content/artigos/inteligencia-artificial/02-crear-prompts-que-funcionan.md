@@ -35,6 +35,8 @@ sources:
 primaryHub: ai-automation
 topics:
   - prompts
+relatedHubs:
+  - artificial-intelligence
 contentType: "article"
 ---
 

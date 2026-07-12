@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
 import { routePath } from '../../i18n/utils';
 import CategoryArticleCard from '../../components/CategoryArticleCard.astro';
+import { matchesPublishedEditorialHub } from '../../utils/editorialDistribution';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const categoria = 'inteligencia-artificial';
@@ -19,7 +20,7 @@ const categoriaInfo = {
 };
 
 const publicados = await getCollection('artigos', ({ data }) =>
-  data.categoria === categoria && data.draft === false && data.contentType !== 'guide' && (data.locale || 'pt-BR') === locale
+  matchesPublishedEditorialHub(data, { hub: 'artificial-intelligence', locale }) && data.contentType !== 'guide'
 );
 publicados.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 ---

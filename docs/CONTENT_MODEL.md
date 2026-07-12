@@ -245,6 +245,9 @@ const artigos = defineCollection({
 - Nenhuma validação depende de `relatedHubs` para conteúdos que não o utilizam.
 - `relatedHubs` **não altera** interface pública, rotas, breadcrumbs, canonical, hreflang ou sitemap nesta etapa.
 - Nenhuma publicação ainda utiliza `relatedHubs`.
+- **Primeiro consumo funcional:** as listagens PT/ES da página de Inteligência Artificial (`/inteligencia-artificial/` e `/es/inteligencia-artificial/`) selecionam publicações por correspondência com o hub `artificial-intelligence`, seja como `primaryHub` ou `relatedHubs`. O utilitário `matchesPublishedEditorialHub()` (em `src/utils/editorialDistribution.ts`) implementa a regra: `draft === false`, locale correspondente, e `data.primaryHub === hub` ou `data.relatedHubs.includes(hub)`.
+- **Par de prompts:** mantém `primaryHub: ai-automation` e recebeu `relatedHubs: [artificial-intelligence]`. O artigo continua aparecendo em Inteligência Artificial por distribuição secundária, sem alteração de `categoria`, rota, canonical ou hreflang.
+- **Limites do piloto:** apenas Inteligência Artificial; apenas `relatedHubs`. A mesma publicação pode aparecer em Marketing Digital (por `primaryHub`) e Inteligência Artificial (por `relatedHubs`) sem duplicação — é a mesma entrada com a mesma URL canônica. `categoria` continua como campo legado. Expansão para outros hubs ou páginas exige nova validação.
 
 **Mensagens de erro:**
 

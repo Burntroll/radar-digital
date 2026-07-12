@@ -2,7 +2,7 @@
 // Utilitário de distribuição editorial
 //
 // Contém funções puras que representam regras de distribuição de conteúdo
-// baseadas nos metadados editoriais (primaryHub, locale, etc.).
+// baseadas nos metadados editoriais (primaryHub, relatedHubs, locale, etc.).
 //
 // NENHUMA função neste arquivo deve:
 //   - chamar getCollection ou realizar consultas;
@@ -18,7 +18,7 @@ import type { Locale } from '../i18n/utils';
 
 export type PublishedArticleData = CollectionEntry<'artigos'>['data'];
 
-// ─── Locale helper ──────────────────────────────────────────────────────────
+// ─── Helper privado ─────────────────────────────────────────────────────────
 
 /**
  * Retorna o locale efetivo de uma entrada, considerando o default pt-BR
@@ -26,6 +26,14 @@ export type PublishedArticleData = CollectionEntry<'artigos'>['data'];
  */
 function effectiveLocale(data: PublishedArticleData): Locale {
   return data.locale || 'pt-BR';
+}
+
+/**
+ * Retorna true se a entrada é uma publicação não-draft e corresponde ao locale.
+ * Esta é a base comum para todas as funções de distribuição.
+ */
+function isPublishedInLocale(data: PublishedArticleData, locale: Locale): boolean {
+  return data.draft === false && effectiveLocale(data) === locale;
 }
 
 // ─── matchesPublishedPrimaryHub ─────────────────────────────────────────────
@@ -49,8 +57,37 @@ export function matchesPublishedPrimaryHub(
   data: PublishedArticleData,
   options: MatchesPublishedPrimaryHubOptions,
 ): boolean {
-  if (data.draft !== false) return false;
+  if (!isPublishedInLocale(data, options.locale)) return false;
   if (data.primaryHub !== options.primaryHub) return false;
-  if (effectiveLocale(data) !== options.locale) return false;
   return true;
+}
+
+// ─── matchesPublishedEditorialHub ────────────────────────────────────────────
+
+export type MatchesPublishedEditorialHubOptions = {
+  /** ID do hub editorial a verificar (primário ou relacionado) */
+  hub: EditorialHubId;
+  /** Locale esperado */
+  locale: Locale;
+};
+
+/**
+ * Retorna true quando a entrada da collection artigos é uma publicação
+ * não-draft, corresponde ao locale e está associada ao hub informado
+ * como **primário** (primaryHub) ou **relacionado** (relatedHubs).
+ *
+ * Uma publicação pode aparecer em mais de uma listagem sem duplicação
+ * do conteúdo — cada página de hub a inclui se houver correspondência.
+ *
+ * A URL canônica e a rota do artigo permanecem determinadas pelo slug
+ * original; inclusão em listagens secundárias não cria cópia da publicação.
+ */
+export function matchesPublishedEditorialHub(
+  data: PublishedArticleData,
+  options: MatchesPublishedEditorialHubOptions,
+): boolean {
+  if (!isPublishedInLocale(data, options.locale)) return false;
+  if (data.primaryHub === options.hub) return true;
+  if (data.relatedHubs && data.relatedHubs.includes(options.hub)) return true;
+  return false;
 }
