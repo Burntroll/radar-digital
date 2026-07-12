@@ -10,6 +10,7 @@ color: "purple"
 emoji: "💬"
 locale: "es"
 translationKey: effective-prompts
+authorId: radar-digital
 primaryHub: ai-automation
 topics:
   - prompts

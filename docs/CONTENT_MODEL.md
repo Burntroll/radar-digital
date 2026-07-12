@@ -265,6 +265,22 @@ const artigos = defineCollection({
 
 **Drafts** ainda não possuem `translationKey` e não são validados.
 
+### `authorId`
+
+- `authorId` é um campo **opcional** na collection `artigos` para conteúdos com `draft: true`.
+- Para conteúdos **publicados** (`draft: false`), `authorId` é **obrigatório** — o build falha se ausente.
+- Valor validado em runtime contra o registro central `editorialAuthors.ts`.
+- Tipo inferido: `EditorialAuthorId` (derivado do registro).
+- O campo `author` (string livre) permanece como legado, mas não é mais utilizado para resolver o autor nas páginas publicadas.
+- O registro central suporta `organization` e `person`.
+- Nesta etapa, apenas `radar-digital` (Organization) está registrado.
+- O JSON-LD gera o autor como `Organization` (não mais `Person`).
+- **8 publicações** foram migradas com `authorId: radar-digital`.
+- **Drafts** ainda não foram migrados e não exigem `authorId`.
+- Nenhuma byline visível foi adicionada nesta etapa.
+- Nenhuma página de autor foi criada.
+- Autoria pessoal, revisão, fontes e disclosure continuam pendentes.
+
 ## 7. Piloto concluído
 
 `primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
@@ -290,6 +306,7 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 | `guideType` | Subtipo de guia | Permanecerá |
 | `guideTags` | Filtros de Guias | Será substituído por `topics` |
 | `slugEs` | Link PT→ES (legado) | Substituído por `translationKey` |
+| `author` | Autor legado (string livre) | Substituído por `authorId` |
 
 ## 9. Funcionalidades ainda não implementadas
 
@@ -322,8 +339,11 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 3. Conectar `topics` ao schema (validação runtime) ✅
 4. Migrar `topics` nas 8 publicações publicadas ✅
 5. Implementar `translationKey` e migrar pares PT/ES ✅
-6. (pendente) Remover `slugEs` dos conteúdos e schema
-7. Criar rota `/publicacoes/<slug>/` com redirects
+6. Registro institucional de autoria (`editorialAuthors.ts`) ✅
+7. Migrar 8 publicações com `authorId: radar-digital` ✅
+8. Corrigir JSON-LD do autor para `Organization` ✅
+9. (pendente) Remover `slugEs` dos conteúdos e schema
+10. Criar rota `/publicacoes/<slug>/` com redirects
 7. Criar páginas de hubs (templates)
 8. Atualizar navbar com nova estrutura de navegação
 9. Atualizar sitemap para incluir hubs

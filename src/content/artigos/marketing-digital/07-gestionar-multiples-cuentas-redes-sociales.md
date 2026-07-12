@@ -11,6 +11,7 @@ color: "cyan"
 emoji: "🔐"
 locale: "es"
 translationKey: social-media-multi-account-management
+authorId: radar-digital
 primaryHub: digital-marketing
 topics:
   - social-media

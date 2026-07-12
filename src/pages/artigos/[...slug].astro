@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
 import { routePath, type RouteKey } from '../../i18n/utils';
 import { getPublishedTranslationGroup, validatePublishedTranslationGroups } from '../../utils/editorialTranslations';
+import { getEditorialAuthor } from '../../config/editorialAuthors';
 
 export async function getStaticPaths() {
   const artigos = await getCollection('artigos', ({ data }) => data.draft === false && data.locale !== 'es');
@@ -57,6 +58,11 @@ const alternateUrls = translationGroup.map((entry) => ({
   lang: entry.data.locale,
   href: routePath('artigos', entry.data.locale as Locale, entry.slug),
 }));
+
+// Resolve autor do registro central via authorId
+const authorData = artigo.data.authorId
+  ? getEditorialAuthor(artigo.data.authorId as any)
+  : undefined;
 ---
 
 <Layout 
@@ -73,7 +79,9 @@ const alternateUrls = translationGroup.map((entry) => ({
     description: artigo.data.excerpt,
     datePublished: artigo.data.date,
     dateModified: artigo.data.updatedAt,
-    authorName: artigo.data.author,
+    authorName: authorData?.name,
+    authorType: authorData?.kind === 'person' ? 'Person' : 'Organization',
+    authorUrl: authorData?.url,
     imageUrl: artigo.data.image,
     categoria: artigo.data.categoria,
   }}

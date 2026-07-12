@@ -10,6 +10,7 @@ color: "cyan"
 emoji: "✅"
 locale: "es"
 translationKey: multi-account-security-checklist
+authorId: radar-digital
 primaryHub: contingency-infrastructure
 topics:
   - account-security

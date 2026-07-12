@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
 import { editorialTopics, type EditorialTopicId } from '../config/editorialTopics';
+import { editorialAuthors, type EditorialAuthorId } from '../config/editorialAuthors';
 
 const isValidHubId = (val: unknown): val is EditorialHubId =>
   typeof val === 'string' && editorialHubs.some((h) => h.id === val);
@@ -8,6 +9,10 @@ const isValidHubId = (val: unknown): val is EditorialHubId =>
 const isValidTopicId = (val: unknown): val is EditorialTopicId =>
   typeof val === 'string' &&
   editorialTopics.some((topic) => topic.id === val);
+
+const isValidAuthorId = (val: unknown): val is EditorialAuthorId =>
+  typeof val === 'string' &&
+  editorialAuthors.some((author) => author.id === val);
 
 // ═══════════════════════════════════════════════════════════
 // ARTIGOS DO BLOG
@@ -43,6 +48,9 @@ const artigos = defineCollection({
         message: 'topics must contain only registered editorial topic IDs',
       })
     ).optional(),
+    authorId: z.custom<EditorialAuthorId>(isValidAuthorId, {
+      message: 'authorId must match a registered editorial author ID',
+    }).optional(),
     translationKey: z
       .string()
       .min(3)
@@ -150,6 +158,15 @@ const artigos = defineCollection({
           path: ['topics'],
         });
       }
+    }
+
+    // authorId required for published content
+    if (data.draft === false && !data.authorId) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'authorId is required for published content (draft: false)',
+        path: ['authorId'],
+      });
     }
   }),
 });

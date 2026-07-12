@@ -23,13 +23,15 @@ export interface Props {
   datePublished?: Date;
   dateModified?: Date;
   authorName?: string;
+  authorType?: 'Person' | 'Organization';
+  authorUrl?: string;
   imageUrl?: string;
   url?: string;
   // website
   locale?: string;
 }
 
-const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', url, locale: websiteLocale } = Astro.props;
+const { type, items, title, description, datePublished, dateModified, authorName = 'Radar Digital', authorType = 'Organization', authorUrl, url, locale: websiteLocale } = Astro.props;
 
 const SITE_URL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://radardigital.ai';
 
@@ -68,10 +70,17 @@ if (type === 'breadcrumb' && items && items.length > 0) {
     description: description || '',
     datePublished: datePublished?.toISOString(),
     dateModified: (dateModified || datePublished)?.toISOString(),
-    author: {
-      '@type': 'Person',
-      name: authorName,
-    },
+    author: authorType === 'Organization'
+      ? {
+          '@type': 'Organization',
+          name: authorName,
+          ...(authorUrl ? { url: authorUrl } : {}),
+        }
+      : {
+          '@type': 'Person',
+          name: authorName,
+          ...(authorUrl ? { url: authorUrl } : {}),
+        },
     publisher: {
       '@type': 'Organization',
       name: 'Radar Digital',

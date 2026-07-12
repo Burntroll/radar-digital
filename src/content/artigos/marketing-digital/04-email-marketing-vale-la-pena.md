@@ -10,6 +10,7 @@ color: "cyan"
 emoji: "📧"
 locale: "es"
 translationKey: email-marketing-roi
+authorId: radar-digital
 primaryHub: digital-marketing
 topics:
   - email-marketing

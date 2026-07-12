@@ -12,6 +12,7 @@ emoji: "💬"
 locale: "pt-BR"
 slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
 translationKey: effective-prompts
+authorId: radar-digital
 primaryHub: ai-automation
 topics:
   - prompts

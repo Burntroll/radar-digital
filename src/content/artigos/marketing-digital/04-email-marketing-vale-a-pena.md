@@ -11,6 +11,7 @@ emoji: "📧"
 locale: "pt-BR"
 slugEs: "marketing-digital/04-email-marketing-vale-la-pena"
 translationKey: email-marketing-roi
+authorId: radar-digital
 primaryHub: digital-marketing
 topics:
   - email-marketing
