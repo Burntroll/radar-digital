@@ -228,6 +228,8 @@ const artigos = defineCollection({
 - A mensagem de erro para publicado sem hub: `"primaryHub is required for published content (draft: false)"`.
 - IDs inválidos produzem erro com mensagem: `"primaryHub must match a registered editorial hub ID"`.
 - Nenhum ID de hub é duplicado manualmente no schema — usa `z.custom(isValidHubId)` com `.superRefine()`.
+- **Primeiro consumo funcional:** as listagens PT/ES da página de Marketing Digital (`/marketing-digital/` e `/es/marketing-digital/`) selecionam publicações por `primaryHub: 'digital-marketing'` em vez do campo legado `categoria`. O utilitário `matchesPublishedPrimaryHub()` (em `src/utils/editorialDistribution.ts`) define a regra: `draft === false`, `primaryHub` correspondente e locale igual. O HTML público permanece idêntico ao anterior — os conjuntos selecionados por `categoria === 'marketing-digital'` e `primaryHub === 'digital-marketing'` são atualmente equivalentes.
+- **Limites do piloto:** apenas Marketing Digital; apenas `primaryHub`; `categoria` continua existindo como campo legado usado em outras páginas; guias continuam excluídos por regra própria (`contentType !== 'guide'`); `relatedHubs`, tópicos e formatos ainda não distribuem conteúdo. Não autoriza migração em massa dos drafts. Expansão para outras páginas exige nova validação.
 
 ### `relatedHubs`
 
