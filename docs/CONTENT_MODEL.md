@@ -279,11 +279,11 @@ const artigos = defineCollection({
 - **Drafts** ainda não foram migrados e não exigem `authorId`.
 - Nenhuma byline visível foi adicionada nesta etapa.
 - Nenhuma página de autor foi criada.
-- Autoria pessoal, revisão e disclosure continuam pendentes. O schema de fontes está implementado; o uso em conteúdos ainda não foi iniciado.
+- Autoria pessoal, revisão e disclosure continuam pendentes. O schema de fontes está implementado e o piloto foi iniciado no par PT/ES de Email Marketing.
 
 ### `sources`
 
-**Status:** Implementado no schema da collection `artigos` — ainda não utilizado no frontmatter de nenhum conteúdo.
+**Status:** Implementado no schema da collection `artigos` — primeiro piloto aplicado ao par PT/ES de Email Marketing (2 publicações). As demais publicações e drafts ainda não utilizam o campo.
 
 **Propósito:** Metadado editorial estruturado para registrar fontes verificáveis que sustentam afirmações factuais e numéricas no corpo do artigo.
 

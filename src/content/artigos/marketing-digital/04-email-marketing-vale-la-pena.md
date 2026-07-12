@@ -9,8 +9,25 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "es"
-translationKey: email-marketing-roi
 authorId: radar-digital
+sources:
+  - title: "The ROI of Email Marketing [Infographic]"
+    publisher: "Litmus"
+    url: "https://www.litmus.com/blog/infographic-the-roi-of-email-marketing"
+    publishedAt: 2025-07-16
+    accessedAt: 2026-07-12
+    note: "Resultados de la investigación presentados por intervalos de retorno."
+  - title: "Email Marketing Benchmarks"
+    publisher: "Mailchimp"
+    url: "https://mailchimp.com/resources/email-marketing-benchmarks/"
+    accessedAt: 2026-07-12
+    note: "Página actualizable de benchmarks de apertura y clics."
+  - title: "Use Mail Privacy Protection on iPhone"
+    publisher: "Apple"
+    url: "https://support.apple.com/guide/iphone/use-mail-privacy-protection-iphf084865c7/ios"
+    accessedAt: 2026-07-12
+    note: "Documentación oficial sobre el impacto de Mail Privacy Protection en la medición de aperturas."
+translationKey: email-marketing-roi
 primaryHub: digital-marketing
 topics:
   - email-marketing
