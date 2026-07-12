@@ -22,16 +22,16 @@ const ALT_ORDER: Record<string, number> = {
  * Agrupa entradas publicadas por translationKey.
  * Entradas sem chave ficam em grupo próprio (só elas mesmas).
  */
-function groupPublishedByKey(entries: ArtigoEntry[]): Map<string, ArtigoEntry[]> {
+function groupPublishedByKey(entries: ArtigoEntry[]): Record<string, ArtigoEntry[]> {
   const published = entries.filter((e) => e.data.draft === false);
-  const groups = new Map<string, ArtigoEntry[]>();
+  const groups: Record<string, ArtigoEntry[]> = {};
 
   for (const entry of published) {
     const key = entry.data.translationKey ?? `__no_key__${entry.slug}`;
-    if (!groups.has(key)) {
-      groups.set(key, []);
+    if (!groups[key]) {
+      groups[key] = [];
     }
-    groups.get(key)!.push(entry);
+    groups[key].push(entry);
   }
 
   return groups;
@@ -51,22 +51,28 @@ export function validatePublishedTranslationGroups(entries: ArtigoEntry[]): void
   const groups = groupPublishedByKey(entries);
   const errors: string[] = [];
 
-  for (const [key, group] of groups) {
+  const groupKeys = Object.keys(groups);
+
+  for (let g = 0; g < groupKeys.length; g++) {
+    const key = groupKeys[g];
+    const group: any[] = groups[key];
     // Pula grupos sem chave real (conteúdos isolados)
     if (key.startsWith('__no_key__')) continue;
 
     // Conta locales presentes
-    const localeCount = new Map<string, string[]>();
-    for (const entry of group) {
+    const localeCount: Record<string, string[]> = {};
+    for (let i = 0; i < group.length; i++) {
+      const entry: any = group[i];
       const loc = entry.data.locale;
-      if (!localeCount.has(loc)) {
-        localeCount.set(loc, []);
+      if (!localeCount[loc]) {
+        localeCount[loc] = [];
       }
-      localeCount.get(loc)!.push(entry.id || entry.slug);
+      localeCount[loc].push(entry.id || entry.slug);
     }
 
     // Regra 1: locale duplicado na mesma chave
-    for (const [loc, entries] of localeCount) {
+    for (const loc of Object.keys(localeCount)) {
+      const entries = localeCount[loc];
       if (entries.length > 1) {
         errors.push(
           `Duplicate locale "${loc}" for translationKey "${key}" in: ${entries.join(', ')}`
@@ -75,8 +81,8 @@ export function validatePublishedTranslationGroups(entries: ArtigoEntry[]): void
     }
 
     // Regra 2: chave com apenas um locale publicado
-    if (localeCount.size < 2) {
-      const locs = Array.from(localeCount.keys()).join(', ');
+    if (Object.keys(localeCount).length < 2) {
+      const locs = Object.keys(localeCount).join(', ');
       const slugs = group.map((e) => e.slug).join(', ');
       errors.push(
         `translationKey "${key}" has only one published locale (${locs}) — entries: ${slugs}`
