@@ -80,7 +80,7 @@ const authorData = artigo.data.authorId
     datePublished: artigo.data.date,
     dateModified: artigo.data.updatedAt,
     authorName: authorData?.name,
-    authorType: authorData?.kind === 'person' ? 'Person' : 'Organization',
+    authorType: authorData?.kind !== 'organization' ? 'Person' : 'Organization',
     authorUrl: authorData?.url,
     imageUrl: artigo.data.image,
     categoria: artigo.data.categoria,
