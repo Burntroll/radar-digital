@@ -339,7 +339,7 @@ self-hosted exige gerenciamento de Node.js + MongoDB.
 Payload e conteúdo ficam no MongoDB/Payload Cloud. Perde-se paridade
 de versionamento.
 
-**Riscos específicos:** Aquisição pela Figma (dez/2025) cria incerteza
+**Riscos específicos:** A entrada do Payload na Figma, anunciada em 17/06/2025, cria incerteza
 sobre o futuro do produto independente. Pricing não confirmado para
 Payload Cloud. Dependência de MongoDB.
 
