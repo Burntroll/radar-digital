@@ -11,6 +11,22 @@ emoji: "✅"
 locale: "es"
 translationKey: multi-account-security-checklist
 authorId: radar-digital
+sources:
+  - title: "More than a Password"
+    publisher: "CISA"
+    url: "https://www.cisa.gov/MFA"
+    accessedAt: 2026-07-12
+    note: "Orientaciones oficiales de CISA sobre autenticación multifactor, justificando el uso de 2FA, autenticadores y llaves de seguridad en todas las cuentas."
+  - title: "What is a YubiKey?"
+    publisher: "Yubico"
+    url: "https://www.yubico.com/resources/glossary/yubikey/"
+    accessedAt: 2026-07-12
+    note: "Descripción oficial de la llave de seguridad YubiKey, mencionada en el checklist como llave física para cuentas principales."
+  - title: "Use multiple profiles in Chrome"
+    publisher: "Google"
+    url: "https://support.google.com/chrome/answer/2364824"
+    accessedAt: 2026-07-12
+    note: "Documentación oficial sobre perfiles de navegador como mecanismo de aislamiento de cuentas, cookies y sesiones."
 primaryHub: contingency-infrastructure
 topics:
   - account-security

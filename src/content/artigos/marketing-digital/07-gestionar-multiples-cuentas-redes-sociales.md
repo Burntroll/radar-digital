@@ -12,6 +12,22 @@ emoji: "🔐"
 locale: "es"
 translationKey: social-media-multi-account-management
 authorId: radar-digital
+sources:
+  - title: "Use multiple profiles in Chrome"
+    publisher: "Google"
+    url: "https://support.google.com/chrome/answer/2364824"
+    accessedAt: 2026-07-12
+    note: "Documentación oficial sobre creación y gestión de perfiles separados en Chrome, cada uno con sus propias cookies, extensiones e inicios de sesión."
+  - title: "More than a Password"
+    publisher: "CISA"
+    url: "https://www.cisa.gov/MFA"
+    accessedAt: 2026-07-12
+    note: "Orientaciones oficiales de CISA sobre autenticación multifactor, incluyendo recomendación de uso de aplicaciones autenticadoras y llaves de seguridad."
+  - title: "What is a YubiKey?"
+    publisher: "Yubico"
+    url: "https://www.yubico.com/resources/glossary/yubikey/"
+    accessedAt: 2026-07-12
+    note: "Descripción oficial de la llave de seguridad YubiKey para autenticación de dos factores y sin contraseña."
 primaryHub: digital-marketing
 topics:
   - social-media

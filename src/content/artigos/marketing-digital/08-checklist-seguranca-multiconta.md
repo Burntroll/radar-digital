@@ -12,6 +12,22 @@ locale: "pt-BR"
 slugEs: "marketing-digital/08-checklist-seguridad-multicuenta"
 translationKey: multi-account-security-checklist
 authorId: radar-digital
+sources:
+  - title: "More than a Password"
+    publisher: "CISA"
+    url: "https://www.cisa.gov/MFA"
+    accessedAt: 2026-07-12
+    note: "Orientações oficiais da CISA sobre autenticação multifator, justificando o uso de 2FA, autenticadores e chaves de segurança em todas as contas."
+  - title: "What is a YubiKey?"
+    publisher: "Yubico"
+    url: "https://www.yubico.com/resources/glossary/yubikey/"
+    accessedAt: 2026-07-12
+    note: "Descrição oficial da chave de segurança YubiKey, mencionada no checklist como chave física para contas principais."
+  - title: "Use multiple profiles in Chrome"
+    publisher: "Google"
+    url: "https://support.google.com/chrome/answer/2364824"
+    accessedAt: 2026-07-12
+    note: "Documentação oficial sobre perfis de navegador como mecanismo de isolamento de contas, cookies e sessões."
 primaryHub: contingency-infrastructure
 topics:
   - account-security

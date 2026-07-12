@@ -12,6 +12,22 @@ locale: "pt-BR"
 slugEs: "marketing-digital/07-gestionar-multiples-cuentas-redes-sociales"
 translationKey: social-media-multi-account-management
 authorId: radar-digital
+sources:
+  - title: "Use multiple profiles in Chrome"
+    publisher: "Google"
+    url: "https://support.google.com/chrome/answer/2364824"
+    accessedAt: 2026-07-12
+    note: "Documentação oficial sobre criação e gerenciamento de perfis separados no Chrome, cada um com seus próprios cookies, extensões e logins."
+  - title: "More than a Password"
+    publisher: "CISA"
+    url: "https://www.cisa.gov/MFA"
+    accessedAt: 2026-07-12
+    note: "Orientações oficiais da CISA sobre autenticação multifator, incluindo recomendação de uso de aplicativos autenticadores e chaves de segurança."
+  - title: "What is a YubiKey?"
+    publisher: "Yubico"
+    url: "https://www.yubico.com/resources/glossary/yubikey/"
+    accessedAt: 2026-07-12
+    note: "Descrição oficial da chave de segurança YubiKey para autenticação de dois fatores e sem senha."
 primaryHub: digital-marketing
 topics:
   - social-media

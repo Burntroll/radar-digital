@@ -279,11 +279,11 @@ const artigos = defineCollection({
 - **Drafts** ainda não foram migrados e não exigem `authorId`.
 - Nenhuma byline visível foi adicionada nesta etapa.
 - Nenhuma página de autor foi criada.
-- Autoria pessoal, revisão e disclosure continuam pendentes. O schema de fontes está implementado e o piloto foi iniciado no par PT/ES de Email Marketing.
+- Autoria pessoal, revisão e disclosure continuam pendentes. O schema de fontes está implementado e as 8 publicações publicadas possuem `sources`. Nenhum draft foi migrado.
 
 ### `sources`
 
-**Status:** Implementado no schema da collection `artigos` — primeiro piloto aplicado ao par PT/ES de Email Marketing (2 publicações). As demais publicações e drafts ainda não utilizam o campo.
+**Status:** Implementado no schema da collection `artigos`. O piloto inicial foi validado no par de Email Marketing e expandido aos demais pares publicados. As **8 publicações** atualmente publicadas possuem `sources`. Nenhum draft possui o campo. Cada tradução declara seu próprio array. A equivalência entre traduções foi aplicada editorialmente nesta migração, mas não é validada automaticamente pelo schema. `sources` continua opcional. A presença do campo não significa que toda afirmação do artigo foi individualmente auditada. Nenhuma exibição pública foi implementada. Nenhum `citation` foi adicionado ao JSON-LD.
 
 **Propósito:** Metadado editorial estruturado para registrar fontes verificáveis que sustentam afirmações factuais e numéricas no corpo do artigo.
 

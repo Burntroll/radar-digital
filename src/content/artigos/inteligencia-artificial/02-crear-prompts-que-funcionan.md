@@ -11,6 +11,27 @@ emoji: "💬"
 locale: "es"
 translationKey: effective-prompts
 authorId: radar-digital
+sources:
+  - title: "Prompt engineering"
+    publisher: "OpenAI"
+    url: "https://platform.openai.com/docs/guides/prompt-engineering"
+    accessedAt: 2026-07-12
+    note: "Guía oficial sobre técnicas de ingeniería de prompt, incluyendo uso de rol, contexto, instrucciones, ejemplos few-shot y formato de salida."
+  - title: "Prompt engineering overview"
+    publisher: "Anthropic"
+    url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    accessedAt: 2026-07-12
+    note: "Visión general de las técnicas de prompt engineering para Claude, incluyendo claridad, uso de ejemplos y estructuración."
+  - title: "Prompting best practices"
+    publisher: "Anthropic"
+    url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-best-practices"
+    accessedAt: 2026-07-12
+    note: "Prácticas recomendadas para la elaboración de prompts con Claude, incluyendo role prompting, XML tags y chain-of-thought."
+  - title: "Prompting strategies"
+    publisher: "Google"
+    url: "https://ai.google.dev/gemini-api/docs/prompting-strategies"
+    accessedAt: 2026-07-12
+    note: "Estrategias de prompt para Gemini API, incluyendo contexto, instrucciones y configuración de salida."
 primaryHub: ai-automation
 topics:
   - prompts
