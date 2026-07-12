@@ -26,6 +26,12 @@ export const ui = {
   'nav.bonus':          { 'pt-BR': 'Bônus',         'es': 'Bonos' },
   'nav.market':         { 'pt-BR': 'Radar Market',  'es': 'Radar Market' },
 
+  // Bloco 5 — novos grupos
+  'nav.setores':        { 'pt-BR': 'Setores',       'es': 'Sectores' },
+  'nav.operacao':       { 'pt-BR': 'Operação',      'es': 'Operación' },
+  'nav.verticais':      { 'pt-BR': 'Verticais',     'es': 'Verticales' },
+  'nav.recursos':       { 'pt-BR': 'Recursos',      'es': 'Recursos' },
+
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
   'footer.privacidade': { 'pt-BR': 'Privacidade',    'es': 'Privacidad' },

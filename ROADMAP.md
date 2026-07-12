@@ -100,7 +100,30 @@
 | Rota canônica /publicacoes/ | ⏳ Pendente |
 | Sitemap por hub | ⏳ Pendente |
 
-## Bloco 5 — Infraestrutura e Lançamento
+## Bloco 5 — Navegação e Mega Menus (🔄 INICIADO)
+
+> **Veredito:** Estrutura-base do navbar implementada. Usa registro central tipado
+> (`src/config/siteNavigation.ts`) e `<details>/<summary>` para grupos. Apenas itens
+> com rota pública e filhos elegíveis são renderizados. Verticais permanece oculto
+> (todos os hubs planned). Hubs planned não aparecem. Mega menus completos, menu
+> mobile e auditoria de teclado continuam pendentes nas tasks 5.2 a 5.8.
+
+### Tasks
+
+| ID | Task | Status |
+|---|---|---|
+| 5.1 | Criar estrutura-base do navbar aprovado | ✅ Concluído |
+| 5.2 | Implementar mega menus completos | ⏳ Pendente |
+| 5.3 | Implementar menu mobile | ⏳ Pendente |
+| 5.4 | Integrar dropdown de parceiros dinâmico | ⏳ Pendente |
+| 5.5 | Auditar sessões ativas e aria-current | ⏳ Pendente |
+| 5.6 | Auditar contraste e foco | ⏳ Pendente |
+| 5.7 | Auditar navegação por teclado e leitores de tela | ⏳ Pendente |
+| 5.8 | Finalizar e validar acessibilidade | ⏳ Pendente |
+
+---
+
+## Bloco 6 — Infraestrutura e Lançamento
 
 | Componente | Status |
 |---|---|

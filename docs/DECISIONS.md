@@ -215,3 +215,32 @@ As quatro alternativas foram comparadas em `docs/CMS_COMPARISON.md`. Nenhuma rec
 `MANTER CONTENT COLLECTIONS PARA O LANÇAMENTO — CMS EXTERNO ADIADO ATÉ GATILHOS OPERACIONAIS REAIS`
 
 > **Fontes sobre planos:** A referência ao plano Hobby da Vercel como restrito a uso pessoal e não comercial baseia-se na documentação oficial do plano Hobby ([vercel.com/docs/plans/hobby](https://vercel.com/docs/plans/hobby), acessada em 13/07/2026), que declara textualmente: "the Hobby plan restricts users to non-commercial, personal use only". A referência a planos e preço-base do Vercel Hobby utiliza a página oficial de preços ([vercel.com/docs/pricing](https://vercel.com/docs/pricing), acessada em 13/07/2026). O GitHub Free é descrito na página oficial de preços do GitHub ([github.com/pricing](https://github.com/pricing), acessada em 13/07/2026).
+
+---
+
+## Ativação da navegação principal
+
+**Decisão:** A estrutura-base do navbar (Bloco 5) utiliza um registro central tipado
+em `src/config/siteNavigation.ts` com as seguintes regras de ativação:
+
+- Grupos sem página agregadora própria são controles de menu (`<details>/<summary>`),
+  não links.
+- Grupos sem filhos elegíveis não são renderizados.
+- Hubs com status `planned` em `editorialHubs.ts` não aparecem.
+- Não são usados menus vazios, placeholders ou labels sem ação.
+- Links apontam exclusivamente para rotas públicas já existentes.
+
+**Estado público atual:**
+
+| Área | Tipo | Status |
+|------|------|--------|
+| Início | anchor | Renderizado |
+| Setores | menu (disclosure) | Renderizado (1 filho: IA) |
+| Operação | menu (disclosure) | Renderizado (2 filhos: Marketing Digital, Monetização) |
+| Verticais | menu | Oculto — nenhum filho elegível (todos planned) |
+| Recursos | menu (disclosure) | Renderizado (3 filhos: Guias, Ferramentas, Bonus) |
+| Radar Market | anchor | Renderizado |
+
+**Critério de ativação:** A navegação é determinada pelo registro central,
+não derivada automaticamente de `editorialHubs.ts`. Paginas agregadoras
+continuam pertencendo ao Bloco 6.
