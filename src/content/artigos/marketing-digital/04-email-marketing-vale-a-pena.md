@@ -22,7 +22,7 @@ contentType: "article"
 
 **A resposta curta: sim, disparado. Mas só se você parar de tratar email como panfleto digital e começar a tratar como relacionamento.**
 
-Estudos setoriais de marketing dos últimos anos (DMA, Litmus, HubSpot State of Marketing) consistentemente colocam o email no topo do ranking de ROI entre canais digitais — algo em torno de **US$ 36 a 42 retornados para cada US$ 1 investido**. É mais do que SEO, mais do que social ads, mais do que display. Por quê? Porque email é o único canal onde você fala diretamente com quem **já demonstrou interesse** no que você faz.
+Segundo o [State of Email 2025 da Litmus](https://www.litmus.com/blog/infographic-the-roi-of-email-marketing), 35% das empresas consultadas relataram retorno entre US$ 10 e US$ 36 para cada US$ 1 investido; outras 30% relataram retorno entre US$ 36 e US$ 50. É mais do que SEO, mais do que social ads, mais do que display. Por quê? Porque email é o único canal onde você fala diretamente com quem **já demonstrou interesse** no que você faz.
 
 Mesmo assim, muita gente boa insiste em declarar o email morto. Esse artigo é pra colocar os números na mesa e mostrar o que funciona em 2026 — sem prometer "fórmula mágica" e sem romantizar o "boom do email nos anos 2000".
 
@@ -32,10 +32,10 @@ Mesmo assim, muita gente boa insiste em declarar o email morto. Esse artigo é p
 
 Antes de qualquer coisa, vamos separar o joio do trigo:
 
-- **ROI**: email consistentemente lidera com US$ 36-42 por US$ 1 investido (DMA/Litmus, dados consolidados de múltiplos anos). SEO vem em segundo, com forte variação setorial. Social ads paga varia muito — em e-commerce bem rodado, algo entre US$ 2-5 por US$ 1; em SaaS B2B, pode ser pior.
-- **Taxa de abertura média**: ~21% em todas as indústrias (Mailchimp Email Benchmarks). Não é alto, mas é **confiável** e **previsível** quando você acerta segmentação.
-- **Taxa de cliques (CTR)**: ~2-3% em média. Baixa no papel, alta quando você compara com o ruído de um feed social onde seu post compete com vídeo de gato e post de ex.
-- **4 bilhões de usuários de email globalmente** (Statista, 2024-2025). Não é um canal de nicho, é infraestrutura básica da internet.
+- **ROI**: o email lidera o ranking de ROI entre canais digitais, com 35% das empresas relatando retorno entre US$ 10 e US$ 36 e 30% entre US$ 36 e US$ 50 por US$ 1 investido, segundo o State of Email 2025 da Litmus. SEO vem em segundo, com forte variação setorial. Social ads paga varia muito — em e-commerce bem rodado, algo entre US$ 2-5 por US$ 1; em SaaS B2B, pode ser pior.
+- **Taxa média de abertura**: 35,63% no [benchmark atualmente publicado pelo Mailchimp](https://mailchimp.com/resources/email-marketing-benchmarks/). Essa métrica deve ser interpretada com cautela porque mecanismos de privacidade, como o [Apple Mail Privacy Protection](https://support.apple.com/guide/iphone/use-mail-privacy-protection-iphf084865c7/ios), dificultam a medição de aberturas reais.
+- **Taxa média de cliques**: 2,62% no mesmo benchmark do Mailchimp. Baixa no papel, alta quando você compara com o ruído de um feed social onde seu post compete com vídeo de gato e post de ex.
+- **Alcance global**: o email continua sendo um canal amplamente utilizado em todo o mundo.
 
 O ponto: email não é sexy. Mas é **barato**, **mensurável** e **dono** — você não depende de algoritmo de plataforma terceira.
 
@@ -66,7 +66,7 @@ Esqueça o "blast" — mandar uma mensagem só pra todo mundo no mesmo dia. Emai
 
 ### 2. Subject line que passa o filtro de "vale a pena abrir"
 
-Estudos de eye-tracking (sim, isso existe, a Litmus publica) mostram que o usuário gasta **0,8 segundo** decidindo se abre ou deleta. Sua subject line tem que ser:
+A decisão de abrir, ignorar ou excluir um email acontece rapidamente. Por isso, o remetente, o assunto e o texto de prévia precisam transmitir valor com clareza. Sua subject line tem que ser:
 - **Específica**: "3 erros que cometi no meu primeiro SaaS" > "Dicas de negócio"
 - **Curta**: menos de 50 caracteres quando possível
 - **Curiosa, não clickbait**: gap de curiosidade legítimo, não promessa vazia

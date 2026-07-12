@@ -20,7 +20,7 @@ contentType: "article"
 
 
 **La respuesta corta: sí, de lejos. Pero solo si dejas de tratar el email como panfleto digital y empiezas a tratarlo como una relación.**
-Estudios sectoriales de marketing de los últimos años (DMA, Litmus, HubSpot State of Marketing) colocan consistentemente al email en lo más alto del ranking de ROI entre canales digitales — alrededor de **$36 a $42 retornados por cada $1 invertido**. Es más que SEO, más que social ads, más que display. ¿Por qué? Porque el email es el único canal donde le hablas directamente a quien **ya ha demostrado interés** en lo que haces.
+Según el [State of Email 2025 de Litmus](https://www.litmus.com/blog/infographic-the-roi-of-email-marketing), el 35% de las empresas consultadas declaró un retorno de entre US$ 10 y US$ 36 por cada US$ 1 invertido; otro 30% declaró un retorno de entre US$ 36 y US$ 50. Es más que SEO, más que social ads, más que display. ¿Por qué? Porque el email es el único canal donde le hablas directamente a quien **ya ha demostrado interés** en lo que haces.
 
 Aun así, mucha gente insiste en declarar muerto al email marketing. Este artículo es para poner los números sobre la mesa y mostrar lo que funciona en 2026 — sin prometer "fórmula mágica" y sin romantizar el "boom del email en los 2000".
 
@@ -30,10 +30,10 @@ Aun así, mucha gente insiste en declarar muerto al email marketing. Este artíc
 
 Antes de nada, vamos a separar el trigo de la paja:
 
-- **ROI**: el email lidera consistentemente con $36-42 por $1 invertido (DMA/Litmus, datos consolidados de múltiples años). El SEO viene segundo, con fuerte variación sectorial. El social ads paga fluctúa mucho — en e-commerce bien administrado, unos $2-5 por $1; en SaaS B2B, puede ser peor.
-- **Tasa de apertura media**: ~21% en todas las industrias (Mailchimp Email Benchmarks). No es alta, pero es **fiable** y **predecible** cuando aciertas con la segmentación.
-- **Tasa de clics (CTR)**: ~2-3% de media. Baja sobre el papel, alta cuando lo comparas con el ruido de un feed social donde tu post compite con vídeos de gatos y excompañeros.
-- **4 mil millones de usuarios de email globalmente** (Statista, 2024-2025). No es un canal de nicho, es infraestructura básica de internet.
+- **ROI**: el email lidera el ranking de ROI entre canales digitales, con un 35% de las empresas declarando un retorno de entre US$ 10 y US$ 36 y un 30% entre US$ 36 y US$ 50 por US$ 1 invertido, según el State of Email 2025 de Litmus. El SEO viene segundo, con fuerte variación sectorial. El social ads paga fluctúa mucho — en e-commerce bien administrado, unos $2-5 por $1; en SaaS B2B, puede ser peor.
+- **Tasa media de apertura**: 35,63% en el [benchmark publicado actualmente por Mailchimp](https://mailchimp.com/resources/email-marketing-benchmarks/). Esta métrica debe interpretarse con cautela porque mecanismos de privacidad, como [Apple Mail Privacy Protection](https://support.apple.com/guide/iphone/use-mail-privacy-protection-iphf084865c7/ios), dificultan la medición de aperturas reales.
+- **Tasa media de clics**: 2,62% en el mismo benchmark de Mailchimp. Baja sobre el papel, alta cuando lo comparas con el ruido de un feed social donde tu post compite con vídeos de gatos y excompañeros.
+- **Alcance global**: el email continúa siendo un canal ampliamente utilizado en todo el mundo.
 
 El punto: el email no es sexy. Pero es **barato**, **medible** y **tuyo** — no dependes del algoritmo de una plataforma externa.
 
@@ -64,7 +64,7 @@ Olvida el "blast" — enviar un solo mensaje a todo el mundo el mismo día. El e
 
 ### 2. Asunto que pasa el filtro de "vale la pena abrir"
 
-Estudios de eye-tracking muestran que el usuario gasta **0,8 segundos** decidiendo si abre o elimina. Tu asunto debe ser:
+La decisión de abrir, ignorar o eliminar un email ocurre rápidamente. Por eso, el remitente, el asunto y el texto de vista previa deben comunicar el valor con claridad. Tu asunto debe ser:
 - **Específico**: "3 errores que cometí en mi primer SaaS" > "Consejos de negocio"
 - **Breve**: menos de 50 caracteres cuando sea posible
 - **Curioso, no clickbait**: brecha de curiosidad legítima, no promesa vacía
