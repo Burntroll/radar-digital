@@ -75,7 +75,21 @@
 - **Revisor (`reviewerId`)** — Adiado ao Bloco 10. Não há fluxo real de revisão definido.
 - **Disclosure editorial/comercial** — Adiado ao Bloco 10. Política editorial/comercial não formalizada.
 
-## Bloco 4 — Páginas e Navegação
+## Bloco 4 — Páginas e Navegação (🔄 INICIADO)
+
+> **Nota:** Task 4.1 (decisão sobre CMS) concluída com levantamento factual.
+> Aguardando respostas às perguntas estratégicas para avançar para 4.2.
+
+### Tasks
+
+| ID | Task | Status |
+|---|---|---|
+| 4.1 | Levantar requisitos editoriais para decisão sobre CMS | ✅ Concluído |
+| 4.2 | Comparar alternativas de CMS (após respostas às perguntas estratégicas) | ⏳ Pendente |
+| 4.3 | Decidir e documentar (ADR) | ⏳ Pendente |
+| 4.4 | Prova de conceito da solução escolhida (se aplicável) | ⏳ Pendente |
+
+### Componentes previstos
 
 | Componente | Status |
 |---|---|
