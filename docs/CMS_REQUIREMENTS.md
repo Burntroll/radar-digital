@@ -5,7 +5,7 @@
 > documentam o estado atual e as necessidades editoriais confirmadas ou pendentes.
 > A seção 9 registra os critérios objetivos para a comparação futura (task 4.2).
 >
-> **Última atualização:** 13/07/2026 — auditoria inicial (task 4.1)
+> **Última atualização:** 13/07/2026 — respostas estratégicas registradas (task 4.1)
 
 ---
 
@@ -511,28 +511,104 @@ As respostas para estas perguntas são necessárias **antes** da comparação
 de alternativas de CMS (task 4.2). As perguntas estão numeradas para
 referência cruzada com a matriz de requisitos.
 
-| # | Pergunta | Impacto na decisão |
-|---|----------|-------------------|
-| 1 | Quantas pessoas editarão o portal? (1, 2-5, 6+) | Determina necessidade de multiusuário, permissões e colaboração |
-| 2 | Qual o nível técnico dessas pessoas? (dev, tech-savvy, não técnico) | Determina necessidade de interface visual vs. Git-based |
-| 3 | Existe necessidade real de papéis e permissões (autor, revisor, admin)? | Determina complexidade do modelo de usuários |
-| 4 | Existe necessidade de aprovação antes de publicar? | Determina necessidade de workflow de revisão |
-| 5 | Qual a frequência de publicação esperada? (semanal, diária, múltiplas/dia) | Determina necessidade de automação e agendamento |
-| 6 | Existe necessidade de agendar publicações para data/hora futura? | Determina necessidade de publish schedule |
-| 7 | Quem produzirá as traduções (PT→ES)? O mesmo autor, tradutor dedicado, ou IA? | Determina workflow de tradução |
-| 8 | Como versões PT/ES serão revisadas? Juntas, separadas, por pessoas diferentes? | Determina workflow de revisão multilíngue |
-| 9 | Qual o volume e fluxo esperado de imagens? (poucas, muitas, com otimização?) | Determina necessidade de DAM/mídia |
-| 10 | Existe necessidade de edição pelo celular? | Determina necessidade de mobile-first/ui responsiva |
-| 11 | Existe necessidade de colaboração simultânea (dois editores no mesmo artigo)? | Determina necessidade de real-time collaboration ou locking |
-| 12 | Qual a tolerância a custos mensais recorrentes? (gratuito, baixo, moderado) | Filtra opções por modelo de precificação |
-| 13 | Quem será responsável pela manutenção e segurança da infraestrutura? | Determina SaaS vs self-hosted |
-| 14 | É importante manter todo o conteúdo versionado no Git (Git-centric)? | Determina compatibilidade com Git-based vs database CMS |
-| 15 | Existe necessidade de preview visual sem intervenção técnica? | Determina necessidade de preview environments |
+|| # | Pergunta | Impacto na decisão |
+||---|----------|-------------------|
+|| 1 | Quantas pessoas editarão o portal? (1, 2-5, 6+) | Determina necessidade de multiusuário, permissões e colaboração |
+|| 2 | Qual o nível técnico dessas pessoas? (dev, tech-savvy, não técnico) | Determina necessidade de interface visual vs. Git-based |
+|| 3 | Existe necessidade real de papéis e permissões (autor, revisor, admin)? | Determina complexidade do modelo de usuários |
+|| 4 | Existe necessidade de aprovação antes de publicar? | Determina necessidade de workflow de revisão |
+|| 5 | Qual a frequência de publicação esperada? (semanal, diária, múltiplas/dia) | Determina necessidade de automação e agendamento |
+|| 6 | Existe necessidade de agendar publicações para data/hora futura? | Determina necessidade de publish schedule |
+|| 7 | Quem produzirá as traduções (PT→ES)? O mesmo autor, tradutor dedicado, ou IA? | Determina workflow de tradução |
+|| 8 | Como versões PT/ES serão revisadas? Juntas, separadas, por pessoas diferentes? | Determina workflow de revisão multilíngue |
+|| 9 | Qual o volume e fluxo esperado de imagens? (poucas, muitas, com otimização?) | Determina necessidade de DAM/mídia |
+|| 10 | Qual a tolerância a custos mensais recorrentes? (gratuito, baixo, moderado) | Filtra opções por modelo de precificação |
+|| 11 | Quem será responsável pela manutenção e segurança da infraestrutura? | Determina SaaS vs self-hosted |
+|| 12 | É importante manter todo o conteúdo versionado no Git (Git-centric)? | Determina compatibilidade com Git-based vs database CMS |
+|| 13 | Existe necessidade de preview visual sem intervenção técnica? | Determina necessidade de preview environments |
 
-> **Instrução:** Estas perguntas devem ser respondidas por Francisco ou
-> pela equipe editorial antes de qualquer comparação de plataformas.
-> Não responda estas perguntas neste documento. Elas serão usadas como
-> entrada na task 4.2.
+> **Instrução:** As respostas estratégicas abaixo foram confirmadas por Francisco
+> e registradas neste documento. Elas devem ser usadas como entrada principal
+> na task 4.2 (comparação de CMS).
+
+### Respostas Estratégicas Confirmadas
+
+As respostas abaixo foram fornecidas por Francisco para orientar a futura
+comparação de CMS. Estão organizadas por tema e numeradas sem relação com
+a numeração das perguntas da tabela anterior.
+
+1. **Pessoas editando** — No lançamento, a operação editorial será conduzida
+   por uma pessoa. A arquitetura deve permitir crescimento posterior para uma
+   equipe pequena, aproximadamente entre duas e cinco pessoas.
+
+2. **Nível técnico** — Francisco consegue operar o fluxo atual com apoio de
+   IA e Git. Futuros autores e editores devem ser considerados usuários não
+   técnicos.
+
+3. **Papéis e permissões** — Papéis diferenciados não são indispensáveis para
+   a operação inicial individual. Uma solução futura deve, porém, permitir
+   separar administrador, editor ou autor e revisor quando uma equipe real
+   existir.
+
+4. **Aprovação editorial** — Inicialmente, Francisco será responsável pela
+   decisão de publicação. Com a entrada de uma equipe, deverá ser possível
+   adotar um fluxo equivalente a draft, revisão e publicação.
+
+5. **Frequência editorial** — A referência inicial é de três a cinco
+   publicações por semana, com possibilidade de evolução para publicação
+   diária conforme a operação crescer.
+
+6. **Agendamento** — Agendamento editorial é desejável, mas não é obrigatório
+   para a primeira adoção. Quando utilizado, não deve depender de intervenção
+   técnica a cada publicação.
+
+7. **Produção das traduções** — As traduções serão produzidas inicialmente com
+   apoio de IA e deverão passar por revisão humana antes da publicação.
+
+8. **Revisão PT e ES** — Cada idioma deve ser revisado separadamente. As
+   versões relacionadas precisam permanecer claramente associadas pelo mesmo
+   `translationKey`.
+
+9. **Imagens e mídia** — O volume de imagens é atualmente moderado, com
+   expectativa de crescimento. Biblioteca de mídia, upload e otimização são
+   capacidades relevantes, mas podem ser adotadas gradualmente.
+
+10. **Custo recorrente** — A preferência inicial é por custo baixo. Custos
+    moderados só se justificam quando reduzirem trabalho manual relevante ou
+    sustentarem uma equipe editorial real.
+
+11. **Manutenção e segurança** — A preferência é por uma solução gerenciada
+    ou de baixa manutenção. Deve-se evitar infraestrutura self-hosted
+    complexa que exija manutenção constante sem benefício operacional
+    proporcional.
+
+12. **Conteúdo e Git** — Git deve continuar como fonte de verdade para
+    código, documentação arquitetural e decisões. O conteúdo editorial só
+    poderá deixar de ser versionado diretamente no Git caso a solução
+    ofereça versionamento, exportação, rollback e portabilidade equivalentes
+    e verificáveis.
+
+13. **Preview visual** — Preview visual por link é necessário para o
+    crescimento editorial. Futuros editores devem conseguir visualizar drafts
+    antes da publicação sem executar comandos localmente.
+
+### Estado das perguntas
+
+| Categoria | Status |
+|-----------|--------|
+| Perguntas com respostas registradas acima | ✅ 13 respondidas |
+| Edição pelo celular | ❌ Eliminada — não é requisito |
+| Colaboração simultânea | ❌ Eliminada — não é requisito |
+| Perguntas que dependem de definição posterior | Nenhuma — todas as questões foram respondidas |
+
+**Checkpoint de respostas estratégicas: concluído.** Nenhuma pergunta
+permanece sem resposta. As respostas registradas nesta seção devem ser
+usadas como entrada da task 4.2.
+
+> **Atenção:** Nenhuma resposta acima representa uma capacidade já
+> implementada no sistema. Todas são diretrizes para a futura comparação
+> e eventual escolha de CMS. As respostas não automatizam, implementam
+> ou substituem o fluxo editorial atual (Markdown + Git + CI + Vercel).
 
 ---
 
@@ -595,8 +671,8 @@ ainda não foi definido.
 
 Qualquer CMS adiciona custo de manutenção (atualizações, segurança,
 backup, uptime) que o modelo atual (GitHub + Vercel) praticamente não
-tem. Adotar um CMS antes de entender o custo tolerável (pergunta 12)
-e a responsabilidade pela manutenção (pergunta 13) pode criar despesa
+tem. Adotar um CMS antes de entender o custo tolerável (pergunta 10)
+e a responsabilidade pela manutenção (pergunta 11) pode criar despesa
 recorrente inesperada.
 
 ### 9.5 Complexidade sem ganho
@@ -641,5 +717,5 @@ O levantamento factual está completo nos seguintes aspectos:
 A ausência de respostas para as perguntas da seção 7 **não** é uma falha
 desta auditoria — é o resultado esperado. O objetivo da task 4.1 era
 produzir a base factual, não responder as perguntas estratégicas. A
-task 4.2 só deve começar após Francisco responder às perguntas 1 a 15,
+task 4.2 só deve começar após Francisco responder às perguntas 1 a 13,
 pois sem essas respostas qualquer comparação de CMS seria especulativa.
