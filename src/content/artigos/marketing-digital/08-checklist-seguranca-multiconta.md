@@ -10,6 +10,7 @@ color: "cyan"
 emoji: "✅"
 locale: "pt-BR"
 slugEs: "marketing-digital/08-checklist-seguridad-multicuenta"
+translationKey: multi-account-security-checklist
 primaryHub: contingency-infrastructure
 topics:
   - account-security

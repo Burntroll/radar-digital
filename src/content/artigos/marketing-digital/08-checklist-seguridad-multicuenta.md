@@ -9,6 +9,7 @@ draft: false
 color: "cyan"
 emoji: "✅"
 locale: "es"
+translationKey: multi-account-security-checklist
 primaryHub: contingency-infrastructure
 topics:
   - account-security

@@ -9,6 +9,7 @@ draft: false
 color: "cyan"
 emoji: "📧"
 locale: "es"
+translationKey: email-marketing-roi
 primaryHub: digital-marketing
 topics:
   - email-marketing

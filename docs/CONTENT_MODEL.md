@@ -234,6 +234,37 @@ const artigos = defineCollection({
 | Mais de 5 itens | `topics cannot contain more than 5 topics` |
 | Tópicos duplicados | `topics cannot contain duplicate topic IDs` |
 
+### `translationKey`
+
+- `translationKey` é um campo **opcional** na collection `artigos`, presente somente em conteúdos que participam de um grupo real de traduções.
+- Finalidade: associar de forma estável as versões PT e ES (e futuramente EN, VI, ZH-CN) do mesmo conteúdo, independentemente de slug, título ou URL.
+- Formato: `lowercase kebab-case` — regex `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`.
+- Mínimo de **3** caracteres, máximo de **64**.
+- Versões traduzidas compartilham **exatamente a mesma chave**.
+- A chave é um identificador interno **estável e imutável** após a publicação.
+- Conteúdos publicados sem tradução **podem ficar sem chave**.
+- A chave **não é exibida publicamente** e não determina a URL.
+- O esquema não valida chaves entre entradas — essa validação é feita globalmente pelo helper `validatePublishedTranslationGroups()` em `src/utils/editorialTranslations.ts`.
+
+**Validação global (build):** O helper `validatePublishedTranslationGroups()` verifica:
+
+| Regra | Descrição |
+|-------|-----------|
+| Locale duplicado | Uma chave não pode ter duas publicações publicadas com o mesmo locale |
+| Grupo órfão | Uma chave com apenas um locale publicado quebra o build |
+| Conteúdo isolado | Publicações sem `translationKey` continuam aceitas |
+| N idiomas | O grupo aceita futuramente PT, ES, EN, VI, ZH-CN — sem limite de tamanho |
+
+**Alternates:** Os templates de artigos PT e ES agora derivam os alternates das entradas reais do grupo de tradução (via `getPublishedTranslationGroup()`), não mais de `slugEs`.
+
+**4 pares PT/ES migrados:** `email-marketing-roi`, `social-media-multi-account-management`, `effective-prompts`, `multi-account-security-checklist`.
+
+**`slugEs`** permanece no schema e nos conteúdos como campo legado, mas os templates de artigos não dependem mais dele para hreflang.
+
+**Outras collections** (Ferramentas, Bônus, Radar Market) ainda não foram migradas.
+
+**Drafts** ainda não possuem `translationKey` e não são validados.
+
 ## 7. Piloto concluído
 
 `primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
@@ -258,11 +289,11 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 | `contentType` | Inalterado (`article` / `guide`) | Permanecerá |
 | `guideType` | Subtipo de guia | Permanecerá |
 | `guideTags` | Filtros de Guias | Será substituído por `topics` |
-| `slugEs` | Link PT→ES | Será substituído por `translationKey` |
+| `slugEs` | Link PT→ES (legado) | Substituído por `translationKey` |
 
 ## 9. Funcionalidades ainda não implementadas
 
-- `translationKey` (substituir `slugEs`)
+- Remoção de `slugEs` (após migração total)
 - Nova rota canônica `/publicacoes/<slug>/`
 - Páginas públicas de tópicos
 - Páginas públicas e templates de hubs individuais
@@ -290,8 +321,9 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 2. Implementar `relatedHubs` no schema ✅
 3. Conectar `topics` ao schema (validação runtime) ✅
 4. Migrar `topics` nas 8 publicações publicadas ✅
-5. Implementar `translationKey` e migrar de `slugEs`
-6. Criar rota `/publicacoes/<slug>/` com redirects
+5. Implementar `translationKey` e migrar pares PT/ES ✅
+6. (pendente) Remover `slugEs` dos conteúdos e schema
+7. Criar rota `/publicacoes/<slug>/` com redirects
 7. Criar páginas de hubs (templates)
 8. Atualizar navbar com nova estrutura de navegação
 9. Atualizar sitemap para incluir hubs

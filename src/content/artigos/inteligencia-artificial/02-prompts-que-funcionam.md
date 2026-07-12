@@ -11,6 +11,7 @@ color: "purple"
 emoji: "💬"
 locale: "pt-BR"
 slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
+translationKey: effective-prompts
 primaryHub: ai-automation
 topics:
   - prompts

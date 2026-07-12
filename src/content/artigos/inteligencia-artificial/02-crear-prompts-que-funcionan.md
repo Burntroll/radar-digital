@@ -9,6 +9,7 @@ draft: false
 color: "purple"
 emoji: "💬"
 locale: "es"
+translationKey: effective-prompts
 primaryHub: ai-automation
 topics:
   - prompts

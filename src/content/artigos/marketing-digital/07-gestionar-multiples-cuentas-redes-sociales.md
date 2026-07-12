@@ -10,6 +10,7 @@ draft: false
 color: "cyan"
 emoji: "🔐"
 locale: "es"
+translationKey: social-media-multi-account-management
 primaryHub: digital-marketing
 topics:
   - social-media

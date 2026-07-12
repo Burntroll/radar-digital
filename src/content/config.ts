@@ -43,6 +43,15 @@ const artigos = defineCollection({
         message: 'topics must contain only registered editorial topic IDs',
       })
     ).optional(),
+    translationKey: z
+      .string()
+      .min(3)
+      .max(64)
+      .regex(
+        /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+        'translationKey must use lowercase kebab-case'
+      )
+      .optional(),
     image: z.string().optional(),
     author: z.string().optional(),
   }).superRefine((data, ctx) => {
