@@ -56,7 +56,7 @@ Incluso con cuentas diferentes, las cookies de rastreo se acumulan. Buscas un pr
 
 Las redes sociales tienen sistemas de seguridad que identifican múltiples inicios de sesión como comportamiento anómalo. Instagram, Facebook y TikTok son especialmente sensibles. Puedes sufrir bloqueos temporales, solicitudes de verificación, o — en el peor caso — ser baneado por violación de términos que ni siquiera sabías que existían.
 
-Una encuesta informal entre profesionales de marketing muestra que **el 80% ya ha publicado en el perfil equivocado al menos una vez**. Y **casi la mitad ha perdido acceso a una cuenta profesional** por exceso de verificaciones de seguridad.
+Entre los riesgos de gestionar varias cuentas sin una separación clara están publicar en el perfil equivocado y perder el acceso a una cuenta profesional. Los procesos, los permisos y la organización ayudan a reducir estos errores.
 
 ## Cómo organizar cuentas por cliente, campaña o nicho
 

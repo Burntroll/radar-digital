@@ -57,7 +57,7 @@ Mesmo com contas diferentes, os cookies de rastreamento se acumulam. Você pesqu
 
 Redes sociais têm sistemas de segurança que identificam múltiplos logins como comportamento anômalo. Instagram, Facebook e TikTok são especialmente sensíveis. Você pode levar bloqueios temporários, pedidos de verificação, ou — no pior caso — ser banido por violação de termos que você nem sabia que existiam.
 
-Uma pesquisa informal entre profissionais de marketing mostra que **80% já publicaram no perfil errado pelo menos uma vez**. E **quase metade já perdeu acesso a uma conta profissional** por excesso de verificações de segurança.
+Entre os riscos de gerenciar várias contas sem uma separação clara estão publicar no perfil errado e perder o acesso a uma conta profissional. Processos, permissões e organização ajudam a reduzir esses erros.
 
 ## Como organizar contas por cliente, campanha ou nicho
 
