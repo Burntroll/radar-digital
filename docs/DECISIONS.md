@@ -75,3 +75,38 @@
 
 **Implementação:** `src/utils/editorialTranslations.ts` + schema
 **Status:** ✅ Implementado e validado
+
+## Revisor (`reviewerId`): adiado ao Bloco 10
+
+**Decisão:** Não implementar `reviewerId` neste momento porque não existe fluxo real de revisão definido, não há registro de revisores reais, e usar o mesmo autor institucional como revisor criaria metadata artificial.
+
+**Motivo:** O contrato de revisão deverá ser definido junto à estrutura editorial da equipe e à política de correções. Fazer um campo de revisor antes de ter fluxo real de revisão geraria metadata sem correspondência operacional.
+
+**Destino:** Bloco 10 — Institucional, confiança e transparência.
+**Status:** 🔄 Adiado por decisão documentada
+
+## Disclosure editorial/comercial: adiado ao Bloco 10
+
+**Decisão:** Não implementar um enum ou campo de disclosure neste momento porque a política editorial/comercial ainda não foi formalizada. Os significados de afiliado, patrocinado, parceiro e publieditorial precisam ser definidos antes do schema.
+
+**Motivo:** Nenhum valor padrão deve ocultar a natureza comercial de conteúdo futuro. Aplicar disclosure sem política definida criaria risco de classificação incorreta.
+
+**Destino:** Bloco 10 — Política de conteúdo comercial; aplicação posterior em conteúdos e cards conforme o modelo aprovado.
+**Status:** 🔄 Adiado por decisão documentada
+
+## Encerramento do Bloco 3 — Arquitetura editorial
+
+**Decisão:** Bloco 3 concluído com:
+- Modelo editorial estabilizado (4 registros centrais, schema completo)
+- Piloto de migração de 8 publicações com metadados editoriais
+- Distribuição principal por `primaryHub` (Marketing Digital PT/ES)
+- Distribuição secundária por `relatedHubs` (Inteligência Artificial PT/ES)
+- Revisor e disclosure adiados ao Bloco 10
+
+**Não autoriza automaticamente:**
+- Migração em massa dos 17 drafts
+- Criação de páginas, rotas ou navbar de hubs
+- Ampliação da distribuição para outros hubs ou páginas sem nova validação
+- Remoção do campo legado `categoria`
+
+**Status:** ✅ Bloco 3 concluído

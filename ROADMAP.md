@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.0. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 12/07/2026
+> **Última atualização:** 12/07/2026 — encerramento do Bloco 3
 
 ## Bloco 1 — Setup e Estrutura
 
@@ -20,47 +20,66 @@
 | 8 publicações PT+ES | ✅ Concluído |
 | Parceiros, Bônus, Market | ✅ Concluído |
 
-## Bloco 3 — Arquitetura editorial e taxonomia (checkpoint)
+## Bloco 3 — Arquitetura editorial e taxonomia (✅ CONCLUÍDO)
 
-### Modelo / Schema
-- [x] Registro central de hubs (17, 3 active)
-- [x] Registro central de tópicos (6, todos active)
-- [x] Registro central de formatos (7, 2 active, 5 planned)
-- [x] Registro central de autores (1 organization)
-- [x] Schema `contentType` conectado ao registro central
-- [x] Schema `primaryHub`, `relatedHubs`, `topics`, `translationKey`, `authorId`, `sources`
-- [x] Validação runtime via `npm run build`
+> **Veredito:** Bloco 3 concluído. Revisor e disclosure adiados ao Bloco 10 por decisão documentada.
 
-### Piloto (parcial)
-- [x] 8 publicações migradas com metadados editoriais (primaryHub, topics, translationKey, authorId, sources)
-- [x] 4 pares PT/ES com `translationKey`
-- [x] Validação de grupos de tradução (sem órfãos, sem duplicatas)
-- [x] Variante `guide` do formato validada
-- [ ] Distribuição automática PT/ES — pendente
+### Tasks
 
-### Distribuição (não iniciada)
-- [ ] Listagens por `primaryHub`
-- [ ] Listagens por formato
-- [ ] Listagens por tópico
-- [ ] Breadcrumbs baseados em `primaryHub`
-- [ ] Rotas de hubs
+| ID | Task | Status |
+|---|---|---|
+| 3.1 | Inventariar collections e campos | ✅ Concluído |
+| 3.2 | Definir collection central | ✅ Concluído |
+| 3.3 | Definir formatos editoriais | ✅ Concluído |
+| 3.4 | Definir hubs válidos | ✅ Concluído |
+| 3.5 | Implementar `primaryHub` | ✅ Concluído |
+| 3.6 | Implementar `relatedHubs` | ✅ Concluído |
+| 3.7 | Implementar tópicos controlados | ✅ Concluído |
+| 3.8 | Implementar `translationKey` | ✅ Concluído |
+| 3.9 | Implementar autoria e fontes | ✅ Concluído (autor institucional + fontes) |
+| 3.10 | Executar piloto de migração | ✅ Concluído |
 
-### Revisão / Disclosure
-- [ ] `reviewerId` — Não implementado
-- [ ] Disclosure editorial/comercial — Não implementado
+### Critérios de pronto
 
-### Documentação
-- [x] `docs/CONTENT_MODEL.md` — Modelo editorial completo
-- [x] `docs/DECISIONS.md` — Decisões arquiteturais
-- [x] `PROGRESSO.md` — Checkpoint do modelo
+| Critério | Status |
+|---|---|
+| Schema estável e documentado | ✅ Atendido |
+| Ausência de metadados essenciais quebra o build | ✅ Atendido |
+| Distribuição automática funciona em PT/ES | ✅ Atendido (2 pilotos publicados) |
+| Piloto aprovado antes da migração em massa | ✅ Atendido |
 
-**Veredito:** 🟡 PARCIAL — checkpoint do modelo concluído (registros, schema, build validation), piloto de metadados concluído, distribuição automática não iniciada, revisão/disclosure pendentes
+### O que foi implementado
+
+- 4 registros centrais (hubs, tópicos, formatos, autores)
+- Schema completo com validação runtime
+- 8 publicações migradas com metadados editoriais
+- Distribuição principal por `primaryHub` em Marketing Digital PT/ES
+- Distribuição secundária por `relatedHubs` em Inteligência Artificial PT/ES
+- `categoria` não governa mais as listagens conectadas (campo legado preservado)
+- Build, CI, Vercel, HTML e SEO validados
+
+### O que NÃO foi feito (fora do escopo)
+
+- Templates genéricos de hubs
+- Páginas novas de hubs
+- Navbar dinâmica por hub
+- Breadcrumbs baseados em `primaryHub`
+- Rotas canônicas `/publicacoes/`
+- Distribuição por tópicos ou formatos
+- Remoção de `categoria`
+- Migração dos 17 drafts
+- CMS
+
+### Decisões adiadas
+
+- **Revisor (`reviewerId`)** — Adiado ao Bloco 10. Não há fluxo real de revisão definido.
+- **Disclosure editorial/comercial** — Adiado ao Bloco 10. Política editorial/comercial não formalizada.
 
 ## Bloco 4 — Páginas e Navegação
 
 | Componente | Status |
 |---|---|
-| Páginas de hubs | ⏳ Pendente (bloco 3 necessário) |
+| Páginas de hubs | ⏳ Pendente |
 | Navbar baseado em hubs | ⏳ Pendente |
 | Breadcrumbs dinâmicos | ⏳ Pendente |
 | Rota canônica /publicacoes/ | ⏳ Pendente |
@@ -78,4 +97,4 @@
 
 ---
 
-**Nota:** Prioridades dos blocos 4 e 5 não foram alteradas por esta auditoria.
+**Nota:** Prioridades dos blocos 4 e 5 não foram alteradas por este encerramento.

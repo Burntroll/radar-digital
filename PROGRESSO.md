@@ -3,9 +3,9 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 12/07/2026 — checkpoint do Bloco 3 (arquitetura editorial)
-> **Último commit:** `b540374` — `refactor: centralize editorial format registry`
-> **GitHub Actions:** 36+ runs, success ✅
+> **Última atualização:** 12/07/2026 — encerramento do Bloco 3 (arquitetura editorial)
+> **Último commit:** `7ad0ed9` — `docs: close editorial architecture block`
+> **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 > **Quality gate:** `npm run build` valida dados da collection; `npm run check` valida TypeScript/Astro (não frontmatter)
@@ -64,6 +64,12 @@
 - [x] **Validação global `validatePublishedTranslationGroups()`** — Duplicatas e grupos órfãos
 - [x] **Validação runtime:** `npm run build` rejeita dados inválidos com mensagem clara
 
+#### Distribuição editorial (pilotos ativos)
+- [x] **Distribuição principal** — Marketing Digital PT/ES seleciona por `primaryHub: digital-marketing` (`matchesPublishedPrimaryHub`)
+- [x] **Distribuição secundária** — Inteligência Artificial PT/ES seleciona por `primaryHub` ou `relatedHubs` com hub `artificial-intelligence` (`matchesPublishedEditorialHub`)
+- [x] **Par de prompts** — `primaryHub: ai-automation` + `relatedHubs: [artificial-intelligence]`; aparece em IA por distribuição secundária; URL canônica única
+- [x] **`categoria` não governa mais** as listagens de Marketing Digital e Inteligência Artificial (campo legado preservado)
+
 #### SEO
 - [x] **JSON-LD Article** — Autor como `Organization` (não mais `Person`), com `url`
 - [x] **JSON-LD BreadcrumbList** — Em todas as páginas
@@ -86,21 +92,21 @@
 - [x] **`docs/DECISIONS.md`** — Decisões arquiteturais documentadas
 - [x] **`ROADMAP.md`** — Status do Bloco 3 detalhado
 
-### Pendências conhecidas e formalmente adiadas (comportamento não público)
-- [x] **`relatedHubs` sem distribuição** — Metadata preparatória, 0 publicações usando
+### Pendências conhecidas e formalmente adiadas
 - [x] **Formatos `planned` sem efeito público** — Vocabulário aprovado, sem rota/página/HTML
 - [x] **`sources` sem exibição pública** — Metadata interna, sem `citation` no JSON-LD
-- [x] **Nenhuma distribuição por hub/forma/tópico** — Campos armazenados, não consumidos para listagens
+- [x] **Revisor (`reviewerId`)** — Adiado ao Bloco 10 (não há fluxo real de revisão definido)
+- [x] **Disclosure editorial/comercial** — Adiado ao Bloco 10 (política editorial/comercial não formalizada)
+- [x] **Distribuição por tópicos e formatos** — Não implementada; pilotos limitados a `primaryHub` e `relatedHubs`
+- [x] **Template genérico de hubs e páginas novas** — Não implementado; pilotos usam listagens existentes
 
 ## 🟡 Pendências imediatas (Bloco 3)
 
 ### Pendências do modelo editorial
-- [ ] **Distribuição por `primaryHub`** — Rotas, listagens, breadcrumbs ainda usam `categoria`
-- [ ] **`relatedHubs` sem uso** — Nenhuma publicação utiliza o campo
-- [ ] **Revisor (`reviewerId`)** — Não implementado, sem adiamento documentado
-- [ ] **Disclosure editorial/comercial** — Não implementado, sem adiamento documentado
 - [ ] **Formatos ativos sem efeito público** — `guide` e `article` não diferenciam rota, template ou listagem
 - [ ] **Migração dos drafts (17)** — Preencher metadados editoriais
+- [ ] **Distribuição por tópicos** — Ainda não implementada
+- [ ] **Distribuição por formato** — Ainda não implementada
 
 ### Conteúdo & Rotas (geral)
 - [ ] **Nova rota canônica** `/publicacoes/<slug>/` com redirect
@@ -157,4 +163,4 @@
 
 ---
 
-> **Próximo ponto de decisão:** Definir o menor piloto técnico de distribuição por `primaryHub` em PT/ES, sem migrar os drafts e sem antecipar navbar, novas rotas públicas, sitemap ou páginas de hubs. A decisão seguinte deverá determinar se o piloto começa por uma camada interna de seleção/consulta, uma listagem já existente ou uma página controlada prevista no contrato de rotas.
+> **Próximo ponto de decisão:** Confirmar se o projeto entra agora no Bloco 4 — decisão sobre CMS — ou se existe uma dependência anterior do contrato de sitemap que precisa ser resolvida.
