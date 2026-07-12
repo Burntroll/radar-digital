@@ -3,11 +3,12 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 12/07/2026 — expansão de `sources` concluída (sessão 24)
-> **Último commit:** `12b059e` — `feat: expand sources metadata to published content`
-> **GitHub Actions:** 25 runs, 23 success ✅, 2 failures (corrigido)
+> **Última atualização:** 12/07/2026 — checkpoint do Bloco 3 (arquitetura editorial)
+> **Último commit:** `b540374` — `refactor: centralize editorial format registry`
+> **GitHub Actions:** 36+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
+> **Quality gate:** `npm run build` valida dados da collection; `npm run check` valida TypeScript/Astro (não frontmatter)
 
 ## 🟢 Concluído
 
@@ -16,7 +17,7 @@
 - [x] **Repositório:** `github.com/Burntroll/radar-digital`
 - [x] **Deploy Vercel** — Preview automático via CI
 - [x] **GitHub Actions** — Workflow quality-check.yml (npm ci → check → build)
-- [x] **vercel.json** — Redirects ES + fallback
+- [x] **Redirects ES** + fallback
 
 ### Design & UI
 - [x] **Tema Dark/Light** — CSS variables + toggle + localStorage
@@ -42,14 +43,17 @@
 - [x] **hreflang bidirecional** + x-default apontando para PT
 - [x] **5 idiomas configurados** — PT, ES (ativos) + EN, VI, ZH-CN (desativados)
 
-### 🔧 Arquitetura editorial
+### 🔧 Bloco 3 — Arquitetura editorial e taxonomia
 
 #### Registros centrais
 - [x] **`editorialHubs.ts`** — 17 hubs (3 active, 14 planned)
 - [x] **`editorialTopics.ts`** — 6 tópicos (todos active)
+- [x] **`editorialFormats.ts`** — 7 formatos (2 active, 5 planned)
 - [x] **`editorialAuthors.ts`** — 1 autor institucional (`radar-digital`, Organization)
+- [x] **Todos os registros** — `as const satisfies`, tipos derivados, sem lista manual de IDs
 
 #### Schema (collection `artigos`)
+- [x] **`contentType`** — Validado contra registro central (`editorialFormats.ts`), default `article`, aceita planned
 - [x] **`primaryHub`** — Opcional em drafts, obrigatório em publicados
 - [x] **`relatedHubs`** — Opcional, 1–3 IDs, ≠ primaryHub, exige primaryHub
 - [x] **`topics`** — Opcional em drafts, obrigatório em publicados, 1–5 IDs
@@ -58,6 +62,7 @@
 - [x] **`sources`** — Opcional (publicados e drafts), 1–20 itens, title/publisher/url obrigatórios, HTTP/HTTPS, sem duplicatas, sem efeito público
 - [x] **Validação `.superRefine()`** — Unifica todas as regras cross-field
 - [x] **Validação global `validatePublishedTranslationGroups()`** — Duplicatas e grupos órfãos
+- [x] **Validação runtime:** `npm run build` rejeita dados inválidos com mensagem clara
 
 #### SEO
 - [x] **JSON-LD Article** — Autor como `Organization` (não mais `Person`), com `url`
@@ -77,13 +82,27 @@
 - [x] **Múltiplas Contas** — Remoção de "80%" e "quase metade" (pesquisa informal não verificável). Substituição por redação qualitativa.
 
 ### Documentação
-- [x] **`docs/CONTENT_MODEL.md`** — Modelo editorial completo com contratos de hubs, tópicos, `primaryHub`, `relatedHubs`, `topics`, `translationKey`, `authorId`, `sources`
-- [x] **Validação do commit `b8a789a`** — Correção de tipagem TypeScript na resolução de `authorType`
+- [x] **`docs/CONTENT_MODEL.md`** — Modelo editorial completo (hubs, tópicos, formatos, schemas, validação)
+- [x] **`docs/DECISIONS.md`** — Decisões arquiteturais documentadas
+- [x] **`ROADMAP.md`** — Status do Bloco 3 detalhado
 
-## 🟡 Pendências imediatas
+### Pendências conhecidas e formalmente adiadas (comportamento não público)
+- [x] **`relatedHubs` sem distribuição** — Metadata preparatória, 0 publicações usando
+- [x] **Formatos `planned` sem efeito público** — Vocabulário aprovado, sem rota/página/HTML
+- [x] **`sources` sem exibição pública** — Metadata interna, sem `citation` no JSON-LD
+- [x] **Nenhuma distribuição por hub/forma/tópico** — Campos armazenados, não consumidos para listagens
 
-### Conteúdo & Rotas
+## 🟡 Pendências imediatas (Bloco 3)
+
+### Pendências do modelo editorial
+- [ ] **Distribuição por `primaryHub`** — Rotas, listagens, breadcrumbs ainda usam `categoria`
+- [ ] **`relatedHubs` sem uso** — Nenhuma publicação utiliza o campo
+- [ ] **Revisor (`reviewerId`)** — Não implementado, sem adiamento documentado
+- [ ] **Disclosure editorial/comercial** — Não implementado, sem adiamento documentado
+- [ ] **Formatos ativos sem efeito público** — `guide` e `article` não diferenciam rota, template ou listagem
 - [ ] **Migração dos drafts (17)** — Preencher metadados editoriais
+
+### Conteúdo & Rotas (geral)
 - [ ] **Nova rota canônica** `/publicacoes/<slug>/` com redirect
 - [ ] **Páginas públicas de hubs** — Templates para hubs ativos
 - [ ] **Conectar hubs ao navbar**
@@ -91,7 +110,6 @@
 - [ ] **Breadcrumbs baseados em `primaryHub`**
 - [ ] **Remover `slugEs`** — Após migração total para `translationKey`
 - [ ] **Publicar mais artigos** — 14 stubs restantes
-- [ ] **Autores pessoais** — Registro, byline, página de autor
 
 ### Setup técnico
 - [ ] **Páginas legais** — Privacidade, Termos, Contato
@@ -124,7 +142,8 @@
 | Hospedagem | Vercel | Preview ativo |
 | Idiomas ativos | PT (raiz) + ES (`/es/`) | ✅ |
 | Idiomas futuros | EN, VI, ZH-CN | Desativados (schema pronto) |
-| Quality gate | `astro check` + `astro build` | ✅ |
+| Quality gate | `npm run build` valida dados da collection; `npm run check` valida TypeScript | ✅ |
+| `contentType` | Nome técnico preservado por compatibilidade; vocabulário centralizado em `editorialFormats.ts` | ✅ |
 | `primaryHub` | Obrigatório p/ publicados, opcional em drafts | ✅ |
 | `relatedHubs` | Opcional, 1–3 IDs, validado runtime | ✅ |
 | `topics` | Obrigatório p/ publicados, validado runtime | ✅ |
@@ -134,7 +153,8 @@
 | `sources` notes | Metadata interna, sem exibição pública, sem `citation` JSON-LD | ✅ |
 | Autores futuros | Registro central suporta Person | Estrutura pronta |
 | Rotas de hubs | Planas (não hierárquicas) | Aprovado, não implementado |
+| Publicações vs comerciais | `artigos` como collection central editorial; Bônus, Ferramentas, Radar Market como collections separadas | ✅ |
 
 ---
 
-> **Próxima task recomendada:** Migrar drafts (17) com metadados editoriais ou implementar páginas de hubs.
+> **Próximo ponto de decisão:** Definir o menor piloto técnico de distribuição por `primaryHub` em PT/ES, sem migrar os drafts e sem antecipar navbar, novas rotas públicas, sitemap ou páginas de hubs. A decisão seguinte deverá determinar se o piloto começa por uma camada interna de seleção/consulta, uma listagem já existente ou uma página controlada prevista no contrato de rotas.

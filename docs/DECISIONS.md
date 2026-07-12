@@ -1,0 +1,72 @@
+# Decisões Arquiteturais — Radar Digital
+
+> **Propósito:** Registrar decisões arquiteturais que já estão comprovadas no código, para que outra pessoa ou IA entenda o *porquê* sem depender de histórico de conversas.
+> **Última revisão:** 12/07/2026 (checkpoint do Bloco 3)
+
+## Formato: preservação do nome técnico `contentType`
+
+**Decisão:** O campo técnico na collection `artigos` continua chamado `contentType`. O conceito editorial é "formato", mas o nome do campo não foi renomeado para `format` por compatibilidade com o schema existente e os conteúdos já publicados.
+
+**Implementação:** `src/content/config.ts` + `src/config/editorialFormats.ts`
+**Status:** ✅ Implementado e documentado
+
+## Formatos: `article` e `guide` ativos, demais planejados
+
+**Decisão:** Dos 7 formatos registrados no vocabulário, apenas `article` e `guide` recebem status `active`. Os demais (`news`, `analysis`, `interview`, `case-study`, `review`) são `planned` — pertencem ao vocabulário aprovado mas não possuem publicações, rotas, páginas ou qualquer efeito público.
+
+**Regra:** O status `planned` não bloqueia a validação do schema. Os 7 IDs são aceitos pelo `contentType`.
+
+**Implementação:** `src/config/editorialFormats.ts`
+**Status:** ✅ Implementado e documentado
+
+## Fontes (`sources`): opcional e sem efeito público
+
+**Decisão:** `sources` é um campo de metadata editorial. É opcional tanto para drafts quanto para publicados. Não possui exibição pública, não gera bloco de referências, não adiciona `citation` ao JSON-LD. É um contrato de governança, não um componente de front-end.
+
+**Diferimento explícito:** Exibição pública, `citation` no JSON-LD, paridade automática PT/ES e verificação de cobertura de afirmações ficam para etapa futura.
+
+**Implementação:** `src/content/config.ts` (schema) + conteúdos
+**Status:** ✅ Implementado e documentado
+
+## `primaryHub` e `relatedHubs`: metadata preparatória
+
+**Decisão:** `primaryHub` e `relatedHubs` são armazenados e validados, mas não produzem distribuição pública. Nenhuma listagem, rota, breadcrumb ou filtro é derivado desses campos. Eles são metadata preparatória para futura distribuição editorial.
+
+**Diferimento explícito:** Rotas de hubs, listagens por hub, breadcrumbs baseados em `primaryHub`, navbar dinâmica e sitemap por hub ficam para etapa futura.
+
+**Implementação:** `src/content/config.ts` (schema) + conteúdos
+**Status:** ✅ Schema implementado e validado; distribuição não iniciada
+
+## Separação: publicações editoriais e collections comerciais
+
+**Decisão:** A collection `artigos` é a collection central de publicações editoriais (artigos e guias). Bônus, Ferramentas, Parceiros e Radar Market permanecem como collections separadas — não são unificadas em uma única collection de "conteúdo". Essa separação é intencional e reflete a diferença de natureza editorial vs. comercial/promocional.
+
+**Não é exceção temporária** — é uma decisão arquitetural. Cada collection tem seu próprio schema, validação e template de página.
+
+**Implementação:** `src/content/config.ts`
+**Status:** ✅ Implementado e documentado
+
+## Validação: `npm run build` como gate de frontmatter
+
+**Decisão:** A validação dos dados da Content Collection (Zod schema) é materializada durante o `npm run build`. `npm run check` (`astro check`) valida TypeScript e Astro types, mas **não** valida frontmatter de `.md` em runtime. Portanto, testes negativos de schema devem usar `npm run build`.
+
+**Consequência conhecida:** Arquivos excluídos da descoberta da collection (prefixo `_`, `draft: true` não carregado por `getCollection()`) não são validados pelo build. Essa limitação é aceita e documentada.
+
+**Implementação:** Comportamento do Astro 4 (`astro:content` → `getEntryDataAndImages()`)
+**Status:** ✅ Documentado
+
+## Autoria: `Organization` como tipo inicial
+
+**Decisão:** O registro `editorialAuthors.ts` suporta `organization` e `person`. Nesta etapa, apenas `radar-digital` (Organization) está registrado. O JSON-LD gera o autor como `Organization`. Byline individual, página de autor e autoria pessoal ficam para etapa futura.
+
+**Implementação:** `src/config/editorialAuthors.ts` + JSON-LD Article
+**Status:** ✅ Implementado; autoria pessoal pendente
+
+## Traduções: `translationKey` como mecanismo de associação
+
+**Decisão:** Pares PT/ES são associados via `translationKey` (string kebab-case compartilhada). O helper `getPublishedTranslationGroup()` resolve os alternates hreflang a partir de entradas reais da collection — não mais de `slugEs`. `slugEs` permanece como campo legado.
+
+**Validação global:** `validatePublishedTranslationGroups()` impede duplicatas de locale por chave e grupos órfãos (apenas um locale publicado).
+
+**Implementação:** `src/utils/editorialTranslations.ts` + schema
+**Status:** ✅ Implementado e validado
