@@ -87,8 +87,8 @@
 |---|---|---|
 | 4.1 | Levantar requisitos editoriais para decisão sobre CMS | ✅ Concluído |
 || 4.2 | Comparar alternativas de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
-| 4.3 | Decidir e documentar (ADR) | ⏳ Pendente |
-| 4.4 | Prova de conceito da solução escolhida (se aplicável) | ⏳ Pendente |
+|| 4.3 | Criar prova de conceito (se necessária) | ⏳ Pendente |
+|| 4.4 | Registrar decisão formal em ADR | ⏳ Pendente |
 
 ### Componentes previstos
 

@@ -122,7 +122,7 @@ atender. Classificação:
 |----------|-------------------|-------------------|---------|--------|
 | Uma publicação = uma URL canônica | Nativo | Nativo | Nativo | Nativo |
 | Reproduzir modelo editorial (hubs, tópicos, etc.) | Nativo | Config (CPT + ACF + taxonomias) | Nativo | Nativo (schema + references) |
-| Associação real entre traduções | Nativo (`translationKey`) | Config (plugin: WPML/Polylang) | Nativo (localization nativa) | Nativo (base language + fields) |
+| Associação real entre traduções | Nativo (`translationKey`) | Config (plugin ou desenvolvimento para multilíngue) | Nativo (localization nativa) | Nativo (base language + fields) |
 | Exportação e portabilidade verificáveis | Nativo (Git + Markdown) | Config (export XML/WP-CLI) | Nativo (JSON + file export) | Nativo (export dataset CLI) |
 | Histórico e rollback | Nativo (Git) | Config (post revisions) | Nativo (versions + drafts) | Nativo (history + draft) |
 | Integração com Astro | Nativo (mesmo framework) | Config (REST API fetch) | Config (REST/GraphQL fetch) | Nativo (`@sanity/astro`) |
@@ -172,7 +172,7 @@ atender. Classificação:
 | Aspecto | Content Collections | WordPress Headless | Payload | Sanity |
 |---------|-------------------|-------------------|---------|--------|
 | PT-BR e ES | Implementado | Plugin (WPML/Polylang) | Localization nativa | Locale field + baseLanguage |
-| Associação entre versões | `translationKey` manual | WPML translation groups | Campo localizado no mesmo doc | Field-level localization |
+| Associação entre versões | `translationKey` manual | Plugin ou desenvolvimento (WPML, Polylang, etc.) | Campo localizado no mesmo doc | Field-level localization |
 | Revisão independente por locale | Por arquivo separado | Por post separado | Por locale no mesmo doc | Por locale no mesmo doc |
 | Idiomas futuros (EN, VI, ZH-CN) | Configurados (desativados) | Adicionar locale via plugin | Adicionar locale na config | Adicionar locale no schema |
 | Risco de alternates falsos | Validação global (build) | Plugin-dependente | N/C | N/C |
@@ -286,10 +286,14 @@ inviabiliza crescimento da equipe editorial fora do perfil técnico.
 ✅ Plugins para multilíngue (WPML, Polylang), ✅ REST API.
 
 **Principais lacunas:** ❌ Modelo editorial (hubs, tópicos, sources) exigiria
-CPTs + ACF + taxonomias customizadas, ❌ Multilíngue require plugin pago
-(WPML ~$79-399/ano), ❌ `translationKey` precisaria de campo customizado,
-❌ Sem validação condicional como `.superRefine()` (precisa de PHP custom),
-❌ REST API retorna mais dados que necessário (overfetch).
+CPTs + ACF + taxonomias customizadas, ❌ WordPress não oferece nativamente
+o fluxo completo de associação entre publicações traduzidas necessário para
+o modelo do Radar Digital — normalmente será necessário plugin, Multisite
+ou desenvolvimento adicional. Existem opções gratuitas e pagas. A
+preservação de `translationKey`, slugs, hreflang e revisão independente
+PT/ES precisaria de configuração e possivelmente prova prática,
+❌ `translationKey` precisaria de campo customizado, ❌ REST API retorna
+mais dados que necessário (overfetch).
 
 **Desenvolvimento adicional necessário:** Migrar schema editorial para
 CPTs + ACF fields, configurar REST API endpoints, construir Astro data
@@ -318,10 +322,11 @@ modelo atual, ✅ Access control granular nativo, ✅ Localization nativa
 ✅ Upload + Folders, ✅ REST + GraphQL APIs, ✅ código aberto (MIT).
 
 **Principais lacunas:** ❌ Precisa de servidor Node.js + MongoDB, ❌ Sem
-Astro integration oficial (requer fetch HTTP), ❌ Pricing page 404 —
-custos cloud não confirmados, ❌ `Publishing Workflows` é Enterprise
-(custo não divulgado), ❌ Adquirido pela Figma em 2025 — roadmap futuro
-incerto (Figma pode redirecionar o produto).
+adaptador Astro oficial (requer fetch HTTP via REST ou GraphQL), ❌ Payload
+Cloud (serviço gerenciado) — preço não confirmado (página 404),
+❌ `Publishing Workflows` é Enterprise (custo não divulgado), ❌ Payload
+foi adquirido pela Figma (anúncio 17/06/2025) — roadmap futuro do produto
+independente é incerto.
 
 **Desenvolvimento adicional necessário:** Setup de Payload (Next.js),
 migração do schema editorial para Payload Collections, configurar
@@ -347,10 +352,11 @@ Presentation (preview visual por link), ✅ Content Lake (tempo real),
 ✅ GROQ query language, ✅ Dataset export/import CLI, ✅ Free plan
 robusto (10K docs, 20 seats), ✅ AI features (Content Agent, Canvas).
 
-**Principais lacunas:** ❌ Custo recorrente (Growth $15/seat/mês = $75/mês
-no cenário B), ❌ Roles limitados no Free (2) e Growth (5), ❌ Custom roles
-só no Enterprise, ❌ Dados não versionados no Git (vivem no Content Lake),
-❌ GROQ é proprietário (embora documentado).
+**Principais lacunas:** ❌ Custo recorrente no Growth ($15/seat/mês,
+5 seats = $75/mês para equipe de 5 pessoas — valores diferentes para
+equipes menores), ❌ Roles limitados no Free (2) e Growth (5), ❌ Custom
+roles só no Enterprise, ❌ Dados não versionados no Git (vivem no Content
+Lake), ❌ GROQ é proprietário (embora documentado).
 
 **Desenvolvimento adicional necessário:** Schema migration do Zod para
 Sanity schema, GROQ queries para cada página, webhook config para rebuild
@@ -394,7 +400,7 @@ proprietário, embora documentado.
 | Custo mínimo | **$0** | ~$0-10/mês | ~$5-10/mês (server) | **$0** (Free) |
 | Editor não técnico pode usar? | ❌ | ✅ | ✅ | ✅ |
 | Validação editorial funciona? | ✅ Já implementado | ⚠️ Precisa configurar | ⚠️ Precisa configurar | ⚠️ Precisa configurar |
-| PT/ES funciona? | ✅ | ⚠️ Plugin pago | ✅ Localization nativa | ✅ Locale field |
+|| PT/ES funciona? | ✅ | ⚠️ Requer plugin ou desenvolvimento (gratuito ou pago) | ✅ Localization nativa | ✅ Locale field |
 | Preview visual? | ❌ (build local) | ✅ admin preview | ✅ Live Preview | ✅ Visual Editing |
 | Manutenção necessária? | **Mínima** | Moderada (WP updates) | Moderada (self) ou Cloud | **Mínima** (SaaS) |
 
@@ -421,7 +427,8 @@ e custo sem benefício imediato para uma operação individual.
 para editores não técnicos. WordPress, Payload e Sanity passam a fazer
 mais sentido. Sanity oferece a integração Astro mais direta e SaaS
 gerenciado. WordPress tem o ecossistema mais maduro para permissões e
-agendamento, mas exige plugin pago para multilíngue. Payload tem a
+agendamento, mas exige configuração adicional para multilíngue (plugin,
+Multisite ou desenvolvimento). Payload tem a
 vantagem do schema TypeScript, mas a aquisição pela Figma gera incerteza.
 
 ---
@@ -432,11 +439,11 @@ vantagem do schema TypeScript, mas a aquisição pela Figma gera incerteza.
 |-----------|----------------------|----------|
 | **Payload Cloud pricing** não confirmado (pricing page 404) | Payload | Documentação oficial não acessível |
 | **Payload + Figma**: roadmap futuro desconhecido pós-aquisição | Payload | Risco estratégico |
-| **WordPress headless + Astro**: sem integração oficial | WordPress | Requer desenvolvimento manual |
-| **WPML** ($79-399/ano): custo recorrente para multilíngue | WordPress | Custo adicional confirmado na fonte oficial |
-| **Sanity Growth**: $15/seat/mês (5 seats = $75/mês) pode escalar com equipe | Sanity | Custo mensal cresce linearmente com número de editores |
+| **WordPress headless + Astro**: a documentação oficial do Astro possui guia para WordPress Headless via REST API, mas isso não significa que o modelo editorial do Radar Digital será reproduzido automaticamente. Campos personalizados, traduções, preview, webhooks e validações exigem desenho e configuração. | WordPress | Requer desenvolvimento |
+| **WordPress multilíngue**: o WordPress não oferece nativamente o fluxo completo de associação entre publicações traduzidas necessário para o modelo do Radar Digital. Será necessário plugin (gratuito ou pago), Multisite ou desenvolvimento adicional. O custo e a portabilidade dependem da solução adotada. WPML (pago, ~$79-399/ano) é uma opção, mas existem alternativas gratuitas. | WordPress | Custo e configuração adicionais |
+| **Sanity Growth**: $15/seat/mês (exemplo: 5 seats = $75/mês). Equipes de 2-5 pessoas podem gerar valores diferentes. Papéis, permissões, quotas e recursos adicionais podem determinar o plano e o custo final. | Sanity | Custo recorrente |
 | **GROQ**: proprietário, embora documentado | Sanity | Risco de lock-in na query language |
-| **Validação condicional** (`.superRefine()`): WordPress e Payload não têm equivalente declarativo | WordPress, Payload | Requer desenvolvimento customizado |
+| **Validação condicional** (`.superRefine()`): Payload permite funções customizadas de validação (validate hooks, validação no Admin Panel e backend), mas não é a mesma API do Zod. Reproduzir as regras atuais do Radar Digital exigiria implementação e teste. WordPress também requer desenvolvimento customizado (PHP filters). | WordPress, Payload | Requer desenvolvimento customizado |
 | **MongoDB**: custo e operação (Payload self-hosted) | Payload | Dependência de infraestrutura externa |
 | **Sanity Free**: limite de 10K documentos | Sanity | Pode ser suficiente no lançamento, mas exige upgrade ao crescer |
 | **Preview deployment**: Vercel + webhook de rebuild não testado com CMS externo | WordPress, Payload, Sanity | Precisa de prova de conceito |
@@ -463,25 +470,35 @@ Para a task 4.3, qualquer prova de conceito deveria verificar:
 
 ## 10. Síntese Sem Decisão
 
-### Opções que atendem aos critérios eliminatórios
+### Opções com contratos majoritariamente atendidos
 
-- **Content Collections**: atende 10 de 11 critérios. Não atende "caminho
-  para usuários não técnicos". Este é o único bloqueio eliminatório, e ele
-  só se aplica no cenário B (crescimento).
-- **Sanity**: atende todos os critérios eliminatórios, com a ressalva de
-  que `@sanity/astro` precisa ser testado para o caso de uso específico.
+- **Content Collections**: contratos atendidos **nativamente** no modelo
+  editorial, validação, tradução, portabilidade, histórico e CI/CD. Não
+  atende o critério "caminho para usuários não técnicos" — bloqueio que
+  só se manifesta no cenário B (crescimento).
+- **Sanity**: contratos atendidos **nativamente** ou com **configuração**
+  mínima na maioria dos eixos, com destaque para integração Astro, Visual
+  Editing e SaaS gerenciado. A interface `@sanity/astro` precisaria de
+  prova prática para confirmar a reprodução exata do modelo editorial.
 
 ### Opções que dependem de trabalho adicional
 
-- **WordPress Headless**: atende os critérios com configuração adicional
-  significativa (CPTs, ACF, plugin multilíngue pago, REST API integration).
-- **Payload**: atende a maioria dos critérios, mas pricing cloud não
-  confirmado e aquisição pela Figma geram incerteza.
+- **WordPress Headless**: contratos atendidos, mas com **configuração**
+  significativa (CPTs, ACF ou campos personalizados, plugin ou
+  desenvolvimento para multilíngue, REST API integration). A integração
+  Astro–WordPress via REST API é documentada oficialmente, mas o modelo
+  editorial do Radar Digital não é reproduzido automaticamente.
+- **Payload**: contratos majoritariamente atendidos **nativamente** ou com
+  **configuração**. Validações condicionais são possíveis via funções
+  customizadas, hooks e validate hooks — não são equivalentes diretos
+  ao `.superRefine()` do Zod, mas cobrem funcionalmente o mesmo domínio.
+  O Payload self-hosted (MIT) tem custo de software zero; o serviço
+  gerenciado Payload Cloud tem preço não confirmado (página 404).
 
 ### Opções com informações insuficientes
 
-- **Payload Cloud**: sem pricing público confirmado na data da análise.
-  A página de pricing retorna 404.
+- **Payload Cloud (serviço gerenciado)**: sem pricing público confirmado
+  na data da análise. A página de pricing retorna 404.
 
 ### Principais trade-offs
 
@@ -502,7 +519,9 @@ Para a task 4.3, qualquer prova de conceito deveria verificar:
    usa PHP + ACF. Sanity usa schema JS/TS.
 
 5. **Integração Astro**: Sanity tem integração oficial (`@sanity/astro`).
-   WordPress e Payload exigem fetch HTTP manual (REST/GraphQL).
+   WordPress possui guia oficial de integração headless na documentação do
+   Astro (via REST API), mas isso não reproduz automaticamente o modelo
+   editorial. Payload requer fetch HTTP manual (REST/GraphQL).
 
 ### Incertezas que impedem uma decisão formal
 
@@ -524,14 +543,22 @@ Para a task 4.3, qualquer prova de conceito deveria verificar:
 | WordPress | REST API Handbook | WordPress.org | https://developer.wordpress.org/rest-api/ | 13/07/2026 | REST API endpoints, autenticação |
 | WordPress | REST API Reference | WordPress.org | https://developer.wordpress.org/rest-api/reference/ | 13/07/2026 | Endpoints: posts, pages, taxonomias, media, users |
 | WordPress | WordPress Features | WordPress.org | https://wordpress.org/about/features/ | 13/07/2026 | User roles, media, comments, publishing tools |
-| WordPress | Multilingual WordPress | WordPress.org | https://developer.wordpress.org/advanced-administration/wordpress/multilingual/ | 13/07/2026 | Abordagens de multilinguismo, plugins |,
-| WordPress | WPML Pricing | OnTheGoSystems | https://wpml.org/pricing/ | 13/07/2026 | Preços WPML ($79-399/ano) — não visitado, preço referencial |
+| WordPress | Multilingual WordPress | WordPress.org | https://developer.wordpress.org/advanced-administration/wordpress/multilingual/ | 13/07/2026 | Abordagens de multilinguismo, plugins |
+| WordPress | Plugin Directory | WordPress.org | https://wordpress.org/plugins/ | 13/07/2026 | Diretório oficial de plugins (inclui opções gratuitas de multilíngue) |
+| Astro | WordPress Headless Guide | Astro | https://docs.astro.build/en/guides/wordpress/ | 13/07/2026 | Guia oficial de integração WordPress headless com Astro |
 | Payload | What is Payload | Payload CMS | https://payloadcms.com/docs/getting-started/what-is-payload | 13/07/2026 | Conceitos, admin UI, REST/GraphQL, TypeScript schema |
-| Payload | Pricing page | Payload CMS | https://payloadcms.com/pricing | 13/07/2026 | **Página retorna 404** — pricing não confirmado |
+| Payload | Validation | Payload CMS | https://payloadcms.com/docs/fields/validation | 13/07/2026 | Funções customizadas de validação, validate hooks |
+| Payload | Hooks | Payload CMS | https://payloadcms.com/docs/hooks/overview | 13/07/2026 | Hooks no ciclo de vida dos documentos |
+| Payload | Live Preview | Payload CMS | https://payloadcms.com/docs/features/live-preview | 13/07/2026 | Preview visual em tempo real |
+| Payload | Upload & Storage | Payload CMS | https://payloadcms.com/docs/upload/overview | 13/07/2026 | Upload, storage local/S3, CDN |
+| Payload | Versions & Drafts | Payload CMS | https://payloadcms.com/docs/features/versions | 13/07/2026 | Versionamento, drafts, autosave |
+| Payload | Self-hosting | Payload CMS | https://payloadcms.com/docs/production/deployment | 13/07/2026 | Deploy self-hosted, requisitos de infraestrutura |
 | Payload | GitHub | Payload CMS | https://github.com/payloadcms/payload | 13/07/2026 | Código-fonte, 43.5k stars, MIT license |
+| Payload | Figma Announcement | Figma | https://www.figma.com/blog/payload-is-joining-figma/ | 13/07/2026 | Anúncio de 17/06/2025 — Payload entra na Figma |
 | Sanity | Docs Home | Sanity | https://www.sanity.io/docs | 13/07/2026 | Documentação geral, Content Lake, Studio, GROQ |
 | Sanity | Integrate with Astro | Sanity | https://www.sanity.io/docs/astro | 13/07/2026 | Integração oficial `@sanity/astro`, Visual Editing |
 | Sanity | Pricing | Sanity | https://www.sanity.io/pricing | 13/07/2026 | Free ($0), Growth ($15/seat/mês), Enterprise (custom) |
+| Sanity | Visual Editing | Sanity | https://www.sanity.io/docs/visual-editing | 13/07/2026 | Presentation Tool, preview visual |
 | Radar Digital | CMS_REQUIREMENTS.md | Radar Digital | `docs/CMS_REQUIREMENTS.md` | 13/07/2026 | Requisitos editoriais, respostas estratégicas |
 | Radar Digital | CONTENT_MODEL.md | Radar Digital | `docs/CONTENT_MODEL.md` | 13/07/2026 | Modelo editorial completo |
 | Radar Digital | DECISIONS.md | Radar Digital | `docs/DECISIONS.md` | 13/07/2026 | Decisões arquiteturais |
