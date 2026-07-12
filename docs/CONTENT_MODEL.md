@@ -4,7 +4,7 @@
 >
 > **Fonte de verdade:** Plano de Ação 2.0 (arquitetura conceitual) + implementação real no repositório.
 >
-> **Última revisão:** 12/07/2026 (pós-commit `primaryHub` obrigatório)
+> **Última revisão:** 12/07/2026 (pós-registro central de formatos)
 
 ## 1. Distinção entre hubs, tópicos, formatos e Recursos
 
@@ -14,15 +14,16 @@ O modelo editorial tem quatro dimensões distintas que não devem ser confundida
 |---|---|---|
 | **Hub** | Destino editorial amplo. Gera página pública. | Marketing Digital, IA, Monetização |
 | **Tópico** | Assunto específico e controlado. Não gera página pública automaticamente. | `prompts`, `email-marketing`, `social-media` |
-| **Formato** | Tipo editorial da publicação. | `article`, `guide`, `news`, `case`, `interview`, `review` |
+|| **Formato** | Tipo editorial da publicação. Vocabulário centralizado em `editorialFormats.ts`. | `article`, `guide`, `news`, `analysis`, `interview`, `case-study`, `review` |
 | **Recurso** | Área utilitária ou comercial separada dos hubs. | Ferramentas, Bônus |
 
 **Regras:**
 - Hubs são registrados em `src/config/editorialHubs.ts`.
 - Tópicos são registrados em `src/config/editorialTopics.ts`.
-- Formatos são definidos no schema da collection (`contentType`).
+- Formatos são registrados em `src/config/editorialFormats.ts`. O campo técnico na collection continua sendo `contentType` (preservado por compatibilidade).
 - Recursos (Ferramentas, Bônus, Radar Market, Institucional) ficam fora do registro de hubs.
 - Guias, Cases, Entrevistas, Reviews, Notícias e Artigos são **formatos**, não hubs.
+- `guideType` é uma classificação subordinada ao formato `guide`, não um formato editorial separado.
 
 ## 2. Seções da arquitetura
 
@@ -134,7 +135,51 @@ interface EditorialHub {
 - `guideType` (checklist, tutorial, etc.) permanece separado dos tópicos.
 - **O registro está conectado ao schema, validado em runtime durante o build.**
 
-## 5. Modelo atual da collection editorial
+## 5. Registro central de formatos editoriais
+
+**Arquivo:** `src/config/editorialFormats.ts`
+
+O conceito editorial é chamado de **formato**. O campo técnico na collection continua sendo `contentType` — o nome é preservado por compatibilidade.
+
+**Estrutura:**
+
+```typescript
+type EditorialFormatDefinition = {
+  id: string;
+  labelPt: string;
+  labelEs: string;
+  status: EditorialFormatStatus; // 'active' | 'planned'
+};
+```
+
+**IDs registrados:**
+
+| Ordem | ID | Label PT | Label ES | Status |
+|---|---|---|---|---|
+| 1 | `article` | Artigo | Artículo | `active` |
+| 2 | `guide` | Guia | Guía | `active` |
+| 3 | `news` | Notícia | Noticia | `planned` |
+| 4 | `analysis` | Análise | Análisis | `planned` |
+| 5 | `interview` | Entrevista | Entrevista | `planned` |
+| 6 | `case-study` | Estudo de caso | Caso de estudio | `planned` |
+| 7 | `review` | Review | Reseña | `planned` |
+
+**Regras:**
+
+- `active` indica que o formato já é usado no acervo atual (`article`, `guide`).
+- `planned` indica que o formato pertence ao vocabulário aprovado, mas ainda não possui publicações classificadas.
+- **`planned` não gera** rota pública, página indexável, navbar, sitemap, breadcrumbs, listagem, HTML ou JSON-LD.
+- Apenas `article` e `guide` são usados atualmente no acervo.
+- `guideType` continua sendo uma classificação subordinada a guias, não um formato editorial separado.
+- O status `planned` **não bloqueia** a validação do schema — os 7 IDs são aceitos pelo `contentType`.
+- **O registro está conectado ao schema, validado em runtime durante o build (`npm run build`).**
+- **`npm run check`** (que executa `astro check`) **não valida os dados das Content Collections** — apenas o TypeScript/Astro types. Testes negativos de frontmatter devem usar `npm run build`.
+
+**Tipos derivados:** `EditorialFormat`, `EditorialFormatId` e `EditorialFormatStatus` são derivados diretamente do array `editorialFormats`, não declarados manualmente.
+
+**Diferenciação pública e de schema por formato** permanece para uma etapa futura. Formatos ainda não afetam: rotas, navbar, sitemap, breadcrumbs, listagens, HTML, JSON-LD.
+
+## 6. Modelo atual da collection editorial
 
 **Arquivo:** `src/content/config.ts`
 
@@ -157,7 +202,9 @@ const artigos = defineCollection({
     locale: z.enum(['pt-BR', 'es']).default('pt-BR'),
     slugEs: z.string().optional(),
     primaryHub: z.custom<EditorialHubId>(...).optional(),
-    contentType: z.enum(['article', 'guide']).default('article'),
+    contentType: z.custom<EditorialFormatId>(isValidFormatId, {
+      message: 'contentType must match a registered editorial format ID',
+    }).default('article'),
     guideType: z.enum([...]).optional(),
     guideTags: z.array(z.string()).default([]),
     relatedHubs: z.array(z.custom<EditorialHubId>(...)).optional(),
@@ -168,7 +215,7 @@ const artigos = defineCollection({
 });
 ```
 
-## 6. Regra atual de `primaryHub` e `relatedHubs`
+## 7. Regra atual de `primaryHub` e `relatedHubs`
 
 ### `primaryHub`
 
@@ -370,7 +417,7 @@ sources:
     note: "Resultados de pesquisa apresentados por faixas de retorno."
 ```
 
-## 7. Piloto concluído
+## 8. Piloto concluído
 
 `primaryHub` foi preenchido em **8 publicações** (4 pares PT/ES):
 
@@ -383,7 +430,7 @@ sources:
 
 Todos os 8 commits do piloto foram validados com CI verde e deploy na Vercel.
 
-## 8. Campos legados temporariamente preservados
+## 9. Campos legados temporariamente preservados
 
 Durante a transição, estes campos continuam existindo e sendo usados:
 
@@ -391,13 +438,13 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 |---|---|---|
 | `categoria` | Obrigatório. Usado em breadcrumbs e links. | Será derivado de `primaryHub` ou removido |
 | `subtema` | Obrigatório. Badge principal dos cards. | Pode ser substituído por `topics[0]` |
-| `contentType` | Inalterado (`article` / `guide`) | Permanecerá |
+|| `contentType` | Inalterado (`article` / `guide`). O campo técnico permanece `contentType`; o vocabulário é centralizado em `editorialFormats.ts`. | Permanecerá |
 | `guideType` | Subtipo de guia | Permanecerá |
 | `guideTags` | Filtros de Guias | Será substituído por `topics` |
 | `slugEs` | Link PT→ES (legado) | Substituído por `translationKey` |
 | `author` | Autor legado (string livre) | Substituído por `authorId` |
 
-## 9. Funcionalidades ainda não implementadas
+## 10. Funcionalidades ainda não implementadas
 
 - Remoção de `slugEs` (após migração total)
 - Nova rota canônica `/publicacoes/<slug>/`
@@ -408,8 +455,9 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 - Breadcrumbs baseados em `primaryHub`
 - Migração dos drafts (14 stubs)
 - Obrigatoriedade geral de metadados editoriais
+- Diferenciação pública e de schema por formato editorial
 
-## 10. Regras para futuras mudanças
+## 11. Regras para futuras mudanças
 
 - Hubs editoriais **não devem** ser duplicados como tópicos.
 - `guideType` **não deve** virar tópico (é formato/subtipo).
@@ -421,7 +469,7 @@ Durante a transição, estes campos continuam existindo e sendo usados:
 - Mudanças de rota devem ser acompanhadas de redirect 308.
 - Conteúdo sem tradução não deve gerar hreflang falso.
 
-## 11. Sequência prevista de evolução
+## 12. Sequência prevista de evolução
 
 1. Tornar `primaryHub` obrigatório para publicações publicadas ✅
 2. Implementar `relatedHubs` no schema ✅

@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
 import { editorialTopics, type EditorialTopicId } from '../config/editorialTopics';
 import { editorialAuthors, type EditorialAuthorId } from '../config/editorialAuthors';
+import { editorialFormats, type EditorialFormatId } from '../config/editorialFormats';
 
 const isValidHubId = (val: unknown): val is EditorialHubId =>
   typeof val === 'string' && editorialHubs.some((h) => h.id === val);
@@ -13,6 +14,10 @@ const isValidTopicId = (val: unknown): val is EditorialTopicId =>
 const isValidAuthorId = (val: unknown): val is EditorialAuthorId =>
   typeof val === 'string' &&
   editorialAuthors.some((author) => author.id === val);
+
+const isValidFormatId = (val: unknown): val is EditorialFormatId =>
+  typeof val === 'string' &&
+  editorialFormats.some((f) => f.id === val);
 
 // ─── Sources schema ────────────────────────────────────────────────────
 const editorialSourceSchema = z.object({
@@ -56,7 +61,9 @@ const artigos = defineCollection({
     primaryHub: z.custom<EditorialHubId>(isValidHubId, {
       message: 'primaryHub must match a registered editorial hub ID',
     }).optional(),
-    contentType: z.enum(['article', 'guide']).default('article'),
+    contentType: z.custom<EditorialFormatId>(isValidFormatId, {
+      message: 'contentType must match a registered editorial format ID',
+    }).default('article'),
     guideType: z.enum(['tutorial', 'checklist', 'guia', 'estrategia', 'comparacao', 'passo-a-passo']).optional(),
     guideTags: z.array(z.string()).default([]),
     relatedHubs: z.array(
