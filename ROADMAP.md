@@ -77,15 +77,16 @@
 
 ## Bloco 4 — Páginas e Navegação (🔄 INICIADO)
 
-> **Nota:** Task 4.1 (decisão sobre CMS) concluída com levantamento factual.
-> Aguardando respostas às perguntas estratégicas para avançar para 4.2.
+> **Nota:** Tasks 4.1 e 4.2 concluídas. Nenhuma plataforma foi escolhida.
+> A necessidade e o escopo da prova de conceito serão decididos após
+> revisão humana da comparação.
 
 ### Tasks
 
 | ID | Task | Status |
 |---|---|---|
 | 4.1 | Levantar requisitos editoriais para decisão sobre CMS | ✅ Concluído |
-| 4.2 | Comparar alternativas de CMS (após respostas às perguntas estratégicas) | ⏳ Pendente |
+|| 4.2 | Comparar alternativas de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
 | 4.3 | Decidir e documentar (ADR) | ⏳ Pendente |
 | 4.4 | Prova de conceito da solução escolhida (se aplicável) | ⏳ Pendente |
 
