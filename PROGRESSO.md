@@ -3,9 +3,9 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 12/07/2026 — autoria institucional concluída (sessão 16)
-> **Último commit:** `b8a789a` — `fix: TS comparison in authorType resolution`
-> **GitHub Actions:** 21 runs, 20 success ✅, 1 failure (corrigido)
+> **Última atualização:** 12/07/2026 — expansão de `sources` concluída (sessão 24)
+> **Último commit:** `12b059e` — `feat: expand sources metadata to published content`
+> **GitHub Actions:** 25 runs, 23 success ✅, 2 failures (corrigido)
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 
@@ -55,6 +55,7 @@
 - [x] **`topics`** — Opcional em drafts, obrigatório em publicados, 1–5 IDs
 - [x] **`translationKey`** — Opcional, lowercase kebab-case, 3–64 chars
 - [x] **`authorId`** — Opcional em drafts, obrigatório em publicados, validado contra registro central
+- [x] **`sources`** — Opcional (publicados e drafts), 1–20 itens, title/publisher/url obrigatórios, HTTP/HTTPS, sem duplicatas, sem efeito público
 - [x] **Validação `.superRefine()`** — Unifica todas as regras cross-field
 - [x] **Validação global `validatePublishedTranslationGroups()`** — Duplicatas e grupos órfãos
 
@@ -69,6 +70,15 @@
 - [x] **`topics`** — 8 publicações migradas (equivalência PT/ES)
 - [x] **`translationKey`** — 8 publicações migradas (4 chaves)
 - [x] **`authorId`** — 8 publicações migradas (`radar-digital`)
+- [x] **`sources`** — 8 publicações migradas (4 pares PT/ES)
+
+### Correções editoriais aplicadas
+- [x] **Email Marketing** — ROI corrigido para dados do State of Email 2025 (Litmus), open rate atualizado para 35,63% (Mailchimp), CTR para 2,62%, remoção de "4 bilhões" e "0,8s". Links inline para Litmus, Mailchimp, Apple.
+- [x] **Múltiplas Contas** — Remoção de "80%" e "quase metade" (pesquisa informal não verificável). Substituição por redação qualitativa.
+
+### Documentação
+- [x] **`docs/CONTENT_MODEL.md`** — Modelo editorial completo com contratos de hubs, tópicos, `primaryHub`, `relatedHubs`, `topics`, `translationKey`, `authorId`, `sources`
+- [x] **Validação do commit `b8a789a`** — Correção de tipagem TypeScript na resolução de `authorType`
 
 ## 🟡 Pendências imediatas
 
@@ -120,6 +130,8 @@
 | `topics` | Obrigatório p/ publicados, validado runtime | ✅ |
 | `translationKey` | Opcional, kebab-case, associado via helper global | ✅ |
 | `authorId` | Obrigatório p/ publicados, Organization no JSON-LD | ✅ |
+| `sources` | Opcional, 1–20 itens, title/publisher/url obrigatórios, sem efeito público | ✅ |
+| `sources` notes | Metadata interna, sem exibição pública, sem `citation` JSON-LD | ✅ |
 | Autores futuros | Registro central suporta Person | Estrutura pronta |
 | Rotas de hubs | Planas (não hierárquicas) | Aprovado, não implementado |
 
