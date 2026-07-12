@@ -4,7 +4,8 @@
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
 > **Última atualização:** 12/07/2026 — encerramento do Bloco 3 (arquitetura editorial)
-> **Último commit:** `7ad0ed9` — `docs: close editorial architecture block`
+> **Baseline técnico validado antes do checkpoint:** `88b1361`
+> **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
