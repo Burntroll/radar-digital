@@ -141,7 +141,7 @@
 **Motivos**
 
 - Aderência do sistema atual ao cenário de lançamento.
-- Menor custo e complexidade operacional (Vercel Hobby + GitHub Free = $0).
+- A continuidade com Content Collections não introduz novo custo específico de CMS no ambiente atual de pré-lançamento. GitHub Free e Vercel Hobby possuem preço-base gratuito no contexto atual, mas o plano Hobby da Vercel é restrito a uso pessoal e não comercial ([vercel.com/docs/pricing](https://vercel.com/docs/pricing), Fair Use Guidelines). O plano de hospedagem e os custos recorrentes deverão ser reavaliados antes do lançamento comercial público. Preços e condições podem mudar.
 - Modelo editorial e validações já implementados e validados.
 - PT-BR e ES já funcionando com hreflang, canonical e translationKey.
 - Histórico e rollback pelo Git.
@@ -213,3 +213,5 @@ As quatro alternativas foram comparadas em `docs/CMS_COMPARISON.md`. Nenhuma rec
 **Resultado**
 
 `MANTER CONTENT COLLECTIONS PARA O LANÇAMENTO — CMS EXTERNO ADIADO ATÉ GATILHOS OPERACIONAIS REAIS`
+
+> **Fontes sobre planos:** A referência ao plano Hobby da Vercel como restrito a uso pessoal e não comercial baseia-se na documentação oficial de planos da Vercel ([vercel.com/docs/pricing](https://vercel.com/docs/pricing), acessada em 13/07/2026) e nas Fair Use Guidelines. O GitHub Free é descrito na página oficial de preços do GitHub ([github.com/pricing](https://github.com/pricing), acessada em 13/07/2026).
