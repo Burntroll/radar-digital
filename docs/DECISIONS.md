@@ -110,3 +110,106 @@
 - Remoção do campo legado `categoria`
 
 **Status:** ✅ Bloco 3 concluído
+
+---
+
+## ADR — Estratégia de CMS para o lançamento
+
+**Status:** Aceita
+
+**Data da decisão:** 13/07/2026
+
+**Contexto**
+
+- O Bloco 3 estabilizou o modelo editorial (4 registros centrais, schema completo, validação runtime).
+- A task 4.1 documentou requisitos editoriais e 13 respostas estratégicas em `docs/CMS_REQUIREMENTS.md`.
+- A task 4.2 comparou quatro alternativas (Content Collections, WordPress Headless, Payload CMS, Sanity) em `docs/CMS_COMPARISON.md`.
+- A comparação foi factual e neutra — não declarou vencedor nem recomendou plataforma.
+- O cenário atual é de lançamento solo: uma pessoa operando o conteúdo, com apoio de Git e IA.
+- O ritmo inicial previsto é de três a cinco publicações semanais como referência, sem compromisso contratual.
+- Os principais benefícios de CMS externos (interface visual, permissões, revisão, agendamento, preview) estão ligados ao crescimento para uma equipe não técnica.
+- Não existe atualmente um bloqueio editorial que justifique migração.
+
+**Decisão**
+
+- **Astro Content Collections** permanece como fonte editorial para o lançamento e a operação inicial.
+- **Git** permanece como fonte de verdade para conteúdo, código, documentação e decisões durante esse período.
+- Não haverá integração ou migração para CMS externo no Bloco 4.
+- WordPress Headless, Payload CMS e Sanity continuam documentados como alternativas avaliadas, sem preferência futura predefinida.
+- Esta decisão será reavaliada por gatilhos operacionais, não por calendário arbitrário.
+
+**Motivos**
+
+- Aderência do sistema atual ao cenário de lançamento.
+- Menor custo e complexidade operacional (Vercel Hobby + GitHub Free = $0).
+- Modelo editorial e validações já implementados e validados.
+- PT-BR e ES já funcionando com hreflang, canonical e translationKey.
+- Histórico e rollback pelo Git.
+- CI (GitHub Actions) e deployment (Vercel) já estabilizados.
+- Ausência atual de equipe editorial não técnica.
+- Ausência de necessidade recorrente de revisão por papéis, agendamento ou preview externo no cenário atual.
+
+**Consequências positivas**
+
+- Nenhuma migração antecipada — zero risco de perda de dados, rotas ou SEO.
+- Continuidade operacional sem interrupção do fluxo editorial.
+- Preservação de todos os contratos editoriais e de SEO.
+- Ausência de novo hosting, banco de dados ou serviço editorial.
+- Foco nos próximos blocos do roadmap.
+- Decisão baseada em uso real, não em especulação.
+
+**Consequências e limitações aceitas**
+
+- Edição continua dependendo de Markdown e Git.
+- Não existe interface visual editorial.
+- Não existe fluxo formal de aprovação.
+- Não existem papéis e permissões editoriais.
+- Não existe agendamento editorial nativo.
+- Não existe biblioteca central de mídia.
+- Preview por link para editores não técnicos continua ausente.
+- Essas limitações são aceitáveis no cenário atual, mas não devem ser ignoradas quando a equipe crescer.
+
+**Gatilhos obrigatórios de reavaliação**
+
+A decisão deve ser reaberta quando um ou mais destes eventos ocorrerem:
+
+1. Entrada efetiva de autores ou editores não técnicos.
+2. Equipe editorial crescendo além da operação individual.
+3. Necessidade recorrente de separar administrador, editor, autor e revisor.
+4. Necessidade operacional de fluxo draft → revisão → aprovação → publicação.
+5. Agendamento tornando-se requisito frequente.
+6. Preview visual por link tornando-se necessário para terceiros.
+7. Markdown e Git causando atrasos, erros ou dependência técnica recorrente.
+8. Biblioteca, upload e gestão de mídia tornando-se gargalo.
+9. Ritmo editorial aproximando-se de publicação diária.
+10. Custo de manutenção do fluxo atual tornando-se maior do que o custo de adoção de CMS.
+
+**Estratégia para futura reavaliação**
+
+- A comparação de `docs/CMS_COMPARISON.md` deverá ser atualizada com preços, versões e capacidades vigentes.
+- Nenhuma plataforma futura está pré-selecionada.
+- Uma prova de conceito deverá testar somente as incertezas relevantes ao gatilho real.
+- Possíveis testes incluem: modelo editorial completo, validações condicionais, associação PT/ES, preview na Vercel, exportação, rollback e experiência de editor não técnico.
+- Nenhuma migração em massa poderá ocorrer antes de piloto aprovado.
+- Content Collections poderá coexistir temporariamente com uma solução candidata durante eventual transição.
+- Slugs, URLs, translationKey, fontes, hubs, tópicos e SEO deverão ser preservados.
+
+**Alternativas consideradas**
+
+- Continuar com Content Collections.
+- WordPress Headless.
+- Payload CMS.
+- Sanity.
+
+As quatro alternativas foram comparadas em `docs/CMS_COMPARISON.md`. Nenhuma recebeu preferência futura.
+
+**Prova de conceito**
+
+- Task 4.3 (prova de conceito): **não necessária neste ciclo**.
+- Motivo: nenhuma incerteza técnica impede a decisão de manter o sistema atual.
+- Status: não executada por decisão documentada, e não esquecida.
+- Poderá ser reaberta no futuro caso um gatilho operacional exija validação prática.
+
+**Resultado**
+
+`MANTER CONTENT COLLECTIONS PARA O LANÇAMENTO — CMS EXTERNO ADIADO ATÉ GATILHOS OPERACIONAIS REAIS`

@@ -75,11 +75,11 @@
 - **Revisor (`reviewerId`)** — Adiado ao Bloco 10. Não há fluxo real de revisão definido.
 - **Disclosure editorial/comercial** — Adiado ao Bloco 10. Política editorial/comercial não formalizada.
 
-## Bloco 4 — Páginas e Navegação (🔄 INICIADO)
+## Bloco 4 — Páginas e Navegação (✅ CONCLUÍDO)
 
-> **Nota:** Tasks 4.1 e 4.2 concluídas. Nenhuma plataforma foi escolhida.
-> A necessidade e o escopo da prova de conceito serão decididos após
-> revisão humana da comparação.
+> **Veredito:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
+> CMS externo adiado até gatilhos operacionais reais (documentados em docs/DECISIONS.md).
+> Nenhum CMS externo foi implementado. Nenhuma prova de conceito foi executada.
 
 ### Tasks
 
@@ -87,8 +87,8 @@
 |---|---|---|
 | 4.1 | Levantar requisitos editoriais para decisão sobre CMS | ✅ Concluído |
 || 4.2 | Comparar alternativas de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
-|| 4.3 | Criar prova de conceito (se necessária) | ⏳ Pendente |
-|| 4.4 | Registrar decisão formal em ADR | ⏳ Pendente |
+|| 4.3 | Criar prova de conceito (se necessária) | ⏭️ Não necessária neste ciclo |
+|| 4.4 | Registrar decisão formal em ADR | ✅ Concluído |
 
 ### Componentes previstos
 

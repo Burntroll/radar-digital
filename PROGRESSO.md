@@ -3,8 +3,8 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 12/07/2026 — encerramento do Bloco 3 (arquitetura editorial)
-> **Baseline técnico validado antes do checkpoint:** `88b1361`
+> **Última atualização:** 13/07/2026 — encerramento do Bloco 4 (decisão sobre CMS)
+> **Baseline técnico e documental usado na decisão:** `2a99c31`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
@@ -43,6 +43,34 @@
 - [x] **Route map** — `artigos`→`articulos`, `bonus`→`bonos`, etc.
 - [x] **hreflang bidirecional** + x-default apontando para PT
 - [x] **5 idiomas configurados** — PT, ES (ativos) + EN, VI, ZH-CN (desativados)
+
+### 🔧 Bloco 4 — Decisão sobre CMS (✅ CONCLUÍDO)
+
+#### Tasks
+
+| ID | Task | Status |
+|---|---|---|
+| 4.1 | Levantar necessidades editoriais para decisão sobre CMS | ✅ Concluído |
+| 4.2 | Comparar opções de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
+| 4.3 | Criar prova de conceito (se necessária) | ⏭️ Não necessária neste ciclo |
+| 4.4 | Registrar decisão formal em ADR | ✅ Concluído |
+
+#### Decisão
+
+- **Astro Content Collections** mantida como fonte editorial para o lançamento e operação inicial.
+- **Git** permanece como fonte de verdade para conteúdo, código, documentação e decisões.
+- Nenhum CMS externo (WordPress, Payload, Sanity) foi implementado.
+- Nenhuma prova de conceito foi executada.
+- Decisão registrada em `docs/DECISIONS.md` (ADR — Estratégia de CMS para o lançamento).
+- Reavaliação condicionada a gatilhos operacionais (equipe não técnica, fluxo de revisão, agendamento, etc.).
+
+#### Documentação produzida
+
+- [x] **`docs/CMS_REQUIREMENTS.md`** — Requisitos editoriais e 13 respostas estratégicas
+- [x] **`docs/CMS_COMPARISON.md`** — Comparação factual de 4 alternativas sem vencedor
+- [x] **`docs/DECISIONS.md`** — ADR com decisão, motivos, limitações e gatilhos de reavaliação
+
+---
 
 ### 🔧 Bloco 3 — Arquitetura editorial e taxonomia
 
@@ -164,4 +192,5 @@
 
 ---
 
-> **Próximo ponto de decisão:** Confirmar se o projeto entra agora no Bloco 4 — decisão sobre CMS — ou se existe uma dependência anterior do contrato de sitemap que precisa ser resolvida.
+> **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
+> O próximo bloco do roadmap (Bloco 5 — Infraestrutura e Lançamento) ainda não foi iniciado.
