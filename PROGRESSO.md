@@ -3,8 +3,8 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 13/07/2026 — Ferramentas e Bônus promovidos a anchors principais (Task 5.5)
-> **Último checkpoint remoto validado:** `1f478c5` — `docs: update progress with task 5.5 completion`
+> **Última atualização:** 13/07/2026 — menu mobile dedicado implementado (Task 5.7)
+> **Último checkpoint remoto validado:** `0a15a29` — `docs: close dedicated mobile navigation task`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
