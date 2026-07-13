@@ -57,6 +57,7 @@ function linkHref(item: NavLinkItem): string {
 }
 ---
 
+<div class="flex items-center gap-4 overflow-x-auto">
 {
   mainNavigation
     .filter((section) => section.eligible)
@@ -172,6 +173,8 @@ function linkHref(item: NavLinkItem): string {
       }
     })
 }
+
+</div>
 
 <!-- Locale Switcher -->
 <details class="nav-group relative">
