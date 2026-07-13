@@ -3,8 +3,8 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 13/07/2026 — encerramento do Bloco 4 (decisão sobre CMS)
-> **Baseline técnico e documental usado na decisão:** `2a99c31`
+> **Última atualização:** 13/07/2026 — reconciliação documental pós-Blocos 4 e 5
+> **Baseline técnico e documental atual:** `e0c1a9b` — `fix: correct locale dropdown overflow`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
@@ -69,6 +69,39 @@
 - [x] **`docs/CMS_REQUIREMENTS.md`** — Requisitos editoriais e 13 respostas estratégicas
 - [x] **`docs/CMS_COMPARISON.md`** — Comparação factual de 4 alternativas sem vencedor
 - [x] **`docs/DECISIONS.md`** — ADR com decisão, motivos, limitações e gatilhos de reavaliação
+
+---
+
+### 🔧 Bloco 5 — Navegação e mega menus (🔄 EM ANDAMENTO)
+
+#### Tasks
+
+| ID | Task | Status |
+|---|---|---|
+| 5.1 | Estrutura-base do navbar (Início, Setores, Operação, Recursos, Radar Market, idioma, tema) | ✅ Concluído |
+| 5.2 | Mega menu de Setores (apenas IA elegível; E-commerce, Crypto, iGaming fora da navegação) | ✅ Concluído |
+| 5.3 | Mega menu agrupado de Operação (apenas hubs elegíveis — Marketing Digital e Monetização) | ✅ Concluído |
+| 5.4 | Verticais (todos os hubs inelegíveis — ausente do navbar é comportamento aprovado) | ✅ Concluído sem implementação pública |
+| 5.5 | Menu de Recursos (disclosure já existe com Guias, Ferramentas, Bônus) | ◐ Parcialmente atendida |
+| 5.6 | Menu do Radar Market (anchor principal já existe; submenu pendente) | ◐ Parcialmente atendida |
+| 5.7 | Implementar menu mobile | ⏳ Pendente |
+| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
+
+#### Correção visual aplicada
+
+Commit `e0c1a9b` (`fix: correct locale dropdown overflow`) — seletor de idioma
+convertido de `<button>`+`<div>` para `<details>`+`<summary>`, eliminando
+scrollbar vertical de 8 px e garantindo que links do dropdown não recebam foco
+quando o disclosure está fechado. Publicado e validado no preview. Apenas
+`src/components/SiteNavigation.astro` alterado. Nenhum problema residual
+conhecido dentro do escopo específico da regressão.
+
+#### Pendências imediatas
+
+- Documentação reconciliada nesta task documental.
+- Tasks 5.5–5.8 exigem tratamento conforme os estados acima.
+- Próxima task técnica ainda não autorizada.
+- Plano de Ação 2.0 será atualizado posteriormente em task separada (versão 2.1).
 
 ---
 
@@ -193,4 +226,5 @@
 ---
 
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
-> O próximo bloco do roadmap (Bloco 5 — Infraestrutura e Lançamento) ainda não foi iniciado.
+> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.4 concluídas, 5.5 e 5.6 parcialmente atendidas, 5.7 e 5.8 pendentes.
+> **Checkpoint remoto atual:** `e0c1a9b` — publicado e validado (CI success, Vercel success).

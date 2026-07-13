@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.0. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 12/07/2026 — encerramento do Bloco 3
+> **Última atualização:** 13/07/2026 — reconciliação documental com estado atual do Bloco 5
 
 ## Bloco 1 — Setup e Estrutura
 
@@ -75,7 +75,7 @@
 - **Revisor (`reviewerId`)** — Adiado ao Bloco 10. Não há fluxo real de revisão definido.
 - **Disclosure editorial/comercial** — Adiado ao Bloco 10. Política editorial/comercial não formalizada.
 
-## Bloco 4 — Páginas e Navegação (✅ CONCLUÍDO)
+## Bloco 4 — Decisão sobre CMS (✅ CONCLUÍDO)
 
 > **Veredito:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
 > CMS externo adiado até gatilhos operacionais reais (documentados em docs/DECISIONS.md).
@@ -86,9 +86,9 @@
 | ID | Task | Status |
 |---|---|---|
 | 4.1 | Levantar requisitos editoriais para decisão sobre CMS | ✅ Concluído |
-|| 4.2 | Comparar alternativas de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
-|| 4.3 | Criar prova de conceito (se necessária) | ⏭️ Não necessária neste ciclo |
-|| 4.4 | Registrar decisão formal em ADR | ✅ Concluído |
+| 4.2 | Comparar alternativas de CMS (Content Collections, WordPress Headless, Payload, Sanity) | ✅ Concluído |
+| 4.3 | Criar prova de conceito (se necessária) | ⏭️ Não necessária neste ciclo |
+| 4.4 | Registrar decisão formal em ADR | ✅ Concluído |
 
 ### Componentes previstos
 
@@ -111,8 +111,15 @@
 > Adult, Renda Extra, Outras Verticais) possui filho público elegível — todos
 > continuam planned, sem rota, página ou conteúdo publicado. Verticais permanece
 > totalmente ausente do HTML. A task foi encerrada neste ciclo sem alteração de
-> código e poderá ser reavaliada quando houver filho elegível. Menu mobile e
-> acessibilidade pendentes.
+> código e poderá ser reavaliada quando houver filho elegível. Menu de Recursos
+> e Radar Market parcialmente atendidos — disclosures existem mas encerramento
+> formal pendente. Menu mobile e acessibilidade pendentes.
+>
+> **Correção visual aplicada (commit `e0c1a9b`):** seletor de idioma convertido
+> de `<button>`+`<div>` para `<details>`+`<summary>` — scrollbar vertical
+> eliminada, dropdown integralmente visível, links não focáveis quando o
+> disclosure está fechado. Publicado e validado no preview. Nenhum problema
+> residual conhecido dentro do escopo específico da regressão.
 >
 > Preview público: https://radar-digital-lemon.vercel.app/
 
@@ -124,23 +131,106 @@
 | 5.2 | Implementar mega menu de Setores | ✅ Concluído |
 | 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
 | 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
-| 5.5 | Menu de Recursos | ⏳ Pendente |
-| 5.6 | Menu do Radar Market | ⏳ Pendente |
+| 5.5 | Menu de Recursos | ◐ Parcialmente atendida |
+| 5.6 | Menu do Radar Market | ◐ Parcialmente atendida |
 | 5.7 | Implementar menu mobile | ⏳ Pendente |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
 ---
 
-## Bloco 6 — Infraestrutura e Lançamento
+## Bloco 6 — Templates de hubs
 
 | Componente | Status |
 |---|---|
-| Domínio próprio | 🔒 Aguardando |
-| SEO / Analytics | ⏳ Pendente |
-| Privacidade / Termos | ⏳ Pendente |
-| Newsletter | ⏳ Pendente |
-| Busca interna | ⏳ Pendente |
+| Templates de hubs ativos | ⏳ Pendente |
+| Páginas agregadoras de hubs | ⏳ Pendente |
 
 ---
 
-**Nota:** Prioridades dos blocos 4 e 5 não foram alteradas por este encerramento.
+## Bloco 7 — Nova home editorial
+
+| Componente | Status |
+|---|---|
+| Home editorial renovada | ⏳ Pendente |
+
+---
+
+## Bloco 8 — Arquivo geral e descoberta
+
+| Componente | Status |
+|---|---|
+| Página de arquivo, busca, categorias | ⏳ Pendente |
+
+---
+
+## Bloco 9 — Newsletter e formulários
+
+| Componente | Status |
+|---|---|
+| Formulário de inscrição, gestão de leads | ⏳ Pendente |
+
+---
+
+## Bloco 10 — Institucional, confiança e transparência
+
+| Componente | Status |
+|---|---|
+| Sobre, Contato, Política Editorial, Privacidade, Termos | ⏳ Pendente |
+| Revisor (reviewerId) — adiado do Bloco 3 | ⏳ Pendente |
+| Disclosure editorial/comercial — adiado do Bloco 3 | ⏳ Pendente |
+
+---
+
+## Bloco 11 — SEO editorial avançado
+
+| Componente | Status |
+|---|---|
+| Schema markup avançado, otimização on-page | ⏳ Pendente |
+
+---
+
+## Bloco 12 — Mídia, performance e acessibilidade
+
+| Componente | Status |
+|---|---|
+| Imagens otimizadas, performance Core Web Vitals, acessibilidade completa | ⏳ Pendente |
+
+---
+
+## Bloco 13 — Conteúdo real e monetização
+
+| Componente | Status |
+|---|---|
+| Publicação em massa, conteúdo editorial, monetização inicial | ⏳ Pendente |
+
+---
+
+## Bloco 14 — Preparação multilíngue
+
+| Componente | Status |
+|---|---|
+| EN, VI, ZH-CN (schemas prontos, desativados) | ⏳ Pendente |
+
+---
+
+## Bloco 15 — EN como idioma piloto
+
+| Componente | Status |
+|---|---|
+| Inglês como próximo idioma ativo | ⏳ Pendente |
+
+---
+
+## Bloco 16 — Pré-lançamento público
+
+| Componente | Status |
+|---|---|
+| Domínio próprio, Search Console, Analytics, auditoria final | ⏳ Pendente |
+
+---
+
+## Bloco 17 — Operação pós-lançamento
+
+| Componente | Status |
+|---|---|
+| Operação contínua, métricas, evolução | ⏳ Pendente |
