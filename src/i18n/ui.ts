@@ -325,6 +325,24 @@ export const ui = {
   'locale.switcher.label': { 'pt-BR': 'Idioma', 'es': 'Idioma' },
   'locale.unavailable':    { 'pt-BR': 'Em breve em', 'es': 'Próximamente en' },
 
+  // Mobile navigation
+  'nav.menu.label': {
+    'pt-BR': 'Navegação principal',
+    'es': 'Navegación principal',
+  },
+  'nav.menu.open': {
+    'pt-BR': 'Abrir menu',
+    'es': 'Abrir menú',
+  },
+  'nav.menu.close': {
+    'pt-BR': 'Fechar menu',
+    'es': 'Cerrar menú',
+  },
+  'nav.menu.language': {
+    'pt-BR': 'Idioma',
+    'es': 'Idioma',
+  },
+
   // Guias
   'guias.title':        { 'pt-BR': 'Guias práticos para operações digitais', 'es': 'Guías prácticas para operaciones digitales' },
   'guias.subtitle':     {
