@@ -22,16 +22,27 @@ export interface NavLinkItem {
   routeKey?: string;      // chave no routeMap (opcional — home usa '' )
   /** slug adicional (ex: slug do artigo) */
   slug?: string;
-  /** chave i18n para descrição no mega menu (apenas Setores/IA) */
+  /** chave i18n para descrição no mega menu */
   descKey?: string;
+}
+
+/** Subgrupo visual dentro de um NavGroupItem com presentation='grouped' */
+export interface NavGroupedSubGroup {
+  labelKey: string;       // chave em ui.ts (título do grupo visual)
+  children: NavLinkItem[];
 }
 
 export interface NavGroupItem {
   type: 'group';
   labelKey: string;       // chave em ui.ts (rótulo do grupo)
   children: (NavLinkItem | NavGroupItem)[];
-  /** 'mega' = painel expandido com título e descrição (apenas Setores) */
-  presentation?: 'mega';
+  /**
+   * 'mega'  = painel simples com título + descrição (Setores)
+   * 'grouped' = painel com subgrupos visuais e colunas (Operação)
+   */
+  presentation?: 'mega' | 'grouped';
+  /** Subgrupos visuais (usado com presentation='grouped') */
+  groups?: NavGroupedSubGroup[];
 }
 
 export type NavItem = NavLinkItem | NavGroupItem;
@@ -85,16 +96,47 @@ export const mainNavigation: NavSection[] = [
     item: {
       type: 'group',
       labelKey: 'nav.operacao',
+      presentation: 'grouped',
       children: [
         {
           type: 'link',
           labelKey: 'nav.marketing',
           routeKey: 'marketing-digital',
+          descKey: 'nav.marketing.desc',
         },
         {
           type: 'link',
           labelKey: 'nav.monetizacao',
           routeKey: 'monetizacao',
+          descKey: 'nav.monetizacao.desc',
+        },
+      ],
+      groups: [
+        {
+          labelKey: 'nav.op.aquisicao',
+          children: [
+            {
+              type: 'link',
+              labelKey: 'nav.marketing',
+              routeKey: 'marketing-digital',
+              descKey: 'nav.marketing.desc',
+            },
+          ],
+        },
+        {
+          labelKey: 'nav.op.construcao',
+          children: [
+            {
+              type: 'link',
+              labelKey: 'nav.monetizacao',
+              routeKey: 'monetizacao',
+              descKey: 'nav.monetizacao.desc',
+            },
+          ],
+        },
+        {
+          labelKey: 'nav.op.tecnologia',
+          children: [],
         },
       ],
     },

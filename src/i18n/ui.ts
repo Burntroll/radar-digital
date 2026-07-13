@@ -38,6 +38,21 @@ export const ui = {
     'es': 'Herramientas, automatización, prompts y estrategia de IA aplicada al marketing digital.',
   },
 
+  // Mega menu — Operação (grupos visuais)
+  'nav.op.aquisicao':   { 'pt-BR': 'Aquisição e Crescimento', 'es': 'Adquisición y Crecimiento' },
+  'nav.op.construcao':  { 'pt-BR': 'Construção e Monetização', 'es': 'Construcción y Monetización' },
+  'nav.op.tecnologia':  { 'pt-BR': 'Tecnologia e Performance', 'es': 'Tecnología y Rendimiento' },
+
+  // Mega menu — Operação (descrições dos filhos)
+  'nav.marketing.desc': {
+    'pt-BR': 'Estratégias, canais e execução para adquirir audiência e crescer.',
+    'es': 'Estrategias, canales y ejecución para adquirir audiencia y crecer.',
+  },
+  'nav.monetizacao.desc': {
+    'pt-BR': 'Modelos e práticas para transformar audiência e projetos em receita.',
+    'es': 'Modelos y prácticas para convertir audiencia y proyectos en ingresos.',
+  },
+
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
   'footer.privacidade': { 'pt-BR': 'Privacidade',    'es': 'Privacidad' },
