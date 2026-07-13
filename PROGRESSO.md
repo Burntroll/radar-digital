@@ -3,8 +3,8 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 13/07/2026 — reconciliação documental pós-Blocos 4 e 5
-> **Baseline técnico e documental atual:** `f7f95e5` — `docs: close locale overflow regression`
+> **Última atualização:** 13/07/2026 — Ferramentas e Bônus promovidos a anchors principais (Task 5.5)
+> **Baseline técnico e documental atual:** `8dade9c` — `fix: hide decorative nav icons from assistive technology`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
@@ -82,7 +82,7 @@
 | 5.2 | Mega menu de Setores (apenas IA elegível; E-commerce, Crypto, iGaming fora da navegação) | ✅ Concluído |
 | 5.3 | Mega menu agrupado de Operação (apenas hubs elegíveis — Marketing Digital e Monetização) | ✅ Concluído |
 | 5.4 | Verticais (todos os hubs inelegíveis — ausente do navbar é comportamento aprovado) | ✅ Concluído sem implementação pública |
-| 5.5 | Menu de Recursos — arquitetura revisada (disclosure mantido; Ferramentas e Bônus promovidos a anchors principais; implementação pendente) | ◐ Parcialmente atendida |
+| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
 | 5.6 | Menu do Radar Market (anchor principal já existe; submenu pendente) | ◐ Parcialmente atendida |
 | 5.7 | Implementar menu mobile | ⏳ Pendente |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
@@ -112,26 +112,26 @@ dele. O wrapper externo perdeu o `overflow-x-auto`.
 - GitHub Actions e Vercel aprovados (SHA `ef99fb9`)
 - Demais menus inalterados
 
-#### Arquitetura aprovada (Task 5.5)
+#### Arquitetura implementada (Task 5.5)
 
 Decisão do Plano de Ação 2.1 registrada em `docs/DECISIONS.md`:
 
 - Recursos permanece como disclosure no navbar;
 - Guias continua dentro de Recursos;
-- Ferramentas e Bônus deixam o dropdown de Recursos e passam a ser anchors independentes de primeiro nível, com ícone pequeno + label;
+- Ferramentas e Bônus foram promovidos a anchors independentes de primeiro nível, com ícone pequeno + label;
 - Ferramentas e Bônus não são duplicados dentro de Recursos;
 - Cases, Entrevistas e Reviews permanecem condicionais à elegibilidade futura;
-- Nenhuma rota pública é alterada.
+- Nenhuma rota pública foi alterada.
 
-Arquitetura aprovada, implementação técnica pendente.
+Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 
 #### Pendências imediatas
 
 - Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`).
-- Arquitetura da Task 5.5 aprovada; implementação técnica pendente.
+- Task 5.5 implementada e validada (commits `e2aef6d` + `8dade9c`).
 - Tasks 5.6–5.8 exigem tratamento conforme os estados acima.
 - Próxima task técnica ainda não autorizada.
-- Plano de Ação 2.1 atualizado e aprovado; implementação técnica da arquitetura aprovada permanece pendente.
+- Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
 
 ---
 
