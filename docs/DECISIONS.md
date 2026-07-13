@@ -238,7 +238,7 @@ em `src/config/siteNavigation.ts` com as seguintes regras de ativação:
 | Setores | menu (disclosure) | Renderizado (1 filho: IA) |
 | Operação | menu (disclosure) | Renderizado (2 filhos: Marketing Digital, Monetização) |
 | Verticais | menu | Oculto — nenhum filho elegível (todos planned) |
-| Recursos | menu (disclosure) | Renderizado (3 filhos: Guias, Ferramentas, Bonus) |
+|| Recursos | menu (disclosure) | Renderizado (1 filho: Guias; Ferramentas e Bônus são anchors independentes) |
 | Radar Market | anchor | Renderizado |
 
 **Mega menu de Setores (5.2):** Adicionado `presentation: 'mega'` ao grupo Setores.
@@ -335,3 +335,47 @@ Motivo da rejeição:
 **Implementação**
 
 A mudança no código (`siteNavigation.ts`, `SiteNavigation.astro`, `ui.ts`) não faz parte desta decisão documental e será realizada em task técnica separada.
+
+---
+
+## Radar Market: manter anchor sem submenu até existir cobertura comercial elegível
+
+**Status:** Aceita
+
+**Data da decisão:** 13/07/2026
+
+**Contexto**
+
+- Landing PT (`/market/`) e ES (`/es/market/`) existentes, respondendo 200.
+- 4 categorias localizadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos) — pares PT/ES completos.
+- 0 itens públicos na collection `marketItems`.
+- 1 placeholder em draft (`placeholder-exemplo.md`).
+- Ausência de rotas públicas de categoria ou item.
+- A landing já apresenta todas as categorias disponíveis.
+
+**Decisão**
+
+- Manter Radar Market como anchor principal.
+- Concluir a Task 5.6 sem submenu público neste ciclo.
+- Não criar links filhos sem destinos e conteúdo reais.
+- Reavaliar o submenu quando houver evidência operacional suficiente.
+
+**Consequências**
+
+- Nenhuma URL muda.
+- Nenhuma categoria vazia aparece no navbar.
+- Menu mobile e acessibilidade não recebem complexidade prematura.
+- Conteúdo e taxonomia comercial continuam sendo tratados nos blocos apropriados.
+
+**Não decidido nesta task**
+
+- Categorias comerciais definitivas.
+- Quantidade mínima de itens para justificar submenu.
+- Arquitetura de rotas de categoria.
+- Páginas individuais de produtos.
+- Disclosures comerciais (adiados ao Bloco 10).
+- Filtros e busca do Market.
+
+**Divergência de categorias registrada**
+
+Existe uma divergência ainda não resolvida entre as categorias conceituais do Plano 2.1 (Softwares, Cursos, Serviços, Comunidades, Infraestrutura) e as categorias atualmente versionadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos). Esta divergência não altera a decisão de manter somente o anchor e deverá ser resolvida no contexto de conteúdo real e monetização (Bloco 13 ou posterior).

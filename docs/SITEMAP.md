@@ -65,3 +65,11 @@ Verticais permanece como grupo conceitual no registro de navegação, mas com `e
 ### Radar Market
 
 Radar Market é uma área comercial separada, com anchor independente no navbar. Permanece distinto dos demais grupos editoriais.
+
+**Estado atual (Task 5.6 concluída):**
+- Radar Market permanece como anchor principal, sem submenu público neste ciclo.
+- Categorias internas da landing (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos) não são itens do navbar.
+- Não existem rotas públicas de categoria ou item.
+- Menus vazios ou baseados em placeholders são proibidos.
+- Um submenu futuro depende de conteúdo comercial real, destinos válidos e equivalência localizada.
+- A ausência do submenu é uma decisão de elegibilidade, não uma limitação acidental.

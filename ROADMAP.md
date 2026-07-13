@@ -113,10 +113,11 @@
 > totalmente ausente do HTML. A task foi encerrada neste ciclo sem alteração de
 > código e poderá ser reavaliada quando houver filho elegível. Menu de Recursos
 > (Task 5.5) concluído — Recursos permanece disclosure com somente Guias no estado
-> atual; Ferramentas e Bônus são anchors independentes. Radar Market já possui
-> anchor principal; o submenu comercial da Task 5.6 continua pendente de auditoria
-> e decisão. Menu mobile e acessibilidade permanecem pendentes. Bloco 5 continua
-> em andamento.
+> atual; Ferramentas e Bônus são anchors independentes. Radar Market possui anchor
+> principal e a Task 5.6 foi concluída sem submenu público — o anchor atual é
+> suficiente para o estado comercial presente; submenu será reavaliado quando
+> houver cobertura comercial real e destinos válidos. Menu mobile e acessibilidade
+> permanecem pendentes. Bloco 5 continua em andamento.
 >
 > **Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`):**
 > causa confirmada — wrapper com `overflow-x-auto` incluía links, idioma e tema.
@@ -136,7 +137,7 @@
 | 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
 || 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
 || 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
-|| 5.6 | Menu do Radar Market | ◐ Parcialmente atendida |
+||| 5.6 | Menu do Radar Market | ✅ Concluído sem submenu público — anchor mantido; submenu diferido por ausência de conteúdo comercial elegível |
 || 5.7 | Implementar menu mobile | ⏳ Pendente |
 || 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
