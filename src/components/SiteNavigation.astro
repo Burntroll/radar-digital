@@ -4,7 +4,7 @@
 //
 // Renderiza a estrutura-base aprovada:
 //   - Início (anchor)
-//   - Setores (disclosure) → Inteligência Artificial
+//   - Setores (disclosure) → Inteligência Artificial (mega menu)
 //   - Operação (disclosure) → Marketing Digital, Monetização
 //   - Verticais → oculto (eligible=false)
 //   - Recursos (disclosure) → Guias, Ferramentas, Bônus
@@ -12,6 +12,7 @@
 //
 // Usa <details>/<summary> para grupos, garantindo funcionamento
 // por clique, teclado e viewports estreitas sem JS adicional.
+// Setores usa apresentação mega menu com título + descrição.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { t, routePath, defaultLocale, type Locale } from '../i18n/utils';
@@ -77,6 +78,8 @@ function linkHref(item: NavLinkItem): string {
         // group
         const group = item as NavGroupItem;
         const hasActive = groupHasActive(group.children);
+        const isMega = group.presentation === 'mega';
+
         return (
           <details class="nav-group relative">
             <summary
@@ -89,29 +92,51 @@ function linkHref(item: NavLinkItem): string {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
               </svg>
             </summary>
-            <div class="nav-panel absolute left-0 top-full pt-2 z-50 min-w-48">
-              <div class="rounded-xl border shadow-2xl overflow-hidden transition-colors"
-                   style="background: var(--color-surface-elevated, #15171f); border-color: var(--color-border, #1e2130);">
-                <div class="py-1">
+            {isMega ? (
+              <div class="nav-panel absolute left-0 top-full pt-2 z-50">
+                <div class="nav-mega-panel">
                   {group.children.filter(c => c.type === 'link').map((child) => {
                     const link = child as NavLinkItem;
                     const active = isActiveRoute(link);
+                    const desc = link.descKey ? t(link.descKey as any, locale) : null;
                     return (
                       <a
                         href={linkHref(link)}
-                        class={`block px-4 py-2.5 text-sm transition-colors
-                          ${active
-                            ? 'text-cyan-500 font-semibold bg-cyan-500/10'
-                            : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
+                        class={`nav-mega-item ${active ? 'nav-mega-item-active' : ''}`}
                         aria-current={active ? 'page' : undefined}
                       >
-                        {t(link.labelKey as any, locale)}
+                        <span class="nav-mega-label">{t(link.labelKey as any, locale)}</span>
+                        {desc && <span class="nav-mega-desc">{desc}</span>}
                       </a>
                     );
                   })}
                 </div>
               </div>
-            </div>
+            ) : (
+              <div class="nav-panel absolute left-0 top-full pt-2 z-50 min-w-48">
+                <div class="rounded-xl border shadow-2xl overflow-hidden transition-colors"
+                     style="background: var(--color-surface-elevated, #15171f); border-color: var(--color-border, #1e2130);">
+                  <div class="py-1">
+                    {group.children.filter(c => c.type === 'link').map((child) => {
+                      const link = child as NavLinkItem;
+                      const active = isActiveRoute(link);
+                      return (
+                        <a
+                          href={linkHref(link)}
+                          class={`block px-4 py-2.5 text-sm transition-colors
+                            ${active
+                              ? 'text-cyan-500 font-semibold bg-cyan-500/10'
+                              : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
+                          aria-current={active ? 'page' : undefined}
+                        >
+                          {t(link.labelKey as any, locale)}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
           </details>
         );
       }
@@ -177,5 +202,51 @@ function linkHref(item: NavLinkItem): string {
   /* details > summary no marker padrão */
   .nav-group summary::-webkit-details-marker {
     display: none;
+  }
+
+  /* ─── Mega panel (apenas Setores) ─── */
+  .nav-mega-panel {
+    min-width: 14rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border, #1e2130);
+    background: var(--color-surface-elevated, #15171f);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-mega-item {
+    display: block;
+    padding: 0.5rem 0.625rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+  }
+
+  .nav-mega-item:hover {
+    background: rgba(0, 229, 255, 0.06);
+  }
+
+  .nav-mega-item-active {
+    background: rgba(0, 229, 255, 0.08);
+  }
+
+  .nav-mega-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary, #f1f5f9);
+    line-height: 1.25rem;
+    display: block;
+  }
+
+  .nav-mega-item-active .nav-mega-label {
+    color: var(--color-accent, #06b6d4);
+  }
+
+  .nav-mega-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #64748b);
+    line-height: 1.125rem;
+    margin-top: 0.125rem;
+    display: block;
   }
 </style>

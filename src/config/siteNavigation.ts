@@ -22,12 +22,16 @@ export interface NavLinkItem {
   routeKey?: string;      // chave no routeMap (opcional — home usa '' )
   /** slug adicional (ex: slug do artigo) */
   slug?: string;
+  /** chave i18n para descrição no mega menu (apenas Setores/IA) */
+  descKey?: string;
 }
 
 export interface NavGroupItem {
   type: 'group';
   labelKey: string;       // chave em ui.ts (rótulo do grupo)
   children: (NavLinkItem | NavGroupItem)[];
+  /** 'mega' = painel expandido com título e descrição (apenas Setores) */
+  presentation?: 'mega';
 }
 
 export type NavItem = NavLinkItem | NavGroupItem;
@@ -64,11 +68,13 @@ export const mainNavigation: NavSection[] = [
     item: {
       type: 'group',
       labelKey: 'nav.setores',
+      presentation: 'mega',
       children: [
         {
           type: 'link',
           labelKey: 'nav.ia',
           routeKey: 'inteligencia-artificial',
+          descKey: 'nav.ia.desc',
         },
       ],
     },

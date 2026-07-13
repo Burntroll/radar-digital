@@ -32,6 +32,12 @@ export const ui = {
   'nav.verticais':      { 'pt-BR': 'Verticais',     'es': 'Verticales' },
   'nav.recursos':       { 'pt-BR': 'Recursos',      'es': 'Recursos' },
 
+  // Mega menu — Setores (apenas IA nesta task)
+  'nav.ia.desc': {
+    'pt-BR': 'Ferramentas, automação, prompts e estratégia de IA aplicada ao marketing digital.',
+    'es': 'Herramientas, automatización, prompts y estrategia de IA aplicada al marketing digital.',
+  },
+
   // Footer
   'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
   'footer.privacidade': { 'pt-BR': 'Privacidade',    'es': 'Privacidad' },
