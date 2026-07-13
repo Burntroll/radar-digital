@@ -131,7 +131,7 @@ Arquitetura aprovada, implementação técnica pendente.
 - Arquitetura da Task 5.5 aprovada; implementação técnica pendente.
 - Tasks 5.6–5.8 exigem tratamento conforme os estados acima.
 - Próxima task técnica ainda não autorizada.
-- Plano de Ação 2.0 será atualizado posteriormente em task separada (versão 2.1).
+- Plano de Ação 2.1 atualizado e aprovado; implementação técnica da arquitetura aprovada permanece pendente.
 
 ---
 
