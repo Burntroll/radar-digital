@@ -87,27 +87,34 @@
 | 5.7 | Implementar menu mobile | ⏳ Pendente |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
-#### Regressão visual do seletor PT/ES (reaberta)
+#### Regressão visual do seletor PT/ES — encerrada
 
-O commit `e0c1a9b` (`fix: correct locale dropdown overflow`) substituiu o par
-`<button>`+`<div>` do seletor de idioma por `<details>`+`<summary>`, o que
-melhorou o comportamento fechado — os links internos deixaram de participar da
-tabulação quando o disclosure está fechado.
+A regressão foi corrigida pelo commit `ef99fb9`
+(`fix: detach locale dropdown from nav overflow`).
 
-Porém, a validação visual manual posterior confirmou que a regressão visual não
-foi resolvida completamente. Ao abrir o seletor PT/ES, o painel continua contido
-pela região rolável da navbar em vez de se projetar livremente para baixo sobre
-a página, o que produz uma scrollbar ou comportamento de scroll interno na
-navegação. A regressão visual está reaberta e precisa de uma task técnica
-separada de diagnóstico e correção.
+**Causa confirmada:** o wrapper externo da navbar
+(`<div class="flex items-center gap-4 overflow-x-auto">`) incluía links, seletor
+de idioma e theme toggle, fazendo o painel absoluto do locale participar da
+região rolável. `overflow-x: auto` impunha `overflow-y: auto`, e ao abrir o
+dropdown o `scrollHeight` do container saltava de 40 px para 118 px, criando
+scrollbar vertical de 78 px.
 
-Causa técnica ainda não determinada. Hipóteses para investigação incluem:
-ancestral com `overflow` restritivo, contexto de posicionamento ou contêiner
-rolável. Nenhuma causa está confirmada.
+**Solução:** os links de navegação ganharam um container rolável próprio em
+`SiteNavigation.astro`; locale switcher e theme toggle foram movidos para fora
+dele. O wrapper externo perdeu o `overflow-x-auto`.
+
+**Resultado remoto validado (Playwright, 8 combinações):**
+- PT `/` e ES `/es/` nos breakpoints 390, 768, 1024 e 1440 px
+- `scrollHeight` do wrapper permanece em 40 px com o locale aberto em todos os cenários
+- Diferença `scrollHeight - clientHeight`: 0 px
+- Nenhuma scrollbar vertical na navbar
+- Nenhum clipping do painel
+- GitHub Actions e Vercel aprovados (SHA `ef99fb9`)
+- Demais menus inalterados
 
 #### Pendências imediatas
 
-- Regressão visual do seletor PT/ES — reaberta; necessita diagnóstico e correção antes do avanço normal do Bloco 5.
+- Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`).
 - Commit documental `3c16d97` ainda não publicado.
 - Tasks 5.5–5.8 exigem tratamento conforme os estados acima.
 - Próxima task técnica ainda não autorizada.
@@ -237,4 +244,4 @@ rolável. Nenhuma causa está confirmada.
 
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.4 concluídas, 5.5 e 5.6 parcialmente atendidas, 5.7 e 5.8 pendentes.
-> **Regressão visual do seletor PT/ES:** reaberta (commit `e0c1a9b` publicado, mas a correção visual não foi completa — necessita task técnica separada).
+> **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
