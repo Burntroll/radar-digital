@@ -139,7 +139,7 @@
 | 5.2 | Implementar mega menu de Setores | ✅ Concluído |
 | 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
 || 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
-|| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus promovidos a anchors independentes — exigência original de "ícone + label" substituída por links textuais apenas) | ✅ Concluído |
+|| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
 ||| 5.6 | Menu do Radar Market | ✅ Concluído sem submenu público — anchor mantido; submenu diferido por ausência de conteúdo comercial elegível |
 ||| 5.7 | Implementar menu mobile | ✅ Concluído — implementado, publicado em master (SHA 6843fc4), validado em CI e Vercel; mobile < 1024 px com hamburger, painel e accordions; desktop preservado a partir de 1024 px; 41 páginas e 28 URLs mantidas |
 || 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |

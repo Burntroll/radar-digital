@@ -53,7 +53,7 @@ Ferramentas e Bônus não aparecem dentro do disclosure de Recursos — foram pr
 Ferramentas e Bônus são exceções estratégicas promovidas ao primeiro nível por sua relevância para monetização e descoberta. Ambos:
 
 - São anchors diretos (acesso com um clique)
-- São links exclusivamente textuais (decisão posterior substituiu a exigência original de "ícone + label")
+- Usam ícone pequeno + label
 - Mantêm a rota pública atual (nenhuma URL é alterada)
 - Possuem label localizada em PT e ES
 - Não são duplicados dentro de Recursos
