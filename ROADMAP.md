@@ -116,8 +116,11 @@
 > atual; Ferramentas e Bônus são anchors independentes. Radar Market possui anchor
 > principal e a Task 5.6 foi concluída sem submenu público — o anchor atual é
 > suficiente para o estado comercial presente; submenu será reavaliado quando
-> houver cobertura comercial real e destinos válidos. Menu mobile e acessibilidade
-> permanecem pendentes. Bloco 5 continua em andamento.
+> houver cobertura comercial real e destinos válidos. Task 5.7 (menu mobile)
+> concluída — navegação mobile dedicada abaixo de 1024 px com hamburger,
+> painel vertical, accordions nativos, locale e tema; desktop preservado
+> integralmente. Acessibilidade (Task 5.8) permanece pendente. Bloco 5
+> continua em andamento.
 >
 > **Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`):**
 > causa confirmada — wrapper com `overflow-x-auto` incluía links, idioma e tema.
@@ -138,7 +141,7 @@
 || 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
 || 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
 ||| 5.6 | Menu do Radar Market | ✅ Concluído sem submenu público — anchor mantido; submenu diferido por ausência de conteúdo comercial elegível |
-|| 5.7 | Implementar menu mobile | ⏳ Pendente |
+||| 5.7 | Implementar menu mobile | ✅ Concluído — implementado, publicado em master (SHA 6843fc4), validado em CI e Vercel; mobile < 1024 px com hamburger, painel e accordions; desktop preservado a partir de 1024 px; 41 páginas e 28 URLs mantidas |
 || 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
 ---

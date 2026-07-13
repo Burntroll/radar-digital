@@ -73,3 +73,12 @@ Radar Market é uma área comercial separada, com anchor independente no navbar.
 - Menus vazios ou baseados em placeholders são proibidos.
 - Um submenu futuro depende de conteúdo comercial real, destinos válidos e equivalência localizada.
 - A ausência do submenu é uma decisão de elegibilidade, não uma limitação acidental.
+
+### Mobile (Task 5.7 concluída)
+
+A Task 5.7 implementou navegação mobile dedicada sem alterar rotas:
+
+- Abaixo de 1024 px: hamburger + painel vertical com accordions (Setores, Operação, Recursos) e links diretos (Início, Ferramentas, Bônus, Radar Market), locale PT/ES e controle de tema.
+- A partir de 1024 px: navegação desktop existente, integralmente preservada.
+- Nenhuma rota foi criada ou removida. Sitemap mantém 28 URLs.
+- Breakpoint funcional: mobile < 1024 px; desktop >= 1024 px.

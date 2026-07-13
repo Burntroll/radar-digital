@@ -379,3 +379,36 @@ A mudança no código (`siteNavigation.ts`, `SiteNavigation.astro`, `ui.ts`) nã
 **Divergência de categorias registrada**
 
 Existe uma divergência ainda não resolvida entre as categorias conceituais do Plano 2.1 (Softwares, Cursos, Serviços, Comunidades, Infraestrutura) e as categorias atualmente versionadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos). Esta divergência não altera a decisão de manter somente o anchor e deverá ser resolvida no contexto de conteúdo real e monetização (Bloco 13 ou posterior).
+
+---
+
+## Navegação mobile dedicada
+
+**Status:** Aceita
+
+**Data da decisão:** 13/07/2026
+
+**Contexto**
+
+- Abaixo de 1024 px, a faixa horizontal com overflow-x-auto era o único mecanismo de navegação — inadequado para toque em viewports estreitas.
+- O desktop (>=1024 px) deveria permanecer integralmente preservado.
+
+**Decisão**
+
+- Mobile não reutiliza a faixa horizontal desktop comprimida.
+- Existe uma árvore mobile própria derivada da mesma configuração central `mainNavigation` — não existe segunda taxonomia manual.
+- Breakpoint adotado: 1024 px.
+- Abaixo de 1024 px: hamburger e painel vertical de largura total abaixo do header.
+- A partir de 1024 px: navegação desktop existente, inalterada.
+- Accordions nativos (`<details>/<summary>`) para Setores, Operação e Recursos.
+- Grupos conceituais de Operação preservados (Aquisição, Construção; Tecnologia oculto por vazio).
+- Locale e tema disponíveis dentro do painel.
+- Abertura aplica scroll lock no body e `inert` em `<main>` e `<footer>`.
+- Fechamento ou redimensionamento para desktop restaura o estado.
+- O painel não cria um segundo landmark `<nav>`.
+- Nenhuma rota, URL, collection ou conteúdo editorial foi alterado.
+
+**Não decidido nesta task**
+
+- Escape, gestão avançada de foco, fluxo completo de teclado e leitores de tela permanecem para a Task 5.8.
+- Acessibilidade completa não está declarada.

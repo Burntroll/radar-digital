@@ -84,7 +84,7 @@
 | 5.4 | Verticais (todos os hubs inelegíveis — ausente do navbar é comportamento aprovado) | ✅ Concluído sem implementação pública |
 | 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
 || 5.6 | Menu do Radar Market (anchor principal mantido; sem submenu público neste ciclo — sem conteúdo comercial elegível) | ✅ Concluído |
-| 5.7 | Implementar menu mobile | ⏳ Pendente |
+|| 5.7 | Implementar menu mobile — dedicado, responsivo (< 1024 px), com hamburger, painel, accordions, locale e tema; navbar desktop preservado | ✅ Concluído |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
 #### Regressão visual do seletor PT/ES — encerrada
@@ -132,7 +132,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 - Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`).
 - Task 5.5 implementada e validada (commits `e2aef6d` + `8dade9c`).
 - Task 5.6 concluída — anchor mantido; submenu inelegível neste ciclo por ausência de conteúdo comercial real, destinos válidos e equivalência PT/ES.
-- Task 5.7 é a próxima task prevista, ainda não iniciada nem autorizada.
+- Task 5.7 concluída, publicada e validada — navegação mobile dedicada (< 1024 px) com hamburger, painel vertical, accordions nativos, locale e tema; desktop integralmente preservado.
+- Task 5.8 (teclado e leitores de tela) é a próxima task prevista, ainda não iniciada nem autorizada.
 - Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
 
 **Resumo da auditoria da Task 5.6:** 4 categorias localizadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos), 0 itens públicos, 1 placeholder em draft, nenhuma rota de categoria ou item. A landing já expõe toda a estrutura atualmente disponível. Submenu considerado inelegível neste ciclo.
@@ -260,5 +261,5 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 ---
 
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
-> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.5 concluídas, 5.6 concluída sem submenu público, 5.7 e 5.8 pendentes.
+> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
