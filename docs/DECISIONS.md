@@ -264,3 +264,74 @@ elegível.
 **Critério de ativação:** A navegação é determinada pelo registro central,
 não derivada automaticamente de `editorialHubs.ts`. Paginas agregadoras
 continuam pertencendo ao Bloco 6.
+
+---
+
+## Promoção de Ferramentas e Bônus ao primeiro nível do navbar
+
+**Status:** Aceita (Plano de Ação 2.1)
+
+**Data da decisão:** 13/07/2026
+
+**Contexto**
+
+- Ferramentas (`/ferramentas/`, `/es/herramientas/`) e Bônus (`/bonus/`, `/es/bonos/`) são áreas essenciais para monetização e descoberta no Radar Digital.
+- No estado atual, ambos estão agrupados dentro do disclosure de Recursos no navbar.
+- O agrupamento dentro de Recursos reduz sua visibilidade e adiciona um clique ao acesso.
+- Recursos ainda é necessário como agrupamento para Guias e futuros formatos editoriais (Cases, Entrevistas, Reviews).
+
+**Decisão**
+
+Promover Ferramentas e Bônus a anchors independentes do navbar, mantendo Recursos como disclosure.
+
+**Arquitetura aprovada do navbar**
+
+1. Início — anchor
+2. Setores — disclosure (mega menu)
+3. Operação — disclosure (agrupado)
+4. Verticais — oculto (todos os hubs inelegíveis)
+5. Recursos — disclosure (somente Guias; Ferramentas e Bônus removidos)
+6. Ferramentas — anchor independente
+7. Bônus — anchor independente
+8. Radar Market — anchor independente
+
+Complementos: seletor de idioma, theme toggle.
+
+**Composição de Recursos (após a implementação)**
+
+- Guias — elegível e público
+- Cases — futuro, oculto enquanto inelegível
+- Entrevistas — futuro, oculto enquanto inelegível
+- Reviews — futuro, oculto enquanto inelegível
+
+Ferramentas e Bônus não devem aparecer dentro do disclosure.
+
+**Tratamento de Ferramentas e Bônus (após a implementação)**
+
+- Anchor direto, acesso com um clique
+- Ícone pequeno + label visível
+- Rota pública atual preservada (nenhuma URL alterada)
+- Label localizada em PT e ES
+- Sem duplicação dentro de Recursos
+
+**Consequências positivas**
+
+- Ferramentas e Bônus ganham acesso direto, reduzindo atrito.
+- Recursos permanece como agrupamento editorial, sem ser removido.
+- Guias, Cases, Entrevistas e Reviews mantêm seu espaço conceitual dentro de Recursos.
+- Nenhuma rota pública é alterada.
+- Equivalência PT/ES é preservada.
+- Mobile e acessibilidade serão tratados nas Tasks 5.7 e 5.8, sem antecipação.
+
+**Alternativa rejeitada**
+
+Remover Recursos e transformar todos os seus itens em anchors independentes.
+
+Motivo da rejeição:
+- Não escala para Cases, Entrevistas e Reviews (adicionaria múltiplos itens no primeiro nível sem agrupamento).
+- Elimina um agrupamento editorial ainda útil para os formatos editoriais.
+- Sobrecarrega o primeiro nível da navegação.
+
+**Implementação**
+
+A mudança no código (`siteNavigation.ts`, `SiteNavigation.astro`, `ui.ts`) não faz parte desta decisão documental e será realizada em task técnica separada.

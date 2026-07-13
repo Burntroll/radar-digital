@@ -131,11 +131,11 @@
 | 5.1 | Criar estrutura-base do navbar aprovado | ✅ Concluído |
 | 5.2 | Implementar mega menu de Setores | ✅ Concluído |
 | 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
-| 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
-| 5.5 | Menu de Recursos | ◐ Parcialmente atendida |
-| 5.6 | Menu do Radar Market | ◐ Parcialmente atendida |
-| 5.7 | Implementar menu mobile | ⏳ Pendente |
-| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
+|| 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
+|| 5.5 | Menu de Recursos — arquitetura revisada (disclosure mantido; Guias em Recursos; Ferramentas e Bônus promovidos a anchors principais; implementação pendente) | ◐ Parcialmente atendida |
+|| 5.6 | Menu do Radar Market | ◐ Parcialmente atendida |
+|| 5.7 | Implementar menu mobile | ⏳ Pendente |
+|| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
 ---
 
