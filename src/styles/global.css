@@ -27,9 +27,35 @@
   --color-text-muted: #64748b;
   --color-border: #dbe3ef;
   --color-border-soft: rgba(15, 23, 42, 0.08);
-  --color-accent: #06b6d4;
   --color-accent-blue: #2563eb;
-  --color-accent-purple: #7c3aed;
+
+  /* ── Semantic color roles ── */
+  --color-brand-cyan: #00e5ff;
+  --color-brand-cyan-rgb: 0 229 255;
+
+  --color-link: #06b6d4;
+  --color-link-rgb: 6 182 212;
+
+  --color-interactive: #00e5ff;
+  --color-interactive-rgb: 0 229 255;
+
+  --color-focus: #06b6d4;
+  --color-focus-rgb: 6 182 212;
+
+  --color-editorial: #7c3aed;
+  --color-editorial-rgb: 124 58 237;
+  --color-editorial-active: #a855f7;
+  --color-editorial-active-rgb: 168 85 247;
+
+  --color-commercial: #f59e0b;
+  --color-commercial-rgb: 245 158 11;
+
+  --color-surface-header: var(--color-surface);
+  --color-surface-ad: var(--color-surface);
+
+  /* ── Compatibility aliases (to be replaced by consumers) ── */
+  --color-accent: var(--color-link);
+  --color-accent-purple: var(--color-editorial);
 }
 
 .dark {
@@ -40,6 +66,28 @@
   --color-text-secondary: #94a3b8;
   --color-text-muted: #64748b;
   --color-border: #1e293b;
+
+  /* ── Semantic color roles (isolated, same values) ── */
+  --color-brand-cyan: #00e5ff;
+  --color-brand-cyan-rgb: 0 229 255;
+  --color-link: #06b6d4;
+  --color-link-rgb: 6 182 212;
+  --color-interactive: #00e5ff;
+  --color-interactive-rgb: 0 229 255;
+  --color-focus: #06b6d4;
+  --color-focus-rgb: 6 182 212;
+  --color-editorial: #7c3aed;
+  --color-editorial-rgb: 124 58 237;
+  --color-editorial-active: #a855f7;
+  --color-editorial-active-rgb: 168 85 247;
+  --color-commercial: #f59e0b;
+  --color-commercial-rgb: 245 158 11;
+  --color-surface-header: var(--color-surface);
+  --color-surface-ad: var(--color-surface);
+
+  /* ── Compatibility aliases ── */
+  --color-accent: var(--color-link);
+  --color-accent-purple: var(--color-editorial);
 }
 
 /* ─── Base ─── */
@@ -54,7 +102,7 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 229, 255, 0.3);
+  background: rgb(var(--color-brand-cyan-rgb) / 0.3);
   color: #fff;
 }
 
@@ -80,7 +128,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--color-brand-cyan-rgb) / 0.15), transparent);
   z-index: 9999;
   pointer-events: none;
   animation: scan-line 8s linear infinite;
@@ -98,12 +146,12 @@ body {
 /* ─── Radar dot grid background ─── */
 .radar-bg {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(0, 229, 255, 0.07) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgb(var(--color-brand-cyan-rgb) / 0.07) 1px, transparent 0);
   background-size: 40px 40px;
 }
 :root:not(.dark) .radar-bg {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(0, 229, 255, 0.12) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgb(var(--color-brand-cyan-rgb) / 0.12) 1px, transparent 0);
 }
 
 /* ─── Locale dropdown: active dims when hovering the list ─── */
@@ -113,8 +161,8 @@ body {
   font-weight: 400 !important;
 }
 .group:hover .locale-active:hover {
-  color: rgb(0 229 255) !important;
-  background: rgba(0, 229, 255, 0.1) !important;
+  color: rgb(var(--color-interactive-rgb)) !important;
+  background: rgb(var(--color-interactive-rgb) / 0.1) !important;
   font-weight: 600 !important;
 }
 
@@ -136,16 +184,16 @@ body {
 }
 
 .interactive-card:hover {
-  border-color: rgba(0, 229, 255, 0.2);
+  border-color: rgb(var(--color-interactive-rgb) / 0.2);
   background: var(--color-surface-elevated);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 229, 255, 0.06);
+  box-shadow: 0 12px 40px rgb(var(--color-interactive-rgb) / 0.06);
 }
 
 /* ─── Gradient text ─── */
 .gradient-text {
   @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(135deg, #00e5ff 0%, #7c3aed 50%, #f59e0b 100%);
+  background-image: linear-gradient(135deg, var(--color-brand-cyan) 0%, var(--color-editorial) 50%, var(--color-commercial) 100%);
 }
 
 /* ─── Glow border ─── */
@@ -158,7 +206,7 @@ body {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(124, 58, 237, 0.1), transparent);
+  background: linear-gradient(135deg, rgb(var(--color-brand-cyan-rgb) / 0.3), rgb(var(--color-editorial-rgb) / 0.1), transparent);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
@@ -168,14 +216,14 @@ body {
 /* ─── Tag pill ─── */
 .tag-pill {
   @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
-  background: rgba(0, 229, 255, 0.08);
-  color: #00e5ff;
-  border: 1px solid rgba(0, 229, 255, 0.15);
+  background: rgb(var(--color-interactive-rgb) / 0.08);
+  color: var(--color-interactive);
+  border: 1px solid rgb(var(--color-interactive-rgb) / 0.15);
   transition: all 0.2s;
 }
 .tag-pill:hover {
-  background: rgba(0, 229, 255, 0.15);
-  border-color: rgba(0, 229, 255, 0.3);
+  background: rgb(var(--color-interactive-rgb) / 0.15);
+  border-color: rgb(var(--color-interactive-rgb) / 0.3);
 }
 
 /* ─── Section title ─── */
@@ -191,13 +239,13 @@ body {
 /* ─── Theme Toggle ─── */
 .theme-toggle {
   @apply relative w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer;
-  background: rgba(0, 229, 255, 0.06);
+  background: rgb(var(--color-interactive-rgb) / 0.06);
   border: 1px solid var(--color-border);
   transition: all 0.3s ease;
 }
 .theme-toggle:hover {
-  background: rgba(0, 229, 255, 0.12);
-  border-color: rgba(0, 229, 255, 0.2);
+  background: rgb(var(--color-interactive-rgb) / 0.12);
+  border-color: rgb(var(--color-interactive-rgb) / 0.2);
 }
 .theme-toggle .sun-icon { display: none; }
 .theme-toggle .moon-icon { display: block; }
@@ -242,41 +290,41 @@ body {
 }
 
 .filter-chip:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
 /* ─── Filter chip — purple active (Guias) ─── */
 .filter-chip--purple.active {
-  background: rgba(124, 58, 237, 0.12);
-  color: #a855f7;
-  border-color: rgba(124, 58, 237, 0.3);
+  background: rgb(var(--color-editorial-rgb) / 0.12);
+  color: var(--color-editorial-active);
+  border-color: rgb(var(--color-editorial-rgb) / 0.3);
 }
 
 /* ─── Filter chip — cyan active (Bônus) ─── */
 .filter-chip--cyan.active {
-  background: rgba(0, 229, 255, 0.12);
-  color: #00e5ff;
-  border-color: rgba(0, 229, 255, 0.3);
+  background: rgb(var(--color-interactive-rgb) / 0.12);
+  color: var(--color-interactive);
+  border-color: rgb(var(--color-interactive-rgb) / 0.3);
 }
 
 @media (hover: hover) {
   .filter-chip--purple:not(.active):hover {
-    background: rgba(124, 58, 237, 0.06);
+    background: rgb(var(--color-editorial-rgb) / 0.06);
     border-color: var(--color-text-muted);
   }
 
   .filter-chip--cyan:not(.active):hover {
-    background: rgba(0, 229, 255, 0.06);
+    background: rgb(var(--color-interactive-rgb) / 0.06);
     border-color: var(--color-text-muted);
   }
 
   .filter-chip--purple.active:hover {
-    background: rgba(124, 58, 237, 0.18);
+    background: rgb(var(--color-editorial-rgb) / 0.18);
   }
 
   .filter-chip--cyan.active:hover {
-    background: rgba(0, 229, 255, 0.18);
+    background: rgb(var(--color-interactive-rgb) / 0.18);
   }
 }
 
@@ -289,9 +337,9 @@ body {
   width: 100%;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  color: #00e5ff;
+  background: rgb(var(--color-interactive-rgb) / 0.1);
+  border: 1px solid rgb(var(--color-interactive-rgb) / 0.3);
+  color: var(--color-interactive);
   font-size: 0.875rem;
   font-weight: 600;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
@@ -301,7 +349,7 @@ body {
 }
 
 .commercial-cta:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
@@ -314,8 +362,8 @@ body {
 
 @media (hover: hover) {
   .commercial-cta:hover {
-    background: rgba(0, 229, 255, 0.2);
-    border-color: rgba(0, 229, 255, 0.5);
+    background: rgb(var(--color-interactive-rgb) / 0.2);
+    border-color: rgb(var(--color-interactive-rgb) / 0.5);
   }
 
   .commercial-cta:hover .external-icon {
