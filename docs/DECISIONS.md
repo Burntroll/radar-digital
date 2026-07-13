@@ -443,11 +443,12 @@ Esta decisão substitui exclusivamente o detalhe visual "ícone + label" da deci
 
 **Implementação**
 
-A remoção dos ícones no código ainda não foi realizada — será executada em task técnica posterior. Esta task é exclusivamente documental.
+A remoção foi implementada no commit `bd78ec45fec19a5e54ddb3122ba77781d8aec1e9`, publicado em `master`. GitHub Actions run `29284786594` concluído com sucesso. Deployment Vercel e validação remota aprovados em PT e ES, desktop e mobile.
 
-**Consequências**
-
-- Navbar do primeiro nível fica visualmente mais limpo.
-- Remoção de código SVG e do campo `icon` do tipo `NavLinkItem`.
-- Nenhuma rota pública é alterada.
-- Equivalência PT/ES é preservada.
+**Resultado**
+- Navbar do primeiro nível ficou visualmente mais limpo.
+- Código SVG e o campo `icon` do tipo `NavLinkItem` foram removidos dos registros de Ferramentas e Bônus (`src/config/siteNavigation.ts`) e dos componentes de navegação desktop e mobile.
+- Nenhuma rota pública foi alterada.
+- Labels, ordem e `aria-current` preservados.
+- Equivalência PT/ES preservada.
+- 41 páginas, 28 URLs e 15 hints mantidos.

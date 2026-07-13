@@ -3,10 +3,10 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 13/07/2026 — menu mobile dedicado implementado (Task 5.7)
-> **Último checkpoint remoto validado:** `0a15a29` — `docs: close dedicated mobile navigation task`
+> **Última atualização:** 13/07/2026 — ícones de Ferramentas e Bônus removidos (links textuais)
+> **Último checkpoint remoto validado:** `bd78ec45fec19a5e54ddb3122ba77781d8aec1e9` — `refactor: remove icons from monetization links`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
-> **GitHub Actions:** 40+ runs, success ✅
+> **GitHub Actions:** 41+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 > **Quality gate:** `npm run build` valida dados da collection; `npm run check` valida TypeScript/Astro (não frontmatter)
@@ -82,7 +82,7 @@
 | 5.2 | Mega menu de Setores (apenas IA elegível; E-commerce, Crypto, iGaming fora da navegação) | ✅ Concluído |
 | 5.3 | Mega menu agrupado de Operação (apenas hubs elegíveis — Marketing Digital e Monetização) | ✅ Concluído |
 | 5.4 | Verticais (todos os hubs inelegíveis — ausente do navbar é comportamento aprovado) | ✅ Concluído sem implementação pública |
-| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
+| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus promovidos a anchors independentes — ícones removidos no commit `bd78ec4`, links exclusivamente textuais) | ✅ Concluído |
 || 5.6 | Menu do Radar Market (anchor principal mantido; sem submenu público neste ciclo — sem conteúdo comercial elegível) | ✅ Concluído |
 || 5.7 | Implementar menu mobile — dedicado, responsivo (< 1024 px), com hamburger, painel, accordions, locale e tema; navbar desktop preservado | ✅ Concluído |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
@@ -118,7 +118,7 @@ Decisão do Plano de Ação 2.1 registrada em `docs/DECISIONS.md`:
 
 - Recursos permanece como disclosure no navbar;
 - Guias continua dentro de Recursos;
-- Ferramentas e Bônus foram promovidos a anchors independentes de primeiro nível, com ícone pequeno + label;
+- Ferramentas e Bônus foram promovidos a anchors independentes de primeiro nível (ícones removidos no commit `bd78ec4` — links exclusivamente textuais em desktop e mobile);
 - Ferramentas e Bônus não são duplicados dentro de Recursos;
 - Cases, Entrevistas e Reviews permanecem condicionais à elegibilidade futura;
 - Nenhuma rota pública foi alterada.
@@ -130,10 +130,10 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 #### Pendências imediatas
 
 - Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`).
-- Task 5.5 implementada e validada (commits `e2aef6d` + `8dade9c`).
+- Task 5.5 implementada e validada (commits `e2aef6d` + `8dade9c`). Ícones de Ferramentas e Bônus removidos no commit `bd78ec4` — links exclusivamente textuais em desktop e mobile, PT e ES.
 - Task 5.6 concluída — anchor mantido; submenu inelegível neste ciclo por ausência de conteúdo comercial real, destinos válidos e equivalência PT/ES.
 - Task 5.7 concluída, publicada e validada — navegação mobile dedicada (< 1024 px) com hamburger, painel vertical, accordions nativos, locale e tema; desktop integralmente preservado.
-- Task 5.8 (teclado e leitores de tela) é a próxima task prevista, ainda não iniciada nem autorizada.
+- Task 5.8 (teclado e leitores de tela) continua pendente, não iniciada e não autorizada.
 - Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
 
 **Resumo da auditoria da Task 5.6:** 4 categorias localizadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos), 0 itens públicos, 1 placeholder em draft, nenhuma rota de categoria ou item. A landing já expõe toda a estrutura atualmente disponível. Submenu considerado inelegível neste ciclo.
