@@ -82,7 +82,7 @@
 | 5.2 | Mega menu de Setores (apenas IA elegível; E-commerce, Crypto, iGaming fora da navegação) | ✅ Concluído |
 | 5.3 | Mega menu agrupado de Operação (apenas hubs elegíveis — Marketing Digital e Monetização) | ✅ Concluído |
 | 5.4 | Verticais (todos os hubs inelegíveis — ausente do navbar é comportamento aprovado) | ✅ Concluído sem implementação pública |
-| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus como anchors independentes com ícone + label) | ✅ Concluído |
+| 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus promovidos a anchors independentes — exigência original de "ícone + label" substituída por links textuais apenas) | ✅ Concluído |
 || 5.6 | Menu do Radar Market (anchor principal mantido; sem submenu público neste ciclo — sem conteúdo comercial elegível) | ✅ Concluído |
 || 5.7 | Implementar menu mobile — dedicado, responsivo (< 1024 px), com hamburger, painel, accordions, locale e tema; navbar desktop preservado | ✅ Concluído |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
@@ -118,7 +118,7 @@ Decisão do Plano de Ação 2.1 registrada em `docs/DECISIONS.md`:
 
 - Recursos permanece como disclosure no navbar;
 - Guias continua dentro de Recursos;
-- Ferramentas e Bônus foram promovidos a anchors independentes de primeiro nível, com ícone pequeno + label;
+- Ferramentas e Bônus foram promovidos a anchors independentes de primeiro nível (exigência original de "ícone + label" substituída por decisão posterior — links textuais apenas);
 - Ferramentas e Bônus não são duplicados dentro de Recursos;
 - Cases, Entrevistas e Reviews permanecem condicionais à elegibilidade futura;
 - Nenhuma rota pública foi alterada.

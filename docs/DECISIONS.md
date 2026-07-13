@@ -412,3 +412,42 @@ Existe uma divergência ainda não resolvida entre as categorias conceituais do 
 
 - Escape, gestão avançada de foco, fluxo completo de teclado e leitores de tela permanecem para a Task 5.8.
 - Acessibilidade completa não está declarada.
+
+---
+
+## Ferramentas e Bônus: transição para links somente texto
+
+**Status:** Aceita
+
+**Data da decisão:** 13/07/2026
+
+**Contexto**
+
+Ferramentas (`/ferramentas/`, `/es/herramientas/`) e Bônus (`/bonus/`, `/es/bonos/`) foram promovidos a anchors independentes de primeiro nível na Task 5.5 com a exigência original de "ícone pequeno + label", conforme registrado no Plano de Ação 2.1 e na decisão anterior "Promoção de Ferramentas e Bônus ao primeiro nível do navbar".
+
+Durante o uso contínuo do navbar, os ícones à esquerda dos links adicionam ruído visual sem ganho funcional. A leitura do primeiro nível é mais limpa e rápida com labels textuais apenas.
+
+**Decisão**
+
+- Ferramentas e Bônus permanecem promovidos ao primeiro nível como anchors independentes;
+- ambos passam a exibir **apenas label textual** — sem ícone à esquerda;
+- a regra vale igualmente para desktop e mobile;
+- não haverá links representados somente por ícone;
+- PT-BR e ES continuam equivalentes;
+- rotas, ordem conceitual do navbar, elegibilidade e ausência de duplicação dentro de Recursos não mudam;
+- Radar Market permanece inalterado.
+
+**Relação com decisões anteriores**
+
+Esta decisão substitui exclusivamente o detalhe visual "ícone + label" da decisão anterior "Promoção de Ferramentas e Bônus ao primeiro nível do navbar" e do Plano de Ação 2.1. Ambos os documentos permanecem preservados como registros históricos da intenção original.
+
+**Implementação**
+
+A remoção dos ícones no código ainda não foi realizada — será executada em task técnica posterior. Esta task é exclusivamente documental.
+
+**Consequências**
+
+- Navbar do primeiro nível fica visualmente mais limpo.
+- Remoção de código SVG e do campo `icon` do tipo `NavLinkItem`.
+- Nenhuma rota pública é alterada.
+- Equivalência PT/ES é preservada.
