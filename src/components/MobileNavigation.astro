@@ -75,9 +75,9 @@ function linkHref(item: NavLinkItem): string {
   class="lg:hidden"
   hidden
   aria-hidden="true"
-  style="position:fixed;top:4rem;bottom:0;left:0;right:0;z-index:40;background:var(--color-surface,#0a0b0f);border-top:1px solid var(--color-border,#1e293b);overflow-y:auto;overflow-x:hidden;"
+  style="position:absolute;top:calc(100% - 1px);left:0;right:0;height:calc(100dvh - 4rem);z-index:40;background:var(--color-surface,#0a0b0f);border-top:1px solid var(--color-border,#1e293b);overflow-y:auto;overflow-x:hidden;"
 >
-  <nav aria-label={t('nav.menu.label' as UIKey, locale)} class="p-4 flex flex-col gap-1">
+  <div class="p-4 flex flex-col gap-1">
     {
       mainNavigation
         .filter((section) => section.eligible)
@@ -229,7 +229,7 @@ function linkHref(item: NavLinkItem): string {
         <span>{t('theme.toggle' as UIKey, locale)}</span>
       </button>
     </div>
-  </nav>
+  </div>
 </div>
 
 <style>
@@ -256,14 +256,6 @@ function linkHref(item: NavLinkItem): string {
   #mobile-menu-toggle[aria-expanded="false"] .close-icon {
     display: none !important;
   }
-
-  /* Theme toggle icon sync */
-  #theme-toggle-mobile .sun-icon { display: none; }
-  #theme-toggle-mobile .moon-icon { display: block; }
-  :root:not(.dark) #theme-toggle-mobile .sun-icon { display: block; }
-  :root:not(.dark) #theme-toggle-mobile .moon-icon { display: none; }
-  .dark #theme-toggle-mobile .sun-icon { display: block; }
-  .dark #theme-toggle-mobile .moon-icon { display: none; }
 </style>
 
 <script>
