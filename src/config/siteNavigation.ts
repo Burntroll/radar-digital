@@ -16,8 +16,6 @@
 
 export type NavItemType = 'link' | 'group';
 
-export type NavIcon = 'tools' | 'bonus';
-
 export interface NavLinkItem {
   type: 'link';
   labelKey: string;       // chave em ui.ts
@@ -26,8 +24,6 @@ export interface NavLinkItem {
   slug?: string;
   /** chave i18n para descrição no mega menu */
   descKey?: string;
-  /** ícone pequeno para anchors promovidos (Ferramentas, Bônus) */
-  icon?: NavIcon;
 }
 
 /** Subgrupo visual dentro de um NavGroupItem com presentation='grouped' */
@@ -179,7 +175,6 @@ export const mainNavigation: NavSection[] = [
       type: 'link',
       labelKey: 'nav.parceiros',
       routeKey: 'parceiros',
-      icon: 'tools',
     },
   },
   {
@@ -189,7 +184,6 @@ export const mainNavigation: NavSection[] = [
       type: 'link',
       labelKey: 'nav.bonus',
       routeKey: 'bonus',
-      icon: 'bonus',
     },
   },
   {
