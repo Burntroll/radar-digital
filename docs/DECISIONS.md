@@ -241,6 +241,15 @@ em `src/config/siteNavigation.ts` com as seguintes regras de ativação:
 | Recursos | menu (disclosure) | Renderizado (3 filhos: Guias, Ferramentas, Bonus) |
 | Radar Market | anchor | Renderizado |
 
+**Mega menu de Setores (5.2):** Adicionado `presentation: 'mega'` ao grupo Setores.
+Painel com título + descrição localizada para Inteligência Artificial.
+
+**Mega menu agrupado de Operação (5.3):** Adicionado `presentation: 'grouped'` ao
+grupo Operação. O painel exibe subgrupos visuais em colunas (Aquisição e
+Crescimento → Marketing Digital; Construção e Monetização → Monetização;
+Tecnologia e Performance → oculto, sem filhos elegíveis). Mobile usa
+`position: fixed` para manter o painel dentro do viewport.
+
 **Critério de ativação:** A navegação é determinada pelo registro central,
 não derivada automaticamente de `editorialHubs.ts`. Paginas agregadoras
 continuam pertencendo ao Bloco 6.

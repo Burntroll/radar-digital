@@ -100,25 +100,28 @@
 | Rota canônica /publicacoes/ | ⏳ Pendente |
 | Sitemap por hub | ⏳ Pendente |
 
-## Bloco 5 — Navegação e Mega Menus (🔄 INICIADO)
+## Bloco 5 — Navegação e Mega Menus (🔄 EM ANDAMENTO)
 
 > **Veredito:** Estrutura-base do navbar implementada. Usa registro central tipado
 > (`src/config/siteNavigation.ts`) e `<details>/<summary>` para grupos. Apenas itens
-> com rota pública e filhos elegíveis são renderizados. Verticais permanece oculto
-> (todos os hubs planned). Hubs planned não aparecem. Mega menus completos, menu
-> mobile e auditoria de teclado continuam pendentes nas tasks 5.2 a 5.8.
+> com rota pública e filhos elegíveis são renderizados. Mega menus de Setores (5.2)
+> e Operação (5.3) concluídos — Setores com painel simples + descrição, Operação
+> com painel agrupado em 3 subseções visuais. Verticais permanece oculto (todos
+> planned). Menu mobile, parceiros e acessibilidade pendentes.
+>
+> Preview público: https://radar-digital-lemon.vercel.app/
 
 ### Tasks
 
 | ID | Task | Status |
 |---|---|---|
 | 5.1 | Criar estrutura-base do navbar aprovado | ✅ Concluído |
-| 5.2 | Implementar mega menus completos | ⏳ Pendente |
-| 5.3 | Implementar menu mobile | ⏳ Pendente |
+| 5.2 | Implementar mega menu de Setores | ✅ Concluído |
+| 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
 | 5.4 | Integrar dropdown de parceiros dinâmico | ⏳ Pendente |
 | 5.5 | Auditar sessões ativas e aria-current | ⏳ Pendente |
 | 5.6 | Auditar contraste e foco | ⏳ Pendente |
-| 5.7 | Auditar navegação por teclado e leitores de tela | ⏳ Pendente |
+| 5.7 | Implementar menu mobile | ⏳ Pendente |
 | 5.8 | Finalizar e validar acessibilidade | ⏳ Pendente |
 
 ---
