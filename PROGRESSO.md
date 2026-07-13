@@ -87,18 +87,28 @@
 | 5.7 | Implementar menu mobile | ⏳ Pendente |
 | 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
-#### Correção visual aplicada
+#### Regressão visual do seletor PT/ES (reaberta)
 
-Commit `e0c1a9b` (`fix: correct locale dropdown overflow`) — seletor de idioma
-convertido de `<button>`+`<div>` para `<details>`+`<summary>`, eliminando
-scrollbar vertical de 8 px e garantindo que links do dropdown não recebam foco
-quando o disclosure está fechado. Publicado e validado no preview. Apenas
-`src/components/SiteNavigation.astro` alterado. Nenhum problema residual
-conhecido dentro do escopo específico da regressão.
+O commit `e0c1a9b` (`fix: correct locale dropdown overflow`) substituiu o par
+`<button>`+`<div>` do seletor de idioma por `<details>`+`<summary>`, o que
+melhorou o comportamento fechado — os links internos deixaram de participar da
+tabulação quando o disclosure está fechado.
+
+Porém, a validação visual manual posterior confirmou que a regressão visual não
+foi resolvida completamente. Ao abrir o seletor PT/ES, o painel continua contido
+pela região rolável da navbar em vez de se projetar livremente para baixo sobre
+a página, o que produz uma scrollbar ou comportamento de scroll interno na
+navegação. A regressão visual está reaberta e precisa de uma task técnica
+separada de diagnóstico e correção.
+
+Causa técnica ainda não determinada. Hipóteses para investigação incluem:
+ancestral com `overflow` restritivo, contexto de posicionamento ou contêiner
+rolável. Nenhuma causa está confirmada.
 
 #### Pendências imediatas
 
-- Documentação reconciliada nesta task documental.
+- Regressão visual do seletor PT/ES — reaberta; necessita diagnóstico e correção antes do avanço normal do Bloco 5.
+- Commit documental `3c16d97` ainda não publicado.
 - Tasks 5.5–5.8 exigem tratamento conforme os estados acima.
 - Próxima task técnica ainda não autorizada.
 - Plano de Ação 2.0 será atualizado posteriormente em task separada (versão 2.1).
@@ -227,4 +237,4 @@ conhecido dentro do escopo específico da regressão.
 
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.4 concluídas, 5.5 e 5.6 parcialmente atendidas, 5.7 e 5.8 pendentes.
-> **Checkpoint remoto atual:** `e0c1a9b` — publicado e validado (CI success, Vercel success).
+> **Regressão visual do seletor PT/ES:** reaberta (commit `e0c1a9b` publicado, mas a correção visual não foi completa — necessita task técnica separada).

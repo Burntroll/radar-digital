@@ -3,7 +3,7 @@
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.0. Cada bloco representa um conjunto de entregas relacionadas.
 > **Última atualização:** 13/07/2026 — reconciliação documental com estado atual do Bloco 5
 
-## Bloco 1 — Setup e Estrutura
+## Bloco 1 — Sistema visual e componentes
 
 | Componente | Status |
 |---|---|
@@ -12,7 +12,7 @@
 | Tema dark/light | ✅ Concluído |
 | i18n PT/ES | ✅ Concluído |
 
-## Bloco 2 — Conteúdo e Collections
+## Bloco 2 — Contrato do sitemap
 
 | Componente | Status |
 |---|---|
@@ -115,11 +115,13 @@
 > e Radar Market parcialmente atendidos — disclosures existem mas encerramento
 > formal pendente. Menu mobile e acessibilidade pendentes.
 >
-> **Correção visual aplicada (commit `e0c1a9b`):** seletor de idioma convertido
-> de `<button>`+`<div>` para `<details>`+`<summary>` — scrollbar vertical
-> eliminada, dropdown integralmente visível, links não focáveis quando o
-> disclosure está fechado. Publicado e validado no preview. Nenhum problema
-> residual conhecido dentro do escopo específico da regressão.
+> **Regressão visual do seletor PT/ES (reaberta):** o commit `e0c1a9b`
+> converteu o seletor para `<details>`+`<summary>`, melhorando o comportamento
+> fechado (links não focáveis). Porém, ao abrir o dropdown, o painel continua
+> contido pela região rolável da navbar, produzindo scrollbar interna. A
+> correção visual não foi completa. Causa técnica ainda não determinada.
+> Necessita task técnica separada de diagnóstico e correção antes do avanço
+> normal do Bloco 5.
 >
 > Preview público: https://radar-digital-lemon.vercel.app/
 
