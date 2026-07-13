@@ -107,7 +107,12 @@
 > com rota pública e filhos elegíveis são renderizados. Mega menus de Setores (5.2)
 > e Operação (5.3) concluídos — Setores com painel simples + descrição, Operação
 > com painel agrupado em 3 subseções visuais. Verticais permanece oculto (todos
-> planned). Menu mobile, parceiros e acessibilidade pendentes.
+> planned). A auditoria da Task 5.4 constatou que nenhum hub de Verticais (Nutra,
+> Adult, Renda Extra, Outras Verticais) possui filho público elegível — todos
+> continuam planned, sem rota, página ou conteúdo publicado. Verticais permanece
+> totalmente ausente do HTML. A task foi encerrada neste ciclo sem alteração de
+> código e poderá ser reavaliada quando houver filho elegível. Menu mobile e
+> acessibilidade pendentes.
 >
 > Preview público: https://radar-digital-lemon.vercel.app/
 
@@ -118,11 +123,11 @@
 | 5.1 | Criar estrutura-base do navbar aprovado | ✅ Concluído |
 | 5.2 | Implementar mega menu de Setores | ✅ Concluído |
 | 5.3 | Implementar mega menu agrupado de Operação | ✅ Concluído |
-| 5.4 | Integrar dropdown de parceiros dinâmico | ⏳ Pendente |
-| 5.5 | Auditar sessões ativas e aria-current | ⏳ Pendente |
-| 5.6 | Auditar contraste e foco | ⏳ Pendente |
+| 5.4 | Menu de Verticais | ✅ Concluído neste ciclo — nenhuma implementação necessária |
+| 5.5 | Menu de Recursos | ⏳ Pendente |
+| 5.6 | Menu do Radar Market | ⏳ Pendente |
 | 5.7 | Implementar menu mobile | ⏳ Pendente |
-| 5.8 | Finalizar e validar acessibilidade | ⏳ Pendente |
+| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
 
 ---
 

@@ -250,6 +250,17 @@ Crescimento → Marketing Digital; Construção e Monetização → Monetizaçã
 Tecnologia e Performance → oculto, sem filhos elegíveis). Mobile usa
 `position: fixed` para manter o painel dentro do viewport.
 
+**Auditoria de Verticais (5.4):** A auditoria constatou que nenhum dos quatro
+hubs de Verticais — Nutra, Adult, Renda Extra e Outras Verticais — atende os
+critérios de ativação. Todos permanecem com status `planned` no registro
+editorial, nenhum possui rota pública PT/ES no routeMap, nenhum possui página
+física em `src/pages/`, nenhum possui conteúdo editorial publicado com
+`primaryHub` ou `relatedHubs`, e nenhum aparece no sitemap. O grupo Verticais
+permanece com `eligible: false` e é removido da renderização pelo filtro
+`.filter(section => section.eligible)`. Nenhuma implementação foi necessária
+neste ciclo. A task deve ser reavaliada somente quando houver filho público
+elegível.
+
 **Critério de ativação:** A navegação é determinada pelo registro central,
 não derivada automaticamente de `editorialHubs.ts`. Paginas agregadoras
 continuam pertencendo ao Bloco 6.
