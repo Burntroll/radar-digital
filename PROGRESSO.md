@@ -4,7 +4,7 @@
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
 > **Última atualização:** 13/07/2026 — Ferramentas e Bônus promovidos a anchors principais (Task 5.5)
-> **Baseline técnico e documental atual:** `8dade9c` — `fix: hide decorative nav icons from assistive technology`
+> **Último checkpoint remoto validado:** `1f478c5` — `docs: update progress with task 5.5 completion`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions:** 40+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
@@ -125,12 +125,14 @@ Decisão do Plano de Ação 2.1 registrada em `docs/DECISIONS.md`:
 
 Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 
+**Validação remota (Task 5.5):** publicada no checkpoint `1f478c5`, aprovada no GitHub Actions run `29265816504`, implantada no preview Vercel, validada remotamente em PT e ES. Mantidas 41 páginas, 28 URLs e 15 hints conhecidos.
+
 #### Pendências imediatas
 
 - Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`).
 - Task 5.5 implementada e validada (commits `e2aef6d` + `8dade9c`).
 - Tasks 5.6–5.8 exigem tratamento conforme os estados acima.
-- Próxima task técnica ainda não autorizada.
+- Task 5.6 (submenu do Radar Market) é a próxima task prevista, ainda não iniciada nem autorizada.
 - Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
 
 ---
@@ -256,5 +258,5 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 ---
 
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
-> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.4 concluídas, 5.5 e 5.6 parcialmente atendidas, 5.7 e 5.8 pendentes.
+> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.4 concluídas, 5.5 concluída, 5.6 parcialmente atendida, 5.7 e 5.8 pendentes.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

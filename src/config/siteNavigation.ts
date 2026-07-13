@@ -61,7 +61,10 @@ export interface NavSection {
 /**
  * Estrutura central da navegação principal.
  *
- * Ordem: Início → Setores → Operação → Verticais → Recursos → Radar Market
+ * Ordem conceitual do registro:
+ * Início → Setores → Operação → Verticais → Recursos → Ferramentas → Bônus → Radar Market
+ *
+ * Verticais não é renderizado no estado público enquanto permanecer inelegível.
  *
  * Cada entrada declara elegibilidade separadamente do registro,
  * permitindo que Verticais exista no modelo mas não seja renderizado

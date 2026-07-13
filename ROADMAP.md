@@ -1,6 +1,6 @@
 # Roadmap — Radar Digital
 
-> **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.0. Cada bloco representa um conjunto de entregas relacionadas.
+> **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.1. Cada bloco representa um conjunto de entregas relacionadas.
 > **Última atualização:** 13/07/2026 — reconciliação documental com estado atual do Bloco 5
 
 ## Bloco 1 — Sistema visual e componentes
@@ -112,8 +112,11 @@
 > continuam planned, sem rota, página ou conteúdo publicado. Verticais permanece
 > totalmente ausente do HTML. A task foi encerrada neste ciclo sem alteração de
 > código e poderá ser reavaliada quando houver filho elegível. Menu de Recursos
-> e Radar Market parcialmente atendidos — disclosures existem mas encerramento
-> formal pendente. Menu mobile e acessibilidade pendentes.
+> (Task 5.5) concluído — Recursos permanece disclosure com somente Guias no estado
+> atual; Ferramentas e Bônus são anchors independentes. Radar Market já possui
+> anchor principal; o submenu comercial da Task 5.6 continua pendente de auditoria
+> e decisão. Menu mobile e acessibilidade permanecem pendentes. Bloco 5 continua
+> em andamento.
 >
 > **Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`):**
 > causa confirmada — wrapper com `overflow-x-auto` incluía links, idioma e tema.
