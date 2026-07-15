@@ -19,14 +19,14 @@
    THEME: Light (default) & Dark (.dark)
    ═══════════════════════════════════════════════════ */
 :root {
-  --color-surface: #f7f8fc;
-  --color-surface-card: #ffffff;
-  --color-surface-elevated: #f1f5f9;
+  --color-surface: #f8f4ec;
+  --color-surface-card: #fffdf8;
+  --color-surface-elevated: #f1ebe2;
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
   --color-text-muted: #64748b;
-  --color-border: #dbe3ef;
-  --color-border-soft: rgba(15, 23, 42, 0.08);
+  --color-border: #d9d0c3;
+  --color-border-soft: rgba(76, 63, 44, 0.10);
   --color-accent-blue: #2563eb;
 
   /* ── Semantic color roles ── */
@@ -50,8 +50,8 @@
   --color-commercial: #f59e0b;
   --color-commercial-rgb: 245 158 11;
 
-  --color-surface-header: var(--color-surface);
-  --color-surface-ad: var(--color-surface);
+  --color-surface-header: #fcf8f1;
+  --color-surface-ad: #f3ede4;
 
   /* ── Compatibility aliases (to be replaced by consumers) ── */
   --color-accent: var(--color-link);
