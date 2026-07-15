@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.1. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 15/07/2026 — reconciliação documental com camada semântica de cores
+> **Última atualização:** 16/07/2026 — Editorial Cream surfaces publicadas
 
 ## Bloco 1 — Sistema visual e componentes
 
@@ -127,11 +127,12 @@
 > - Camada semântica de cores publicada em `5c73789` — 9 papéis funcionais em `global.css`.
 > - Editorial Cream escolhida como direção estratégica; Warm Slate mantida apenas como fallback conceitual.
 > - Rollout obrigatório em etapas pequenas e isoladas.
-> - Primeiro estágio técnico futuro limitado a superfícies e bordas do light mode.
-> - Estágios posteriores previstos para textos funcionais, foco, estados interativos e tratamento editorial/comercial.
+> - **Estágio 1 (superfícies e bordas) publicado** em `39970e2`: canvas `#f8f4ec`, card `#fffdf8`, elevated `#f1ebe2`, borda `#d9d0c3`, border-soft `rgba(76,63,44,.10)`, surface-header `#fcf8f1`, surface-ad `#f3ede4`. PT/ES, mobile e desktop preservados. Dark mode preservado. 41 páginas, 28 URLs e 15 hints mantidos.
+> - **Estágio 2 futuro:** textos e cores funcionais (não iniciado). Pendência de `--color-text-muted` contra superfícies claras pertence a este estágio.
+> - **Estágios seguintes previstos:** consumidores editoriais e comerciais → Task 5.8 → auditoria Bloco 12.
 > - Task 5.8 executada somente depois de estabilizados os tokens funcionais necessários à validação de foco.
 > - Nenhum avanço para o Bloco 6 antes do checkpoint final do Bloco 5.
-> - Editorial Cream não está aplicada visualmente — o estado público atual continua using a paleta fria.
+> - Editorial Cream aplicada parcialmente (apenas estágio 1); consumidores de `--color-surface-header` e `--color-surface-ad` ainda não migrados.
 >
 > **Regressão visual do seletor PT/ES — encerrada (commit `ef99fb9`):**
 > causa confirmada — wrapper com `overflow-x-auto` incluía links, idioma e tema.

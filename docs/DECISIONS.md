@@ -1,7 +1,7 @@
 # Decisões Arquiteturais — Radar Digital
 
 > **Propósito:** Registrar decisões arquiteturais que já estão comprovadas no código, para que outra pessoa ou IA entenda o *porquê* sem depender de histórico de conversas.
-> **Última revisão:** 15/07/2026 (checkpoint do Bloco 5 — camada semântica de cores)
+> **Última revisão:** 16/07/2026 (Editorial Cream surfaces publicadas)
 
 ## Formato: preservação do nome técnico `contentType`
 
@@ -514,14 +514,41 @@ Consumidores existentes (componentes, glass-card, etc.) continuam usando os alia
 4. Validação consolidada de teclado, foco e leitores de tela na Task 5.8.
 5. Nova auditoria completa de contraste e acessibilidade no Bloco 12.
 
+**Estado de implementação (16/07/2026)**
+
+- **Estágio 1 publicado** no commit `39970e26f574f1c2d6c8a640041ade16e00f5fc9` (`style: apply editorial cream surfaces`).
+- Alteração limitada a **sete tokens** de superfícies e bordas no bloco `:root` do `src/styles/global.css`:
+
+| Token | Valor |
+|-------|-------|
+| `--color-surface` | `#f8f4ec` |
+| `--color-surface-card` | `#fffdf8` |
+| `--color-surface-elevated` | `#f1ebe2` |
+| `--color-border` | `#d9d0c3` |
+| `--color-border-soft` | `rgba(76, 63, 44, 0.10)` |
+| `--color-surface-header` | `#fcf8f1` |
+| `--color-surface-ad` | `#f3ede4` |
+
+- Bloco `.dark` permaneceu **byte a byte inalterado**.
+- Nenhum token de texto ou cor funcional foi alterado.
+- Nenhum consumidor foi migrado — `AdSlot.astro` continua usando `var(--color-surface)`; header e navbar não foram conectados a `--color-surface-header`.
+- Validação visual concluída em PT e ES, desktop e mobile.
+- GitHub Actions run `29451606166` e Vercel Production aprovados.
+- 41 páginas, 28 URLs e 15 hints preservados.
+- Contraste de texto primário e secundário ≥ 4,5:1 contra todas as novas superfícies.
+- `--color-text-muted` possui 3 combinações abaixo de 4,5:1 — pendência registrada para o estágio 2.
+
+**Estágios 2 a 5 não implementados.** O estágio 2 (textos e cores funcionais) não foi iniciado nem autorizado.
+
 **Limitações e salvaguardas**
 
-- Nenhuma das etapas de rollout acima está implementada por esta decisão documental.
-- O estado visual público permanece **inalterado** — paleta fria ainda ativa em produção.
-- Editorial Cream não está aplicada visualmente.
-- A auditoria atual é diagnóstico, não certificação WCAG.
-- Nenhum valor hexadecimal final de Editorial Cream foi definido ou proposto.
+- A implementação do estágio 1 não conclui o tema Editorial Cream — a aplicação é **parcial**.
+- Estágios 2 a 5 do rollout **não foram implementados**.
+- Os valores funcionais futuros (textos, foco, links, interactive) **ainda não foram decididos**.
+- `--color-text-muted` contra superfícies claras permanece abaixo de 4,5:1 em 3 combinações — pendente para o estágio 2.
+- Consumidores de `--color-surface-header` e `--color-surface-ad` ainda não foram migrados.
+- A auditoria atual é **diagnóstico, não certificação WCAG**.
 - Os valores de `08a74c1` não são a paleta final — são apenas um experimento anterior.
 - O Bloco 5 permanece aberto (Task 5.8 pendente).
 - O Bloco 6 permanece bloqueado.
-- Esta decisão não autoriza mudança em CSS, componentes, configurações, conteúdos ou rotas.
+- Esta decisão não autoriza mudança adicional em CSS, componentes, configurações, conteúdos ou rotas.
