@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 14/07/2026 — camada semântica de cores publicada
+> **Última atualização:** 15/07/2026 — camada semântica de cores publicada
 > **Último checkpoint remoto validado:** `5c73789bec86d7acd27ec8c519e44df713b47df4` — `refactor: separate semantic color roles`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions run 29291325218:** sucesso ✅

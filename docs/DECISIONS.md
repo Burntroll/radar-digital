@@ -1,7 +1,7 @@
 # Decisões Arquiteturais — Radar Digital
 
 > **Propósito:** Registrar decisões arquiteturais que já estão comprovadas no código, para que outra pessoa ou IA entenda o *porquê* sem depender de histórico de conversas.
-> **Última revisão:** 14/07/2026 (checkpoint do Bloco 5 — camada semântica de cores)
+> **Última revisão:** 15/07/2026 (checkpoint do Bloco 5 — camada semântica de cores)
 
 ## Formato: preservação do nome técnico `contentType`
 

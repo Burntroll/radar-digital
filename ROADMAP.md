@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.1. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 14/07/2026 — reconciliação documental com camada semântica de cores
+> **Última atualização:** 15/07/2026 — reconciliação documental com camada semântica de cores
 
 ## Bloco 1 — Sistema visual e componentes
 
