@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.1. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 16/07/2026 — Editorial Cream surfaces publicadas
+> **Última atualização:** 16/07/2026 — neutros de texto Editorial Cream publicados
 
 ## Bloco 1 — Sistema visual e componentes
 
@@ -128,7 +128,8 @@
 > - Editorial Cream escolhida como direção estratégica; Warm Slate mantida apenas como fallback conceitual.
 > - Rollout obrigatório em etapas pequenas e isoladas.
 > - **Estágio 1 (superfícies e bordas) publicado** em `39970e2`: canvas `#f8f4ec`, card `#fffdf8`, elevated `#f1ebe2`, borda `#d9d0c3`, border-soft `rgba(76,63,44,.10)`, surface-header `#fcf8f1`, surface-ad `#f3ede4`. PT/ES, mobile e desktop preservados. Dark mode preservado. 41 páginas, 28 URLs e 15 hints mantidos.
-> - **Estágio 2 futuro:** textos e cores funcionais (não iniciado). Pendência de `--color-text-muted` contra superfícies claras pertence a este estágio.
+> - **Estágio 2 — parcialmente iniciado:** neutros de texto publicados em `5a41d88` (secondary `#50504c`, muted `#696760`; primary `#0f172a` inalterado). Contraste de ambos ≥ 4,5:1 contra as cinco superfícies semânticas. Pendência anterior de muted resolvida. Dark mode preservado. PT/ES, desktop e mobile validados. 41 páginas, 28 URLs e 15 hints mantidos.
+> - **Estágio 2 — restante futuro:** link, interactive, focus e estados ativos ainda sem valores finais decididos.
 > - **Estágios seguintes previstos:** consumidores editoriais e comerciais → Task 5.8 → auditoria Bloco 12.
 > - Task 5.8 executada somente depois de estabilizados os tokens funcionais necessários à validação de foco.
 > - Nenhum avanço para o Bloco 6 antes do checkpoint final do Bloco 5.

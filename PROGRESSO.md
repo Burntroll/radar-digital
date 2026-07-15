@@ -3,11 +3,11 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 16/07/2026 — Editorial Cream surfaces publicada
-> **Último checkpoint remoto validado:** `39970e26f574f1c2d6c8a640041ade16e00f5fc9` — `style: apply editorial cream surfaces`
+> **Última atualização:** 16/07/2026 — neutros de texto Editorial Cream publicados
+> **Último checkpoint remoto validado:** `5a41d885c24e27e6a15094d98260cfcd97d723e0` — `style: refine editorial cream text neutrals`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
-> **GitHub Actions run 29451606166:** sucesso ✅
-> **Vercel Production (39970e2):** validada ✅
+> **GitHub Actions run 29454165474:** sucesso ✅
+> **Vercel Production (5a41d88):** validada ✅
 > **GitHub Actions:** 41+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
@@ -24,7 +24,7 @@
 
 ### Design & UI
 - [x] **Tema Dark/Light** — CSS variables + toggle + localStorage
-- [x] **Light mode** — Editorial Cream surfaces publicadas no commit `39970e2` (canvas `#f8f4ec`, card `#fffdf8`, elevated `#f1ebe2`, borda `#d9d0c3`); primeiro estágio aplicado parcialmente (superfícies e bordas apenas); antiga paleta creme (`#f0ece4`, introduzida em `08a74c1`) preservada como referência histórica; valores finais de textos e cores funcionais ainda não definidos
+- [x] **Light mode** — Editorial Cream surfaces publicadas no commit `39970e2` (canvas `#f8f4ec`, card `#fffdf8`, elevated `#f1ebe2`, borda `#d9d0c3`); primeiro estágio aplicado parcialmente (superfícies e bordas); estágio 2 iniciado parcialmente em `5a41d88` (neutros de texto: secondary `#50504c`, muted `#696760`; primary `#0f172a` inalterado); antiga paleta creme (`#f0ece4`, introduzida em `08a74c1`) preservada como referência histórica
 - [x] **Página 404** — Three.js com radar estilizado + noindex
 - [x] **Nav renomeado** — "Ferramentas" (PT) / "Herramientas" (ES)
 - [x] **Locale switcher** — Dropdown PT/ES com hreflang
@@ -140,8 +140,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 - Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
 - **Camada semântica de cores** publicada em `5c73789` — 9 papéis definidos em `global.css` sem mudança visual intencional.
 - **Editorial Cream surfaces publicadas** em `39970e2` — 7 tokens de superfícies e bordas do light mode alterados (canvas, card, elevated, border, border-soft, surface-header, surface-ad); dark mode preservado; consumidores de header e anúncio ainda não migrados.
-- **Próxima etapa visual prevista:** textos e cores funcionais (não iniciada, não autorizada).
-- **--color-text-muted:** pendente de ajuste no estágio de textos funcionais (3 combinações abaixo de 4,5:1).
+- **Neutros de texto publicados** em `5a41d88` — secondary `#50504c`, muted `#696760`; contraste mínimo ≥ 4,5:1 contra as cinco superfícies semânticas; pendência anterior de muted abaixo de 4,5:1 resolvida neste conjunto de superfícies. Não constitui certificação WCAG global.
+- **Restante do estágio 2:** link, interactive, focus, estados ativos — ainda não iniciado; consumidores editoriais e comerciais futuros.
 - **Bloco 5:** ainda em andamento (Task 5.8 pendente).
 - **Bloco 6:** ainda bloqueado.
 
@@ -272,5 +272,5 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
-> **Camada semântica de cores:** publicada em `5c73789` — 9 papéis em `global.css`.
-> **Editorial Cream surfaces:** publicadas em `39970e2` — 7 tokens de superfícies e bordas do light mode; primeiro estágio parcialmente aplicado; estágios 2 a 5 futuros.
+> **Editorial Cream surfaces:** publicadas em `39970e2` — 7 tokens de superfícies e bordas do light mode; primeiro estágio parcialmente aplicado.
+> **Neutros de texto:** secondary `#50504c` e muted `#696760` publicados em `5a41d88`; estágio 2 parcialmente iniciado; papéis funcionais cromáticos e estágios 3 a 5 futuros.

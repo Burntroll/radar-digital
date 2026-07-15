@@ -538,14 +538,34 @@ Consumidores existentes (componentes, glass-card, etc.) continuam usando os alia
 - Contraste de texto primário e secundário ≥ 4,5:1 contra todas as novas superfícies.
 - `--color-text-muted` possui 3 combinações abaixo de 4,5:1 — pendência registrada para o estágio 2.
 
-**Estágios 2 a 5 não implementados.** O estágio 2 (textos e cores funcionais) não foi iniciado nem autorizado.
+**Primeiro recorte do estágio 2 — neutros de texto**
+
+Publicação no commit `5a41d885c24e27e6a15094d98260cfcd97d723e0` (`style: refine editorial cream text neutrals`).
+
+Alteração limitada a **duas declarações** no bloco `:root` do `src/styles/global.css`:
+
+| Token | Valor anterior | Valor publicado |
+|-------|---------------|-----------------|
+| `--color-text-secondary` | `#475569` | `#50504c` |
+| `--color-text-muted` | `#64748b` | `#696760` |
+
+- `--color-text-primary` permaneceu inalterado em `#0f172a`.
+- Bloco `.dark` permaneceu **byte a byte inalterado**.
+- Nenhum seletor ou consumidor foi alterado.
+- Nenhum componente ou documento foi alterado.
+- Contraste de ambos os tokens ≥ 4,5:1 contra as cinco superfícies semânticas (`#f8f4ec`, `#fffdf8`, `#f1ebe2`, `#fcf8f1`, `#f3ede4`). Menor contraste do secondary: ~6,83:1. Menor contraste do muted: ~4,78:1.
+- A pendência anterior de três combinações abaixo de 4,5:1 para muted foi resolvida neste conjunto de superfícies.
+- Validação visual concluída em PT e ES, desktop e mobile.
+- GitHub Actions run `29454165474` e Vercel Production aprovados.
+- 41 páginas, 28 URLs e 15 hints preservados.
+
+**Estágio 2 — restante não implementado.** Link, interactive, focus, estados ativos e consumidores editoriais/comerciais ainda não foram decididos nem autorizados.
 
 **Limitações e salvaguardas**
 
-- A implementação do estágio 1 não conclui o tema Editorial Cream — a aplicação é **parcial**.
-- Estágios 2 a 5 do rollout **não foram implementados**.
-- Os valores funcionais futuros (textos, foco, links, interactive) **ainda não foram decididos**.
-- `--color-text-muted` contra superfícies claras permanece abaixo de 4,5:1 em 3 combinações — pendente para o estágio 2.
+- A implementação do estágio 1 e do primeiro recorte do estágio 2 não conclui o tema Editorial Cream — a aplicação é **parcial**.
+- O restante do estágio 2 (link, interactive, focus, estados ativos) e estágios 3 a 5 **não foram implementados**.
+- Os valores funcionais cromáticos futuros (link, interactive, focus) **ainda não foram decididos**.
 - Consumidores de `--color-surface-header` e `--color-surface-ad` ainda não foram migrados.
 - A auditoria atual é **diagnóstico, não certificação WCAG**.
 - Os valores de `08a74c1` não são a paleta final — são apenas um experimento anterior.
