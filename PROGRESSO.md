@@ -3,9 +3,11 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 13/07/2026 — ícones de Ferramentas e Bônus removidos (links textuais)
-> **Último checkpoint remoto validado:** `bd78ec45fec19a5e54ddb3122ba77781d8aec1e9` — `refactor: remove icons from monetization links`
+> **Última atualização:** 14/07/2026 — camada semântica de cores publicada
+> **Último checkpoint remoto validado:** `5c73789bec86d7acd27ec8c519e44df713b47df4` — `refactor: separate semantic color roles`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
+> **GitHub Actions run 29291325218:** sucesso ✅
+> **Vercel Production:** validada ✅
 > **GitHub Actions:** 41+ runs, success ✅
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
@@ -22,11 +24,12 @@
 
 ### Design & UI
 - [x] **Tema Dark/Light** — CSS variables + toggle + localStorage
-- [x] **Light mode** — Paleta creme quente (`#f0ece4`)
+- [x] **Light mode** — Estado público atual usa canvas `#f7f8fc` (paleta fria consolidada em `c9bbde4`); antiga paleta creme (`#f0ece4`, introduzida em `08a74c1`) preservada como referência histórica; Editorial Cream é a direção futura aprovada, sem valores finais definidos
 - [x] **Página 404** — Three.js com radar estilizado + noindex
 - [x] **Nav renomeado** — "Ferramentas" (PT) / "Herramientas" (ES)
 - [x] **Locale switcher** — Dropdown PT/ES com hreflang
 - [x] **Componentes padronizados** — glass-card, interactive-card, AdSlot, EmptyState, CategoryArticleCard
+- [x] **Camada semântica de cores** — 9 papéis (brand-cyan, link, interactive, focus, editorial, editorial-active, commercial, surface-header, surface-ad) + aliases de compatibilidade (`--color-accent`, `--color-accent-purple`); publicada no commit `5c73789` sem mudança visual intencional; dark mode preservado conceitual e tecnicamente
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -135,6 +138,10 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 - Task 5.7 concluída, publicada e validada — navegação mobile dedicada (< 1024 px) com hamburger, painel vertical, accordions nativos, locale e tema; desktop integralmente preservado.
 - Task 5.8 (teclado e leitores de tela) continua pendente, não iniciada e não autorizada.
 - Plano de Ação 2.1 atualizado e aprovado; implementação da arquitetura concluída.
+- **Camada semântica de cores** publicada em `5c73789` — 9 papéis definidos em `global.css` sem mudança visual intencional.
+- **Próxima etapa técnica prevista:** primeiro estágio visual do tema light, limitado a tokens de superfícies e bordas (etapa futura, não iniciada).
+- **Bloco 5:** ainda em andamento (Task 5.8 pendente).
+- **Bloco 6:** ainda bloqueado.
 
 **Resumo da auditoria da Task 5.6:** 4 categorias localizadas (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos), 0 itens públicos, 1 placeholder em draft, nenhuma rota de categoria ou item. A landing já expõe toda a estrutura atualmente disponível. Submenu considerado inelegível neste ciclo.
 
@@ -263,3 +270,4 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Próximo ponto de decisão:** Bloco 4 concluído. Content Collections mantidas para o lançamento.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
+> **Camada semântica de cores:** publicada em `5c73789` — 9 papéis em `global.css` sem mudança visual; Editorial Cream aprovada como direção futura; rollout em estágios.

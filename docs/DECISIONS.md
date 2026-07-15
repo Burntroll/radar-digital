@@ -1,7 +1,7 @@
 # Decisões Arquiteturais — Radar Digital
 
 > **Propósito:** Registrar decisões arquiteturais que já estão comprovadas no código, para que outra pessoa ou IA entenda o *porquê* sem depender de histórico de conversas.
-> **Última revisão:** 12/07/2026 (checkpoint do Bloco 3)
+> **Última revisão:** 14/07/2026 (checkpoint do Bloco 5 — camada semântica de cores)
 
 ## Formato: preservação do nome técnico `contentType`
 
@@ -452,3 +452,76 @@ A remoção foi implementada no commit `bd78ec45fec19a5e54ddb3122ba77781d8aec1e9
 - Labels, ordem e `aria-current` preservados.
 - Equivalência PT/ES preservada.
 - 41 páginas, 28 URLs e 15 hints mantidos.
+
+---
+
+## Direção Editorial Cream e rollout semântico do tema light
+
+**Status:** Aceita
+
+**Data da decisão:** 14/07/2026
+
+**Contexto**
+
+- O light mode publicado ainda usa a paleta fria consolidada em `c9bbde4` — canvas `#f7f8fc`, cards `#ffffff`, elevado `#f1f5f9`.
+- A antiga paleta creme (`#f0ece4`) foi introduzida experimentalmente em `08a74c1` (`💡 Soften light mode: warm cream palette instead of cold slate`).
+- O canvas foi posteriormente alterado para a paleta fria atual em `41ff2a4` (`style: update light theme background color`).
+- O commit `5c73789` (`refactor: separate semantic color roles`) separou papéis semânticos de cores no `global.css` sem mudança visual intencional — os valores hexadecimais das variáveis existentes foram preservados.
+- A auditoria do tema light encontrou pouca separação entre canvas, cards e superfícies elevadas, excesso de aparência SaaS e sobrecarga funcional do ciano em links, interação e foco.
+- Warm Slate (paleta atual) não é um tema completo, mas um subproduto de refatorações sucessivas sem direção própria.
+
+**Decisão**
+
+- Adotar **Editorial Cream** como direção estratégica do futuro tema light.
+- Não restaurar automaticamente os valores históricos de `08a74c1`.
+- Não considerar nenhum conjunto experimental anterior como paleta final.
+- Manter **Warm Slate** apenas como fallback conceitual — preservado enquanto durar, não promovido a tema.
+- Preservar conceitualmente o dark mode — nenhuma alteração no tema escuro.
+- Executar a migração em commits pequenos e isolados, um grupo de tokens por vez.
+- Usar ciano luminoso prioritariamente para marca e decoração, não para links e interação primária.
+- Usar cores funcionais mais escuras para links, foco e estados ativos.
+- Manter papéis próprios para editorial e comercial (roxo editorial, âmbar comercial).
+
+**Camada semântica publicada**
+
+O commit `5c73789` estabeleceu nove papéis semânticos em `:root` e `.dark` em `src/styles/global.css`:
+
+| Papel | Propósito |
+|-------|-----------|
+| `--color-brand-cyan` | Identidade visual, decoração, gradientes |
+| `--color-link` | Links textuais |
+| `--color-interactive` | Elementos interativos (botões, hover, tag-pill) |
+| `--color-focus` | Indicador de foco (`:focus-visible`) |
+| `--color-editorial` | Tratamento editorial (roxo) |
+| `--color-editorial-active` | Estado ativo de elementos editoriais |
+| `--color-commercial` | Tratamento comercial (âmbar) |
+| `--color-surface-header` | Superfície do header |
+| `--color-surface-ad` | Superfície de anúncios |
+
+Aliases de compatibilidade preservados:
+
+- `--color-accent: var(--color-link)`
+- `--color-accent-purple: var(--color-editorial)`
+- `--color-accent-blue` permanece independente
+
+Consumidores existentes (componentes, glass-card, etc.) continuam usando os aliases antigos — a migração para os papéis semânticos é futura.
+
+**Sequência de rollout**
+
+1. Superfícies e bordas do light mode — primeiro estágio visual.
+2. Textos e cores funcionais, incluindo foco e estados ativos.
+3. Consumidores editoriais e comerciais (roxo e âmbar nos componentes apropriados).
+4. Validação consolidada de teclado, foco e leitores de tela na Task 5.8.
+5. Nova auditoria completa de contraste e acessibilidade no Bloco 12.
+
+**Limitações e salvaguardas**
+
+- Nenhuma das etapas de rollout acima está implementada por esta decisão documental.
+- O estado visual público permanece **inalterado** — paleta fria ainda ativa em produção.
+- Editorial Cream não está aplicada visualmente.
+- A auditoria atual é diagnóstico, não certificação WCAG.
+- Nenhum valor hexadecimal final de Editorial Cream foi definido ou proposto.
+- Os valores de `08a74c1` não são a paleta final — são apenas um experimento anterior.
+- O Bloco 5 permanece aberto (Task 5.8 pendente).
+- O Bloco 6 permanece bloqueado.
+- Esta decisão não autoriza mudança em CSS, componentes, configurações, conteúdos ou rotas.
