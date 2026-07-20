@@ -416,26 +416,52 @@ body {
 
 .home-opening__grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
 }
 
 .home-opening__primary,
-.home-opening__secondary {
+.home-opening__secondary,
+.home-opening__radar {
   min-width: 0;
 }
 
-.home-opening__secondary {
+.home-opening__secondary,
+.home-opening__radar {
   display: flex;
 }
 
-.home-opening__grid--single {
-  grid-template-columns: minmax(0, 1fr);
+@media (min-width: 64rem) {
+  .home-opening__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  }
+
+  .home-opening__radar {
+    grid-column: 1 / -1;
+  }
+
+  .home-opening__grid--no-secondary .home-opening__radar {
+    grid-column: 2;
+    grid-row: 1;
+  }
 }
 
-@media (max-width: 63.999rem) {
+@media (min-width: 80rem) {
   .home-opening__grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.75fr) minmax(16rem, 0.72fr) minmax(17rem, 0.68fr);
+  }
+
+  .home-opening__radar {
+    grid-column: auto;
+  }
+
+  .home-opening__grid--no-secondary {
+    grid-template-columns: minmax(0, 1.75fr) minmax(17rem, 0.68fr);
+  }
+
+  .home-opening__grid--no-secondary .home-opening__radar {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 
@@ -838,6 +864,242 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .secondary-lead__link {
+    transition: none;
+  }
+}
+
+/* ─── V4 Radar agora panel ─── */
+.radar-now-panel {
+  width: 100%;
+  min-width: 0;
+  min-height: 15rem;
+  padding: clamp(1.25rem, 2vw, 1.65rem);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(var(--color-text-inverse-rgb) / 0.14);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-inverse);
+  background:
+    radial-gradient(circle at 100% 0, rgb(var(--color-signal-rgb) / 0.1), transparent 30%),
+    var(--color-editorial-black);
+  box-shadow: var(--shadow-resting);
+}
+
+.radar-now-panel__header {
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid rgb(var(--color-text-inverse-rgb) / 0.14);
+}
+
+.radar-now-panel__title-group {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.radar-now-panel__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-signal);
+  box-shadow: 0 0 0 0.25rem rgb(var(--color-signal-rgb) / 0.1);
+}
+
+.radar-now-panel h2 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-family-functional);
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.radar-now-panel__status {
+  color: var(--color-signal);
+  font-family: var(--font-family-functional);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.radar-now-panel__timeline {
+  margin: 0;
+  padding: 0.25rem 0 0;
+  list-style: none;
+}
+
+.radar-now-panel__item {
+  position: relative;
+  padding: 1rem 0 1rem 1.35rem;
+  border-bottom: 1px solid rgb(var(--color-text-inverse-rgb) / 0.11);
+}
+
+.radar-now-panel__item::before {
+  content: '';
+  position: absolute;
+  top: 1.35rem;
+  left: 0.05rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-signal);
+}
+
+.radar-now-panel__item::after {
+  content: '';
+  position: absolute;
+  top: 1.95rem;
+  bottom: -0.35rem;
+  left: 0.255rem;
+  width: 1px;
+  background: rgb(var(--color-text-inverse-rgb) / 0.16);
+}
+
+.radar-now-panel__item:last-child {
+  border-bottom: 0;
+}
+
+.radar-now-panel__item:last-child::after {
+  display: none;
+}
+
+.radar-now-panel__item time {
+  display: block;
+  color: var(--color-signal);
+  font-family: var(--font-family-functional);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.radar-now-panel__item time span {
+  color: rgb(var(--color-text-inverse-rgb) / 0.58);
+}
+
+.radar-now-panel__item a {
+  margin-top: 0.35rem;
+  display: -webkit-box;
+  overflow: hidden;
+  color: inherit;
+  font-family: var(--font-family-functional);
+  font-size: 0.86rem;
+  font-weight: 740;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: color 160ms ease;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.radar-now-panel__item a:hover {
+  color: var(--color-signal);
+}
+
+.radar-now-panel__item a:focus-visible {
+  border-radius: var(--radius-sm);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.radar-now-panel__empty {
+  min-height: 10rem;
+  margin-block: auto;
+  padding-block: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.radar-now-panel__empty p {
+  max-width: 18rem;
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-editorial);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: var(--type-display-weight);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.radar-now-panel__empty span {
+  max-width: 18rem;
+  margin-top: 0.75rem;
+  color: rgb(var(--color-text-inverse-rgb) / 0.62);
+  font-family: var(--font-family-functional);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.radar-now-panel__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(var(--color-text-inverse-rgb) / 0.14);
+  color: rgb(var(--color-text-inverse-rgb) / 0.54);
+  font-family: var(--font-family-functional);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 40rem) and (max-width: 79.999rem) {
+  .radar-now-panel__timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-4);
+  }
+
+  .radar-now-panel__item:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .radar-now-panel__item::after {
+    display: none;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 79.999rem) {
+  .radar-now-panel__timeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .radar-now-panel__item {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 80rem) {
+  .radar-now-panel {
+    min-height: 100%;
+  }
+
+  .radar-now-panel__header {
+    flex-direction: column;
+  }
+
+  .radar-now-panel__status {
+    text-align: left;
+  }
+}
+
+@media (max-width: 39rem) {
+  .radar-now-panel {
+    border-radius: var(--radius-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radar-now-panel__item a {
     transition: none;
   }
 }

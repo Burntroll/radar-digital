@@ -78,6 +78,32 @@ export const ui = {
   'signal.topic.monetization': { 'pt-BR': 'Novos modelos de monetização', 'es': 'Nuevos modelos de monetización' },
   'signal.topic.guides':       { 'pt-BR': 'Guias para operações digitais', 'es': 'Guías para operaciones digitales' },
 
+  // V4 — Home / Radar agora
+  'home.radar.status': {
+    'pt-BR': 'Recência editorial',
+    'es': 'Recencia editorial',
+  },
+  'home.radar.updated': {
+    'pt-BR': 'Atualizado em',
+    'es': 'Actualizado el',
+  },
+  'home.radar.published': {
+    'pt-BR': 'Publicado em',
+    'es': 'Publicado el',
+  },
+  'home.radar.empty': {
+    'pt-BR': 'Sem novas publicações além dos destaques.',
+    'es': 'No hay nuevas publicaciones además de las destacadas.',
+  },
+  'home.radar.empty.note': {
+    'pt-BR': 'O painel será preenchido quando houver outra história elegível.',
+    'es': 'El panel se completará cuando haya otra historia elegible.',
+  },
+  'home.radar.footer': {
+    'pt-BR': 'Datas editoriais verificadas',
+    'es': 'Fechas editoriales verificadas',
+  },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

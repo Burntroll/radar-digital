@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.8 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile e abertura editorial principal/secundária); Radar agora e os demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.9 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária e painel Radar agora); os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -340,6 +340,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 
 **Estado implementado na Task 7.8:** `SecondaryLeads.astro` recebe do mesmo loader até dois artigos posteriores à principal, preservando ordem, locale e deduplicação estrutural. A primeira chamada possui maior peso e resumo; a segunda é compacta, sem repetir o mosaico de cards iguais. A grade omite a coluna quando não há secundária, ocupa o slot inteiro com uma entrada e distribui duas entradas assimetricamente. Datas, URLs e headings são reais/localizados; mídia permanece provisória e sem ativo remoto. O guia saiu somente da abertura e continua no módulo próprio existente; Radar agora não foi iniciado.
 
+**Estado implementado na Task 7.9:** `homeData.ts` exclui manchete e secundárias antes de montar até quatro entradas de `radarNowItems`; a ordem usa `updatedAt` apenas quando real e não futuro, com fallback para `date` e desempate estável. `RadarNow.astro` exibe datas absolutas localizadas e rótulos distintos para publicação/atualização, sem tempo relativo, “ao vivo”, atualização contínua ou destino fictício. Como os três artigos elegíveis atuais já ocupam a manchete e as secundárias, PT/ES renderizam o estado vazio localizado. A grade passa a três colunas em telas largas e mantém a ordem semântica ao recompor tablet/mobile; não há animação automática.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -599,7 +601,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** websocket, CMS realtime e timestamps fabricados.
 - **Validação:** datas localizadas, sem duplicação da dobra, estados vazios, reduced motion.
 - **Risco principal:** promessa de tempo real sem infraestrutura.
-- **Pronto:** painel compacto e honesto; rótulo se adapta à fonte disponível.
+- **Pronto:** concluída em 20/07/2026; painel compartilhado PT/ES, datas/atualizações verificáveis, deduplicação da dobra, estado vazio e composição 320–1440px validados, sem realtime, timestamps relativos ou ranking.
 
 ### 7.10 — Assuntos em destaque
 

@@ -1,0 +1,62 @@
+---
+import type { HomeRadarItem } from '../utils/homeData';
+import { getDateLocale, routePath, t, type Locale } from '../i18n/utils';
+
+interface Props {
+  items: HomeRadarItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const visibleItems = items.slice(0, 4);
+const dateLocale = getDateLocale(locale);
+---
+
+<aside
+  class:list={['radar-now-panel', { 'radar-now-panel--empty': visibleItems.length === 0 }]}
+  aria-labelledby="radar-now-title"
+  data-radar-now
+  data-count={visibleItems.length}
+>
+  <header class="radar-now-panel__header">
+    <div class="radar-now-panel__title-group">
+      <span class="radar-now-panel__dot" aria-hidden="true"></span>
+      <h2 id="radar-now-title">{t('signal.label', locale)}</h2>
+    </div>
+    <span class="radar-now-panel__status">{t('home.radar.status', locale)}</span>
+  </header>
+
+  {visibleItems.length > 0 ? (
+    <ol class="radar-now-panel__timeline">
+      {visibleItems.map(({ article, activityDate, activityKind }) => {
+        const href = routePath('artigos', locale, article.slug);
+        const dateText = activityDate.toLocaleDateString(dateLocale, {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        });
+        const activityLabel = activityKind === 'updated'
+          ? t('home.radar.updated', locale)
+          : t('home.radar.published', locale);
+
+        return (
+          <li class="radar-now-panel__item">
+            <time datetime={activityDate.toISOString()}>
+              <span>{activityLabel}</span> {dateText}
+            </time>
+            <a href={href}>{article.data.title}</a>
+          </li>
+        );
+      })}
+    </ol>
+  ) : (
+    <div class="radar-now-panel__empty" data-radar-now-empty>
+      <p>{t('home.radar.empty', locale)}</p>
+      <span>{t('home.radar.empty.note', locale)}</span>
+    </div>
+  )}
+
+  <footer class="radar-now-panel__footer">
+    <span>{t('home.radar.footer', locale)}</span>
+  </footer>
+</aside>

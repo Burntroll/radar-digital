@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import EditorialLead from '../components/EditorialLead.astro';
 import SecondaryLeads from '../components/SecondaryLeads.astro';
+import RadarNow from '../components/RadarNow.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
@@ -15,9 +16,10 @@ const {
   publishedArticles: artigosPublicados,
   leadArticle: artigoPrincipal,
   secondaryArticles: artigosSecundarios,
+  radarNowItems: radarAgora,
 } = await loadHomeEditorialData(locale);
 
-// Guias publicados (para o card de guia no Leia primeiro)
+// Guias publicados (para o módulo próprio de guias)
 const guiasPublicados = await getCollection('artigos', ({ data }) =>
   data.draft === false && data.contentType === 'guide' && (data.locale || 'pt-BR') === locale
 );
@@ -53,7 +55,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
     <div class="home-opening__inner">
       <p class="home-opening__label" id="home-opening-label">{t('home.section.leia', locale)}</p>
 
-      <div class:list={['home-opening__grid', { 'home-opening__grid--single': artigosSecundarios.length === 0 }]}>
+      <div class:list={['home-opening__grid', { 'home-opening__grid--no-secondary': artigosSecundarios.length === 0 }]}>
 
           <!-- COLUNA PRINCIPAL (2/3): Artigo Principal -->
           <div class="home-opening__primary">
@@ -66,6 +68,11 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
               <SecondaryLeads articles={artigosSecundarios} locale={locale} />
             </div>
           )}
+
+          <!-- PAINEL LATERAL: recência editorial verificável -->
+          <div class="home-opening__radar">
+            <RadarNow items={radarAgora} locale={locale} />
+          </div>
 
       </div>
     </div>
