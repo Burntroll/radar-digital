@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.4 concluídas (tokens visuais, fundação tipográfica, SignalBar e masthead); navegação e módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.5 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead e navegação desktop); navegação mobile e módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -283,6 +283,8 @@ Breakpoints representam mudança de composição, não apenas redução de fonte
 - Mobile mantém hamburger, painel e accordions, adicionando gestão completa de foco e Escape.
 - Locale e tema continuam fora do container horizontal da lista principal.
 
+**Estado implementado na Task 7.5:** `SiteNavigation.astro` aplica a faixa editorial V4 somente ao desktop, preservando integralmente os rótulos, grupos e destinos de `siteNavigation.ts`. Setores, Operação e Recursos permanecem disclosures exclusivos entre si, com abertura por Enter/Espaço, fechamento por Escape com retorno de foco e clique fora; os estados hover, active e focus-visible usam os tokens V4. Ferramentas, Bônus e Radar Market permanecem links de primeiro nível. A navegação mobile, as rotas, o sitemap, as utilidades, o masthead e a SignalBar não foram alterados.
+
 ### 12.4 Sticky
 
 - Masthead e navegação formam o bloco sticky; a SignalBar não é sticky.
@@ -551,7 +553,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** novos rótulos/rotas, menu mobile.
 - **Validação:** teclado, Escape, foco, 1024/1280/1440px, rotas PT/ES.
 - **Risco principal:** substituir o sitemap real pelos rótulos do mockup.
-- **Pronto:** menus e disclosures reais acessíveis, sem overflow das utilidades.
+- **Pronto:** concluída em 20/07/2026; menus e disclosures reais acessíveis em PT/ES, teclado e clique fora validados, estados V4 light/dark aplicados e ausência de overflow confirmada em 1024/1280/1440px, sem alteração da navegação mobile.
 
 ### 7.6 — Navegação mobile
 

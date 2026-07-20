@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
 > **Propósito:** Acompanhamento do progresso dos blocos, atualizado pelo Plano de Ação 2.2 e pela direção editorial V4 aprovada. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 20/07/2026 — direção V4 congelada e Bloco 7 decomposto
+> **Última atualização:** 20/07/2026 — navegação desktop V4 concluída
 
 ## Bloco 1 — Sistema visual e componentes
 
@@ -181,8 +181,8 @@
 | 7.2 | Tipografia | ✅ Concluída — Inter/Source Serif 4 locais, OFL, subsets PT/ES e escalas V4 |
 | 7.3 | Barra superior “Radar agora” | ✅ Concluída — SignalBar localizada, honesta, responsiva e acessível |
 | 7.4 | Masthead | ✅ Concluída — marca/utilidades separadas, data PT/ES e controles reais |
-| 7.5 | Navegação desktop | ⏳ Próxima recomendada |
-| 7.6 | Navegação mobile | ⏳ Pendente |
+| 7.5 | Navegação desktop | ✅ Concluída — contrato real PT/ES, disclosures acessíveis e estados V4 |
+| 7.6 | Navegação mobile | ⏳ Próxima recomendada |
 | 7.7 | Capa editorial principal | ⏳ Pendente |
 | 7.8 | Notícias secundárias | ⏳ Pendente |
 | 7.9 | Painel Radar agora | ⏳ Pendente |

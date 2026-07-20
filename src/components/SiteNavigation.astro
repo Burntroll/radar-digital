@@ -1,121 +1,120 @@
 ---
-// ═══════════════════════════════════════════════════════════════════════════
-// SiteNavigation — componente de navegação principal
-//
-// Renderiza a estrutura-base aprovada:
-//   - Início (anchor)
-//   - Setores (disclosure) → Inteligência Artificial (mega menu)
-//   - Operação (disclosure) → Marketing Digital, Monetização
-//   - Verticais → oculto (eligible=false)
-//   - Recursos (disclosure) → Guias
-//   - Ferramentas (anchor)
-//   - Bônus (anchor)
-//   - Radar Market (anchor)
-//
-// Usa <details>/<summary> para grupos, garantindo funcionamento
-// por clique, teclado e viewports estreitas sem JS adicional.
-// Setores usa apresentação mega menu com título + descrição.
-// ═══════════════════════════════════════════════════════════════════════════
+// Navegação desktop V4 derivada exclusivamente de mainNavigation.
+// O contrato de rótulos, agrupamentos, elegibilidade e rotas permanece centralizado
+// em src/config/siteNavigation.ts. Details/summary preserva o disclosure nativo;
+// o script abaixo acrescenta Escape, exclusividade entre painéis e clique externo.
 
-import { t, routePath, defaultLocale, type Locale } from '../i18n/utils';
-import { mainNavigation, type NavLinkItem, type NavGroupItem, type NavGroupedSubGroup } from '../config/siteNavigation';
+import { t, routePath, defaultLocale, type Locale, type RouteKey, type UIKey } from '../i18n/utils';
+import {
+  mainNavigation,
+  type NavLinkItem,
+  type NavGroupItem,
+  type NavGroupedSubGroup,
+} from '../config/siteNavigation';
 
 interface Props {
   locale: Locale;
   currentPath: string;
 }
 
-const { locale, currentPath } = Astro.props;
-const prefix = locale === defaultLocale ? '' : `/${locale}`;
+const { locale, currentPath } = Astro.props as Props;
+const prefix = locale === defaultLocale ? '' : '/' + locale;
 
-// ─── Helpers ───────────────────────────────────────────────────────
-
-/** Retorna true se o path atual corresponde a uma rota do item */
 function isActiveRoute(item: NavLinkItem): boolean {
   if (!item.routeKey) {
-    // home
     const homePath = prefix || '/';
     return currentPath === homePath || currentPath === homePath + '/';
   }
-  const route = routePath(item.routeKey as any, locale);
+
+  const route = routePath(item.routeKey as RouteKey, locale);
   return currentPath === route || currentPath === route + '/';
 }
 
-/** Verifica se algum filho de um grupo está ativo */
 function groupHasActive(children: (NavLinkItem | NavGroupItem)[]): boolean {
   for (const child of children) {
     if (child.type === 'link' && isActiveRoute(child)) return true;
     if (child.type === 'group' && groupHasActive(child.children)) return true;
   }
+
   return false;
 }
 
-/** Gera a URL para um NavLinkItem */
 function linkHref(item: NavLinkItem): string {
   if (!item.routeKey) return prefix || '/';
-  return routePath(item.routeKey as any, locale);
+  return routePath(item.routeKey as RouteKey, locale);
 }
 ---
 
-<div class="flex items-center gap-4 overflow-x-auto">
-{
-  mainNavigation
-    .filter((section) => section.eligible)
-    .map((section) => {
-      const item = section.item;
-      if (item.type === 'link') {
-        const active = isActiveRoute(item);
-        const href = linkHref(item);
-        return (
-          <a
-            href={href}
-            class="text-base text-text-secondary hover:text-cyan-500 transition-colors whitespace-nowrap"
-            aria-current={active ? 'page' : undefined}
-          >
+<div class="site-navigation" data-desktop-navigation>
+  {
+    mainNavigation
+      .filter((section) => section.eligible)
+      .map((section) => {
+        const item = section.item;
 
-            {t(item.labelKey as any, locale)}
-          </a>
-        );
-      } else {
-        // group
+        if (item.type === 'link') {
+          const active = isActiveRoute(item);
+
+          return (
+            <a
+              href={linkHref(item)}
+              class={['site-navigation__link', active && 'is-active'].filter(Boolean).join(' ')}
+              aria-current={active ? 'page' : undefined}
+            >
+              {t(item.labelKey as UIKey, locale)}
+            </a>
+          );
+        }
+
         const group = item as NavGroupItem;
         const hasActive = groupHasActive(group.children);
-        const isMega = group.presentation === 'mega' || group.presentation === 'grouped';
         const isGrouped = group.presentation === 'grouped';
+        const isMega = group.presentation === 'mega';
 
         return (
-          <details class={`nav-group relative${isGrouped ? ' nav-grouped' : ''}`}>
-            <summary
-              class={`text-base transition-colors whitespace-nowrap list-none cursor-pointer
-                ${hasActive ? 'text-cyan-500' : 'text-text-secondary hover:text-cyan-500'}`}
-            >
-              {t(group.labelKey as any, locale)}
-              <svg class="nav-chevron w-3.5 h-3.5 ml-1 inline-block align-middle transition-transform"
-                   fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+          <details
+            class={[
+              'nav-group',
+              isGrouped && 'nav-group--grouped',
+              isMega && 'nav-group--mega',
+              hasActive && 'is-active',
+            ].filter(Boolean).join(' ')}
+          >
+            <summary class="site-navigation__trigger" aria-expanded="false">
+              <span>{t(group.labelKey as UIKey, locale)}</span>
+              <svg
+                class="nav-chevron"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
               </svg>
             </summary>
+
             {isGrouped ? (
-              <div class={`nav-panel absolute top-full pt-2 z-50${isGrouped ? ' nav-panel-grouped' : ''}`}
-                   style={isGrouped ? undefined : 'left:0'}
-                   >
-                <div class="nav-mega-panel nav-mega-panel-grouped">
-                  {group.groups?.filter(g => g.children.length > 0).map((sub) => {
-                    const subGrp = sub as NavGroupedSubGroup;
+              <div class="nav-panel nav-panel--grouped">
+                <div class="nav-mega-panel nav-mega-panel--grouped">
+                  {group.groups?.filter((candidate) => candidate.children.length > 0).map((candidate) => {
+                    const subGroup = candidate as NavGroupedSubGroup;
+
                     return (
                       <div class="nav-mega-group">
-                        <span class="nav-mega-group-title">{t(subGrp.labelKey as any, locale)}</span>
-                        {subGrp.children.map((link) => {
+                        <span class="nav-mega-group-title">{t(subGroup.labelKey as UIKey, locale)}</span>
+                        {subGroup.children.map((link) => {
                           const active = isActiveRoute(link);
-                          const desc = link.descKey ? t(link.descKey as any, locale) : null;
+                          const description = link.descKey ? t(link.descKey as UIKey, locale) : null;
+
                           return (
                             <a
                               href={linkHref(link)}
-                              class={`nav-mega-item ${active ? 'nav-mega-item-active' : ''}`}
+                              class={['nav-mega-item', active && 'is-active'].filter(Boolean).join(' ')}
                               aria-current={active ? 'page' : undefined}
                             >
-                              <span class="nav-mega-label">{t(link.labelKey as any, locale)}</span>
-                              {desc && <span class="nav-mega-desc">{desc}</span>}
+                              <span class="nav-mega-label">{t(link.labelKey as UIKey, locale)}</span>
+                              {description && <span class="nav-mega-desc">{description}</span>}
                             </a>
                           );
                         })}
@@ -125,149 +124,106 @@ function linkHref(item: NavLinkItem): string {
                 </div>
               </div>
             ) : isMega ? (
-              <div class="nav-panel absolute left-0 top-full pt-2 z-50">
+              <div class="nav-panel nav-panel--mega">
                 <div class="nav-mega-panel">
-                  {group.children.filter(c => c.type === 'link').map((child) => {
+                  {group.children.filter((child) => child.type === 'link').map((child) => {
                     const link = child as NavLinkItem;
                     const active = isActiveRoute(link);
-                    const desc = link.descKey ? t(link.descKey as any, locale) : null;
+                    const description = link.descKey ? t(link.descKey as UIKey, locale) : null;
+
                     return (
                       <a
                         href={linkHref(link)}
-                        class={`nav-mega-item ${active ? 'nav-mega-item-active' : ''}`}
+                        class={['nav-mega-item', active && 'is-active'].filter(Boolean).join(' ')}
                         aria-current={active ? 'page' : undefined}
                       >
-                        <span class="nav-mega-label">{t(link.labelKey as any, locale)}</span>
-                        {desc && <span class="nav-mega-desc">{desc}</span>}
+                        <span class="nav-mega-label">{t(link.labelKey as UIKey, locale)}</span>
+                        {description && <span class="nav-mega-desc">{description}</span>}
                       </a>
                     );
                   })}
                 </div>
               </div>
             ) : (
-              <div class="nav-panel absolute left-0 top-full pt-2 z-50 min-w-48">
-                <div class="rounded-xl border shadow-2xl overflow-hidden transition-colors"
-                     style="background: var(--color-surface-elevated, #15171f); border-color: var(--color-border, #1e2130);">
-                  <div class="py-1">
-                    {group.children.filter(c => c.type === 'link').map((child) => {
-                      const link = child as NavLinkItem;
-                      const active = isActiveRoute(link);
-                      return (
-                        <a
-                          href={linkHref(link)}
-                          class={`block px-4 py-2.5 text-sm transition-colors
-                            ${active
-                              ? 'text-cyan-500 font-semibold bg-cyan-500/10'
-                              : 'text-text-secondary hover:bg-cyan-500/10 hover:text-cyan-500'}`}
-                          aria-current={active ? 'page' : undefined}
-                        >
-                          {t(link.labelKey as any, locale)}
-                        </a>
-                      );
-                    })}
-                  </div>
+              <div class="nav-panel nav-panel--compact">
+                <div class="nav-mega-panel nav-mega-panel--compact">
+                  {group.children.filter((child) => child.type === 'link').map((child) => {
+                    const link = child as NavLinkItem;
+                    const active = isActiveRoute(link);
+
+                    return (
+                      <a
+                        href={linkHref(link)}
+                        class={['nav-mega-item', active && 'is-active'].filter(Boolean).join(' ')}
+                        aria-current={active ? 'page' : undefined}
+                      >
+                        <span class="nav-mega-label">{t(link.labelKey as UIKey, locale)}</span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             )}
           </details>
         );
-      }
-    })
-}
-
+      })
+  }
 </div>
 
-<style>
-  /* Chevron gira quando details está aberto */
-  .nav-group[open] .nav-chevron {
-    transform: rotate(180deg);
-  }
+<script>
+  const desktopNavigations = document.querySelectorAll<HTMLElement>('[data-desktop-navigation]');
 
-  /* details > summary no marker padrão */
-  .nav-group summary::-webkit-details-marker {
-    display: none;
-  }
+  desktopNavigations.forEach((navigation) => {
+    const groups = Array.from(navigation.querySelectorAll<HTMLDetailsElement>('.nav-group'));
 
-  /* ─── Mega panel (apenas Setores) ─── */
-  .nav-mega-panel {
-    min-width: 14rem;
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--color-border, #1e2130);
-    background: var(--color-surface-elevated, #15171f);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  }
+    const syncExpandedState = (group: HTMLDetailsElement) => {
+      const trigger = group.querySelector<HTMLElement>(':scope > summary');
+      trigger?.setAttribute('aria-expanded', String(group.open));
+    };
 
-  .nav-mega-item {
-    display: block;
-    padding: 0.5rem 0.625rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background-color 0.15s ease;
-  }
+    groups.forEach((group) => {
+      syncExpandedState(group);
 
-  .nav-mega-item:hover {
-    background: rgba(0, 229, 255, 0.06);
-  }
+      group.addEventListener('toggle', () => {
+        syncExpandedState(group);
 
-  .nav-mega-item-active {
-    background: rgba(0, 229, 255, 0.08);
-  }
+        if (group.open) {
+          groups.forEach((otherGroup) => {
+            if (otherGroup !== group && otherGroup.open) otherGroup.open = false;
+          });
+        }
+      });
+    });
 
-  .nav-mega-label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-primary, #f1f5f9);
-    line-height: 1.25rem;
-    display: block;
-  }
+    navigation.addEventListener('keydown', (event) => {
+      const trigger = event.target instanceof HTMLElement
+        ? event.target.closest<HTMLElement>('.site-navigation__trigger')
+        : null;
 
-  .nav-mega-item-active .nav-mega-label {
-    color: var(--color-accent, #06b6d4);
-  }
+      if (trigger && (event.key === 'Enter' || event.key === ' ')) {
+        const group = trigger.parentElement;
+        if (group instanceof HTMLDetailsElement) group.open = !group.open;
+        event.preventDefault();
+        return;
+      }
 
-  .nav-mega-desc {
-    font-size: 0.75rem;
-    color: var(--color-text-muted, #64748b);
-    line-height: 1.125rem;
-    margin-top: 0.125rem;
-    display: block;
-  }
+      if (event.key !== 'Escape') return;
 
-  /* ─── Grouped panel (apenas Operação) ─── */
-  .nav-mega-panel-grouped {
-    display: flex;
-    gap: 0.5rem;
-  }
+      const openGroup = groups.find((group) => group.open);
+      if (!openGroup) return;
 
-  .nav-mega-group {
-    min-width: 10rem;
-  }
+      const escapeTrigger = openGroup.querySelector<HTMLElement>(':scope > summary');
+      openGroup.open = false;
+      escapeTrigger?.focus();
+      event.preventDefault();
+      event.stopPropagation();
+    });
 
-  .nav-mega-group-title {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted, #64748b);
-    padding: 0.375rem 0.625rem 0.25rem;
-  }
-</style>
-
-<style is:global>
-  /* Panel agrupado de Operação — mobile responsivo */
-  @media (max-width: 640px) {
-    .nav-panel-grouped {
-      position: fixed !important;
-      top: 3.5rem !important;
-      left: 0.5rem !important;
-      right: 0.5rem !important;
-      width: auto !important;
-    }
-    .nav-grouped .nav-mega-panel-grouped {
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-  }
-</style>
+    document.addEventListener('pointerdown', (event) => {
+      if (!(event.target instanceof Node) || navigation.contains(event.target)) return;
+      groups.forEach((group) => {
+        if (group.open) group.open = false;
+      });
+    });
+  });
+</script>

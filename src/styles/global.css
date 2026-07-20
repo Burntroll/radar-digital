@@ -508,6 +508,190 @@ body {
   justify-content: center;
 }
 
+/* ─── V4 desktop navigation ─── */
+.site-navigation {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(0.75rem, 1.65vw, 1.75rem);
+  font-family: var(--font-family-functional);
+  font-size: var(--type-navigation-size);
+  font-weight: 720;
+  letter-spacing: 0.035em;
+  line-height: var(--type-navigation-leading);
+  text-transform: uppercase;
+}
+
+.site-navigation__link,
+.site-navigation__trigger {
+  position: relative;
+  height: 100%;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding-inline: 0.125rem;
+  border-radius: 0;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.site-navigation__link::after,
+.site-navigation__trigger::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--color-signal);
+  transition: right 180ms ease;
+}
+
+.site-navigation__link:hover,
+.site-navigation__trigger:hover,
+.site-navigation__link.is-active,
+.nav-group.is-active > .site-navigation__trigger,
+.nav-group[open] > .site-navigation__trigger {
+  color: var(--color-text-primary);
+}
+
+.site-navigation__link:hover::after,
+.site-navigation__trigger:hover::after,
+.site-navigation__link.is-active::after,
+.nav-group.is-active > .site-navigation__trigger::after,
+.nav-group[open] > .site-navigation__trigger::after {
+  right: 0;
+}
+
+.site-navigation__link:focus-visible,
+.site-navigation__trigger:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -4px;
+}
+
+.nav-group {
+  position: relative;
+  height: 100%;
+}
+
+.nav-group > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.nav-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-chevron {
+  width: 0.8rem;
+  height: 0.8rem;
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+}
+
+.nav-group[open] .nav-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 70;
+  padding-top: 0.5rem;
+  color: var(--color-text-primary);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.nav-panel--grouped {
+  left: 50%;
+  transform: translateX(-30%);
+}
+
+.nav-mega-panel {
+  min-width: 21rem;
+  padding: 0.625rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-primary);
+  box-shadow: var(--shadow-raised);
+}
+
+.nav-mega-panel--grouped {
+  width: min(31rem, calc(100vw - 2rem));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.nav-mega-panel--compact {
+  min-width: 13rem;
+}
+
+.nav-mega-group {
+  min-width: 0;
+}
+
+.nav-mega-group-title {
+  display: block;
+  margin: 0 0.625rem 0.25rem;
+  padding: 0.375rem 0 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--type-eyebrow-size);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: var(--type-eyebrow-leading);
+  text-transform: uppercase;
+}
+
+.nav-mega-item {
+  display: block;
+  padding: 0.75rem 0.875rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.nav-mega-item:hover,
+.nav-mega-item.is-active {
+  background: var(--color-surface-secondary);
+  box-shadow: inset 3px 0 0 var(--color-signal);
+}
+
+.nav-mega-item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.nav-mega-label {
+  display: block;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 720;
+  line-height: 1.25;
+}
+
+.nav-mega-desc {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
 @media (max-width: 63.999rem) {
   .masthead {
     height: 4.375rem;
@@ -536,6 +720,17 @@ body {
 
   .masthead__brand-copy small {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-navigation__link,
+  .site-navigation__trigger,
+  .site-navigation__link::after,
+  .site-navigation__trigger::after,
+  .nav-chevron,
+  .nav-mega-item {
+    transition: none;
   }
 }
 
