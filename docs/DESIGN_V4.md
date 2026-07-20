@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.6 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead e navegação desktop/mobile); os módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.7 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile e reportagem principal da capa); notícias secundárias e demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -336,6 +336,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 | Newsletter | UI localizada e disclosure; integração real pertence ao Bloco 9 | CTA informativo ou formulário desabilitado com mensagem honesta; nenhum `alert()` de falso sucesso |
 | Footer | Um único footer no layout com links institucionais reais, locale, disclosure e utilidades | Ocultar links sem rota; nunca usar `#` como destino público |
 
+**Estado implementado na Task 7.7:** `homeData.ts` centraliza a seleção editorial PT/ES, filtrando `draft: false`, formato `article`, locale exato e `date <= buildTime`, com ordenação decrescente e desempate estável por ID. `EditorialLead.astro` concentra o template da manchete e recebe a entrada tipada nas duas homes; a história real possui uma única H1, URL e data localizadas e mídia visual explicitamente provisória sem imagem remota. Cardinalidade zero renderiza intro institucional localizada sem link; cardinalidade um não cria secundárias vazias. As notícias secundárias existentes não foram reestilizadas e permanecem para a Task 7.8.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -575,7 +577,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** secundárias, Radar agora, imagens finais se ainda não aprovadas.
 - **Validação:** query por locale/data/formato, H1 único, cardinalidade 0/1, canonical/hreflang.
 - **Risco principal:** duplicar lógica entre PT/ES ou exibir conteúdo futuro.
-- **Pronto:** principal real e determinística, com fallback honesto e sem duplicação de template.
+- **Pronto:** concluída em 20/07/2026; principal real e determinística em PT/ES, filtro de data futura, cardinalidades 0/1, H1 único, fallback honesto e template compartilhado validados, sem antecipar secundárias ou imagem final.
 
 ### 7.8 — Notícias secundárias
 

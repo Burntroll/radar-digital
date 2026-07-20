@@ -1,19 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
+import EditorialLead from '../components/EditorialLead.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
+import { loadHomeEditorialData } from '../utils/homeData';
 
 const locale: Locale = getLocaleFromUrl(Astro.url);
 const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
-const artigosPublicados = await getCollection('artigos', ({ data }) =>
-  data.draft === false && data.contentType === 'article' && (data.locale || 'pt-BR') === locale
-);
-const artigosRecentes = artigosPublicados
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+const {
+  publishedArticles: artigosPublicados,
+  leadArticle: artigoPrincipal,
+  secondaryArticles: artigosSecundarios,
+} = await loadHomeEditorialData(locale);
 
 // Guias publicados (para o card de guia no Leia primeiro)
 const guiasPublicados = await getCollection('artigos', ({ data }) =>
@@ -22,8 +23,6 @@ const guiasPublicados = await getCollection('artigos', ({ data }) =>
 const guiaRecente = guiasPublicados
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 1)[0];
-
-const [artigoPrincipal, ...artigosSecundarios] = artigosRecentes;
 
 // Categorias de parceiros publicadas
 const parceiroCategorias = await getCollection('parceiroCategorias', ({ data }) => data.draft === false)
@@ -49,67 +48,19 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <!-- ════════════════════════════════════════════════ -->
   <!-- ABERTURA EDITORIAL -->
   <!-- ════════════════════════════════════════════════ -->
-  <section class="pt-8 pb-6 bg-surface transition-colors duration-300">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Masthead -->
-      <div class="border-b pb-6 mb-8" style="border-color: var(--color-border);">
-        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
-          <span class="text-text-primary">Radar</span>{' '}
-          <span class="gradient-text">Digital</span>
-        </h1>
-        <p class="text-sm text-text-secondary mt-1.5 max-w-xl">
-          {t('home.masthead.desc', locale)}
-        </p>
-      </div>
+  <section class="home-opening">
+    <div class="home-opening__inner">
+      <p class="home-opening__label">{t('home.section.leia', locale)}</p>
 
-      <!-- Section label: Leia primeiro -->
-      <div class="flex items-center gap-3 mb-6">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.leia', locale)}</h2>
-        <div class="h-px flex-1" style="background: var(--color-border);"></div>
-      </div>
-
-      {artigoPrincipal ? (
-        <div class="grid lg:grid-cols-3 gap-6">
+      <div class="home-opening__grid">
 
           <!-- COLUNA PRINCIPAL (2/3): Artigo Principal -->
-          <div class="lg:col-span-2">
-            <a
-              href={routePath('artigos', locale, artigoPrincipal.slug)}
-              class="group block glass-card interactive-card overflow-hidden"
-            >
-              <div class={`h-52 sm:h-64 bg-gradient-to-br ${
-                artigoPrincipal.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
-                artigoPrincipal.data.color === 'amber' ? 'from-amber-500/10 via-orange-600/5' :
-                'from-cyan-500/10 via-blue-600/5'
-              } to-surface-elevated flex items-center justify-center transition-colors`}>
-                <span class="text-5xl sm:text-6xl">{artigoPrincipal.data.emoji || '📡'}</span>
-              </div>
-              <div class="p-5 sm:p-6">
-                <div class="flex items-center gap-2 text-xs text-text-muted mb-2 transition-colors">
-                  <span class="font-semibold uppercase tracking-wider">{artigoPrincipal.data.subtema}</span>
-                  <span>·</span>
-                  <span>{artigoPrincipal.data.readTime}</span>
-                </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug">
-                  {artigoPrincipal.data.title}
-                </h3>
-                <p class="text-sm text-text-secondary mt-2 leading-relaxed transition-colors line-clamp-2">
-                  {artigoPrincipal.data.excerpt}
-                </p>
-                <div class="flex items-center justify-between mt-4 pt-3 border-t transition-colors" style="border-color: var(--color-border);">
-                  <time class="text-xs text-text-muted">
-                    {artigoPrincipal.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}
-                  </time>
-                  <span class="text-xs font-medium text-cyan-500 opacity-75 group-hover:opacity-100 transition-opacity">
-                    {t('home.article.read', locale)}
-                  </span>
-                </div>
-              </div>
-            </a>
+          <div class="home-opening__primary">
+            <EditorialLead article={artigoPrincipal} locale={locale} />
           </div>
 
           <!-- COLUNA LATERAL (1/3): Secundários + Guia -->
-          <div class="flex flex-col gap-4">
+          <div class="home-opening__secondary flex flex-col gap-4">
 
             {artigosSecundarios.map((artigo) => {
               const dateStr = artigo.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
@@ -165,12 +116,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
 
           </div>
 
-        </div>
-      ) : (
-        <p class="text-sm text-text-muted text-center py-12">
-          {t('home.empty.articles', locale)}
-        </p>
-      )}
+      </div>
     </div>
   </section>
 

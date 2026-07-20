@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 20/07/2026 — navegação mobile V4 implementada
+> **Última atualização:** 20/07/2026 — reportagem principal da capa V4 implementada
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions run 29454165474:** sucesso ✅
@@ -37,6 +37,7 @@
 - [x] **Task 7.4 — masthead editorial V4** — marca e utilidades separadas da navegação, monograma provisório isolado, data corrente localizada em PT/ES, newsletter e tema reais no desktop e composição compacta com hamburger no mobile; busca fictícia, novas rotas e alterações da homepage permaneceram fora do escopo.
 - [x] **Task 7.5 — navegação desktop V4** — faixa editorial aplicada ao contrato real de `siteNavigation.ts`, com grupos Setores, Operação e Recursos, links de primeiro nível preservados, estados hover/active/focus e disclosures acessíveis por teclado, Escape e clique fora; navegação mobile, rotas e sitemap permaneceram inalterados.
 - [x] **Task 7.6 — navegação mobile V4** — hamburger e painel adaptados aos tokens editoriais, mantendo a árvore real, locale e tema; foco inicial, trap Tab/Shift+Tab, Escape com retorno, accordions por teclado, touch, scroll lock, `inert` e transição para desktop foram validados em PT/ES e 320–1023px.
+- [x] **Task 7.7 — capa editorial principal V4** — loader tipado e compartilhado filtra publicação, formato, locale e data futura com desempate determinístico; `EditorialLead` serve PT/ES com uma única H1, URL/data localizadas, fallback institucional sem link e mídia provisória sem ativo remoto; secundárias permanecem para a 7.8.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -283,7 +284,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.4 concluída:** `Masthead` e `BrandMark` integrados ao layout compartilhado, alturas 78/70/64px e bloco sticky desktop de 126px validados; Source Serif 4 passou a ser preloaded acima da dobra, elevando o orçamento crítico de fontes para 161.880 bytes; nenhuma rota, conteúdo ou módulo da homepage foi alterado.
 > **Task 7.5 concluída:** navegação desktop V4 integrada ao contrato de `siteNavigation.ts`, com disclosures exclusivos, teclado, Escape, clique fora, estados PT/ES e light/dark validados em 1024/1280/1440px; nenhuma rota, conteúdo, configuração, dependência ou navegação mobile foi alterada.
 > **Task 7.6 concluída:** navegação mobile V4 integrada ao contrato existente, com diálogo modal, foco contido e reversível, accordions acessíveis, altura dinâmica e utilidades PT/ES validadas; nenhuma rota, conteúdo, configuração ou dependência foi alterada.
-> **Próxima task técnica recomendada:** **7.7 — Capa editorial principal**, limitada à reportagem de abertura e ao loader compartilhado inicial, sem antecipar os demais módulos da homepage.
+> **Task 7.7 concluída:** reportagem principal compartilhada em PT/ES, seleção determinística sem conteúdo futuro, uma H1 por home, fallback 0/1 e composição 320–1440px validados; nenhuma rota, schema, conteúdo ou dependência foi alterada.
+> **Próxima task técnica recomendada:** **7.8 — Notícias secundárias**, limitada às histórias seguintes sem repetir a principal e sem iniciar o Radar agora.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

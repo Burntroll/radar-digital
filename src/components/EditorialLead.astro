@@ -1,0 +1,50 @@
+---
+import type { HomeArticle } from '../utils/homeData';
+import { getDateLocale, routePath, t, type Locale } from '../i18n/utils';
+
+interface Props {
+  article: HomeArticle | null;
+  locale: Locale;
+}
+
+const { article, locale } = Astro.props as Props;
+const href = article ? routePath('artigos', locale, article.slug) : null;
+const dateLocale = getDateLocale(locale);
+const dateText = article?.data.date.toLocaleDateString(dateLocale, {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+const dateISO = article?.data.date.toISOString();
+const color = article?.data.color || 'cyan';
+---
+
+{article && href ? (
+  <article class={`editorial-lead editorial-lead--${color}`} data-editorial-lead data-media-status="placeholder">
+    <a class="editorial-lead__link" href={href} aria-labelledby="editorial-lead-title">
+      <span class="editorial-lead__signal" aria-hidden="true">
+        <span>{article.data.emoji || '📡'}</span>
+      </span>
+
+      <div class="editorial-lead__content">
+        <span class="editorial-lead__kicker">{article.data.subtema}</span>
+        <h1 id="editorial-lead-title">{article.data.title}</h1>
+        <p class="editorial-lead__deck">{article.data.excerpt}</p>
+
+        <div class="editorial-lead__meta">
+          <span>{article.data.readTime}</span>
+          <time datetime={dateISO}>{dateText}</time>
+          <span class="editorial-lead__cta">{t('home.article.read', locale)} <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </a>
+  </article>
+) : (
+  <section class="editorial-lead editorial-lead--fallback" data-editorial-lead-fallback>
+    <div class="editorial-lead__content">
+      <span class="editorial-lead__kicker">{t('home.section.leia', locale)}</span>
+      <h1>Radar Digital</h1>
+      <p class="editorial-lead__deck">{t('home.masthead.desc', locale)}</p>
+    </div>
+  </section>
+)}
