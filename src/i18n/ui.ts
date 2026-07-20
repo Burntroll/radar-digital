@@ -104,6 +104,16 @@ export const ui = {
     'es': 'Fechas editoriales verificadas',
   },
 
+  // V4 — Home / Assuntos em destaque
+  'home.topics.label': {
+    'pt-BR': 'Em foco',
+    'es': 'En foco',
+  },
+  'home.topics.a11y': {
+    'pt-BR': 'Assuntos em destaque',
+    'es': 'Temas destacados',
+  },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

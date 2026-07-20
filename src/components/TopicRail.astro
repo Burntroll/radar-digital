@@ -1,0 +1,65 @@
+---
+import { t, type Locale } from '../i18n/utils';
+import type { HomeTopicItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeTopicItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="topic-rail" aria-labelledby="topic-rail-title" data-topic-rail>
+    <div class="topic-rail__inner">
+      <div class="topic-rail__bar">
+        <h2 id="topic-rail-title">{t('home.topics.label', locale)}</h2>
+
+        <div
+          class="topic-rail__scroller"
+          role="region"
+          aria-label={t('home.topics.a11y', locale)}
+          tabindex="0"
+          data-topic-scroller
+        >
+          <ul class="topic-rail__list">
+            {items.map((item) => (
+              <li data-topic-id={item.id} data-topic-coverage={item.coverageCount}>
+                {item.href ? (
+                  <a class="topic-rail__pill topic-rail__pill--link" href={item.href}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <span class="topic-rail__pill topic-rail__pill--static">
+                    {item.label}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-topic-scroller]').forEach((scroller) => {
+    scroller.addEventListener('keydown', (event) => {
+      if (scroller.scrollWidth <= scroller.clientWidth) return;
+
+      const step = Math.max(scroller.clientWidth * 0.7, 160);
+      let target: number | null = null;
+
+      if (event.key === 'ArrowRight') target = scroller.scrollLeft + step;
+      if (event.key === 'ArrowLeft') target = scroller.scrollLeft - step;
+      if (event.key === 'Home') target = 0;
+      if (event.key === 'End') target = scroller.scrollWidth;
+      if (target === null) return;
+
+      event.preventDefault();
+      scroller.scrollLeft = target;
+    });
+  });
+</script>

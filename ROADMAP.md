@@ -186,8 +186,8 @@
 | 7.7 | Capa editorial principal | ✅ Concluída — loader compartilhado, H1 único e fallback PT/ES |
 | 7.8 | Notícias secundárias | ✅ Concluída — chamadas assimétricas PT/ES, deduplicação e fallback 0/1/2+ |
 | 7.9 | Painel Radar agora | ✅ Concluída — recência verificável, estado vazio PT/ES e sem realtime |
-| 7.10 | Assuntos em destaque | ⏳ Próxima recomendada |
-| 7.11 | Seleção da redação | ⏳ Pendente |
+| 7.10 | Assuntos em destaque | ✅ Concluída — topics ativos com cobertura PT/ES, lista semântica e sem rotas fictícias |
+| 7.11 | Seleção da redação | ⏳ Próxima recomendada |
 | 7.12 | Últimas publicações | ⏳ Pendente |
 | 7.13 | Mais lidas | ⏳ Pendente — depende de fonte auditável |
 | 7.14 | Editorias | ⏳ Pendente |

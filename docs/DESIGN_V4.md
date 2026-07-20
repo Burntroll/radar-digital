@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.9 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária e painel Radar agora); os demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.10 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora e Assuntos em destaque); os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -342,6 +342,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 
 **Estado implementado na Task 7.9:** `homeData.ts` exclui manchete e secundárias antes de montar até quatro entradas de `radarNowItems`; a ordem usa `updatedAt` apenas quando real e não futuro, com fallback para `date` e desempate estável. `RadarNow.astro` exibe datas absolutas localizadas e rótulos distintos para publicação/atualização, sem tempo relativo, “ao vivo”, atualização contínua ou destino fictício. Como os três artigos elegíveis atuais já ocupam a manchete e as secundárias, PT/ES renderizam o estado vazio localizado. A grade passa a três colunas em telas largas e mantém a ordem semântica ao recompor tablet/mobile; não há animação automática.
 
+**Estado implementado na Task 7.10:** `homeData.ts` cruza o registro central de topics com cobertura publicada, localizada e não futura de artigos e guias, preservando a ordem determinística do registro. Os seis topics ativos possuem cobertura real em PT/ES. Como `editorialTopics.ts` proíbe slugs ou rotas nesta etapa, `TopicRail.astro` os apresenta como texto em uma única lista semântica, sem anchors, `href="#"` ou páginas fabricadas. A faixa usa rolagem horizontal manual com região focável e foco visível, sem ticker ou movimento automático; por isso não há controle de pausa a expor, e `prefers-reduced-motion` permanece sem animação.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -611,7 +613,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** criação automática de páginas de topic.
 - **Validação:** links apenas para rotas reais, teclado, pausa/reduced motion.
 - **Risco principal:** links quebrados ou ticker inacessível.
-- **Pronto:** lista única semântica, movimento opcional e sem destinos fictícios.
+- **Pronto:** concluída em 20/07/2026; lista única semântica PT/ES, seis topics ativos com cobertura real, rolagem manual por teclado e sem movimento automático, links ou destinos fictícios.
 
 ### 7.11 — Seleção da redação
 

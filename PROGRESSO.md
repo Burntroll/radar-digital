@@ -40,6 +40,7 @@
 - [x] **Task 7.7 — capa editorial principal V4** — loader tipado e compartilhado filtra publicação, formato, locale e data futura com desempate determinístico; `EditorialLead` serve PT/ES com uma única H1, URL/data localizadas, fallback institucional sem link e mídia provisória sem ativo remoto; secundárias permanecem para a 7.8.
 - [x] **Task 7.8 — notícias secundárias V4** — `SecondaryLeads` compartilhado consome os dois artigos seguintes do loader sem repetir a principal; variantes feature/compact, headings H2, datas/URLs localizadas e recomposição 0/1/2+ substituem os cards iguais da abertura, enquanto o guia permanece apenas em seu módulo próprio e Radar agora não foi iniciado.
 - [x] **Task 7.9 — painel Radar agora V4** — loader exclui toda a dobra já destacada e ordena até quatro entradas por `updatedAt` verificável ou data publicada; `RadarNow` compartilhado usa datas absolutas PT/ES, estado vazio localizado e grade responsiva, sem alegação realtime, tempo relativo, links fictícios ou animação automática.
+- [x] **Task 7.10 — Assuntos em destaque V4** — loader cruza topics ativos com cobertura publicada real de artigos e guias em cada locale; `TopicRail` compartilhado preserva a ordem do registro em uma lista semântica com rolagem manual e foco visível, mantendo os seis itens como texto porque ainda não existem rotas públicas de topic, sem links ou movimento fictícios.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -289,7 +290,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.7 concluída:** reportagem principal compartilhada em PT/ES, seleção determinística sem conteúdo futuro, uma H1 por home, fallback 0/1 e composição 320–1440px validados; nenhuma rota, schema, conteúdo ou dependência foi alterada.
 > **Task 7.8 concluída:** duas chamadas secundárias compartilhadas em PT/ES, deduplicadas da principal, com pesos feature/compact e degradação estável para 0/1/2+; guia mantido em seu módulo próprio e nenhuma rota, schema, conteúdo ou dependência foi alterada.
 > **Task 7.9 concluída:** painel Radar agora compartilhado em PT/ES, deduplicado da dobra e baseado somente em datas editoriais verificáveis; estado vazio real, ausência de movimento automático e composição 320–1440px validados sem alterar conteúdo ou rotas.
-> **Próxima task técnica recomendada:** **7.10 — Assuntos em destaque**, limitada a topics ativos com cobertura e destinos reais, sem criação automática de rotas.
+> **Task 7.10 concluída:** TopicRail compartilhado em PT/ES com os seis topics ativos e cobertos, ordem do registro, lista semântica e rolagem manual acessível; ausência de rotas foi tratada como texto, sem anchors ou destinos fabricados.
+> **Próxima task técnica recomendada:** **7.11 — Seleção da redação**, limitada a uma regra editorial explícita e deduplicada, sem novo campo de schema ou curadoria fictícia.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
