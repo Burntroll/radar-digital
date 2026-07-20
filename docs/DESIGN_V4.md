@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.12 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora, Assuntos em destaque, Seleção da redação e Últimas publicações); os demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.13 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora, Assuntos em destaque, Seleção da redação, Últimas publicações e auditoria de Mais lidas); o ranking permanece ausente por não existir fonte auditável de audiência, e os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -348,6 +348,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 
 **Estado implementado na Task 7.12:** `latestPublicationArticles` preserva a ordem imutável do loader, aceita somente `article`, exclui todos os IDs já usados na abertura, Radar agora e Seleção da redação e limita o resultado a seis entradas. Os três artigos publicados atuais já aparecem na dobra, então PT/ES renderizam cardinalidade zero com mensagem localizada, sem repetir histórias. `LatestPublications.astro` mantém a faixa normativa de contraste e `StoryRow.astro` prepara a variante 1–6 com URL, data, leitura e mídia local opcional. A lista legada, seus `.sort()` mutantes, a lateral duplicada de recomendados e o AdSlot in-feed acoplado foram removidos. Não há CTA de arquivo ou paginação porque pertencem ao Bloco 8.
 
+**Estado auditado na Task 7.13:** o projeto não possui integração de analytics, repositório ou artefato de pageviews, campo de audiência nas Content Collections, adapter de ranking, janela temporal nem regra de desempate baseada em métricas. `package.json`, `astro.config.mjs`, `vercel.json`, schemas e código-fonte não oferecem uma origem verificável; Analytics permanece pendente no Bloco 16. Conforme as decisões vigentes, nenhum `MostRead`, chave de interface, número, posição ou fallback editorial foi criado: “Mais lidas” permanece totalmente ausente em PT/ES até uma decisão própria definir fonte, janela, atualização, desempate e indisponibilidade.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -647,7 +649,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** ranking inventado e instalação ampla de analytics.
 - **Validação:** origem, janela, empate, ausência de dados, acessibilidade da lista.
 - **Risco principal:** métrica enganosa ou indisponível no build estático.
-- **Pronto:** ranking verificável; se a dependência não existir, módulo permanece ausente e a task registra o bloqueio.
+- **Pronto:** concluída em 20/07/2026 sem UI; a auditoria confirmou ausência de fonte, janela e regra de desempate auditáveis, portanto o módulo permanece ausente e a dependência de analytics/dados fica registrada para decisão própria.
 
 ### 7.14 — Editorias
 

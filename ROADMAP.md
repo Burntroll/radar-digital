@@ -189,8 +189,8 @@
 | 7.10 | Assuntos em destaque | ✅ Concluída — topics ativos com cobertura PT/ES, lista semântica e sem rotas fictícias |
 | 7.11 | Seleção da redação | ✅ Concluída — regra explícita, dedupe da abertura/Radar e checklist real PT/ES |
 | 7.12 | Últimas publicações | ✅ Concluída — lista tipada, ordem estável, dedupe V4 e estado zero PT/ES |
-| 7.13 | Mais lidas | ⏳ Próxima recomendada — depende de fonte auditável |
-| 7.14 | Editorias | ⏳ Pendente |
+| 7.13 | Mais lidas | ✅ Concluída sem UI — fonte, janela e desempate auditáveis inexistentes; módulo permanece ausente |
+| 7.14 | Editorias | ⏳ Próxima recomendada — somente hubs ativos com cobertura e rotas existentes |
 | 7.15 | Resolver hoje | ⏳ Pendente |
 | 7.16 | Guias | ⏳ Pendente |
 | 7.17 | Ferramentas | ⏳ Pendente |

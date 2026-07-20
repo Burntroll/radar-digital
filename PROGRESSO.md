@@ -43,6 +43,7 @@
 - [x] **Task 7.10 — Assuntos em destaque V4** — loader cruza topics ativos com cobertura publicada real de artigos e guias em cada locale; `TopicRail` compartilhado preserva a ordem do registro em uma lista semântica com rolagem manual e foco visível, mantendo os seis itens como texto porque ainda não existem rotas públicas de topic, sem links ou movimento fictícios.
 - [x] **Task 7.11 — Seleção da redação V4** — regra `remaining-recency` seleciona até três conteúdos publicados de formatos ativos depois de excluir principal, secundárias e Radar agora; o acervo atual rende um checklist real por locale, exibido por `EditorialSelection`/`StoryCard` com URL, data, leitura e fallback de mídia honestos, sem CTA de arquivo ou curadoria fictícia.
 - [x] **Task 7.12 — Últimas publicações V4** — loader prepara até seis artigos por ordem estável depois de excluir todos os módulos V4 anteriores; `LatestPublications`/`StoryRow` substituem a lista legada e sua lateral duplicada, enquanto o acervo atual renderiza estado zero PT/ES porque os três artigos publicados já estão na dobra, sem arquivo, paginação ou linhas fictícias.
+- [x] **Task 7.13 — Mais lidas V4** — auditoria de código, schemas, configuração, dependências e deploy confirmou que não existe fonte de audiência, janela temporal ou regra de desempate verificáveis; conforme o contrato aprovado, o módulo permanece ausente em PT/ES e nenhuma métrica, posição, chave de UI ou infraestrutura foi fabricada.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -295,7 +296,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.10 concluída:** TopicRail compartilhado em PT/ES com os seis topics ativos e cobertos, ordem do registro, lista semântica e rolagem manual acessível; ausência de rotas foi tratada como texto, sem anchors ou destinos fabricados.
 > **Task 7.11 concluída:** Seleção da redação compartilhada em PT/ES com regra `remaining-recency` explícita, deduplicação dos módulos V4 anteriores e um checklist real por locale; cardinalidade zero oculta o módulo e nenhum schema, conteúdo ou destino foi fabricado.
 > **Task 7.12 concluída:** Últimas publicações compartilhada em PT/ES com ordem imutável, limite de seis e deduplicação integral dos módulos V4 anteriores; o estado real atual é vazio e localizado, sem repetir a dobra ou fabricar arquivo, recomendação e paginação.
-> **Próxima task técnica recomendada:** **7.13 — Mais lidas**, limitada primeiro à auditoria de uma fonte verificável e janela temporal; sem fonte auditável, o ranking deve permanecer ausente e a dependência deve ser registrada.
+> **Task 7.13 concluída sem UI:** a auditoria não encontrou fonte de audiência, janela temporal, regra de desempate ou adapter verificáveis; “Mais lidas” permanece ausente por contrato, e Analytics continua como dependência pendente do Bloco 16/decisão própria.
+> **Próxima task técnica recomendada:** **7.14 — Editorias**, limitada aos hubs ativos com cobertura e rotas já existentes, sem ativar taxonomias planejadas ou criar URLs.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
