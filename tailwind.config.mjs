@@ -5,25 +5,53 @@ export default {
   theme: {
     extend: {
       colors: {
-        radar: {
-          50: '#e0faff',
-          100: '#b3f2ff',
-          200: '#80eaff',
-          300: '#4de2ff',
-          400: '#26dbff',
-          500: '#00e5ff',
-          600: '#00b8d4',
-          700: '#008ba3',
-          800: '#005e6e',
-          900: '#00313a',
-          dark: '#0a0b0f',
-          card: '#111318',
-          elevated: '#1a1d24',
+        canvas: 'rgb(var(--color-canvas-rgb) / <alpha-value>)',
+        surface: {
+          DEFAULT: 'rgb(var(--color-canvas-rgb) / <alpha-value>)',
+          primary: 'rgb(var(--color-surface-primary-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--color-surface-secondary-rgb) / <alpha-value>)',
+          contrast: 'rgb(var(--color-surface-contrast-rgb) / <alpha-value>)',
         },
-        accent: {
-          purple: '#7c3aed',
-          amber: '#f59e0b',
+        text: {
+          primary: 'rgb(var(--color-text-primary-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary-rgb) / <alpha-value>)',
+          muted: 'rgb(var(--color-text-muted-rgb) / <alpha-value>)',
+          inverse: 'rgb(var(--color-text-inverse-rgb) / <alpha-value>)',
         },
+        line: 'rgb(var(--color-border-rgb) / <alpha-value>)',
+        'editorial-black': 'rgb(var(--color-editorial-black-rgb) / <alpha-value>)',
+        signal: 'rgb(var(--color-signal-rgb) / <alpha-value>)',
+        live: 'rgb(var(--color-live-rgb) / <alpha-value>)',
+        editorial: 'rgb(var(--color-editorial-accent-rgb) / <alpha-value>)',
+        commercial: 'rgb(var(--color-commercial-rgb) / <alpha-value>)',
+        link: 'rgb(var(--color-link-rgb) / <alpha-value>)',
+        focus: 'rgb(var(--color-focus-rgb) / <alpha-value>)',
+      },
+      maxWidth: {
+        editorial: 'var(--container-editorial)',
+      },
+      spacing: {
+        'page-gutter': 'var(--gutter-page)',
+        'v4-1': 'var(--space-1)',
+        'v4-2': 'var(--space-2)',
+        'v4-3': 'var(--space-3)',
+        'v4-4': 'var(--space-4)',
+        'v4-5': 'var(--space-5)',
+        'v4-6': 'var(--space-6)',
+        'v4-7': 'var(--space-7)',
+        'v4-8': 'var(--space-8)',
+        'v4-9': 'var(--space-9)',
+        'v4-10': 'var(--space-10)',
+        'header-sticky': 'var(--header-sticky-offset)',
+      },
+      borderRadius: {
+        'v4-sm': 'var(--radius-sm)',
+        'v4-md': 'var(--radius-md)',
+        'v4-lg': 'var(--radius-lg)',
+      },
+      boxShadow: {
+        'v4-resting': 'var(--shadow-resting)',
+        'v4-raised': 'var(--shadow-raised)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -49,8 +77,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          '0%': { 'box-shadow': '0 0 20px rgba(0, 229, 255, 0.1)' },
-          '100%': { 'box-shadow': '0 0 40px rgba(0, 229, 255, 0.3)' },
+          '0%': { 'box-shadow': '0 0 20px rgb(var(--color-link-rgb) / 0.1)' },
+          '100%': { 'box-shadow': '0 0 40px rgb(var(--color-link-rgb) / 0.3)' },
         },
       },
       backgroundImage: {

@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 20/07/2026 — especificação técnica V4 concluída, sem implementação visual
+> **Última atualização:** 20/07/2026 — fundação visual e tokens V4 implementados
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions run 29454165474:** sucesso ✅
@@ -31,6 +31,7 @@
 - [x] **Componentes padronizados** — glass-card, interactive-card, AdSlot, EmptyState, CategoryArticleCard
 - [x] **Camada semântica de cores** — 9 papéis (brand-cyan, link, interactive, focus, editorial, editorial-active, commercial, surface-header, surface-ad) + aliases de compatibilidade (`--color-accent`, `--color-accent-purple`); publicada no commit `5c73789` sem mudança visual intencional; dark mode preservado conceitual e tecnicamente
 - [x] **Task 7.0 — direção editorial V4 congelada** — `docs/DESIGN_V4.md` traduz o Plano de Ação 2.2 e o mockup aprovado para a arquitetura Astro/Content Collections real, mapeia componentes/dados/riscos e decompõe o Bloco 7 em tasks 7.1–7.27. Esta task não alterou homepage, layout, componentes, CSS, rotas, conteúdos, configuração ou dependências.
+- [x] **Task 7.1 — fundação visual e tokens V4** — camada canônica light/dark publicada em `global.css`, aliases antigos preservados, namespaces Tailwind semânticos adicionados e matriz de migração/contraste registrada em `docs/DESIGN_V4.md`; nenhum componente, layout, conteúdo ou markup da home foi alterado.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -271,7 +272,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 ---
 
 > **Task 7.0 concluída:** especificação V4 congelada sobre o baseline auditado `aad1c0c`; nenhuma alteração visual ou funcional foi implementada.
-> **Próxima task técnica recomendada:** **7.1 — Fundação visual e tokens**, limitada à consolidação semântica light/dark e à tabela de migração, sem alterar ainda header ou homepage.
+> **Task 7.1 concluída:** camada canônica V4, aliases de compatibilidade, primitives de layout e integração Tailwind implementados; header e homepage permanecem estruturalmente inalterados.
+> **Próxima task técnica recomendada:** **7.2 — Tipografia**, limitada à decisão, licença, carregamento e medição das fontes editorial/funcional.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

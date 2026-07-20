@@ -177,8 +177,8 @@
 | Task | Entrega fechada | Status |
 |---|---|---|
 | 7.0 | Congelar a V4 e produzir o mapa técnico | ✅ Concluída — documentação apenas |
-| 7.1 | Fundação visual e tokens | ⏳ Próxima recomendada |
-| 7.2 | Tipografia | ⏳ Pendente |
+| 7.1 | Fundação visual e tokens | ✅ Concluída — camada canônica light/dark, aliases e Tailwind semânticos |
+| 7.2 | Tipografia | ⏳ Próxima recomendada |
 | 7.3 | Barra superior “Radar agora” | ⏳ Pendente |
 | 7.4 | Masthead | ⏳ Pendente |
 | 7.5 | Navegação desktop | ⏳ Pendente |

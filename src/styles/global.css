@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
-  .bg-surface { background: var(--color-surface); }
-  .bg-surface-card { background: var(--color-surface-card); }
-  .bg-surface-elevated { background: var(--color-surface-elevated); }
+  .bg-surface { background: var(--color-canvas); }
+  .bg-surface-card { background: var(--color-surface-primary); }
+  .bg-surface-elevated { background: var(--color-surface-secondary); }
   .text-text-primary { color: var(--color-text-primary); }
   .text-text-secondary { color: var(--color-text-secondary); }
   .text-text-muted { color: var(--color-text-muted); }
@@ -19,75 +19,132 @@
    THEME: Light (default) & Dark (.dark)
    ═══════════════════════════════════════════════════ */
 :root {
-  --color-surface: #f8f4ec;
-  --color-surface-card: #fffdf8;
-  --color-surface-elevated: #f1ebe2;
-  --color-text-primary: #0f172a;
+  color-scheme: light;
+
+  /* ── V4 canonical surfaces ── */
+  --color-canvas: #f8f4ec;
+  --color-canvas-rgb: 248 244 236;
+  --color-surface-primary: #fffdf8;
+  --color-surface-primary-rgb: 255 253 248;
+  --color-surface-secondary: #f1ebe2;
+  --color-surface-secondary-rgb: 241 235 226;
+  --color-surface-contrast: #0b0f16;
+  --color-surface-contrast-rgb: 11 15 22;
+
+  /* ── V4 canonical text and borders ── */
+  --color-text-primary: #10131a;
+  --color-text-primary-rgb: 16 19 26;
   --color-text-secondary: #50504c;
+  --color-text-secondary-rgb: 80 80 76;
   --color-text-muted: #696760;
+  --color-text-muted-rgb: 105 103 96;
+  --color-text-inverse: #f4f1e9;
+  --color-text-inverse-rgb: 244 241 233;
   --color-border: #d9d0c3;
-  --color-border-soft: rgba(76, 63, 44, 0.10);
-  --color-accent-blue: #2563eb;
+  --color-border-rgb: 217 208 195;
+  --color-border-soft: rgb(76 63 44 / 0.10);
 
-  /* ── Semantic color roles ── */
-  --color-brand-cyan: #00e5ff;
-  --color-brand-cyan-rgb: 0 229 255;
-
-  --color-link: #06b6d4;
-  --color-link-rgb: 6 182 212;
-
-  --color-interactive: #00e5ff;
-  --color-interactive-rgb: 0 229 255;
-
-  --color-focus: #06b6d4;
-  --color-focus-rgb: 6 182 212;
-
-  --color-editorial: #7c3aed;
-  --color-editorial-rgb: 124 58 237;
-  --color-editorial-active: #a855f7;
-  --color-editorial-active-rgb: 168 85 247;
-
+  /* ── V4 canonical signal and functional roles ── */
+  --color-editorial-black: #0b0f16;
+  --color-editorial-black-rgb: 11 15 22;
+  --color-signal: #c7ff32;
+  --color-signal-rgb: 199 255 50;
+  --color-live: #ff5f45;
+  --color-live-rgb: 255 95 69;
+  --color-editorial-accent: #6657ff;
+  --color-editorial-accent-rgb: 102 87 255;
   --color-commercial: #f59e0b;
   --color-commercial-rgb: 245 158 11;
+  --color-link: #006c7a;
+  --color-link-rgb: 0 108 122;
+  --color-focus: #6657ff;
+  --color-focus-rgb: 102 87 255;
 
-  --color-surface-header: #fcf8f1;
-  --color-surface-ad: #f3ede4;
+  /* ── V4 layout primitives ── */
+  --container-editorial: 90rem;
+  --gutter-page: clamp(0.75rem, 2vw, 1.25rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3.5rem;
+  --space-10: 4.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9375rem;
+  --radius-lg: 1.375rem;
+  --shadow-resting: 0 1px 2px rgb(16 19 26 / 0.05), 0 6px 18px rgb(16 19 26 / 0.06);
+  --shadow-raised: 0 14px 40px rgb(16 19 26 / 0.14);
+  --header-sticky-offset: 7.875rem;
 
-  /* ── Compatibility aliases (to be replaced by consumers) ── */
+  /* ── Existing roles mapped to the canonical V4 layer ── */
+  --color-surface: var(--color-canvas);
+  --color-surface-card: var(--color-surface-primary);
+  --color-surface-elevated: var(--color-surface-secondary);
+  --color-surface-header: var(--color-canvas);
+  --color-surface-ad: var(--color-surface-secondary);
+  --color-brand-cyan: var(--color-link);
+  --color-brand-cyan-rgb: var(--color-link-rgb);
+  --color-interactive: var(--color-link);
+  --color-interactive-rgb: var(--color-link-rgb);
+  --color-editorial: var(--color-editorial-accent);
+  --color-editorial-rgb: var(--color-editorial-accent-rgb);
+  --color-editorial-active: var(--color-editorial-accent);
+  --color-editorial-active-rgb: var(--color-editorial-accent-rgb);
+
+  /* ── Legacy compatibility aliases ── */
   --color-accent: var(--color-link);
   --color-accent-purple: var(--color-editorial);
+  --color-accent-blue: var(--color-link);
 }
 
 .dark {
-  --color-surface: #0a0b0f;
-  --color-surface-card: #111318;
-  --color-surface-elevated: #1a1d24;
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
-  --color-border: #1e293b;
+  color-scheme: dark;
 
-  /* ── Semantic color roles (isolated, same values) ── */
-  --color-brand-cyan: #00e5ff;
-  --color-brand-cyan-rgb: 0 229 255;
-  --color-link: #06b6d4;
-  --color-link-rgb: 6 182 212;
-  --color-interactive: #00e5ff;
-  --color-interactive-rgb: 0 229 255;
-  --color-focus: #06b6d4;
-  --color-focus-rgb: 6 182 212;
-  --color-editorial: #7c3aed;
-  --color-editorial-rgb: 124 58 237;
-  --color-editorial-active: #a855f7;
-  --color-editorial-active-rgb: 168 85 247;
+  --color-canvas: #0a0b0f;
+  --color-canvas-rgb: 10 11 15;
+  --color-surface-primary: #111318;
+  --color-surface-primary-rgb: 17 19 24;
+  --color-surface-secondary: #1a1d24;
+  --color-surface-secondary-rgb: 26 29 36;
+  --color-surface-contrast: #05070a;
+  --color-surface-contrast-rgb: 5 7 10;
+  --color-text-primary: #f4f1e9;
+  --color-text-primary-rgb: 244 241 233;
+  --color-text-secondary: #b8b3a8;
+  --color-text-secondary-rgb: 184 179 168;
+  --color-text-muted: #8f8b82;
+  --color-text-muted-rgb: 143 139 130;
+  --color-text-inverse: #f4f1e9;
+  --color-text-inverse-rgb: 244 241 233;
+  --color-border: #2a2e37;
+  --color-border-rgb: 42 46 55;
+  --color-border-soft: rgb(244 241 233 / 0.10);
+  --color-editorial-black: #05070a;
+  --color-editorial-black-rgb: 5 7 10;
+  --color-signal: #c7ff32;
+  --color-signal-rgb: 199 255 50;
+  --color-live: #ff715c;
+  --color-live-rgb: 255 113 92;
+  --color-editorial-accent: #8b80ff;
+  --color-editorial-accent-rgb: 139 128 255;
   --color-commercial: #f59e0b;
   --color-commercial-rgb: 245 158 11;
-  --color-surface-header: var(--color-surface);
-  --color-surface-ad: var(--color-surface);
+  --color-link: #64dff2;
+  --color-link-rgb: 100 223 242;
+  --color-focus: #c7ff32;
+  --color-focus-rgb: 199 255 50;
+  --shadow-resting: 0 1px 0 rgb(244 241 233 / 0.04), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow-raised: 0 16px 44px rgb(0 0 0 / 0.45);
+}
 
-  /* ── Compatibility aliases ── */
-  --color-accent: var(--color-link);
-  --color-accent-purple: var(--color-editorial);
+@media (max-width: 63.999rem) {
+  :root {
+    --header-sticky-offset: 4rem;
+  }
 }
 
 /* ─── Base ─── */

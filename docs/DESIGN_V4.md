@@ -131,45 +131,73 @@ JetBrains Mono, já carregada hoje, só deve permanecer se houver uso funcional 
 
 O dark mode não deve ser uma inversão mecânica. Imagens, bordas, overlays, foco e disclosures devem ser avaliados em contexto.
 
-## 7. Tokens propostos, sem implementação
+## 7. Tokens implementados na Task 7.1
 
-Os nomes abaixo são um contrato proposto para a Task 7.1. Eles devem reutilizar os tokens atuais sempre que o papel semântico coincidir e preservar aliases durante a migração.
+A Task 7.1 publicou uma única camada canônica em `src/styles/global.css`, com equivalentes light/dark e valores RGB para os modificadores de opacidade do Tailwind. Os nomes antigos permanecem somente como aliases de compatibilidade; não existe uma segunda paleta independente.
 
-```css
-/* proposta; não implementada nesta task */
---color-canvas;
---color-surface-primary;
---color-surface-secondary;
---color-surface-contrast;
---color-text-primary;
---color-text-secondary;
---color-text-muted;
---color-text-inverse;
---color-border;
---color-border-soft;
---color-editorial-black;
---color-signal;
---color-live;
---color-editorial-accent;
---color-commercial;
---color-focus;
+### 7.1 Cores canônicas
 
---font-editorial;
---font-functional;
---font-mono;
+| Token | Light | Dark | Tailwind |
+|---|---|---|---|
+| `--color-canvas` | `#f8f4ec` | `#0a0b0f` | `canvas`, `surface` |
+| `--color-surface-primary` | `#fffdf8` | `#111318` | `surface-primary` |
+| `--color-surface-secondary` | `#f1ebe2` | `#1a1d24` | `surface-secondary` |
+| `--color-surface-contrast` | `#0b0f16` | `#05070a` | `surface-contrast` |
+| `--color-text-primary` | `#10131a` | `#f4f1e9` | `text-text-primary` |
+| `--color-text-secondary` | `#50504c` | `#b8b3a8` | `text-text-secondary` |
+| `--color-text-muted` | `#696760` | `#8f8b82` | `text-text-muted` |
+| `--color-text-inverse` | `#f4f1e9` | `#f4f1e9` | `text-text-inverse` |
+| `--color-border` | `#d9d0c3` | `#2a2e37` | `line` |
+| `--color-editorial-black` | `#0b0f16` | `#05070a` | `editorial-black` |
+| `--color-signal` | `#c7ff32` | `#c7ff32` | `signal` |
+| `--color-live` | `#ff5f45` | `#ff715c` | `live` |
+| `--color-editorial-accent` | `#6657ff` | `#8b80ff` | `editorial` |
+| `--color-commercial` | `#f59e0b` | `#f59e0b` | `commercial` |
+| `--color-link` | `#006c7a` | `#64dff2` | `link` |
+| `--color-focus` | `#6657ff` | `#c7ff32` | `focus` |
 
---container-editorial;
---gutter-page;
---space-1 ... --space-9;
---radius-sm;
---radius-md;
---radius-lg;
---shadow-resting;
---shadow-raised;
---header-sticky-offset;
-```
+### 7.2 Primitivos de layout
 
-Não criar uma segunda paleta paralela. `--color-brand-cyan`, `--color-link`, `--color-interactive`, `--color-focus`, `--color-editorial`, `--color-commercial`, `--color-surface-header` e `--color-surface-ad` já existem e precisam de uma tabela explícita de migração antes de qualquer remoção.
+- Container: `--container-editorial: 90rem` e `max-w-editorial`.
+- Gutter responsivo: `--gutter-page: clamp(0.75rem, 2vw, 1.25rem)` e utilities `*-page-gutter`.
+- Espaçamento: `--space-1` a `--space-10`, cobrindo `4, 8, 12, 16, 20, 24, 32, 40, 56, 72px`, expostos no Tailwind como `v4-1` a `v4-10`.
+- Raios: `--radius-sm` (8px), `--radius-md` (15px) e `--radius-lg` (22px), expostos como `rounded-v4-*`.
+- Sombras: `--shadow-resting` e `--shadow-raised`, com pares light/dark, expostas como `shadow-v4-*`.
+- Offset sticky futuro: 126px no desktop e 64px abaixo de 1024px, exposto como `header-sticky`.
+- Tokens de fonte continuam deliberadamente adiados para a Task 7.2.
+
+### 7.3 Migração e compatibilidade
+
+| Nome existente | Fonte canônica V4 | Estado |
+|---|---|---|
+| `--color-surface` | `--color-canvas` | Alias preservado |
+| `--color-surface-card` | `--color-surface-primary` | Alias preservado |
+| `--color-surface-elevated` | `--color-surface-secondary` | Alias preservado |
+| `--color-surface-header` | `--color-canvas` | Alias preservado |
+| `--color-surface-ad` | `--color-surface-secondary` | Alias preservado |
+| `--color-brand-cyan` | `--color-link` | Alias legado; consumidores serão migrados por módulo |
+| `--color-interactive` | `--color-link` | Alias preservado |
+| `--color-editorial` | `--color-editorial-accent` | Alias preservado |
+| `--color-editorial-active` | `--color-editorial-accent` | Alias preservado |
+| `--color-accent` | `--color-link` | Alias legado preservado |
+| `--color-accent-blue` | `--color-link` | Alias legado preservado |
+| `--color-accent-purple` | `--color-editorial-accent` | Alias legado preservado |
+
+Os namespaces Tailwind customizados `radar` e `accent`, sem consumidores no baseline, foram substituídos pelos papéis semânticos acima. Utilities e componentes existentes continuam funcionando pelos aliases CSS.
+
+### 7.4 Contraste auditado
+
+Menor contraste de texto/link contra as três superfícies do respectivo tema:
+
+| Papel | Light | Dark | Resultado |
+|---|---:|---:|---|
+| Texto primário | 15,68:1 | 14,94:1 | AA/AAA |
+| Texto secundário | 6,83:1 | 8,07:1 | AA |
+| Texto muted | 4,78:1 | 4,97:1 | AA para texto normal |
+| Link | 5,17:1 | 10,75:1 | AA para texto normal |
+| Indicador de foco | 4,05:1 | 14,28:1 | supera 3:1 para componentes não textuais |
+
+O verde-sinal possui 16,25:1 sobre o preto editorial light; o coral `live` possui 6,37:1. No dark, o coral possui 7,46:1 sobre o preto editorial. O verde não substitui cor de texto corrido ou link.
 
 ## 8. Grid e largura máxima
 
