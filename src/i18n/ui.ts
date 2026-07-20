@@ -128,6 +128,28 @@ export const ui = {
     'es': 'Contenidos recientes aún no mostrados en la apertura, por orden de publicación.',
   },
 
+  // V4 — Home / Últimas publicações
+  'home.latest.eyebrow': {
+    'pt-BR': 'Fluxo editorial',
+    'es': 'Flujo editorial',
+  },
+  'home.latest.title': {
+    'pt-BR': 'Últimas publicações',
+    'es': 'Últimas publicaciones',
+  },
+  'home.latest.description': {
+    'pt-BR': 'Uma leitura rápida das histórias recentes que ainda não apareceram nos destaques acima.',
+    'es': 'Una lectura rápida de las historias recientes que aún no aparecieron en los destacados anteriores.',
+  },
+  'home.latest.empty.title': {
+    'pt-BR': 'Sem outras publicações recentes',
+    'es': 'No hay otras publicaciones recientes',
+  },
+  'home.latest.empty.description': {
+    'pt-BR': 'As histórias publicadas já estão nos destaques acima. Novos artigos aparecerão aqui sem repetição.',
+    'es': 'Las historias publicadas ya están en los destacados anteriores. Los nuevos artículos aparecerán aquí sin repetición.',
+  },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

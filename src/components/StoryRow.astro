@@ -1,0 +1,49 @@
+---
+import type { HomeArticle } from '../utils/homeData';
+import { getDateLocale, routePath, t, type Locale } from '../i18n/utils';
+
+interface Props {
+  article: HomeArticle;
+  locale: Locale;
+  index: number;
+}
+
+const { article, locale, index } = Astro.props as Props;
+const href = routePath('artigos', locale, article.slug);
+const titleId = `story-row-title-${article.id.replace(/[^a-z0-9]+/gi, '-')}`;
+const dateText = article.data.date.toLocaleDateString(getDateLocale(locale), {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+const imageSrc = article.data.image?.startsWith('/') ? article.data.image : null;
+const itemNumber = String(index + 1).padStart(2, '0');
+---
+
+<li class="story-row" data-story-row data-image={imageSrc ? 'available' : 'placeholder'}>
+  <article>
+    <a class="story-row__link" href={href} aria-labelledby={titleId}>
+      <span class="story-row__index" aria-hidden="true">{itemNumber}</span>
+
+      <div class="story-row__copy">
+        <span class="story-row__kicker">{article.data.subtema}</span>
+        <h3 id={titleId}>{article.data.title}</h3>
+        <div class="story-row__meta">
+          <time datetime={article.data.date.toISOString()}>{dateText}</time>
+          <span>{article.data.readTime}</span>
+          <span class="story-row__cta" aria-hidden="true">
+            {t('home.article.read', locale)} <span>→</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="story-row__media" aria-hidden="true">
+        {imageSrc ? (
+          <img src={imageSrc} alt="" width="480" height="300" loading="lazy" decoding="async" />
+        ) : (
+          <span>{article.data.emoji || '📡'}</span>
+        )}
+      </div>
+    </a>
+  </article>
+</li>

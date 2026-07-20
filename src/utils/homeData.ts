@@ -25,6 +25,7 @@ export interface HomeEditorialData {
   radarNowItems: HomeRadarItem[];
   topicRailItems: HomeTopicItem[];
   editorialSelectionArticles: HomeArticle[];
+  latestPublicationArticles: HomeArticle[];
 }
 
 const activeEditorialFormats = new Set(
@@ -93,6 +94,13 @@ export function selectHomeArticles(
       && !upperEditorialIds.has(id)
     ))
     .slice(0, 3);
+  const occupiedEditorialIds = new Set([
+    ...upperEditorialIds,
+    ...editorialSelectionArticles.map(({ id }) => id),
+  ]);
+  const latestPublicationArticles = publishedArticles
+    .filter(({ id }) => !occupiedEditorialIds.has(id))
+    .slice(0, 6);
 
   const topicCoverage = publishedEntries.reduce((coverage, { data }) => {
     for (const topicId of data.topics ?? []) {
@@ -117,6 +125,7 @@ export function selectHomeArticles(
     radarNowItems,
     topicRailItems,
     editorialSelectionArticles,
+    latestPublicationArticles,
   };
 }
 

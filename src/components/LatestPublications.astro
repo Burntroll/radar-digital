@@ -1,0 +1,49 @@
+---
+import type { HomeArticle } from '../utils/homeData';
+import { t, type Locale } from '../i18n/utils';
+import StoryRow from './StoryRow.astro';
+
+interface Props {
+  articles: HomeArticle[];
+  locale: Locale;
+}
+
+const { articles, locale } = Astro.props as Props;
+const visibleArticles = articles.slice(0, 6);
+---
+
+<section
+  id="artigos"
+  class="latest-publications"
+  aria-labelledby="latest-publications-title"
+  aria-describedby="latest-publications-description"
+  data-latest-publications
+  data-count={visibleArticles.length}
+  data-selection-rule="unoccupied-published-articles"
+>
+  <div class="latest-publications__inner">
+    <header class="latest-publications__header">
+      <div>
+        <span class="latest-publications__eyebrow">{t('home.latest.eyebrow', locale)}</span>
+        <h2 id="latest-publications-title">{t('home.latest.title', locale)}</h2>
+      </div>
+      <p id="latest-publications-description">{t('home.latest.description', locale)}</p>
+    </header>
+
+    {visibleArticles.length > 0 ? (
+      <ol class="latest-publications__list">
+        {visibleArticles.map((article, index) => (
+          <StoryRow article={article} locale={locale} index={index} />
+        ))}
+      </ol>
+    ) : (
+      <div class="latest-publications__empty" data-latest-publications-empty>
+        <span aria-hidden="true">↗</span>
+        <div>
+          <h3>{t('home.latest.empty.title', locale)}</h3>
+          <p>{t('home.latest.empty.description', locale)}</p>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
