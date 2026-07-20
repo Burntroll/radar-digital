@@ -413,6 +413,8 @@ Existe uma divergência ainda não resolvida entre as categorias conceituais do 
 - Escape, gestão avançada de foco, fluxo completo de teclado e leitores de tela permanecem para a Task 5.8.
 - Acessibilidade completa não está declarada.
 
+**Estado implementado na Task 7.6 (20/07/2026):** a lacuna acima foi encerrada no painel V4. Abertura move o foco para o primeiro destino; Tab/Shift+Tab permanecem contidos entre hamburger e painel; Escape fecha e restaura o foco; accordions respondem a Enter/Espaço; link, resize para desktop e `pagehide` restauram scroll lock e `inert`. O painel recebeu `role="dialog"` e `aria-modal="true"`, sem segundo landmark `<nav>` e sem mudança da taxonomia ou dos destinos.
+
 ---
 
 ## Ferramentas e Bônus: transição para links somente texto

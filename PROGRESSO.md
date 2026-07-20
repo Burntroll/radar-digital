@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 20/07/2026 — navegação desktop V4 implementada
+> **Última atualização:** 20/07/2026 — navegação mobile V4 implementada
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions run 29454165474:** sucesso ✅
@@ -36,6 +36,7 @@
 - [x] **Task 7.3 — barra superior “Radar agora”** — `SignalBar` global com status honesto “Em atualização”, assuntos ligados apenas a rotas existentes, acesso localizado à newsletter e ao idioma alternativo, repetição visual fora da árvore acessível e movimento pausável/reduzido; sitemap e rotas preservados.
 - [x] **Task 7.4 — masthead editorial V4** — marca e utilidades separadas da navegação, monograma provisório isolado, data corrente localizada em PT/ES, newsletter e tema reais no desktop e composição compacta com hamburger no mobile; busca fictícia, novas rotas e alterações da homepage permaneceram fora do escopo.
 - [x] **Task 7.5 — navegação desktop V4** — faixa editorial aplicada ao contrato real de `siteNavigation.ts`, com grupos Setores, Operação e Recursos, links de primeiro nível preservados, estados hover/active/focus e disclosures acessíveis por teclado, Escape e clique fora; navegação mobile, rotas e sitemap permaneceram inalterados.
+- [x] **Task 7.6 — navegação mobile V4** — hamburger e painel adaptados aos tokens editoriais, mantendo a árvore real, locale e tema; foco inicial, trap Tab/Shift+Tab, Escape com retorno, accordions por teclado, touch, scroll lock, `inert` e transição para desktop foram validados em PT/ES e 320–1023px.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -281,7 +282,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.3 concluída:** SignalBar PT/ES integrada ao layout, sem alegação realtime, com destinos públicos existentes, comportamento responsivo e controle de movimento; nenhuma rota ou entrada de sitemap foi criada.
 > **Task 7.4 concluída:** `Masthead` e `BrandMark` integrados ao layout compartilhado, alturas 78/70/64px e bloco sticky desktop de 126px validados; Source Serif 4 passou a ser preloaded acima da dobra, elevando o orçamento crítico de fontes para 161.880 bytes; nenhuma rota, conteúdo ou módulo da homepage foi alterado.
 > **Task 7.5 concluída:** navegação desktop V4 integrada ao contrato de `siteNavigation.ts`, com disclosures exclusivos, teclado, Escape, clique fora, estados PT/ES e light/dark validados em 1024/1280/1440px; nenhuma rota, conteúdo, configuração, dependência ou navegação mobile foi alterada.
-> **Próxima task técnica recomendada:** **7.6 — Navegação mobile**, limitada à adaptação visual V4 e à gestão completa de foco do painel existente, sem mudar sitemap ou destinos.
+> **Task 7.6 concluída:** navegação mobile V4 integrada ao contrato existente, com diálogo modal, foco contido e reversível, accordions acessíveis, altura dinâmica e utilidades PT/ES validadas; nenhuma rota, conteúdo, configuração ou dependência foi alterada.
+> **Próxima task técnica recomendada:** **7.7 — Capa editorial principal**, limitada à reportagem de abertura e ao loader compartilhado inicial, sem antecipar os demais módulos da homepage.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

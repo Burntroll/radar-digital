@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.5 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead e navegação desktop); navegação mobile e módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.6 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead e navegação desktop/mobile); os módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -285,6 +285,8 @@ Breakpoints representam mudança de composição, não apenas redução de fonte
 
 **Estado implementado na Task 7.5:** `SiteNavigation.astro` aplica a faixa editorial V4 somente ao desktop, preservando integralmente os rótulos, grupos e destinos de `siteNavigation.ts`. Setores, Operação e Recursos permanecem disclosures exclusivos entre si, com abertura por Enter/Espaço, fechamento por Escape com retorno de foco e clique fora; os estados hover, active e focus-visible usam os tokens V4. Ferramentas, Bônus e Radar Market permanecem links de primeiro nível. A navegação mobile, as rotas, o sitemap, as utilidades, o masthead e a SignalBar não foram alterados.
 
+**Estado implementado na Task 7.6:** `MobileNavigation.astro` traduz a composição compacta V4 para a árvore real de `siteNavigation.ts`, mantendo Setores, Operação e Recursos como accordions e Ferramentas, Bônus e Radar Market como links diretos. O painel usa semântica de diálogo modal sem criar outro landmark de navegação, move o foco para o primeiro link, contém Tab/Shift+Tab, fecha com Escape e restaura o foco no hamburger. Scroll lock, `inert`, altura disponível, fechamento por link e transição para desktop são reversíveis; locale e tema permanecem utilidades internas. PT/ES, light/dark e 320–1023px foram validados sem alteração de rotas ou sitemap.
+
 ### 12.4 Sticky
 
 - Masthead e navegação formam o bloco sticky; a SignalBar não é sticky.
@@ -563,7 +565,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** mudança de sitemap e novos destinos.
 - **Validação:** 320–1023px, teclado, touch, Escape, trap/retorno de foco, scroll lock.
 - **Risco principal:** foco escapar para a página ou body permanecer bloqueado.
-- **Pronto:** painel navegável e reversível em PT/ES, sem regressão desktop.
+- **Pronto:** concluída em 20/07/2026; painel navegável e reversível em PT/ES, trap/retorno de foco, Escape, accordions, touch, scroll lock e altura disponível validados em 320–1023px, sem regressão desktop.
 
 ### 7.7 — Capa editorial principal
 
