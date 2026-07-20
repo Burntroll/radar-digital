@@ -54,8 +54,20 @@ export default {
         'v4-raised': 'var(--shadow-raised)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['var(--font-family-functional)'],
+        editorial: ['var(--font-family-editorial)'],
+        mono: ['var(--font-family-mono)'],
+      },
+      fontSize: {
+        'v4-brand': ['var(--type-brand-size)', { lineHeight: 'var(--type-brand-leading)', fontWeight: 'var(--type-brand-weight)' }],
+        'v4-display': ['var(--type-display-size)', { lineHeight: 'var(--type-display-leading)', fontWeight: 'var(--type-display-weight)' }],
+        'v4-section': ['var(--type-section-size)', { lineHeight: 'var(--type-section-leading)', fontWeight: 'var(--type-section-weight)' }],
+        'v4-card-title': ['var(--type-card-title-size)', { lineHeight: 'var(--type-card-title-leading)', fontWeight: 'var(--type-card-title-weight)' }],
+        'v4-body': ['var(--type-body-size)', { lineHeight: 'var(--type-body-leading)' }],
+        'v4-summary': ['var(--type-summary-size)', { lineHeight: 'var(--type-summary-leading)' }],
+        'v4-navigation': ['var(--type-navigation-size)', { lineHeight: 'var(--type-navigation-leading)' }],
+        'v4-metadata': ['var(--type-metadata-size)', { lineHeight: 'var(--type-metadata-leading)' }],
+        'v4-eyebrow': ['var(--type-eyebrow-size)', { lineHeight: 'var(--type-eyebrow-leading)' }],
       },
       animation: {
         'radar-sweep': 'radar-sweep 4s ease-in-out infinite',

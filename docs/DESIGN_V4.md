@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Escopo desta versão:** documentação e mapeamento; nenhuma mudança visual ou funcional foi implementada.
+> **Implementação acumulada:** Tasks 7.1–7.2 concluídas (tokens visuais e fundação tipográfica); nenhuma reestruturação de header ou homepage foi iniciada.
 
 ## 1. Status e autoridade
 
@@ -61,7 +61,7 @@ Conteúdo editorial e conteúdo comercial devem ser reconhecíveis antes do cliq
 
 ### 5.1 Função editorial
 
-A fonte editorial é reservada para marca, manchetes principais, títulos de seção de alto peso e chamadas especiais. A candidata técnica é `Source Serif 4`, condicionada à verificação de licença, cobertura de acentos PT/ES, arquivos variáveis e custo de carregamento na Task 7.2. Até a decisão final, a pilha de referência é `Georgia, "Times New Roman", serif`.
+A fonte editorial adotada é **Source Serif 4 4.005**, reservada para marca, manchetes principais, títulos de seção de alto peso e chamadas especiais. Ela é distribuída pela Adobe Fonts sob SIL Open Font License 1.1, cobre o repertório necessário a PT/ES e entra no projeto como WOFF2 variável local. A pilha canônica é `"Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif`.
 
 Escala proposta:
 
@@ -74,7 +74,7 @@ Escala proposta:
 
 ### 5.2 Função funcional
 
-Inter continua como candidata principal para navegação, resumos, metadados, botões, disclosures e formulários. A pilha de fallback é `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif`.
+**Inter 4.1** é a fonte funcional adotada para navegação, resumos, metadados, botões, disclosures e formulários. Ela é distribuída pelo projeto Inter sob SIL Open Font License 1.1 e entra como WOFF2 variável local. A pilha canônica é `"Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif`.
 
 | Papel | Tamanho | Peso | Line-height |
 |---|---:|---:|---:|
@@ -84,16 +84,24 @@ Inter continua como candidata principal para navegação, resumos, metadados, bo
 | Metadado | 0.72rem–0.85rem | 500–700 | 1,3 |
 | Eyebrow/disclosure | 0.68rem–0.78rem | 700–800 | 1,2; tracking moderado |
 
-JetBrains Mono, já carregada hoje, só deve permanecer se houver uso funcional comprovado em códigos, cupons ou metadados. Não deve ser carregada apenas como decoração.
+JetBrains Mono foi retirada do carregamento: o uso atual de `font-mono` limita-se a códigos/cupons pontuais e passa a usar `ui-monospace`, `SFMono-Regular`, Consolas e `Liberation Mono`. Uma fonte mono externa só pode voltar com uso funcional recorrente e orçamento próprio.
 
-### 5.3 Estratégia de carregamento
+### 5.3 Estratégia de carregamento implementada
 
-- Substituir o `@import` remoto do Google Fonts por arquivos WOFF2 locais ou outra estratégia aprovada que não bloqueie CSS.
-- Usar apenas pesos realmente consumidos; preferir arquivo variável quando o custo total for menor.
-- Fazer preload somente da fonte crítica acima da dobra.
-- Aplicar `font-display: swap` e fallbacks metricamente próximos para reduzir CLS.
-- Validar acentos, ñ, ç, interrogação/exclamação invertidas e algarismos.
-- A Task 7.2 decide e mede; esta Task 7.0 não adiciona fontes.
+- O `@import` remoto do Google Fonts foi removido. Os arquivos ficam em `public/fonts/`, com as licenças OFL preservadas em `public/fonts/licenses/`.
+- Inter usa os eixos `wght 400–900` e `opsz 14–32`; Source Serif 4 usa `wght 600–900` e `opsz 16–60`. Não há arquivos itálicos porque não existe consumo V4 aprovado nesta etapa.
+- O subconjunto inclui Basic Latin, Latin-1, Latin Extended-A, Latin Extended Additional, pontuação geral e símbolos monetários necessários. Foram verificados `áéíóúàâêôãõüñç`, suas maiúsculas, `¿`, `¡`, aspas editoriais, travessões e algarismos.
+- Ambos usam `font-display: swap`, `font-optical-sizing: auto` e fallbacks nativos próximos. Caracteres fora do subconjunto caem na pilha do sistema por `unicode-range`.
+- Somente Inter, já consumida acima da dobra pelo `body`, recebe preload em `Layout.astro`. Source Serif 4 é baixada sob demanda quando as próximas tasks aplicarem `font-editorial`; antecipar seu preload agora desperdiçaria banda.
+- Os tokens `--font-family-*` e `--type-*` são expostos pelo Tailwind como `font-sans`, `font-editorial`, `font-mono` e `text-v4-*`. Esta task não aplica a serif a componentes existentes nem reestrutura header/home.
+
+| Arquivo de produção | Fonte oficial | Eixos preservados | Tamanho |
+|---|---|---|---:|
+| `inter-variable-latin-ext.woff2` | Inter 4.1 (`e3a3d4c`) | `wght 400–900`, `opsz 14–32` | 67.576 bytes |
+| `source-serif-4-variable-latin-ext.woff2` | Source Serif 4.005 (`2823e99`) | `wght 600–900`, `opsz 16–60` | 94.304 bytes |
+| **Total potencial** | — | — | **161.880 bytes** |
+
+Os arquivos oficiais completos somavam 781.340 bytes; o recorte reduz 79,3% desse total. No estado atual, apenas os 67.576 bytes de Inter são críticos e preloaded. Source Serif permanece disponível sem transferência até ser efetivamente usada.
 
 ## 6. Paleta
 
@@ -164,7 +172,7 @@ A Task 7.1 publicou uma única camada canônica em `src/styles/global.css`, com 
 - Raios: `--radius-sm` (8px), `--radius-md` (15px) e `--radius-lg` (22px), expostos como `rounded-v4-*`.
 - Sombras: `--shadow-resting` e `--shadow-raised`, com pares light/dark, expostas como `shadow-v4-*`.
 - Offset sticky futuro: 126px no desktop e 64px abaixo de 1024px, exposto como `header-sticky`.
-- Tokens de fonte continuam deliberadamente adiados para a Task 7.2.
+- Tokens de família e escala foram implementados na Task 7.2 conforme a seção 5, sem aplicação estrutural antecipada aos módulos.
 
 ### 7.3 Migração e compatibilidade
 
@@ -509,7 +517,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** reestruturação do header e dos módulos.
 - **Validação:** PT/ES, fallbacks, CLS, peso transferido, `check` e `build`.
 - **Risco principal:** regressão de LCP/CLS ou cobertura incompleta de caracteres.
-- **Pronto:** fontes e fallbacks medidos, sem `@import` bloqueante e com pesos mínimos.
+- **Pronto:** concluída em 20/07/2026; fontes e fallbacks medidos, sem `@import` bloqueante e com pesos/eixos mínimos para os papéis aprovados.
 
 ### 7.3 — Barra superior “Radar agora”
 
