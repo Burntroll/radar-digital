@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.10 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora e Assuntos em destaque); os demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.11 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora, Assuntos em destaque e Seleção da redação); os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -344,6 +344,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 
 **Estado implementado na Task 7.10:** `homeData.ts` cruza o registro central de topics com cobertura publicada, localizada e não futura de artigos e guias, preservando a ordem determinística do registro. Os seis topics ativos possuem cobertura real em PT/ES. Como `editorialTopics.ts` proíbe slugs ou rotas nesta etapa, `TopicRail.astro` os apresenta como texto em uma única lista semântica, sem anchors, `href="#"` ou páginas fabricadas. A faixa usa rolagem horizontal manual com região focável e foco visível, sem ticker ou movimento automático; por isso não há controle de pausa a expor, e `prefers-reduced-motion` permanece sem animação.
 
+**Estado implementado na Task 7.11:** a regra `remaining-recency` usa conteúdos publicados, localizados, não futuros e de formatos ativos, ordenados por `date` decrescente com desempate por ID. O loader exclui reportagem principal, secundárias e entradas do Radar agora antes de selecionar até três histórias. O acervo atual deixa um checklist real por locale; `EditorialSelection.astro` e `StoryCard.astro` o apresentam com H2/H3, URL/data/leitura localizadas, resumo somente na variante principal e mídia local opcional com fallback visual explícito. Não existe CTA para arquivo porque essa rota ainda não foi implementada; cardinalidade zero oculta o módulo. A deduplicação desta task cobre os módulos V4 anteriores, enquanto os módulos legados abaixo permanecem intactos até suas tasks próprias, especialmente 7.12 e 7.16.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -623,7 +625,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** novo campo de schema sem ADR própria.
 - **Validação:** regra documentada, headings, locale, cards com/sem resumo/imagem.
 - **Risco principal:** chamar algoritmo implícito de seleção editorial.
-- **Pronto:** origem da curadoria identificável e fallback sem conteúdo fictício.
+- **Pronto:** concluída em 20/07/2026; regra `remaining-recency` documentada, até três histórias deduplicadas dos módulos V4 anteriores, um checklist real PT/ES no acervo atual e fallback oculto sem cards, imagens ou destinos fictícios.
 
 ### 7.12 — Últimas publicações
 

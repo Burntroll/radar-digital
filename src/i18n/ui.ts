@@ -114,6 +114,20 @@ export const ui = {
     'es': 'Temas destacados',
   },
 
+  // V4 — Home / Seleção da redação
+  'home.selection.eyebrow': {
+    'pt-BR': 'Seleção da redação',
+    'es': 'Selección de la redacción',
+  },
+  'home.selection.title': {
+    'pt-BR': 'O que merece sua atenção agora',
+    'es': 'Lo que merece tu atención ahora',
+  },
+  'home.selection.rule': {
+    'pt-BR': 'Conteúdos recentes ainda não exibidos na abertura, em ordem de publicação.',
+    'es': 'Contenidos recientes aún no mostrados en la apertura, por orden de publicación.',
+  },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

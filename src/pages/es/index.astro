@@ -5,6 +5,7 @@ import EditorialLead from '../../components/EditorialLead.astro';
 import SecondaryLeads from '../../components/SecondaryLeads.astro';
 import RadarNow from '../../components/RadarNow.astro';
 import TopicRail from '../../components/TopicRail.astro';
+import EditorialSelection from '../../components/EditorialSelection.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, t, defaultLocale, getDateLocale, type Locale } from '../../i18n/utils';
 import { routePath } from '../../i18n/utils';
@@ -19,6 +20,7 @@ const {
   secondaryArticles: artigosSecundarios,
   radarNowItems: radarAgora,
   topicRailItems: assuntosEmDestaque,
+  editorialSelectionArticles: selecaoDaRedacao,
 } = await loadHomeEditorialData(locale);
 
 // Guías publicadas (para el módulo propio de guías)
@@ -81,6 +83,8 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   </section>
 
   <TopicRail items={assuntosEmDestaque} locale={locale} />
+
+  <EditorialSelection articles={selecaoDaRedacao} locale={locale} />
 
   <!-- ════════════════════════════════════════════════ -->
   <!-- NAVEGACIÓN POR INTENCIÓN -->

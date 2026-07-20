@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { editorialFormats } from '../config/editorialFormats';
 import { editorialTopics, type EditorialTopicId } from '../config/editorialTopics';
 import type { Locale } from '../i18n/utils';
 
@@ -23,6 +24,21 @@ export interface HomeEditorialData {
   secondaryArticles: HomeArticle[];
   radarNowItems: HomeRadarItem[];
   topicRailItems: HomeTopicItem[];
+  editorialSelectionArticles: HomeArticle[];
+}
+
+const activeEditorialFormats = new Set(
+  editorialFormats
+    .filter(({ status }) => status === 'active')
+    .map(({ id }) => id),
+);
+
+function compareByPublishedDate(first: HomeArticle, second: HomeArticle): number {
+  const dateDifference = second.data.date.getTime() - first.data.date.getTime();
+  if (dateDifference) return dateDifference;
+  if (first.id < second.id) return -1;
+  if (first.id > second.id) return 1;
+  return 0;
 }
 
 export function selectHomeArticles(
@@ -36,17 +52,9 @@ export function selectHomeArticles(
     && (data.locale || 'pt-BR') === locale
     && data.date.getTime() <= buildTimestamp
   ));
-  const publishedArticles = publishedEntries
-    .filter(({ data }) => (
-      data.contentType === 'article'
-    ))
-    .sort((first, second) => {
-      const dateDifference = second.data.date.getTime() - first.data.date.getTime();
-      if (dateDifference) return dateDifference;
-      if (first.id < second.id) return -1;
-      if (first.id > second.id) return 1;
-      return 0;
-    });
+  const orderedPublishedEntries = [...publishedEntries].sort(compareByPublishedDate);
+  const publishedArticles = orderedPublishedEntries
+    .filter(({ data }) => data.contentType === 'article');
 
   const leadArticle = publishedArticles[0] ?? null;
   const secondaryArticles = publishedArticles.slice(1, 3);
@@ -75,6 +83,17 @@ export function selectHomeArticles(
     })
     .slice(0, 4);
 
+  const upperEditorialIds = new Set([
+    ...featuredIds,
+    ...radarNowItems.map(({ article }) => article.id),
+  ]);
+  const editorialSelectionArticles = orderedPublishedEntries
+    .filter(({ id, data }) => (
+      activeEditorialFormats.has(data.contentType)
+      && !upperEditorialIds.has(id)
+    ))
+    .slice(0, 3);
+
   const topicCoverage = publishedEntries.reduce((coverage, { data }) => {
     for (const topicId of data.topics ?? []) {
       coverage.set(topicId, (coverage.get(topicId) ?? 0) + 1);
@@ -91,7 +110,14 @@ export function selectHomeArticles(
       href: null,
     }));
 
-  return { publishedArticles, leadArticle, secondaryArticles, radarNowItems, topicRailItems };
+  return {
+    publishedArticles,
+    leadArticle,
+    secondaryArticles,
+    radarNowItems,
+    topicRailItems,
+    editorialSelectionArticles,
+  };
 }
 
 export async function loadHomeEditorialData(
