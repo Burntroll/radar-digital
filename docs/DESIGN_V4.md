@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.3 concluídas (tokens visuais, fundação tipográfica e SignalBar); masthead, navegação e módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.4 concluídas (tokens visuais, fundação tipográfica, SignalBar e masthead); navegação e módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -92,8 +92,8 @@ JetBrains Mono foi retirada do carregamento: o uso atual de `font-mono` limita-s
 - Inter usa os eixos `wght 400–900` e `opsz 14–32`; Source Serif 4 usa `wght 600–900` e `opsz 16–60`. Não há arquivos itálicos porque não existe consumo V4 aprovado nesta etapa.
 - O subconjunto inclui Basic Latin, Latin-1, Latin Extended-A, Latin Extended Additional, pontuação geral e símbolos monetários necessários. Foram verificados `áéíóúàâêôãõüñç`, suas maiúsculas, `¿`, `¡`, aspas editoriais, travessões e algarismos.
 - Ambos usam `font-display: swap`, `font-optical-sizing: auto` e fallbacks nativos próximos. Caracteres fora do subconjunto caem na pilha do sistema por `unicode-range`.
-- Somente Inter, já consumida acima da dobra pelo `body`, recebe preload em `Layout.astro`. Source Serif 4 é baixada sob demanda quando as próximas tasks aplicarem `font-editorial`; antecipar seu preload agora desperdiçaria banda.
-- Os tokens `--font-family-*` e `--type-*` são expostos pelo Tailwind como `font-sans`, `font-editorial`, `font-mono` e `text-v4-*`. Esta task não aplica a serif a componentes existentes nem reestrutura header/home.
+- Inter e Source Serif 4 recebem preload em `Layout.astro`: a primeira sustenta a interface funcional e a segunda passou a compor a marca editorial acima da dobra na Task 7.4. Novos pesos, estilos ou famílias não devem ser preloaded sem consumo crítico comprovado.
+- Os tokens `--font-family-*` e `--type-*` são expostos pelo Tailwind como `font-sans`, `font-editorial`, `font-mono` e `text-v4-*`. A serif está aplicada somente à assinatura editorial do masthead; os módulos da home continuam aguardando suas tasks próprias.
 
 | Arquivo de produção | Fonte oficial | Eixos preservados | Tamanho |
 |---|---|---|---:|
@@ -101,7 +101,7 @@ JetBrains Mono foi retirada do carregamento: o uso atual de `font-mono` limita-s
 | `source-serif-4-variable-latin-ext.woff2` | Source Serif 4.005 (`2823e99`) | `wght 600–900`, `opsz 16–60` | 94.304 bytes |
 | **Total potencial** | — | — | **161.880 bytes** |
 
-Os arquivos oficiais completos somavam 781.340 bytes; o recorte reduz 79,3% desse total. No estado atual, apenas os 67.576 bytes de Inter são críticos e preloaded. Source Serif permanece disponível sem transferência até ser efetivamente usada.
+Os arquivos oficiais completos somavam 781.340 bytes; o recorte reduz 79,3% desse total. Desde a Task 7.4, os 161.880 bytes dos dois subsets variáveis são críticos e preloaded porque Inter e Source Serif 4 aparecem acima da dobra. Esse orçamento deve ser reavaliado em 7.26 com dados reais de LCP e cache.
 
 ## 6. Paleta
 
@@ -272,6 +272,8 @@ Breakpoints representam mudança de composição, não apenas redução de fonte
 - Busca não deve abrir overlay fictício. Enquanto a busca real não existir, o controle deve ficar oculto ou claramente indisponível, sem simular resultado.
 - Ação editorial deve apontar para rota real; caso contrário, não aparece.
 - Monograma provisório isolado e substituível.
+
+**Estado implementado na Task 7.4:** `Masthead.astro` separa marca e utilidades da navegação e `BrandMark.astro` concentra o monograma provisório, marcado por `data-brand-status="provisional"`. No desktop, a faixa mede 78px e exibe data corrente localizada, marca centralizada, link real para a newsletter e o controle de tema existente; nenhum controle de busca é renderizado. No tablet mede 70px e no mobile 64px, mantendo somente marca e hamburger. `Layout.astro` preserva SEO, canonical e hreflang, e agrupa masthead + navegação em um bloco sticky de 126px no desktop, enquanto a SignalBar sai do viewport. PT/ES compartilham o mesmo componente e chaves de `ui.ts`; a data recebe fallback no build e é atualizada no cliente sem dependência externa. O preload de Source Serif 4 foi ativado porque a família passou a ser usada acima da dobra.
 
 ### 12.3 Navegação
 
@@ -539,7 +541,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** busca simulada, logo definitivo, mudança da navegação.
 - **Validação:** alturas, foco, data localizada, tema, CLS, PT/ES.
 - **Risco principal:** utilidades falsas ou quebra do script de tema.
-- **Pronto:** masthead compacto funcional, sem rota/ação inexistente.
+- **Pronto:** concluída em 20/07/2026; masthead compacto e localizado, marca provisória isolada, data corrente, tema e newsletter funcionais, sem busca ou rota inexistente, validado em 390/820/1440px.
 
 ### 7.5 — Navegação desktop
 

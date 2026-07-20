@@ -180,8 +180,8 @@
 | 7.1 | Fundação visual e tokens | ✅ Concluída — camada canônica light/dark, aliases e Tailwind semânticos |
 | 7.2 | Tipografia | ✅ Concluída — Inter/Source Serif 4 locais, OFL, subsets PT/ES e escalas V4 |
 | 7.3 | Barra superior “Radar agora” | ✅ Concluída — SignalBar localizada, honesta, responsiva e acessível |
-| 7.4 | Masthead | ⏳ Próxima recomendada |
-| 7.5 | Navegação desktop | ⏳ Pendente |
+| 7.4 | Masthead | ✅ Concluída — marca/utilidades separadas, data PT/ES e controles reais |
+| 7.5 | Navegação desktop | ⏳ Próxima recomendada |
 | 7.6 | Navegação mobile | ⏳ Pendente |
 | 7.7 | Capa editorial principal | ⏳ Pendente |
 | 7.8 | Notícias secundárias | ⏳ Pendente |

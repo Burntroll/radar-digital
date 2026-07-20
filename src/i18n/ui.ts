@@ -62,6 +62,11 @@ export const ui = {
   // Theme toggle
   'theme.toggle':       { 'pt-BR': 'Alternar tema',  'es': 'Cambiar tema' },
 
+  // V4 — Masthead
+  'masthead.home.label': { 'pt-BR': 'Radar Digital, início', 'es': 'Radar Digital, inicio' },
+  'masthead.tagline':    { 'pt-BR': 'Notícias e inteligência', 'es': 'Noticias e inteligencia' },
+  'masthead.theme':      { 'pt-BR': 'Tema', 'es': 'Tema' },
+
   // V4 — SignalBar
   'signal.label':              { 'pt-BR': 'Radar agora',          'es': 'Radar ahora' },
   'signal.status.updating':    { 'pt-BR': 'Em atualização',       'es': 'En actualización' },
