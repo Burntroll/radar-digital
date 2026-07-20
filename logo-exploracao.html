@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar Digital — Logo v2</title>
+<style>
+  :root {
+    --surface: #f8f4ec;
+    --surface-card: #fffdf8;
+    --text: #0f172a;
+    --text-secondary: #50504c;
+    --cyan: #00e5ff;
+    --navy: #0a1628;
+    --slate: #1e293b;
+    --border: #d9d0c3;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    padding: 40px 20px 80px;
+  }
+  h1 {
+    font-size: 15px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--text-secondary);
+    text-align:center; margin-bottom:8px;
+  }
+  h2 {
+    font-size: 11px; font-weight:500; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--text-secondary);
+    opacity:.5; text-align:center; margin-bottom:36px;
+  }
+  .section-title {
+    font-size: 12px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--text-secondary);
+    margin: 48px 0 20px; padding-top:24px;
+    border-top:1px solid var(--border);
+    max-width:1400px; margin-left:auto; margin-right:auto;
+  }
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+    gap:20px; max-width:1400px; margin:0 auto;
+  }
+  .card {
+    background:var(--surface-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:32px 16px 20px;
+    display:flex; flex-direction:column; align-items:center;
+    gap:16px;
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor:default;
+  }
+  .card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 12px 32px rgba(0,0,0,.08);
+  }
+  .card.dark { background:#0a0b0f; border-color:#1e293b; }
+  .card.dark .label { color:#94a3b8; }
+  .logo-box { width:130px; height:130px; display:flex; align-items:center; justify-content:center; }
+  .label { font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); text-align:center; line-height:1.4; }
+  .card.dark .label { color:#94a3b8; }
+
+  /* pulse animation */
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+  @keyframes sweep { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+  @keyframes blip { 0%,100%{opacity:.3;r:2} 50%{opacity:1;r:4} }
+</style>
+</head>
+<body>
+
+<h1>Radar Digital · Logo</h1>
+<h2>24 variações — radar · geométrico · tipográfico · abstrato</h2>
+
+<!-- ═══════ CATEGORIA 1: RADAR / SINAL ═══════ -->
+<div class="section-title">Radar & Sinal</div>
+<div class="grid">
+
+  <!-- 1. Phosphor Screen -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <rect width="130" height="130" rx="8" fill="#0a0b0f"/>
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#0f3" stroke-width="1" opacity=".3"/>
+        <circle cx="65" cy="65" r="35" fill="none" stroke="#0f3" stroke-width=".7" opacity=".2"/>
+        <circle cx="65" cy="65" r="20" fill="none" stroke="#0f3" stroke-width=".5" opacity=".15"/>
+        <line x1="65" y1="65" x2="65" y2="15" stroke="#0f3" stroke-width="1.2" opacity=".6"/>
+        <line x1="65" y1="65" x2="100" y2="30" stroke="#0f3" stroke-width="1.2" opacity=".4"/>
+        <text x="65" y="73" text-anchor="middle" font-family="monospace" font-weight="700" font-size="28" fill="#0f3" letter-spacing="-1">R</text>
+        <circle cx="65" cy="65" r="2.5" fill="#0f3"/>
+        <circle cx="80" cy="35" r="1.5" fill="#0f3" opacity=".6"><animate attributeName="opacity" values=".3;1;.3" dur="2s" repeatCount="indefinite"/></circle>
+      </svg>
+    </div>
+    <div class="label">Phosphor Screen</div>
+  </div>
+
+  <!-- 2. Pulse Wave -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <defs>
+          <radialGradient id="pw1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00e5ff" stop-opacity=".15"/>
+            <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="130" height="130" rx="8" fill="#0a0b0f"/>
+        <circle cx="65" cy="65" r="55" fill="url(#pw1)"/>
+        <circle cx="65" cy="65" r="45" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity=".15"><animate attributeName="r" values="45;55;45" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".15;.05;.15" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="65" cy="65" r="35" fill="none" stroke="#00e5ff" stroke-width="2" opacity=".35"><animate attributeName="r" values="35;45;35" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;.1;.35" dur="3s" repeatCount="indefinite"/></circle>
+        <text x="65" y="73" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="32" fill="#f1f5f9">R</text>
+        <circle cx="65" cy="65" r="2" fill="#00e5ff"/>
+      </svg>
+    </div>
+    <div class="label">Pulse Wave</div>
+  </div>
+
+  <!-- 3. WiFi Radar -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <path d="M 30 80 Q 65 40 100 80" fill="none" stroke="#0a1628" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M 15 65 Q 65 15 115 65" fill="none" stroke="#0a1628" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M 0 50 Q 65 -10 130 50" fill="none" stroke="#00e5ff" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="65" cy="95" r="2.5" fill="#0a1628"/>
+        <text x="65" y="112" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="10" fill="#50504c" letter-spacing=".15em">RADAR</text>
+      </svg>
+    </div>
+    <div class="label">WiFi Radar</div>
+  </div>
+
+  <!-- 4. Sonar Rings -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <circle cx="65" cy="65" r="55" fill="none" stroke="#00e5ff" stroke-width=".8" opacity=".25"/>
+        <circle cx="65" cy="65" r="45" fill="none" stroke="#00e5ff" stroke-width="1.2" opacity=".4" stroke-dasharray="8 4"/>
+        <circle cx="65" cy="65" r="35" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity=".6"/>
+        <circle cx="65" cy="65" r="18" fill="#00e5ff" opacity=".08"/>
+        <text x="65" y="73" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="34" fill="#e2e8f0">R</text>
+        <circle cx="65" cy="65" r="3" fill="#00e5ff"/>
+      </svg>
+    </div>
+    <div class="label">Sonar Rings</div>
+  </div>
+
+  <!-- 5. Radar Sweep Animated -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <rect width="130" height="130" rx="65" fill="#0a1628"/>
+        <circle cx="65" cy="65" r="52" fill="none" stroke="#00e5ff" stroke-width="1.2" opacity=".3"/>
+        <circle cx="65" cy="65" r="40" fill="none" stroke="#00e5ff" stroke-width=".8" opacity=".15"/>
+        <path d="M 65 65 L 65 13 A 52 52 0 0 1 117 65 Z" fill="#00e5ff" opacity=".2">
+          <animateTransform attributeName="transform" type="rotate" from="0 65 65" to="360 65 65" dur="4s" repeatCount="indefinite"/>
+        </path>
+        <text x="65" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f1f5f9" letter-spacing="-1">R</text>
+        <circle cx="65" cy="65" r="3" fill="#00e5ff"/>
+      </svg>
+    </div>
+    <div class="label">Sweep Animado</div>
+  </div>
+
+  <!-- 6. Radio Waves -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <g transform="translate(26,42)">
+          <rect x="0" y="0" width="14" height="46" rx="3" fill="#0a1628"/>
+          <rect x="18" y="10" width="14" height="36" rx="3" fill="#0a1628" opacity=".75"/>
+          <rect x="36" y="18" width="14" height="28" rx="3" fill="#0a1628" opacity=".5"/>
+          <rect x="54" y="6" width="14" height="40" rx="3" fill="#00e5ff"/>
+        </g>
+        <text x="65" y="110" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="9" fill="#50504c" letter-spacing=".2em">RD</text>
+      </svg>
+    </div>
+    <div class="label">Radio Waves</div>
+  </div>
+
+</div>
+
+<!-- ═══════ CATEGORIA 2: MONOGRAMA GEOMÉTRICO ═══════ -->
+<div class="section-title">Monograma Geométrico</div>
+<div class="grid">
+
+  <!-- 7. Interlock -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <rect x="22" y="25" width="48" height="80" rx="6" fill="#0a1628"/>
+        <path d="M 70 25 L 108 25 A 40 40 0 0 1 108 65 L 70 65 Z" fill="#0a1628"/>
+        <line x1="70" y1="75" x2="100" y2="105" stroke="#0a1628" stroke-width="20" stroke-linecap="butt"/>
+        <rect x="22" y="25" width="48" height="80" rx="6" fill="none" stroke="#00e5ff" stroke-width="2"/>
+        <path d="M 70 25 L 108 25 A 40 40 0 0 1 108 65 L 70 65 Z" fill="none" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="70" y1="75" x2="100" y2="105" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="label">Interlock Outline</div>
+  </div>
+
+  <!-- 8. Split RD -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <clipPath id="c8">
+          <rect x="0" y="0" width="65" height="130"/>
+        </clipPath>
+        <circle cx="65" cy="65" r="56" fill="#0a1628"/>
+        <circle cx="65" cy="65" r="56" fill="#00e5ff" clip-path="url(#c8)"/>
+        <text x="65" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="42" fill="#f1f5f9" letter-spacing="-2">R</text>
+        <text x="65" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="42" fill="#0a1628" letter-spacing="-2" clip-path="url(#c8)">R</text>
+      </svg>
+    </div>
+    <div class="label">Split Tone</div>
+  </div>
+
+  <!-- 9. Hexagon -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <polygon points="65,10 118,40 118,90 65,120 12,90 12,40" fill="#0a1628"/>
+        <polygon points="65,22 108,46 108,84 65,108 22,84 22,46" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity=".4"/>
+        <text x="65" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="38" fill="#00e5ff" letter-spacing="-2">R</text>
+      </svg>
+    </div>
+    <div class="label">Hexagon Shield</div>
+  </div>
+
+  <!-- 10. Isometric Cube -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <polygon points="65,12 110,38 110,86 65,112 20,86 20,38" fill="#0a1628" opacity=".08"/>
+        <polygon points="65,12 110,38 110,86 65,112 20,86 20,38" fill="none" stroke="#0a1628" stroke-width="2"/>
+        <polygon points="65,12 110,38 65,64 20,38" fill="#00e5ff"/>
+        <text x="65" y="95" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="16" fill="#0a1628" letter-spacing=".1em">R D</text>
+      </svg>
+    </div>
+    <div class="label">Isometric Cube</div>
+  </div>
+
+  <!-- 11. Negative Space D -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <rect x="10" y="10" width="90" height="110" rx="12" fill="#1e293b"/>
+        <rect x="22" y="22" width="90" height="86" rx="8" fill="#0a0b0f"/>
+        <text x="50" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="42" fill="#00e5ff" letter-spacing="-3">R</text>
+      </svg>
+    </div>
+    <div class="label">Negative Space D</div>
+  </div>
+
+  <!-- 12. Overlap -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <text x="50" y="90" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="64" fill="#0a1628" letter-spacing="-4" opacity=".15">D</text>
+        <text x="72" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="64" fill="#0a1628" letter-spacing="-4">R</text>
+        <line x1="72" y1="68" x2="72" y2="58" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="label">Overlap + Accent</div>
+  </div>
+
+</div>
+
+<!-- ═══════ CATEGORIA 3: TIPOGRÁFICO ═══════ -->
+<div class="section-title">Tipográfico</div>
+<div class="grid">
+
+  <!-- 13. Stencil -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <text x="65" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="56" fill="none" stroke="#0a1628" stroke-width="3" letter-spacing="-2">RD</text>
+        <rect x="58" y="38" width="14" height="3" fill="#f8f4ec"/>
+        <rect x="58" y="55" width="14" height="3" fill="#f8f4ec"/>
+        <rect x="58" y="72" width="14" height="3" fill="#f8f4ec"/>
+      </svg>
+    </div>
+    <div class="label">Stencil Cut</div>
+  </div>
+
+  <!-- 14. Serif Authority -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <text x="65" y="78" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="44" fill="#f1f5f9" letter-spacing="-1">RD</text>
+        <line x1="25" y1="86" x2="105" y2="86" stroke="#00e5ff" stroke-width="1.5" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="label">Serif Authority</div>
+  </div>
+
+  <!-- 15. Mono Tech -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <text x="65" y="75" text-anchor="middle" font-family="monospace" font-weight="700" font-size="40" fill="#00e5ff" letter-spacing="2">R_D</text>
+        <circle cx="65" cy="65" r="2" fill="#00e5ff"><animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/></circle>
+      </svg>
+    </div>
+    <div class="label">Mono Terminal</div>
+  </div>
+
+  <!-- 16. Ligature RD -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <path d="M 28 35 L 28 95 L 50 95 L 50 70 L 58 70 L 58 95 L 80 95 L 80 35 L 58 35 L 58 52 L 50 52 L 50 35 Z" fill="#0a1628"/>
+        <path d="M 85 35 L 85 95 L 107 95 L 107 75 C 120 65 120 40 107 35 Z" fill="#0a1628"/>
+        <circle cx="96" cy="50" r="8" fill="#f8f4ec"/>
+        <line x1="85" y1="35" x2="107" y2="35" stroke="#00e5ff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="label">Custom Ligature</div>
+  </div>
+
+  <!-- 17. Vertical Stack -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <line x1="35" y1="20" x2="95" y2="20" stroke="#0a1628" stroke-width="2"/>
+        <text x="65" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="40" fill="#0a1628">R</text>
+        <text x="65" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="40" fill="#00e5ff">D</text>
+        <line x1="35" y1="20" x2="65" y2="20" stroke="#00e5ff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="label">Vertical Stack</div>
+  </div>
+
+  <!-- 18. Slash -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <text x="45" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="46" fill="#f1f5f9">R</text>
+        <line x1="60" y1="40" x2="80" y2="90" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+        <text x="90" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="46" fill="#00e5ff">D</text>
+      </svg>
+    </div>
+    <div class="label">Slash Divider</div>
+  </div>
+
+</div>
+
+<!-- ═══════ CATEGORIA 4: ABSTRATO / SIMBÓLICO ═══════ -->
+<div class="section-title">Abstrato & Simbólico</div>
+<div class="grid">
+
+  <!-- 19. Crosshair Target -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <circle cx="65" cy="65" r="50" fill="none" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="65" y1="10" x2="65" y2="120" stroke="#00e5ff" stroke-width="1" opacity=".4"/>
+        <line x1="10" y1="65" x2="120" y2="65" stroke="#00e5ff" stroke-width="1" opacity=".4"/>
+        <circle cx="65" cy="65" r="18" fill="none" stroke="#00e5ff" stroke-width="2.5"/>
+        <circle cx="65" cy="65" r="4" fill="#00e5ff"/>
+        <line x1="65" y1="5" x2="65" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="65" y1="110" x2="65" y2="125" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="5" y1="65" x2="20" y2="65" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="110" y1="65" x2="125" y2="65" stroke="#00e5ff" stroke-width="2"/>
+        <text x="65" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#f1f5f9" letter-spacing=".15em">RD</text>
+      </svg>
+    </div>
+    <div class="label">Crosshair Target</div>
+  </div>
+
+  <!-- 20. Compass -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <circle cx="65" cy="65" r="52" fill="none" stroke="#0a1628" stroke-width="2"/>
+        <polygon points="65,18 70,60 65,65 60,60" fill="#00e5ff"/>
+        <polygon points="65,112 60,70 65,65 70,70" fill="#0a1628"/>
+        <text x="65" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="8" fill="#50504c" letter-spacing=".1em">RADAR</text>
+      </svg>
+    </div>
+    <div class="label">Compass Needle</div>
+  </div>
+
+  <!-- 21. Circuit Board -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <rect x="15" y="20" width="100" height="90" rx="6" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity=".3"/>
+        <path d="M 35 50 L 50 50 L 55 45 L 70 45 L 75 50 L 95 50" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+        <path d="M 45 70 L 50 65 L 60 65 L 65 70 L 65 85" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+        <path d="M 70 65 L 75 70 L 85 70 L 90 65 L 90 55" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+        <circle cx="35" cy="50" r="3" fill="#00e5ff"/>
+        <circle cx="95" cy="50" r="3" fill="#00e5ff"/>
+        <circle cx="65" cy="85" r="3" fill="#00e5ff"/>
+        <circle cx="90" cy="55" r="3" fill="#00e5ff"/>
+        <text x="65" y="112" text-anchor="middle" font-family="monospace" font-weight="700" font-size="9" fill="#00e5ff" opacity=".6" letter-spacing=".3em">RD</text>
+      </svg>
+    </div>
+    <div class="label">Circuit Board</div>
+  </div>
+
+  <!-- 22. Eye / Lens -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <ellipse cx="65" cy="65" rx="52" ry="40" fill="none" stroke="#0a1628" stroke-width="2.5"/>
+        <circle cx="65" cy="65" r="22" fill="none" stroke="#0a1628" stroke-width="2.5"/>
+        <circle cx="65" cy="65" r="10" fill="#00e5ff"/>
+        <line x1="65" y1="38" x2="65" y2="26" stroke="#0a1628" stroke-width="2" stroke-linecap="round"/>
+        <!-- reflection -->
+        <circle cx="58" cy="58" r="3" fill="#fff" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="label">Lens / Eye</div>
+  </div>
+
+  <!-- 23. Origami Fold -->
+  <div class="card dark">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <polygon points="20,100 65,25 110,100" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon points="20,100 65,25 65,62" fill="#00e5ff" opacity=".25"/>
+        <polygon points="65,62 65,25 110,100" fill="#f1f5f9" opacity=".15"/>
+        <text x="65" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="9" fill="#00e5ff" letter-spacing=".2em" opacity=".6">RD</text>
+      </svg>
+    </div>
+    <div class="label">Origami Fold</div>
+  </div>
+
+  <!-- 24. Minimal Dot Grid -->
+  <div class="card">
+    <div class="logo-box">
+      <svg viewBox="0 0 130 130" width="130" height="130">
+        <g fill="#0a1628" opacity=".2">
+          <circle cx="30" cy="30" r="2"/><circle cx="50" cy="30" r="2"/><circle cx="70" cy="30" r="2"/><circle cx="90" cy="30" r="2"/>
+          <circle cx="30" cy="50" r="2"/><circle cx="50" cy="50" r="2"/><circle cx="70" cy="50" r="2"/><circle cx="90" cy="50" r="2"/>
+          <circle cx="30" cy="70" r="2"/><circle cx="50" cy="70" r="2"/><circle cx="70" cy="70" r="2"/><circle cx="90" cy="70" r="2"/>
+          <circle cx="30" cy="90" r="2"/><circle cx="50" cy="90" r="2"/><circle cx="70" cy="90" r="2"/><circle cx="90" cy="90" r="2"/>
+        </g>
+        <rect x="42" y="42" width="46" height="46" rx="8" fill="#fffdf8"/>
+        <rect x="42" y="42" width="46" height="46" rx="8" fill="none" stroke="#0a1628" stroke-width="2"/>
+        <text x="65" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="28" fill="#0a1628" letter-spacing="-1">RD</text>
+        <circle cx="50" cy="50" r="3" fill="#00e5ff"/>
+        <circle cx="80" cy="80" r="3" fill="#00e5ff"/>
+      </svg>
+    </div>
+    <div class="label">Dot Grid + RD</div>
+  </div>
+
+</div>
+
+</body>
+</html>

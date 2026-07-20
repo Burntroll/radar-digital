@@ -28,6 +28,7 @@ npm-debug.log*
 .tmp
 .cache
 tested-tower/
+graphify-out/
 
 # Astro
 .astro/

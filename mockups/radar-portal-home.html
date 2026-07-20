@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar — Portal de Notícias · Mockup Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   TOKENS — tema dark editorial (default do mockup)
+   ══════════════════════════════════════════════════ */
+:root {
+  --bg: #0e0f11;
+  --bg-raised: #15171a;
+  --bg-sunken: #0a0b0d;
+  --ink: #f2f1ec;
+  --ink-soft: #b8b7b0;
+  --ink-mute: #7c7b75;
+  --line: #26282c;
+  --line-soft: #1c1e21;
+  --paper: #f6f3ec;          /* contraste editorial claro */
+  --accent: #ff4d00;         /* vermelho antena — marca */
+  --accent-ink: #ff5c1a;
+  /* cores de editoria */
+  --c-politica: #ff4d00;
+  --c-economia: #3ddc84;
+  --c-tecnologia: #4dc3ff;
+  --c-cultura: #c98bff;
+  --c-esportes: #ffd23d;
+  --c-mundo: #ff6d9c;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Archivo", system-ui, sans-serif;
+  --narrow: "Archivo Narrow", var(--sans);
+  --mono: "JetBrains Mono", monospace;
+}
+[data-theme="light"] {
+  --bg: #f6f3ec;
+  --bg-raised: #fffdf7;
+  --bg-sunken: #ece7dc;
+  --ink: #14151a;
+  --ink-soft: #4c4b45;
+  --ink-mute: #85837a;
+  --line: #ddd6c7;
+  --line-soft: #e8e2d5;
+  --paper: #14151a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  transition: background .3s, color .3s;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+::selection { background: var(--accent); color: #fff; }
+
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── Breaking / ticker bar ─── */
+.ticker {
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--narrow);
+  font-size: 13px;
+  overflow: hidden;
+}
+.ticker-inner { display: flex; align-items: stretch; }
+.ticker-label {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,.22);
+  padding: 8px 16px;
+  font-weight: 700; letter-spacing: .14em;
+  font-size: 11px; white-space: nowrap;
+}
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: pulse 1.4s ease infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .35; transform: scale(.8);} }
+.ticker-track { display: flex; align-items: center; gap: 48px; padding: 8px 24px; white-space: nowrap; animation: marquee 42s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-track a { opacity: .95; font-weight: 500; }
+.ticker-track a:hover { text-decoration: underline; }
+.ticker-track a::before { content: "▸"; margin-right: 10px; opacity: .7; }
+@keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+/* ─── Masthead ─── */
+.masthead { border-bottom: 1px solid var(--line); }
+.masthead-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; gap: 16px;
+}
+.mh-date { font-family: var(--mono); font-size: 11.5px; color: var(--ink-mute); letter-spacing: .04em; }
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(38px, 5.4vw, 62px);
+  letter-spacing: -.03em;
+  line-height: 1;
+  text-align: center;
+}
+.wordmark em { font-style: normal; color: var(--accent); }
+.mh-actions { display: flex; align-items: center; gap: 10px; }
+.search-pill {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 14px; font-size: 12.5px; color: var(--ink-mute);
+  font-family: var(--mono); min-width: 150px;
+}
+.theme-btn, .sub-btn {
+  font-family: var(--narrow); font-weight: 700; font-size: 12.5px;
+  letter-spacing: .06em; cursor: pointer; border: 1px solid var(--line);
+  background: transparent; color: var(--ink);
+  padding: 9px 16px; border-radius: 999px; transition: all .2s;
+}
+.sub-btn { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.sub-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.theme-btn:hover { border-color: var(--ink-mute); }
+
+/* ─── Nav de editorias ─── */
+.ednav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 50; }
+.ednav-row { display: flex; align-items: center; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.ednav-row::-webkit-scrollbar { display: none; }
+.ednav a {
+  font-family: var(--narrow); font-weight: 600; font-size: 13.5px;
+  letter-spacing: .05em; text-transform: uppercase;
+  padding: 13px 14px 11px; color: var(--ink-soft);
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.ednav a:hover { color: var(--ink); }
+.ednav a[data-ed="politica"]:hover { border-color: var(--c-politica); }
+.ednav a[data-ed="economia"]:hover { border-color: var(--c-economia); }
+.ednav a[data-ed="tecnologia"]:hover { border-color: var(--c-tecnologia); }
+.ednav a[data-ed="cultura"]:hover { border-color: var(--c-cultura); }
+.ednav a[data-ed="esportes"]:hover { border-color: var(--c-esportes); }
+.ednav a[data-ed="mundo"]:hover { border-color: var(--c-mundo); }
+
+/* ─── Kicker / etiquetas ─── */
+.kicker {
+  font-family: var(--narrow); font-weight: 700; font-size: 11.5px;
+  letter-spacing: .16em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.kicker::before { content: ""; width: 8px; height: 8px; background: var(--kc, var(--accent)); }
+.k-politica { --kc: var(--c-politica); } .k-economia { --kc: var(--c-economia); }
+.k-tecnologia { --kc: var(--c-tecnologia); } .k-cultura { --kc: var(--c-cultura); }
+.k-esportes { --kc: var(--c-esportes); } .k-mundo { --kc: var(--c-mundo); }
+
+/* ─── HERO — mosaico de capa ─── */
+.hero { padding: 28px 0 40px; border-bottom: 1px solid var(--line); }
+.hero-grid {
+  display: grid; gap: 1px; background: var(--line);
+  border: 1px solid var(--line);
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-areas: "main side1 side2" "main side3 side4";
+}
+.hero-cell { background: var(--bg); padding: 26px; position: relative; transition: background .2s; }
+.hero-cell:hover { background: var(--bg-raised); }
+.hero-main { grid-area: main; display: flex; flex-direction: column; }
+.hero-main h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(30px, 3.6vw, 50px);
+  line-height: 1.04; letter-spacing: -.02em;
+  margin: 16px 0 14px; text-wrap: balance;
+}
+.hero-main h2:hover { color: var(--accent-ink); cursor: pointer; }
+.hero-main p { color: var(--ink-soft); font-size: 16px; max-width: 56ch; line-height: 1.55; }
+.hero-media {
+  margin-top: auto; padding-top: 24px;
+  aspect-ratio: 16/8.2; border-radius: 4px; overflow: hidden; position: relative;
+  background:
+    radial-gradient(ellipse 90% 120% at 15% 110%, rgba(255,77,0,.5), transparent 55%),
+    radial-gradient(ellipse 60% 80% at 85% -10%, rgba(77,195,255,.35), transparent 60%),
+    linear-gradient(160deg, #1b1d22, #101114);
+}
+.hero-media .caption {
+  position: absolute; left: 14px; bottom: 12px;
+  font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,.65);
+}
+.hero-media .glyph {
+  position: absolute; right: 18px; top: 12px;
+  font-family: var(--serif); font-size: 92px; font-weight: 900;
+  color: rgba(255,255,255,.07); line-height: 1;
+}
+.hero-cell h3 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: 19px; line-height: 1.18; letter-spacing: -.01em;
+  margin: 12px 0 8px; text-wrap: pretty;
+}
+.hero-cell h3:hover { color: var(--accent-ink); cursor: pointer; }
+.byline { font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: .03em; display: flex; gap: 8px; align-items: center; }
+.byline time { color: var(--ink-mute); }
+.tag-live { color: var(--accent); font-weight: 700; }
+.tag-live::before { content: "●"; margin-right: 5px; animation: pulse 1.4s infinite; }
+
+/* ─── Section headers ─── */
+.sec { padding: 44px 0; border-bottom: 1px solid var(--line); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 26px; gap: 16px; }
+.sec-title {
+  font-family: var(--serif); font-weight: 900;
+  font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.02em;
+  display: flex; align-items: center; gap: 14px;
+}
+.sec-title::after { content: ""; width: 44px; height: 4px; background: var(--sc, var(--accent)); }
+.sec-link { font-family: var(--narrow); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+.sec-link:hover { color: var(--accent); }
+.s-politica { --sc: var(--c-politica); } .s-economia { --sc: var(--c-economia); }
+.s-tecnologia { --sc: var(--c-tecnologia); } .s-cultura { --sc: var(--c-cultura); }
+.s-esportes { --sc: var(--c-esportes); }
+
+/* ─── Faixa "últimas" ─── */
+.latest-strip { background: var(--bg-raised); border-bottom: 1px solid var(--line); }
+.latest-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+.latest-item { padding: 18px 22px; border-left: 1px solid var(--line); }
+.latest-item:first-child { border-left: none; }
+.latest-item h4 { font-size: 14.5px; font-weight: 600; line-height: 1.3; margin-top: 8px; }
+.latest-item h4:hover { color: var(--accent-ink); cursor: pointer; }
+
+/* ─── Grid notícias + mais lidas ─── */
+.news-layout { display: grid; grid-template-columns: 1fr 340px; gap: 44px; }
+.news-list article {
+  display: grid; grid-template-columns: 1fr 210px; gap: 22px;
+  padding: 22px 0; border-bottom: 1px solid var(--line-soft);
+}
+.news-list article:first-child { padding-top: 0; }
+.news-list h3 { font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.2; letter-spacing: -.01em; margin: 8px 0 6px; }
+.news-list h3:hover { color: var(--accent-ink); cursor: pointer; }
+.news-list p { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+.thumb { aspect-ratio: 4/3; border-radius: 4px; position: relative; overflow: hidden; }
+.thumb span { position: absolute; right: 8px; bottom: 4px; font-family: var(--serif); font-weight: 900; font-size: 44px; color: rgba(255,255,255,.1); }
+.t1 { background: linear-gradient(150deg, #233043, #12161d); }
+.t2 { background: linear-gradient(150deg, #3d2b1e, #181310); }
+.t3 { background: linear-gradient(150deg, #1e3d2e, #101812); }
+.t4 { background: linear-gradient(150deg, #36204a, #160f1e); }
+
+/* Mais lidas */
+.mostread { position: sticky; top: 66px; align-self: start; }
+.mostread h3 { font-family: var(--narrow); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding-bottom: 14px; border-bottom: 2px solid var(--accent); margin-bottom: 6px; }
+.mr-item { display: flex; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
+.mr-num { font-family: var(--serif); font-weight: 900; font-size: 30px; color: transparent; -webkit-text-stroke: 1.2px var(--ink-mute); line-height: 1; min-width: 34px; }
+.mr-item:hover .mr-num { -webkit-text-stroke-color: var(--accent); }
+.mr-item h4 { font-size: 14.5px; font-weight: 600; line-height: 1.3; }
+.mr-item h4:hover { color: var(--accent-ink); cursor: pointer; }
+.mr-item .byline { margin-top: 5px; }
+
+/* ─── Opinião ─── */
+.op-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.op-card { background: var(--bg); padding: 26px; transition: background .2s; }
+.op-card:hover { background: var(--bg-raised); }
+.op-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.op-avatar { width: 46px; height: 46px; border-radius: 50%; font-family: var(--serif); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 17px; color: #fff; }
+.op-name { font-weight: 700; font-size: 14px; }
+.op-role { font-size: 12px; color: var(--ink-mute); }
+.op-card blockquote { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
+.op-card blockquote:hover { color: var(--accent-ink); cursor: pointer; }
+.op-card blockquote::before { content: "“"; color: var(--accent); }
+
+/* ─── Dados / números ─── */
+.data-band { background: var(--paper); color: var(--bg); }
+.data-band .sec-title { color: var(--bg); }
+.data-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: color-mix(in srgb, var(--bg) 18%, transparent); border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); }
+.data-cell { background: var(--paper); padding: 24px; }
+.data-num { font-family: var(--serif); font-weight: 900; font-size: 42px; letter-spacing: -.03em; line-height: 1; }
+.data-num em { font-style: normal; font-size: 20px; vertical-align: super; }
+.data-label { font-size: 13px; margin-top: 10px; color: color-mix(in srgb, var(--bg) 70%, transparent); line-height: 1.4; }
+.data-src { font-family: var(--mono); font-size: 10px; margin-top: 8px; color: color-mix(in srgb, var(--bg) 45%, transparent); }
+
+/* ─── Cultura / cards visuais ─── */
+.cultura-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cul-card .thumb { aspect-ratio: 3/4; margin-bottom: 14px; }
+.cul-card h4 { font-family: var(--serif); font-weight: 600; font-size: 17.5px; line-height: 1.22; margin: 8px 0 6px; }
+.cul-card h4:hover { color: var(--c-cultura); cursor: pointer; }
+
+/* ─── Newsletter ─── */
+.newsletter { background: var(--bg-raised); border: 1px solid var(--line); padding: 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; }
+.newsletter h3 { font-family: var(--serif); font-weight: 900; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.02em; line-height: 1.1; }
+.newsletter h3 em { font-style: normal; color: var(--accent); }
+.newsletter p { color: var(--ink-soft); font-size: 14.5px; margin-top: 10px; }
+.nl-form { display: flex; gap: 10px; }
+.nl-form input {
+  flex: 1; background: var(--bg); border: 1px solid var(--line);
+  color: var(--ink); padding: 14px 18px; font-size: 14px; font-family: var(--sans);
+  border-radius: 3px; outline: none;
+}
+.nl-form input:focus { border-color: var(--accent); }
+.nl-form button {
+  background: var(--accent); color: #fff; border: none; cursor: pointer;
+  font-family: var(--narrow); font-weight: 700; font-size: 13px;
+  letter-spacing: .08em; text-transform: uppercase; padding: 0 26px; border-radius: 3px;
+  transition: filter .2s;
+}
+.nl-form button:hover { filter: brightness(1.12); }
+.nl-note { font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute); margin-top: 10px; }
+
+/* ─── Footer ─── */
+footer { padding: 48px 0 32px; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.foot-mark { font-family: var(--serif); font-weight: 900; font-size: 30px; letter-spacing: -.03em; }
+.foot-mark em { font-style: normal; color: var(--accent); }
+.foot-col h5 { font-family: var(--narrow); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 14px; }
+.foot-col a { display: block; font-size: 13.5px; color: var(--ink-soft); padding: 4px 0; }
+.foot-col a:hover { color: var(--ink); }
+.foot-base { display: flex; justify-content: space-between; padding-top: 22px; font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+
+/* ─── Responsivo ─── */
+@media (max-width: 1080px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "main main" "side1 side2" "side3 side4"; }
+  .news-layout { grid-template-columns: 1fr; }
+  .mostread { position: static; }
+  .latest-row { grid-template-columns: 1fr 1fr; }
+  .latest-item:nth-child(3) { border-left: none; }
+  .op-grid, .data-grid, .cultura-grid { grid-template-columns: 1fr 1fr; }
+  .newsletter { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .hero-grid, .op-grid, .data-grid, .cultura-grid { grid-template-columns: 1fr; grid-template-areas: "main" "side1" "side2" "side3" "side4"; }
+  .hero-main { grid-area: main; }
+  .news-list article { grid-template-columns: 1fr; }
+  .thumb { aspect-ratio: 16/9; }
+  .latest-row { grid-template-columns: 1fr; }
+  .latest-item { border-left: none; border-top: 1px solid var(--line); }
+  .search-pill { display: none; }
+  .masthead-top { flex-direction: column; gap: 10px; }
+  .newsletter { padding: 26px; }
+  .nl-form { flex-direction: column; }
+  .nl-form button { padding: 14px; }
+}
+
+/* Tweaks flutuante */
+.tweaks { position: fixed; right: 18px; bottom: 18px; z-index: 100; display: flex; gap: 8px; }
+.tweaks button {
+  font-family: var(--mono); font-size: 11px; cursor: pointer;
+  background: var(--bg-raised); color: var(--ink); border: 1px solid var(--line);
+  padding: 9px 14px; border-radius: 999px; box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+.tweaks button:hover { border-color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track, .live-dot, .tag-live::before { animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ BREAKING TICKER ═══ -->
+<div class="ticker" role="region" aria-label="Últimas notícias">
+  <div class="ticker-inner">
+    <span class="ticker-label"><span class="live-dot"></span>AGORA</span>
+    <div class="ticker-track">
+      <a href="#">Senado aprova marco regulatório da IA em votação histórica</a>
+      <a href="#">Ibovespa renova máxima e fecha acima dos 140 mil pontos</a>
+      <a href="#">Brasil vence amistoso e garante vaga na final</a>
+      <a href="#">Nova variante: Ministério da Saúde convoca coletiva</a>
+      <a href="#">Senado aprova marco regulatório da IA em votação histórica</a>
+      <a href="#">Ibovespa renova máxima e fecha acima dos 140 mil pontos</a>
+      <a href="#">Brasil vence amistoso e garante vaga na final</a>
+      <a href="#">Nova variante: Ministério da Saúde convoca coletiva</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="wrap masthead-top">
+    <span class="mh-date" id="mh-date">segunda-feira, 20 de julho de 2026</span>
+    <a href="#" class="wordmark">Radar<em>.</em></a>
+    <div class="mh-actions">
+      <span class="search-pill">⌕ buscar…</span>
+      <button class="theme-btn" id="theme-toggle">◐ TEMA</button>
+      <button class="sub-btn">ASSINAR</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ NAV EDITORIAS ═══ -->
+<nav class="ednav" aria-label="Editorias">
+  <div class="wrap ednav-row">
+    <a href="#" data-ed="politica">Política</a>
+    <a href="#" data-ed="economia">Economia</a>
+    <a href="#" data-ed="tecnologia">Tecnologia</a>
+    <a href="#" data-ed="mundo">Mundo</a>
+    <a href="#" data-ed="cultura">Cultura</a>
+    <a href="#" data-ed="esportes">Esportes</a>
+    <a href="#">Opinião</a>
+    <a href="#">Dados</a>
+    <a href="#">Vídeos</a>
+    <a href="#">Podcasts</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO MOSAICO ═══ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-cell hero-main">
+        <span class="kicker k-politica">Política · Exclusivo</span>
+        <h2>O bastidor da votação que redesenhou o futuro da inteligência artificial no Brasil</h2>
+        <p>Três meses de negociações, 47 emendas e um acordo de última hora: como o Congresso construiu a lei mais importante da década para o setor de tecnologia — e quem ficou de fora dela.</p>
+        <div class="byline" style="margin-top:14px;">
+          <span>Por <strong>Helena Duarte</strong> e <strong>Rafael Paz</strong></span>
+          <span>·</span><time>há 24 min</time>
+        </div>
+        <div class="hero-media">
+          <span class="glyph">R.</span>
+          <span class="caption">Plenário do Senado durante a votação — Foto: Agência Senado</span>
+        </div>
+      </div>
+      <div class="hero-cell">
+        <span class="kicker k-economia">Economia</span>
+        <h3>Banco Central surpreende e acelera corte de juros; entenda o que muda no seu bolso</h3>
+        <div class="byline"><time>há 41 min</time><span>·</span><span>6 min</span></div>
+      </div>
+      <div class="hero-cell">
+        <span class="kicker k-tecnologia">Tecnologia</span>
+        <h3>A corrida dos chips: por que o Brasil entrou no mapa das gigantes de semicondutores</h3>
+        <div class="byline"><time>há 1 h</time><span>·</span><span>9 min</span></div>
+      </div>
+      <div class="hero-cell">
+        <span class="kicker k-mundo">Mundo</span>
+        <h3><span class="tag-live">Ao vivo</span> Cúpula climática entra no segundo dia sem acordo sobre fundo</h3>
+        <div class="byline"><time>atualizado há 6 min</time></div>
+      </div>
+      <div class="hero-cell">
+        <span class="kicker k-esportes">Esportes</span>
+        <h3>Aos 19, joia da base quebra recorde de 38 anos e vira nome da rodada</h3>
+        <div class="byline"><time>há 2 h</time><span>·</span><span>4 min</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAIXA ÚLTIMAS ═══ -->
+<section class="latest-strip">
+  <div class="wrap latest-row">
+    <div class="latest-item">
+      <span class="kicker k-politica" style="font-size:10.5px;">Política</span>
+      <h4>Ministro convoca entrevista coletiva para as 18h sobre novo pacote</h4>
+    </div>
+    <div class="latest-item">
+      <span class="kicker k-economia" style="font-size:10.5px;">Economia</span>
+      <h4>Dólar cai a R$ 5,12, menor nível em oito meses</h4>
+    </div>
+    <div class="latest-item">
+      <span class="kicker k-tecnologia" style="font-size:10.5px;">Tecnologia</span>
+      <h4>Startup brasileira de IA é avaliada em US$ 1,2 bi e vira unicórnio</h4>
+    </div>
+    <div class="latest-item">
+      <span class="kicker k-cultura" style="font-size:10.5px;">Cultura</span>
+      <h4>Filme nacional é selecionado para a mostra competitiva de Veneza</h4>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POLÍTICA + MAIS LIDAS ═══ -->
+<section class="sec s-politica">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Política</h2>
+      <a href="#" class="sec-link">Ver tudo →</a>
+    </div>
+    <div class="news-layout">
+      <div class="news-list">
+        <article>
+          <div>
+            <span class="kicker k-politica" style="font-size:10.5px;">Análise</span>
+            <h3>O xadrez das alianças: o mapa de quem apoia quem na disputa de 2026</h3>
+            <p>Levantamento exclusivo cruza declarações, emendas e financiamento para desenhar o tabuleiro eleitoral a 90 dias da eleição.</p>
+            <div class="byline" style="margin-top:8px;"><span><strong>Marina Solano</strong></span><span>·</span><time>há 1 h</time></div>
+          </div>
+          <div class="thumb t1"><span>01</span></div>
+        </article>
+        <article>
+          <div>
+            <span class="kicker k-politica" style="font-size:10.5px;">Congresso</span>
+            <h3>Reforma tributária: os 5 pontos que ainda travam a regulamentação</h3>
+            <p>Estados e municípios divergem sobre o comitê gestor, e indústria pressiona por transição mais longa.</p>
+            <div class="byline" style="margin-top:8px;"><span><strong>Paulo Andrade</strong></span><span>·</span><time>há 3 h</time></div>
+          </div>
+          <div class="thumb t2"><span>02</span></div>
+        </article>
+        <article>
+          <div>
+            <span class="kicker k-politica" style="font-size:10.5px;">Poder</span>
+            <h3>Quem é a nova geração de prefeitos que desponta como força nacional</h3>
+            <p>Gestores de capitais médias acumulam aprovação recorde com agendas pragmáticas e presença digital intensa.</p>
+            <div class="byline" style="margin-top:8px;"><span><strong>Redação</strong></span><span>·</span><time>há 5 h</time></div>
+          </div>
+          <div class="thumb t3"><span>03</span></div>
+        </article>
+      </div>
+
+      <aside class="mostread">
+        <h3>Mais lidas</h3>
+        <div class="mr-item">
+          <span class="mr-num">1</span>
+          <div>
+            <h4>A conta que não fecha: o que o mercado ainda não entendeu sobre os juros</h4>
+            <div class="byline"><span>Economia</span><span>·</span><time>2 h</time></div>
+          </div>
+        </div>
+        <div class="mr-item">
+          <span class="mr-num">2</span>
+          <div>
+            <h4>Testamos o novo modelo de IA que promete raciocinar como humano</h4>
+            <div class="byline"><span>Tecnologia</span><span>·</span><time>4 h</time></div>
+          </div>
+        </div>
+        <div class="mr-item">
+          <span class="mr-num">3</span>
+          <div>
+            <h4>Por dentro da mansão leiloada por R$ 40 milhões em São Paulo</h4>
+            <div class="byline"><span>Cidades</span><span>·</span><time>6 h</time></div>
+          </div>
+        </div>
+        <div class="mr-item">
+          <span class="mr-num">4</span>
+          <div>
+            <h4>A dieta dos atletas olímpicos, item por item</h4>
+            <div class="byline"><span>Esportes</span><span>·</span><time>8 h</time></div>
+          </div>
+        </div>
+        <div class="mr-item" style="border-bottom:none;">
+          <span class="mr-num">5</span>
+          <div>
+            <h4>O documentário que todo mundo vai comentar esta semana</h4>
+            <div class="byline"><span>Cultura</span><span>·</span><time>10 h</time></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DADOS (faixa invertida clara) ═══ -->
+<section class="sec data-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" style="--sc: var(--accent);">O dia em números</h2>
+      <a href="#" class="sec-link" style="color: color-mix(in srgb, var(--bg) 60%, transparent);">Central de dados →</a>
+    </div>
+    <div class="data-grid">
+      <div class="data-cell">
+        <div class="data-num">4,25<em>%</em></div>
+        <div class="data-label">Nova taxa Selic após o corte desta quarta-feira</div>
+        <div class="data-src">Fonte: Banco Central</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-num">140.2<em>mil</em></div>
+        <div class="data-label">Pontos do Ibovespa no fechamento, máxima histórica</div>
+        <div class="data-src">Fonte: B3</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-num">38<em>°C</em></div>
+        <div class="data-label">Sensação térmica prevista no Rio nesta terça</div>
+        <div class="data-src">Fonte: INMET</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-num">12<em>min</em></div>
+        <div class="data-label">Tempo médio do Metrô de SP entre trens no pico</div>
+        <div class="data-src">Fonte: CMSP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OPINIÃO ═══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Opinião</h2>
+      <a href="#" class="sec-link">Todos os colunistas →</a>
+    </div>
+    <div class="op-grid">
+      <div class="op-card">
+        <div class="op-head">
+          <div class="op-avatar" style="background: linear-gradient(135deg,#ff4d00,#a82300);">LC</div>
+          <div>
+            <div class="op-name">Luiza Camargo</div>
+            <div class="op-role">Política · ter e sex</div>
+          </div>
+        </div>
+        <blockquote>A lei de IA é boa. O problema é quem vai fiscalizar.</blockquote>
+      </div>
+      <div class="op-card">
+        <div class="op-head">
+          <div class="op-avatar" style="background: linear-gradient(135deg,#0e7a4d,#3ddc84);">TM</div>
+          <div>
+            <div class="op-name">Tomás Meirelles</div>
+            <div class="op-role">Economia · diário</div>
+          </div>
+        </div>
+        <blockquote>O mercado comemora cedo demais. De novo.</blockquote>
+      </div>
+      <div class="op-card">
+        <div class="op-head">
+          <div class="op-avatar" style="background: linear-gradient(135deg,#7a4dbd,#c98bff);">AR</div>
+          <div>
+            <div class="op-name">Ana Ribeiro</div>
+            <div class="op-role">Cultura · qui</div>
+          </div>
+        </div>
+        <blockquote>O cinema brasileiro não precisa de licença para ser grande.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CULTURA ═══ -->
+<section class="sec s-cultura">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Cultura</h2>
+      <a href="#" class="sec-link">Ver tudo →</a>
+    </div>
+    <div class="cultura-grid">
+      <div class="cul-card">
+        <div class="thumb t4"><span>A</span></div>
+        <span class="kicker k-cultura" style="font-size:10.5px;">Cinema</span>
+        <h4>Os 12 filmes que vão dominar a temporada de premiações</h4>
+        <div class="byline"><time>há 3 h</time><span>·</span><span>7 min</span></div>
+      </div>
+      <div class="cul-card">
+        <div class="thumb t2"><span>B</span></div>
+        <span class="kicker k-cultura" style="font-size:10.5px;">Música</span>
+        <h4>A volta dos bailes: a cena que está redesenhando as noites das capitais</h4>
+        <div class="byline"><time>há 5 h</time><span>·</span><span>5 min</span></div>
+      </div>
+      <div class="cul-card">
+        <div class="thumb t3"><span>C</span></div>
+        <span class="kicker k-cultura" style="font-size:10.5px;">Livros</span>
+        <h4>O romance estreante que esgotou em 48 horas — e por quê</h4>
+        <div class="byline"><time>há 7 h</time><span>·</span><span>4 min</span></div>
+      </div>
+      <div class="cul-card">
+        <div class="thumb t1"><span>D</span></div>
+        <span class="kicker k-cultura" style="font-size:10.5px;">Games</span>
+        <h4>Studio brasileiro assina com gigante global após demo viral</h4>
+        <div class="byline"><time>há 9 h</time><span>·</span><span>6 min</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="newsletter">
+      <div>
+        <h3>O essencial do dia, <em>em 5 minutos</em>.</h3>
+        <p>Toda manhã às 7h: as 8 notícias que realmente importam, explicadas sem ruído. Grátis, direto ao ponto, sem spam.</p>
+      </div>
+      <div>
+        <form class="nl-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ INSCRITO';">
+          <input type="email" placeholder="seu@email.com" required aria-label="Seu e-mail">
+          <button type="submit">Assinar</button>
+        </form>
+        <div class="nl-note">Junte-se a 84.000 leitores · Cancele quando quiser</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-mark">Radar<em>.</em></div>
+        <p style="color: var(--ink-mute); font-size: 13px; margin-top: 12px; max-width: 34ch;">
+          Jornalismo independente para entender o Brasil e o mundo. Sem ruído, com contexto.
+        </p>
+      </div>
+      <div class="foot-col">
+        <h5>Editorias</h5>
+        <a href="#">Política</a><a href="#">Economia</a><a href="#">Tecnologia</a><a href="#">Cultura</a><a href="#">Esportes</a>
+      </div>
+      <div class="foot-col">
+        <h5>Radar</h5>
+        <a href="#">Quem somos</a><a href="#">Princípios editoriais</a><a href="#">Trabalhe conosco</a><a href="#">Anuncie</a>
+      </div>
+      <div class="foot-col">
+        <h5>Siga</h5>
+        <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a><a href="#">X / Twitter</a><a href="#">RSS</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Radar · Todos os direitos reservados</span>
+      <span>MOCKUP v1 — proposta visual para avaliação</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks -->
+<div class="tweaks">
+  <button id="tw-theme">◐ alternar tema</button>
+</div>
+
+<script>
+const root = document.documentElement;
+function toggleTheme() {
+  const cur = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  if (cur === 'dark') root.removeAttribute('data-theme');
+  else root.setAttribute('data-theme', 'light');
+  localStorage.setItem('rd-theme', cur);
+}
+document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+document.getElementById('tw-theme').addEventListener('click', toggleTheme);
+if (localStorage.getItem('rd-theme') === 'light') root.setAttribute('data-theme', 'light');
+
+// Data real no masthead
+const d = new Date();
+document.getElementById('mh-date').textContent =
+  d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+</script>
+</body>
+</html>
