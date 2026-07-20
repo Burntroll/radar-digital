@@ -184,8 +184,8 @@
 | 7.5 | Navegação desktop | ✅ Concluída — contrato real PT/ES, disclosures acessíveis e estados V4 |
 | 7.6 | Navegação mobile | ✅ Concluída — painel V4, foco reversível, teclado, touch e PT/ES |
 | 7.7 | Capa editorial principal | ✅ Concluída — loader compartilhado, H1 único e fallback PT/ES |
-| 7.8 | Notícias secundárias | ⏳ Próxima recomendada |
-| 7.9 | Painel Radar agora | ⏳ Pendente |
+| 7.8 | Notícias secundárias | ✅ Concluída — chamadas assimétricas PT/ES, deduplicação e fallback 0/1/2+ |
+| 7.9 | Painel Radar agora | ⏳ Próxima recomendada |
 | 7.10 | Assuntos em destaque | ⏳ Pendente |
 | 7.11 | Seleção da redação | ⏳ Pendente |
 | 7.12 | Últimas publicações | ⏳ Pendente |

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import EditorialLead from '../components/EditorialLead.astro';
+import SecondaryLeads from '../components/SecondaryLeads.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../i18n/utils';
 import { routePath } from '../i18n/utils';
@@ -48,73 +49,23 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
   <!-- ════════════════════════════════════════════════ -->
   <!-- ABERTURA EDITORIAL -->
   <!-- ════════════════════════════════════════════════ -->
-  <section class="home-opening">
+  <section class="home-opening" aria-labelledby="home-opening-label">
     <div class="home-opening__inner">
-      <p class="home-opening__label">{t('home.section.leia', locale)}</p>
+      <p class="home-opening__label" id="home-opening-label">{t('home.section.leia', locale)}</p>
 
-      <div class="home-opening__grid">
+      <div class:list={['home-opening__grid', { 'home-opening__grid--single': artigosSecundarios.length === 0 }]}>
 
           <!-- COLUNA PRINCIPAL (2/3): Artigo Principal -->
           <div class="home-opening__primary">
             <EditorialLead article={artigoPrincipal} locale={locale} />
           </div>
 
-          <!-- COLUNA LATERAL (1/3): Secundários + Guia -->
-          <div class="home-opening__secondary flex flex-col gap-4">
-
-            {artigosSecundarios.map((artigo) => {
-              const dateStr = artigo.data.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
-              return (
-                <a
-                  href={routePath('artigos', locale, artigo.slug)}
-                  class="group flex gap-4 glass-card interactive-card p-4 items-start"
-                >
-                  <div class={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${
-                    artigo.data.color === 'purple' ? 'from-purple-500/10 via-pink-600/5' :
-                    artigo.data.color === 'amber' ? 'from-amber-500/10 via-orange-600/5' :
-                    'from-cyan-500/10 via-blue-600/5'
-                  } to-surface-elevated flex items-center justify-center transition-colors`}>
-                    <span class="text-xl">{artigo.data.emoji || '📡'}</span>
-                  </div>
-                  <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-1.5 text-[10px] text-text-muted uppercase tracking-wider mb-1">
-                      <span>{artigo.data.subtema}</span>
-                      <span>·</span>
-                      <span>{artigo.data.readTime}</span>
-                    </div>
-                    <h3 class="text-sm font-semibold text-text-primary group-hover:text-cyan-500 transition-colors leading-snug line-clamp-2">
-                      {artigo.data.title}
-                    </h3>
-                    <time class="text-[10px] text-text-muted mt-1 block">{dateStr}</time>
-                  </div>
-                </a>
-              );
-            })}
-
-            <!-- Card de Guia (se houver publicado) -->
-            {guiaRecente && (
-              <a
-                href={routePath('artigos', locale, guiaRecente.slug)}
-                class="group flex gap-4 glass-card interactive-card p-4 items-start"
-                style="border-color: rgba(168, 85, 247, 0.2);"
-              >
-                <div class="w-12 h-12 shrink-0 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
-                  <span class="text-xl">{guiaRecente.data.emoji || '📋'}</span>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <div class="flex items-center gap-1.5 text-[10px] text-purple-500 font-semibold uppercase tracking-wider mb-1">
-                    <span>{t('home.article.guide.badge', locale)}</span>
-                    <span>·</span>
-                    <span>{guiaRecente.data.readTime}</span>
-                  </div>
-                  <h3 class="text-sm font-semibold text-text-primary group-hover:text-purple-500 transition-colors leading-snug line-clamp-2">
-                    {guiaRecente.data.title}
-                  </h3>
-                </div>
-              </a>
-            )}
-
-          </div>
+          <!-- COLUNA LATERAL (1/3): Notícias secundárias -->
+          {artigosSecundarios.length > 0 && (
+            <div class="home-opening__secondary">
+              <SecondaryLeads articles={artigosSecundarios} locale={locale} />
+            </div>
+          )}
 
       </div>
     </div>

@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.7 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile e reportagem principal da capa); notícias secundárias e demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.8 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile e abertura editorial principal/secundária); Radar agora e os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -336,7 +336,9 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 | Newsletter | UI localizada e disclosure; integração real pertence ao Bloco 9 | CTA informativo ou formulário desabilitado com mensagem honesta; nenhum `alert()` de falso sucesso |
 | Footer | Um único footer no layout com links institucionais reais, locale, disclosure e utilidades | Ocultar links sem rota; nunca usar `#` como destino público |
 
-**Estado implementado na Task 7.7:** `homeData.ts` centraliza a seleção editorial PT/ES, filtrando `draft: false`, formato `article`, locale exato e `date <= buildTime`, com ordenação decrescente e desempate estável por ID. `EditorialLead.astro` concentra o template da manchete e recebe a entrada tipada nas duas homes; a história real possui uma única H1, URL e data localizadas e mídia visual explicitamente provisória sem imagem remota. Cardinalidade zero renderiza intro institucional localizada sem link; cardinalidade um não cria secundárias vazias. As notícias secundárias existentes não foram reestilizadas e permanecem para a Task 7.8.
+**Estado implementado na Task 7.7:** `homeData.ts` centraliza a seleção editorial PT/ES, filtrando `draft: false`, formato `article`, locale exato e `date <= buildTime`, com ordenação decrescente e desempate estável por ID. `EditorialLead.astro` concentra o template da manchete e recebe a entrada tipada nas duas homes; a história real possui uma única H1, URL e data localizadas e mídia visual explicitamente provisória sem imagem remota. Cardinalidade zero renderiza intro institucional localizada sem link; cardinalidade um não cria secundárias vazias.
+
+**Estado implementado na Task 7.8:** `SecondaryLeads.astro` recebe do mesmo loader até dois artigos posteriores à principal, preservando ordem, locale e deduplicação estrutural. A primeira chamada possui maior peso e resumo; a segunda é compacta, sem repetir o mosaico de cards iguais. A grade omite a coluna quando não há secundária, ocupa o slot inteiro com uma entrada e distribui duas entradas assimetricamente. Datas, URLs e headings são reais/localizados; mídia permanece provisória e sem ativo remoto. O guia saiu somente da abertura e continua no módulo próprio existente; Radar agora não foi iniciado.
 
 ## 15. Regras para imagens
 
@@ -587,7 +589,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** Radar agora e ranking.
 - **Validação:** deduplicação, 0/1/2+ itens, headings e responsividade inicial.
 - **Risco principal:** repetir a principal ou voltar ao mosaico de cards iguais.
-- **Pronto:** composição assimétrica com dados reais e degradação estável.
+- **Pronto:** concluída em 20/07/2026; composição assimétrica compartilhada em PT/ES, dados reais sem repetir a principal, cardinalidades 0/1/2+, headings e responsividade validados, sem iniciar Radar agora ou ranking.
 
 ### 7.9 — Painel Radar agora
 

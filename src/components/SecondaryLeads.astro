@@ -1,0 +1,63 @@
+---
+import type { HomeArticle } from '../utils/homeData';
+import { getDateLocale, routePath, t, type Locale } from '../i18n/utils';
+
+interface Props {
+  articles: HomeArticle[];
+  locale: Locale;
+}
+
+const { articles, locale } = Astro.props as Props;
+const visibleArticles = articles.slice(0, 2);
+const dateLocale = getDateLocale(locale);
+---
+
+{visibleArticles.length > 0 && (
+  <div
+    class:list={['secondary-leads', { 'secondary-leads--single': visibleArticles.length === 1 }]}
+    data-secondary-leads
+    data-count={visibleArticles.length}
+  >
+    {visibleArticles.map((article, index) => {
+      const href = routePath('artigos', locale, article.slug);
+      const titleId = `secondary-lead-title-${index + 1}`;
+      const dateText = article.data.date.toLocaleDateString(dateLocale, {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      });
+      const dateISO = article.data.date.toISOString();
+      const color = article.data.color || 'cyan';
+      const variant = index === 0 ? 'feature' : 'compact';
+
+      return (
+        <article
+          class={`secondary-lead secondary-lead--${variant} secondary-lead--${color}`}
+          data-secondary-lead
+          data-variant={variant}
+          data-media-status="placeholder"
+        >
+          <a class="secondary-lead__link" href={href} aria-labelledby={titleId}>
+            <span class="secondary-lead__signal" aria-hidden="true">
+              <span>{article.data.emoji || '📡'}</span>
+            </span>
+
+            <div class="secondary-lead__content">
+              <span class="secondary-lead__kicker">{article.data.subtema}</span>
+              <h2 id={titleId}>{article.data.title}</h2>
+              {index === 0 && <p class="secondary-lead__deck">{article.data.excerpt}</p>}
+
+              <div class="secondary-lead__meta">
+                <time datetime={dateISO}>{dateText}</time>
+                <span>{article.data.readTime}</span>
+                <span class="secondary-lead__cta" aria-hidden="true">
+                  {t('home.article.read', locale)} <span>→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+        </article>
+      );
+    })}
+  </div>
+)}

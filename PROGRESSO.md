@@ -38,6 +38,7 @@
 - [x] **Task 7.5 — navegação desktop V4** — faixa editorial aplicada ao contrato real de `siteNavigation.ts`, com grupos Setores, Operação e Recursos, links de primeiro nível preservados, estados hover/active/focus e disclosures acessíveis por teclado, Escape e clique fora; navegação mobile, rotas e sitemap permaneceram inalterados.
 - [x] **Task 7.6 — navegação mobile V4** — hamburger e painel adaptados aos tokens editoriais, mantendo a árvore real, locale e tema; foco inicial, trap Tab/Shift+Tab, Escape com retorno, accordions por teclado, touch, scroll lock, `inert` e transição para desktop foram validados em PT/ES e 320–1023px.
 - [x] **Task 7.7 — capa editorial principal V4** — loader tipado e compartilhado filtra publicação, formato, locale e data futura com desempate determinístico; `EditorialLead` serve PT/ES com uma única H1, URL/data localizadas, fallback institucional sem link e mídia provisória sem ativo remoto; secundárias permanecem para a 7.8.
+- [x] **Task 7.8 — notícias secundárias V4** — `SecondaryLeads` compartilhado consome os dois artigos seguintes do loader sem repetir a principal; variantes feature/compact, headings H2, datas/URLs localizadas e recomposição 0/1/2+ substituem os cards iguais da abertura, enquanto o guia permanece apenas em seu módulo próprio e Radar agora não foi iniciado.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -285,7 +286,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.5 concluída:** navegação desktop V4 integrada ao contrato de `siteNavigation.ts`, com disclosures exclusivos, teclado, Escape, clique fora, estados PT/ES e light/dark validados em 1024/1280/1440px; nenhuma rota, conteúdo, configuração, dependência ou navegação mobile foi alterada.
 > **Task 7.6 concluída:** navegação mobile V4 integrada ao contrato existente, com diálogo modal, foco contido e reversível, accordions acessíveis, altura dinâmica e utilidades PT/ES validadas; nenhuma rota, conteúdo, configuração ou dependência foi alterada.
 > **Task 7.7 concluída:** reportagem principal compartilhada em PT/ES, seleção determinística sem conteúdo futuro, uma H1 por home, fallback 0/1 e composição 320–1440px validados; nenhuma rota, schema, conteúdo ou dependência foi alterada.
-> **Próxima task técnica recomendada:** **7.8 — Notícias secundárias**, limitada às histórias seguintes sem repetir a principal e sem iniciar o Radar agora.
+> **Task 7.8 concluída:** duas chamadas secundárias compartilhadas em PT/ES, deduplicadas da principal, com pesos feature/compact e degradação estável para 0/1/2+; guia mantido em seu módulo próprio e nenhuma rota, schema, conteúdo ou dependência foi alterada.
+> **Próxima task técnica recomendada:** **7.9 — Painel Radar agora**, limitada a recência verificável e datas reais, sem realtime ou timestamps fabricados.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
