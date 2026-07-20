@@ -32,14 +32,14 @@
 
 **Decisão (original):** `primaryHub` e `relatedHubs` são armazenados e validados, mas não produzem distribuição pública. Metadata preparatória para futura distribuição editorial.
 
-**Atualização:** `primaryHub` possui piloto de distribuição nas listagens de Marketing Digital (commit `2007b00`). `relatedHubs` possui piloto de distribuição secundária nas listagens de Inteligência Artificial (commit seguinte).
+**Atualização:** `primaryHub` possui piloto de distribuição nas listagens de Marketing Digital (commit `2007b00`). `relatedHubs` possui piloto de distribuição secundária nas listagens de Inteligência Artificial (commit seguinte). A Task 7.14 adiciona um segundo consumidor controlado na homepage: o módulo Editorias conta cobertura única por entrada e só expõe hubs ativos que também possuem rota pública localizada.
 
 **Regras vigentes:**
 - `primaryHub` define distribuição editorial principal.
 - `relatedHubs` permite distribuição editorial secundária — uma publicação pode aparecer na listagem de um hub adicional sem alterar sua URL canônica.
 - A mesma publicação pode aparecer em múltiplas listagens (ex.: Marketing Digital por `primaryHub` e Inteligência Artificial por `relatedHubs`) sem duplicação de conteúdo — é a mesma entrada com a mesma rota.
 - Inclusão em listagens secundárias não cria cópia da publicação.
-- Consumo atual está limitado aos dois pilotos existentes (Marketing Digital e Inteligência Artificial).
+- O consumo público permanece limitado aos dois pilotos existentes e ao módulo Editorias da homepage; nenhum outro hub ganha distribuição ou rota por inferência.
 - Rotas e páginas genéricas de hubs continuam futuras.
 
 ## Separação: publicações editoriais e collections comerciais

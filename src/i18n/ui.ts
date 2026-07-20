@@ -150,6 +150,32 @@ export const ui = {
     'es': 'Las historias publicadas ya están en los destacados anteriores. Los nuevos artículos aparecerán aquí sin repetición.',
   },
 
+  // V4 — Home / Editorias
+  'home.hubs.eyebrow': {
+    'pt-BR': 'Cobertura editorial',
+    'es': 'Cobertura editorial',
+  },
+  'home.hubs.title': {
+    'pt-BR': 'Um portal. Vários radares.',
+    'es': 'Un portal. Varios radares.',
+  },
+  'home.hubs.description': {
+    'pt-BR': 'Editorias ativas, com conteúdo publicado e caminhos públicos para aprofundar cada tema.',
+    'es': 'Secciones activas, con contenido publicado y rutas públicas para profundizar cada tema.',
+  },
+  'home.hubs.coverage.singular': {
+    'pt-BR': 'publicação distribuída',
+    'es': 'publicación distribuida',
+  },
+  'home.hubs.coverage.plural': {
+    'pt-BR': 'publicações distribuídas',
+    'es': 'publicaciones distribuidas',
+  },
+  'home.hubs.cta': {
+    'pt-BR': 'Explorar editoria',
+    'es': 'Explorar sección',
+  },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

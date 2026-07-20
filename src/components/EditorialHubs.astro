@@ -1,0 +1,64 @@
+---
+import { t, type Locale } from '../i18n/utils';
+import type { HomeHubItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeHubItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const uniqueItems = items.filter(
+  (item, index, allItems) => allItems.findIndex(({ href }) => href === item.href) === index,
+);
+---
+
+{uniqueItems.length > 0 && (
+  <section
+    id="editorias"
+    class="editorial-hubs"
+    aria-labelledby="editorial-hubs-title"
+    aria-describedby="editorial-hubs-description"
+    data-editorial-hubs
+    data-count={uniqueItems.length}
+  >
+    <div class="editorial-hubs__inner">
+      <header class="editorial-hubs__header">
+        <div>
+          <span class="editorial-hubs__eyebrow">{t('home.hubs.eyebrow', locale)}</span>
+          <h2 id="editorial-hubs-title">{t('home.hubs.title', locale)}</h2>
+        </div>
+        <p id="editorial-hubs-description">{t('home.hubs.description', locale)}</p>
+      </header>
+
+      <ul class:list={['editorial-hubs__grid', `editorial-hubs__grid--${uniqueItems.length}`]}>
+        {uniqueItems.map((item, index) => {
+          const number = String(index + 1).padStart(2, '0');
+          const coverageKey = item.coverageCount === 1
+            ? 'home.hubs.coverage.singular'
+            : 'home.hubs.coverage.plural';
+
+          return (
+            <li data-hub-id={item.id} data-coverage-count={item.coverageCount}>
+              <a class="editorial-hubs__card" href={item.href}>
+                <span class="editorial-hubs__monogram" aria-hidden="true">{item.monogram}</span>
+                <div class="editorial-hubs__copy">
+                  <h3>{item.label}</h3>
+                  <p>{item.description}</p>
+                </div>
+                <span class="editorial-hubs__meta">
+                  <span>{`${item.coverageCount} ${t(coverageKey, locale)}`}</span>
+                  <span class="editorial-hubs__cta">
+                    {t('home.hubs.cta', locale)}
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </span>
+                <span class="editorial-hubs__number" aria-hidden="true">{number}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+)}

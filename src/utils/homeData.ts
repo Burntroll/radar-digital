@@ -1,7 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { editorialFormats } from '../config/editorialFormats';
+import { editorialHubs, type EditorialHubId } from '../config/editorialHubs';
 import { editorialTopics, type EditorialTopicId } from '../config/editorialTopics';
-import type { Locale } from '../i18n/utils';
+import { routePath, t, type Locale, type RouteKey, type UIKey } from '../i18n/utils';
 
 export type HomeArticle = CollectionEntry<'artigos'>;
 
@@ -18,6 +19,15 @@ export interface HomeTopicItem {
   href: string | null;
 }
 
+export interface HomeHubItem {
+  id: EditorialHubId;
+  label: string;
+  description: string;
+  monogram: string;
+  href: string;
+  coverageCount: number;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -26,7 +36,32 @@ export interface HomeEditorialData {
   topicRailItems: HomeTopicItem[];
   editorialSelectionArticles: HomeArticle[];
   latestPublicationArticles: HomeArticle[];
+  editorialHubItems: HomeHubItem[];
 }
+
+interface HomeHubRouteContract {
+  routeKey: RouteKey;
+  descriptionKey: UIKey;
+  monogram: string;
+}
+
+const homeHubRouteContracts: Partial<Record<EditorialHubId, HomeHubRouteContract>> = {
+  'artificial-intelligence': {
+    routeKey: 'inteligencia-artificial',
+    descriptionKey: 'nav.ia.desc',
+    monogram: 'IA',
+  },
+  'digital-marketing': {
+    routeKey: 'marketing-digital',
+    descriptionKey: 'nav.marketing.desc',
+    monogram: 'MD',
+  },
+  monetization: {
+    routeKey: 'monetizacao',
+    descriptionKey: 'nav.monetizacao.desc',
+    monogram: 'M',
+  },
+};
 
 const activeEditorialFormats = new Set(
   editorialFormats
@@ -117,6 +152,34 @@ export function selectHomeArticles(
       // O registro de topics ainda não define rotas públicas.
       href: null,
     }));
+  const editorialHubItems = editorialHubs.flatMap((hub): HomeHubItem[] => {
+    if (hub.status !== 'active') return [];
+
+    const routeContract = homeHubRouteContracts[hub.id];
+    if (!routeContract) return [];
+
+    const coveredEntryIds = new Set(
+      publishedEntries
+        .filter(({ data }) => (
+          activeEditorialFormats.has(data.contentType)
+          && (
+            data.primaryHub === hub.id
+            || data.relatedHubs?.includes(hub.id)
+          )
+        ))
+        .map(({ id }) => id),
+    );
+    if (coveredEntryIds.size === 0) return [];
+
+    return [{
+      id: hub.id,
+      label: locale === 'es' ? hub.labelEs : hub.labelPt,
+      description: t(routeContract.descriptionKey, locale),
+      monogram: routeContract.monogram,
+      href: routePath(routeContract.routeKey, locale),
+      coverageCount: coveredEntryIds.size,
+    }];
+  });
 
   return {
     publishedArticles,
@@ -126,6 +189,7 @@ export function selectHomeArticles(
     topicRailItems,
     editorialSelectionArticles,
     latestPublicationArticles,
+    editorialHubItems,
   };
 }
 

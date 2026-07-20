@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.13 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora, Assuntos em destaque, Seleção da redação, Últimas publicações e auditoria de Mais lidas); o ranking permanece ausente por não existir fonte auditável de audiência, e os demais módulos editoriais da homepage ainda não foram reestruturados.
+> **Implementação acumulada:** Tasks 7.1–7.14 concluídas (tokens visuais, fundação tipográfica, SignalBar, masthead, navegação desktop/mobile, abertura editorial principal/secundária, painel Radar agora, Assuntos em destaque, Seleção da redação, Últimas publicações, auditoria de Mais lidas e Editorias); o ranking permanece ausente por não existir fonte auditável de audiência, e os demais módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -350,6 +350,8 @@ Módulos podem compartilhar uma mesma faixa responsiva, mas a ordem semântica d
 
 **Estado auditado na Task 7.13:** o projeto não possui integração de analytics, repositório ou artefato de pageviews, campo de audiência nas Content Collections, adapter de ranking, janela temporal nem regra de desempate baseada em métricas. `package.json`, `astro.config.mjs`, `vercel.json`, schemas e código-fonte não oferecem uma origem verificável; Analytics permanece pendente no Bloco 16. Conforme as decisões vigentes, nenhum `MostRead`, chave de interface, número, posição ou fallback editorial foi criado: “Mais lidas” permanece totalmente ausente em PT/ES até uma decisão própria definir fonte, janela, atualização, desempate e indisponibilidade.
 
+**Estado implementado na Task 7.14:** `homeData.ts` cruza hubs `active`, allowlist de rotas públicas e cobertura publicada/não futura por `primaryHub` ou `relatedHubs`, limitada aos formatos editoriais ativos. Cada entrada conta uma única vez por hub e cada destino aparece uma única vez no componente. O acervo atual torna elegíveis Inteligência Artificial (uma publicação relacionada) e Marketing Digital (duas publicações principais) em PT/ES; Monetização possui rota e status ativo, mas fica ausente por cobertura zero, enquanto todos os hubs `planned` permanecem fora. `EditorialHubs.astro` apresenta somente esses dois destinos reais em uma lista semântica responsiva, sem artigos duplicados, rotas genéricas, cards vazios ou taxonomias ativadas.
+
 ## 15. Regras para imagens
 
 - Somente ativos locais ou pipeline de mídia controlado; URLs externas de Unsplash não são solução de produção.
@@ -659,7 +661,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** ativar os 14 hubs planejados ou criar rotas genéricas.
 - **Validação:** `primaryHub`/`relatedHubs`, dedupe de URL, PT/ES, estados vazios.
 - **Risco principal:** expor taxonomia planejada sem página pública.
-- **Pronto:** somente editorias elegíveis, sem URLs adicionais ou duplicadas.
+- **Pronto:** concluída em 20/07/2026; somente Inteligência Artificial e Marketing Digital são exibidas, com cobertura publicada deduplicada, destinos PT/ES existentes, estado zero oculto e nenhuma URL ou taxonomia adicional.
 
 ### 7.15 — Resolver hoje
 
