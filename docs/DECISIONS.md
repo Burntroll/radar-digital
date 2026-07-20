@@ -572,3 +572,87 @@ Alteração limitada a **duas declarações** no bloco `:root` do `src/styles/gl
 - O Bloco 5 permanece aberto (Task 5.8 pendente).
 - O Bloco 6 permanece bloqueado.
 - Esta decisão não autoriza mudança adicional em CSS, componentes, configurações, conteúdos ou rotas.
+
+---
+
+## ADR — Congelamento da direção editorial V4 e implementação incremental
+
+**Data:** 20/07/2026
+
+**Status:** Aceita
+
+**Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb`
+
+### Contexto
+
+A homepage atual é implementada por dois templates extensos e quase duplicados (`src/pages/index.astro` e `src/pages/es/index.astro`). O header, a navegação, o footer, as queries e os módulos ainda refletem a fase anterior do produto. O Plano de Ação 2.2 e o mockup V4 aprovam uma nova direção: portal editorial creme, preto editorial, verde-lima como sinal, header em três faixas, capa assimétrica e módulos de ritmos variados.
+
+O mockup é uma referência visual demonstrativa. Ele contém navegação, datas, conteúdos, imagens externas e interações simuladas que não obedecem integralmente aos contratos reais do sitemap, do i18n e das Content Collections. Copiá-lo como HTML monolítico criaria duplicação, conteúdo fictício e risco de regressão.
+
+O Plano registra `97490fc397df93b915d72eee7b7595f1766c6b80` como baseline. Antes desta decisão, um commit autorizado preservou artefatos visuais e avançou `master` para `aad1c0c`; não houve mudança no código público da interface. O novo SHA foi auditado limpo e sincronizado com `origin/master` e é o baseline operacional da Task 7.0.
+
+### Decisão
+
+1. A direção V4 fica formalmente aprovada e congelada conforme `docs/DESIGN_V4.md`.
+2. O Bloco 7 passa a ser a prioridade imediata. O Bloco 6 será retomado após a estabilização da nova home.
+3. A V4 será implementada em tasks pequenas e sequenciais (7.1–7.27), nunca em uma substituição integral da homepage.
+4. O HTML do mockup não será copiado para produção. A tradução será feita em componentes Astro, loaders tipados, dados reais, rotas localizadas e Content Collections existentes.
+5. PT e ES compartilharão orquestração, componentes e consultas; as páginas de entrada permanecerão nas rotas atuais, sem migração para `[locale]`.
+6. `SITEMAP.md`, `siteNavigation.ts`, `routeMap`, o modelo de conteúdo e os componentes de SEO prevalecem sobre rótulos ou links demonstrativos do mockup.
+7. Conteúdo publicado deve ser elegível por locale, formato, status e data não futura. Rankings, status “ao vivo”, inscrição em newsletter, ofertas e produtos só aparecem quando sustentados por dados reais.
+8. Os tokens atuais serão consolidados e migrados semanticamente; não será criada uma paleta paralela.
+9. Canonical, hreflang, schemas, sitemap, acessibilidade, responsividade, performance, dark mode e transparência comercial serão gates explícitos de implementação.
+10. A Task 7.0 é somente documental e não autoriza qualquer alteração visual ou funcional.
+
+### Motivos
+
+- Preservar os contratos reais do projeto e a estabilidade da produção.
+- Evitar duplicação entre PT e ES e reduzir manutenção de queries divergentes.
+- Permitir validação e reversão por fatias pequenas.
+- Impedir que dados fictícios do mockup se tornem conteúdo permanente.
+- Controlar riscos de SEO, acessibilidade, performance e dark mode antes de um checkpoint amplo.
+- Manter clara a separação entre conteúdo editorial e comercial.
+
+### Alternativas consideradas
+
+1. **Copiar o mockup em uma única página/componente.** Rejeitada por criar HTML monolítico, dados hardcoded, links simulados, imagens externas e duplicação da arquitetura existente.
+2. **Reescrever toda a home em uma única task.** Rejeitada pelo risco de regressão ampla e dificuldade de validação/rollback.
+3. **Criar um protótipo paralelo dentro do repositório.** Rejeitada porque duplicaria a fonte de verdade e não exercitaria os contratos reais.
+4. **Concluir o Bloco 6 antes da home.** Adiada; o Plano 2.2 prioriza a estabilização da nova direção editorial, que também definirá padrões reutilizáveis pelos hubs.
+5. **Criar componentes separados para PT e ES.** Rejeitada por manter a duplicação atual.
+6. **Migrar imediatamente para rota dinâmica `[locale]`.** Rejeitada por ampliar o escopo e elevar risco de canonical/hreflang/redirects.
+7. **Usar dados demonstrativos até existir cobertura.** Rejeitada; módulos devem degradar com honestidade ou permanecer ocultos.
+
+### Consequências
+
+- O Bloco 7 possui uma sequência mais longa, porém cada entrega tem objetivo e definição de pronto verificáveis.
+- Será necessário extrair a lógica duplicada das homes para um orquestrador e loader compartilhados durante as tasks de implementação.
+- Alguns elementos visualmente aprovados podem permanecer ausentes inicialmente: “Mais lidas” depende de audiência auditável; “ao vivo” depende de atualização real; busca e newsletter dependem dos respectivos blocos funcionais.
+- A navegação final será visualmente próxima da V4, mas continuará usando os rótulos e destinos reais do projeto.
+- O monograma permanece provisório e substituível.
+- A política/schema definitivo de disclosure continua no Bloco 10, embora a transparência visual seja obrigatória nos módulos V4.
+- A documentação ausente `docs/ROUTES.md` e `docs/I18N.md` permanece como gap, sem criação não autorizada nesta task.
+
+### Riscos
+
+- A implementação incremental pode gerar estados intermediários visualmente híbridos; cada task deve limitar e documentar o recorte.
+- Fontes e imagens editoriais podem degradar LCP/CLS.
+- A baixa cardinalidade de conteúdo pode fragilizar composições do mockup.
+- Queries atuais não bloqueiam explicitamente datas futuras, bônus expirados ou verificação desatualizada.
+- A query de categorias de Ferramentas não filtra locale e pode vazar PT na home ES.
+- Sticky header, ticker e menus podem causar regressões de teclado, foco, motion e viewport mobile.
+- Alterações no shell podem afetar canonical, hreflang, schemas, sitemap e todas as páginas, não só a home.
+
+### Critérios para revisão futura
+
+Esta decisão deve ser revista somente se ocorrer um dos eventos abaixo:
+
+- aprovação formal do logo ou de uma direção de marca incompatível com a V4;
+- mudança do sitemap, das rotas localizadas ou da estratégia de idiomas;
+- adoção de CMS ou modelo de conteúdo que substitua as Content Collections;
+- existência de fonte auditável de audiência/realtime que altere os contratos de “Mais lidas” ou “Radar agora”;
+- mudança relevante nos requisitos de disclosure/compliance;
+- evidência mensurável de que tipografia, imagens ou composição V4 impedem os budgets de performance/acessibilidade;
+- checkpoint 7.27 identificar conflito estrutural não resolvível pelas tasks previstas.
+
+Qualquer revisão exige nova decisão documentada; não deve ocorrer por ajuste incidental de componente.

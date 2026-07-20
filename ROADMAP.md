@@ -1,7 +1,7 @@
 # Roadmap — Radar Digital
 
-> **Propósito:** Acompanhamento do progresso dos blocos do Plano de Ação 2.1. Cada bloco representa um conjunto de entregas relacionadas.
-> **Última atualização:** 16/07/2026 — neutros de texto Editorial Cream publicados
+> **Propósito:** Acompanhamento do progresso dos blocos, atualizado pelo Plano de Ação 2.2 e pela direção editorial V4 aprovada. Cada bloco representa um conjunto de entregas relacionadas.
+> **Última atualização:** 20/07/2026 — direção V4 congelada e Bloco 7 decomposto
 
 ## Bloco 1 — Sistema visual e componentes
 
@@ -161,18 +161,49 @@
 
 ## Bloco 6 — Templates de hubs
 
+> **Prioridade:** retomada somente depois da estabilização da nova home editorial no Bloco 7.
+
 | Componente | Status |
 |---|---|
-| Templates de hubs ativos | ⏳ Pendente |
-| Páginas agregadoras de hubs | ⏳ Pendente |
+| Templates de hubs ativos | ⏸️ Pendente — retomar após o Bloco 7 |
+| Páginas agregadoras de hubs | ⏸️ Pendente — retomar após o Bloco 7 |
 
 ---
 
-## Bloco 7 — Nova home editorial
+## Bloco 7 — Nova home editorial (V4 aprovada — prioridade atual)
 
-| Componente | Status |
-|---|---|
-| Home editorial renovada | ⏳ Pendente |
+> **Direção:** a V4 está formalmente aprovada e especificada em `docs/DESIGN_V4.md`. A implementação deve ser incremental, compartilhar componentes/dados entre PT e ES e preservar os contratos atuais de rotas, SEO e Content Collections.
+
+| Task | Entrega fechada | Status |
+|---|---|---|
+| 7.0 | Congelar a V4 e produzir o mapa técnico | ✅ Concluída — documentação apenas |
+| 7.1 | Fundação visual e tokens | ⏳ Próxima recomendada |
+| 7.2 | Tipografia | ⏳ Pendente |
+| 7.3 | Barra superior “Radar agora” | ⏳ Pendente |
+| 7.4 | Masthead | ⏳ Pendente |
+| 7.5 | Navegação desktop | ⏳ Pendente |
+| 7.6 | Navegação mobile | ⏳ Pendente |
+| 7.7 | Capa editorial principal | ⏳ Pendente |
+| 7.8 | Notícias secundárias | ⏳ Pendente |
+| 7.9 | Painel Radar agora | ⏳ Pendente |
+| 7.10 | Assuntos em destaque | ⏳ Pendente |
+| 7.11 | Seleção da redação | ⏳ Pendente |
+| 7.12 | Últimas publicações | ⏳ Pendente |
+| 7.13 | Mais lidas | ⏳ Pendente — depende de fonte auditável |
+| 7.14 | Editorias | ⏳ Pendente |
+| 7.15 | Resolver hoje | ⏳ Pendente |
+| 7.16 | Guias | ⏳ Pendente |
+| 7.17 | Ferramentas | ⏳ Pendente |
+| 7.18 | Bônus | ⏳ Pendente |
+| 7.19 | Radar Market | ⏳ Pendente |
+| 7.20 | Newsletter | ⏳ Pendente |
+| 7.21 | Footer institucional | ⏳ Pendente |
+| 7.22 | Consolidação ES | ⏳ Pendente |
+| 7.23 | Dark mode | ⏳ Pendente |
+| 7.24 | Responsividade | ⏳ Pendente |
+| 7.25 | Acessibilidade | ⏳ Pendente |
+| 7.26 | Imagens e performance | ⏳ Pendente |
+| 7.27 | Documentação e checkpoint final | ⏳ Pendente |
 
 ---
 
