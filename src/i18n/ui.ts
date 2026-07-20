@@ -62,6 +62,17 @@ export const ui = {
   // Theme toggle
   'theme.toggle':       { 'pt-BR': 'Alternar tema',  'es': 'Cambiar tema' },
 
+  // V4 — SignalBar
+  'signal.label':              { 'pt-BR': 'Radar agora',          'es': 'Radar ahora' },
+  'signal.status.updating':    { 'pt-BR': 'Em atualização',       'es': 'En actualización' },
+  'signal.topics.label':       { 'pt-BR': 'Assuntos em movimento', 'es': 'Temas en movimiento' },
+  'signal.newsletter':         { 'pt-BR': 'Newsletter',           'es': 'Newsletter' },
+  'signal.language.change':    { 'pt-BR': 'Mudar idioma',         'es': 'Cambiar idioma' },
+  'signal.topic.ai':           { 'pt-BR': 'IA aplicada ao trabalho', 'es': 'IA aplicada al trabajo' },
+  'signal.topic.marketing':    { 'pt-BR': 'Marketing digital',    'es': 'Marketing digital' },
+  'signal.topic.monetization': { 'pt-BR': 'Novos modelos de monetização', 'es': 'Nuevos modelos de monetización' },
+  'signal.topic.guides':       { 'pt-BR': 'Guias para operações digitais', 'es': 'Guías para operaciones digitales' },
+
   // Home
   'home.hero.badge':    { 'pt-BR': 'Tendências',     'es': 'Tendencias' },
   'home.hero.title1':   { 'pt-BR': 'Marketing,',     'es': 'Marketing,' },

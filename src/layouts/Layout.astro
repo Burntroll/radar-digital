@@ -1,6 +1,7 @@
 ---
 import { getLocaleFromUrl, localizeRoutePath, t, defaultLocale, getAlternates, type Locale } from '../i18n/utils';
 import SEO from '../components/SEO.astro';
+import SignalBar from '../components/SignalBar.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
 import MobileNavigation from '../components/MobileNavigation.astro';
 import '../styles/global.css';
@@ -134,8 +135,10 @@ const canonicalUrl = `${SITE_BASE}${currentPath}`;
     <!-- Scan line effect -->
     <div class="scan-line" aria-hidden="true"></div>
 
+    <SignalBar locale={locale} alternates={alternates} />
+
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b transition-colors duration-300"
+    <header class="sticky top-0 z-50 backdrop-blur-xl border-b transition-colors duration-300"
             style="background: rgba(var(--color-surface, 248, 250, 252), 0.8); border-color: var(--color-border);">
       <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4" aria-label={t('nav.menu.label', locale)}>
         <!-- Logo -->
@@ -162,7 +165,7 @@ const canonicalUrl = `${SITE_BASE}${currentPath}`;
       </nav>
     </header>
 
-    <main class="pt-16">
+    <main>
       <slot />
     </main>
 

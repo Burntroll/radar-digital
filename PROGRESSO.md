@@ -33,6 +33,7 @@
 - [x] **Task 7.0 — direção editorial V4 congelada** — `docs/DESIGN_V4.md` traduz o Plano de Ação 2.2 e o mockup aprovado para a arquitetura Astro/Content Collections real, mapeia componentes/dados/riscos e decompõe o Bloco 7 em tasks 7.1–7.27. Esta task não alterou homepage, layout, componentes, CSS, rotas, conteúdos, configuração ou dependências.
 - [x] **Task 7.1 — fundação visual e tokens V4** — camada canônica light/dark publicada em `global.css`, aliases antigos preservados, namespaces Tailwind semânticos adicionados e matriz de migração/contraste registrada em `docs/DESIGN_V4.md`; nenhum componente, layout, conteúdo ou markup da home foi alterado.
 - [x] **Task 7.2 — tipografia V4** — Inter 4.1 funcional e Source Serif 4.005 editorial self-hosted sob OFL, subsets variáveis PT/ES medidos, escalas tipográficas tokenizadas, preload limitado à Inter crítica e `@import` remoto removido; header e módulos da home não foram reestruturados.
+- [x] **Task 7.3 — barra superior “Radar agora”** — `SignalBar` global com status honesto “Em atualização”, assuntos ligados apenas a rotas existentes, acesso localizado à newsletter e ao idioma alternativo, repetição visual fora da árvore acessível e movimento pausável/reduzido; sitemap e rotas preservados.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -275,7 +276,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.0 concluída:** especificação V4 congelada sobre o baseline auditado `aad1c0c`; nenhuma alteração visual ou funcional foi implementada.
 > **Task 7.1 concluída:** camada canônica V4, aliases de compatibilidade, primitives de layout e integração Tailwind implementados; header e homepage permanecem estruturalmente inalterados.
 > **Task 7.2 concluída:** Inter/Source Serif 4 locais e licenciadas, repertório PT/ES validado, 161.880 bytes potenciais e somente 67.576 bytes preloaded no estado atual; nenhuma reestruturação de header ou homepage foi realizada.
-> **Próxima task técnica recomendada:** **7.3 — Barra superior “Radar agora”**, limitada ao `SignalBar`, status honesto, assuntos reais e acessos existentes.
+> **Task 7.3 concluída:** SignalBar PT/ES integrada ao layout, sem alegação realtime, com destinos públicos existentes, comportamento responsivo e controle de movimento; nenhuma rota ou entrada de sitemap foi criada.
+> **Próxima task técnica recomendada:** **7.4 — Masthead**, limitada à separação da marca/utilidades, data localizada e controles realmente disponíveis.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

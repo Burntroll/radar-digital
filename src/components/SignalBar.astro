@@ -1,0 +1,65 @@
+---
+import { routePath, t, defaultLocale, type Locale } from '../i18n/utils';
+import { enabledLocales, locales } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  alternates: { lang: string; href: string }[];
+}
+
+const { locale, alternates } = Astro.props;
+const prefix = locale === defaultLocale ? '' : `/${locales[locale].prefix}`;
+const newsletterHref = `${prefix}/#newsletter`;
+const localeAlternate = alternates.find(
+  (alternate) => alternate.lang !== locale && enabledLocales.includes(alternate.lang as Locale),
+);
+
+const topics = [
+  { label: t('signal.topic.ai', locale), href: routePath('inteligencia-artificial', locale) },
+  { label: t('signal.topic.marketing', locale), href: routePath('marketing-digital', locale) },
+  { label: t('signal.topic.monetization', locale), href: routePath('monetizacao', locale) },
+  { label: t('signal.topic.guides', locale), href: routePath('guias', locale) },
+];
+---
+
+<aside class="signal-bar" aria-label={t('signal.label', locale)}>
+  <div class="signal-bar__inner">
+    <div class="signal-bar__identity">
+      <span class="signal-bar__dot" aria-hidden="true"></span>
+      <strong>{t('signal.label', locale)}</strong>
+      <span class="signal-bar__status">{t('signal.status.updating', locale)}</span>
+    </div>
+
+    <nav class="signal-bar__topics" aria-label={t('signal.topics.label', locale)}>
+      <div class="signal-bar__track">
+        <ul class="signal-bar__topic-list">
+          {topics.map((topic) => (
+            <li><a href={topic.href}>{topic.label}</a></li>
+          ))}
+        </ul>
+        <ul class="signal-bar__topic-list signal-bar__topic-list--duplicate" aria-hidden="true">
+          {topics.map((topic) => (
+            <li><span>{topic.label}</span></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="signal-bar__actions">
+      <a class="signal-bar__newsletter" href={newsletterHref}>{t('signal.newsletter', locale)}</a>
+      {localeAlternate ? (
+        <a
+          class="signal-bar__locale"
+          href={localeAlternate.href}
+          hreflang={localeAlternate.lang}
+          lang={localeAlternate.lang}
+          aria-label={`${t('signal.language.change', locale)}: ${locales[localeAlternate.lang as Locale].label}`}
+        >
+          {locales[localeAlternate.lang as Locale].shortLabel}
+        </a>
+      ) : (
+        <span class="signal-bar__locale" aria-label={locales[locale].label}>{locales[locale].shortLabel}</span>
+      )}
+    </div>
+  </div>
+</aside>

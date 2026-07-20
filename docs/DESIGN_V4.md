@@ -3,7 +3,7 @@
 > **Status:** aprovado e congelado para implementação incremental.
 > **Autoridade:** especificação técnica normativa da Task 7.0 do Plano de Ação 2.2.
 > **Baseline auditado:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` (`chore: preserve visual exploration artifacts`), sincronizado com `origin/master` em 20/07/2026.
-> **Implementação acumulada:** Tasks 7.1–7.2 concluídas (tokens visuais e fundação tipográfica); nenhuma reestruturação de header ou homepage foi iniciada.
+> **Implementação acumulada:** Tasks 7.1–7.3 concluídas (tokens visuais, fundação tipográfica e SignalBar); masthead, navegação e módulos editoriais da homepage ainda não foram reestruturados.
 
 ## 1. Status e autoridade
 
@@ -262,6 +262,8 @@ Breakpoints representam mudança de composição, não apenas redução de fonte
 - Repetições visuais do trilho são `aria-hidden`; leitores de tela recebem uma lista única.
 - “Ao vivo” só pode ser exibido quando houver fonte e janela de atualização que sustentem a afirmação. Sem isso, usar “Em atualização” ou apenas “Radar agora”.
 - A barra sai do viewport no scroll; não ocupa altura sticky permanente.
+
+**Estado implementado na Task 7.3:** `SignalBar.astro` usa “Em atualização”, sem pulso ou alegação realtime. O trilho aponta somente para as rotas localizadas e publicadas de IA, marketing, monetização e guias. A primeira lista concentra links e ordem de tabulação; a cópia visual usa texto com `aria-hidden`. A animação pausa por hover ou foco, desaparece com `prefers-reduced-motion` e o trilho inteiro é removido abaixo de 1024px. Newsletter leva à seção já existente da home localizada; idioma leva diretamente ao alternate válido da página. O header existente passou de `fixed` para `sticky`, permitindo que a barra saia naturalmente no scroll sem alterar sitemap, canonical ou hreflang.
 
 ### 12.2 Masthead
 
@@ -527,7 +529,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Fora:** masthead, nav e feed realtime.
 - **Validação:** teclado, pausa, reduced motion, PT/ES, light/dark, `check`/`build`.
 - **Risco principal:** alegar “ao vivo” sem fonte ou duplicar conteúdo para leitor de tela.
-- **Pronto:** uma única barra responsiva, sem dados fictícios e com movimento controlável.
+- **Pronto:** concluída em 20/07/2026; uma única barra responsiva, sem dados fictícios, com destinos reais, repetição visual oculta da árvore acessível e movimento controlável.
 
 ### 7.4 — Masthead
 
