@@ -46,6 +46,7 @@
 - [x] **Task 7.13 — Mais lidas V4** — auditoria de código, schemas, configuração, dependências e deploy confirmou que não existe fonte de audiência, janela temporal ou regra de desempate verificáveis; conforme o contrato aprovado, o módulo permanece ausente em PT/ES e nenhuma métrica, posição, chave de UI ou infraestrutura foi fabricada.
 - [x] **Task 7.14 — Editorias V4** — loader cruza hubs ativos, rotas públicas e cobertura publicada por `primaryHub`/`relatedHubs`; Inteligência Artificial e Marketing Digital aparecem uma vez em PT/ES com contagens deduplicadas, enquanto Monetização sem cobertura e todos os hubs planejados permanecem ocultos.
 - [x] **Task 7.15 — Resolver hoje V4** — `IntentNavigator` compartilhado substitui a grade inline legada por intenções data-driven: cada contrato resolve um `href` real ou `null`, intenções editoriais exigem cobertura publicada do hub e as funcionais exigem rota/conteúdo elegível; no acervo atual renderizam tráfego, IA, guias, ferramentas e bônus com rotas PT/ES corretas via `routePath`, enquanto Monetização fica oculta por falta de cobertura — zero cards decorativos.
+- [x] **Task 7.16 — Guias V4** — `GuideHighlights` compartilhado substitui a seção inline legada; loader extrai guias (`contentType: guide`) com prioridade sobre a seleção da redação, exclui itens já usados nas seções superiores, máx. 3; PT renderiza 1 guia (checklist segurança), ES 1 guia (checklist seguridad), ambos com hrefs localizados via `routePath`; fallback localizado quando vazio; zero duplicação.
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -300,8 +301,8 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.12 concluída:** Últimas publicações compartilhada em PT/ES com ordem imutável, limite de seis e deduplicação integral dos módulos V4 anteriores; o estado real atual é vazio e localizado, sem repetir a dobra ou fabricar arquivo, recomendação e paginação.
 > **Task 7.13 concluída sem UI:** a auditoria não encontrou fonte de audiência, janela temporal, regra de desempate ou adapter verificáveis; “Mais lidas” permanece ausente por contrato, e Analytics continua como dependência pendente do Bloco 16/decisão própria.
 > **Task 7.14 concluída:** Editorias compartilhadas em PT/ES cruzam status ativo, rota real e cobertura publicada deduplicada; o módulo expõe somente Inteligência Artificial e Marketing Digital, sem criar URLs, ativar hubs planejados ou preencher Monetização sem base factual.
-> **Task 7.15 concluída:** `IntentNavigator` substitui a grade inline legada por intenções data-driven com `href` real ou oculto; tráfego, IA, guias, ferramentas e bônus renderizam com rotas PT/ES via `routePath`, Monetização permanece oculta por falta de cobertura, e nenhum card decorativo, busca ou ação simulada foi criado.
-> **Próxima task técnica recomendada:** **7.16 — Guias**, módulo V4 para artigos `contentType: guide` com fallback localizado.
+> **Task 7.16 concluída:** `GuideHighlights` substitui a seção inline legada por módulo V4 data-driven; guias são extraídos com prioridade de formato sobre a seleção da redação, PT renderiza 1 guia e ES 1 guia com hrefs localizados, fallback localizado quando vazio, zero duplicação.
+> **Próxima task técnica recomendada:** **7.17 — Ferramentas**, módulo comercial V4 usando categorias/parceiros reais e campos localizados.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
 > **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).

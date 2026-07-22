@@ -39,6 +39,15 @@ export interface HomeIntentItem {
   href: string;
 }
 
+export interface HomeGuideItem {
+  id: string;
+  title: string;
+  excerpt: string;
+  emoji: string;
+  guideType: string | null;
+  href: string;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -49,6 +58,7 @@ export interface HomeEditorialData {
   latestPublicationArticles: HomeArticle[];
   editorialHubItems: HomeHubItem[];
   intentItems: HomeIntentItem[];
+  guideItems: HomeGuideItem[];
 }
 
 interface HomeHubRouteContract {
@@ -221,10 +231,31 @@ export function selectHomeArticles(
     ...featuredIds,
     ...radarNowItems.map(({ article }) => article.id),
   ]);
+
+  // ─── Guias (Task 7.16) ────────────────────────────────────────────────────
+  // Artigos com contentType 'guide', publicados no locale corrente.
+  // Prioridade sobre a seleção da redação: cada formato tem seu módulo natural.
+  const guideArticles = orderedPublishedEntries
+    .filter(({ id, data }) => (
+      data.contentType === 'guide'
+      && !upperEditorialIds.has(id)
+    ))
+    .slice(0, 3);
+  const guideItems: HomeGuideItem[] = guideArticles.map(({ id, slug, data }) => ({
+    id,
+    title: data.title,
+    excerpt: data.excerpt,
+    emoji: data.emoji || '📋',
+    guideType: data.guideType ?? null,
+    href: routePath('artigos', locale, slug),
+  }));
+
+  const guideIds = new Set(guideArticles.map(({ id }) => id));
   const editorialSelectionArticles = orderedPublishedEntries
     .filter(({ id, data }) => (
       activeEditorialFormats.has(data.contentType)
       && !upperEditorialIds.has(id)
+      && !guideIds.has(id)
     ))
     .slice(0, 3);
   const occupiedEditorialIds = new Set([
@@ -304,6 +335,7 @@ export function selectHomeArticles(
     latestPublicationArticles,
     editorialHubItems,
     intentItems,
+    guideItems,
   };
 }
 

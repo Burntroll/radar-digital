@@ -674,7 +674,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** cada ação leva a conteúdo/rota elegível e usa hierarquia V4.
 - **Implementação:** `IntentNavigator` é data-driven — cada contrato resolve um `href` real ou `null`; intenções editoriais (tráfego, IA, monetizar) exigem cobertura publicada do hub, e as funcionais (guias, ferramentas, bônus) exigem rota/conteúdo elegível. No acervo atual, Monetização fica oculta por falta de cobertura; as cinco restantes renderizam com rotas PT/ES corretas (`routePath`). Zero cards decorativos.
 
-### 7.16 — Guias
+### 7.16 — Guias ✅
 
 - **Objetivo:** criar módulo V4 para artigos `contentType: guide`.
 - **Dependências:** 7.12.
@@ -683,6 +683,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** locale, data, 0/1/N, link correto, canonical/hreflang.
 - **Risco principal:** confundir guia com artigo ou repetir histórias.
 - **Pronto:** guias publicados reais com fallback localizado.
+- **Implementação:** `GuideHighlights.astro` compartilhado; loader extrai guias antes da seleção da redação (prioridade de formato), exclui `occupiedEditorialIds`, máx. 3; fallback localizado quando vazio; PT 1 guia, ES 1 guia, sem duplicação.
 
 ### 7.17 — Ferramentas
 

@@ -255,11 +255,13 @@ export const ui = {
   'home.article.guide.read':    { 'pt-BR': 'Ler guia',           'es': 'Leer guía' },
 
   // Home — guides section
+  'home.guides.eyebrow':        { 'pt-BR': 'Guias práticos', 'es': 'Guías prácticas' },
   'home.guides.desc': {
     'pt-BR': 'Checklists e passo a passo para aplicar no dia a dia.',
     'es': 'Checklists y paso a paso para aplicar en el día a día.',
   },
   'home.guides.all':            { 'pt-BR': 'Ver todos os guias', 'es': 'Ver todas las guías' },
+  'home.guides.empty':          { 'pt-BR': 'Nenhum guia publicado ainda.', 'es': 'Ninguna guía publicada aún.' },
 
   // Home — tools section
   'home.tools.desc': {

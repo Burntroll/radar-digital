@@ -1,0 +1,61 @@
+---
+import { routePath, t, type Locale } from '../i18n/utils';
+import type { HomeGuideItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeGuideItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const allGuidesHref = routePath('guias', locale);
+---
+
+<section
+  id="guias"
+  class="guide-highlights"
+  aria-labelledby="guide-highlights-title"
+  data-guide-highlights
+  data-count={items.length}
+>
+  <div class="guide-highlights__inner">
+    <header class="guide-highlights__header">
+      <div>
+        <span class="guide-highlights__eyebrow">{t('home.guides.eyebrow', locale)}</span>
+        <h2 id="guide-highlights-title">{t('home.section.guias', locale)}</h2>
+      </div>
+      <p class="guide-highlights__desc">{t('home.guides.desc', locale)}</p>
+    </header>
+
+    {items.length > 0 ? (
+      <ul class="guide-highlights__grid">
+        {items.map((item) => (
+          <li data-guide-id={item.id}>
+            <a class="guide-highlights__card" href={item.href}>
+              <span class="guide-highlights__emoji" aria-hidden="true">{item.emoji}</span>
+              {item.guideType && (
+                <span class="guide-highlights__badge">{item.guideType}</span>
+              )}
+              <h3 class="guide-highlights__title">{item.title}</h3>
+              <p class="guide-highlights__excerpt">{item.excerpt}</p>
+              <span class="guide-highlights__cta">
+                {t('home.article.guide.read', locale)}
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="guide-highlights__empty">
+        <span class="guide-highlights__emoji" aria-hidden="true">📋</span>
+        <p>{t('home.guides.empty', locale)}</p>
+      </div>
+    )}
+
+    <a class="guide-highlights__all" href={allGuidesHref}>
+      {t('home.guides.all', locale)}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

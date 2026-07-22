@@ -192,8 +192,8 @@
 | 7.13 | Mais lidas | ✅ Concluída sem UI — fonte, janela e desempate auditáveis inexistentes; módulo permanece ausente |
 | 7.14 | Editorias | ✅ Concluída — hubs ativos com cobertura deduplicada e rotas PT/ES existentes |
 | 7.15 | Resolver hoje | ✅ Concluída — intenções data-driven com rotas reais; Monetização oculta por falta de cobertura |
-| 7.16 | Guias | ⏳ Próxima recomendada |
-| 7.17 | Ferramentas | ⏳ Pendente |
+| 7.16 | Guias | ✅ Concluída — guias extraídos com prioridade de formato, fallback localizado, sem duplicação |
+| 7.17 | Ferramentas | ⏳ Próxima recomendada |
 | 7.18 | Bônus | ⏳ Pendente |
 | 7.19 | Radar Market | ⏳ Pendente |
 | 7.20 | Newsletter | ⏳ Pendente |
