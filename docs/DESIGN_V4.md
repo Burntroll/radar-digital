@@ -663,15 +663,16 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Risco principal:** expor taxonomia planejada sem página pública.
 - **Pronto:** concluída em 20/07/2026; somente Inteligência Artificial e Marketing Digital são exibidas, com cobertura publicada deduplicada, destinos PT/ES existentes, estado zero oculto e nenhuma URL ou taxonomia adicional.
 
-### 7.15 — Resolver hoje
+### 7.15 — Resolver hoje ✅
 
 - **Objetivo:** traduzir intenções em acessos editoriais/funcionais reais.
 - **Dependências:** 7.14 e mapa de rotas.
-- **Arquivos prováveis:** módulo de intenções, `ui.ts`, home compartilhada.
+- **Arquivos:** `src/utils/homeData.ts` (contratos de intenção + `intentItems`), `src/components/IntentNavigator.astro`, `src/i18n/ui.ts` (chaves `home.intents.*`), `src/styles/global.css` (`.intent-navigator`), homes PT/ES.
 - **Fora:** novas ferramentas, formulários ou formatos planejados.
 - **Validação:** todos os destinos, cópia PT/ES, headings e touch.
 - **Risco principal:** cards decorativos sem resolução real.
 - **Pronto:** cada ação leva a conteúdo/rota elegível e usa hierarquia V4.
+- **Implementação:** `IntentNavigator` é data-driven — cada contrato resolve um `href` real ou `null`; intenções editoriais (tráfego, IA, monetizar) exigem cobertura publicada do hub, e as funcionais (guias, ferramentas, bônus) exigem rota/conteúdo elegível. No acervo atual, Monetização fica oculta por falta de cobertura; as cinco restantes renderizam com rotas PT/ES corretas (`routePath`). Zero cards decorativos.
 
 ### 7.16 — Guias
 

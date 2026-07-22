@@ -28,6 +28,17 @@ export interface HomeHubItem {
   coverageCount: number;
 }
 
+export type HomeIntentKind = 'editorial' | 'functional';
+
+export interface HomeIntentItem {
+  id: string;
+  kind: HomeIntentKind;
+  emoji: string;
+  titleKey: UIKey;
+  descriptionKey: UIKey;
+  href: string;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -37,6 +48,7 @@ export interface HomeEditorialData {
   editorialSelectionArticles: HomeArticle[];
   latestPublicationArticles: HomeArticle[];
   editorialHubItems: HomeHubItem[];
+  intentItems: HomeIntentItem[];
 }
 
 interface HomeHubRouteContract {
@@ -62,6 +74,92 @@ const homeHubRouteContracts: Partial<Record<EditorialHubId, HomeHubRouteContract
     monogram: 'M',
   },
 };
+
+// ─── Contratos de intenção (Task 7.15 — Resolver hoje) ─────────────────────
+//
+// Cada intenção mapeia uma necessidade do leitor para um destino real:
+//   - editorial: hub ativo com rota pública, exibido somente quando o hub
+//     possui cobertura publicada no locale corrente (mesma regra de 7.14).
+//   - functional: rota estrutural existente (guias, ferramentas, bônus),
+//     exibida somente quando possui conteúdo publicado no locale corrente.
+//
+// Intenções sem rota, sem cobertura ou com formato planejado permanecem
+// ocultas — nenhum card decorativo é renderizado.
+interface HomeIntentContract {
+  id: string;
+  kind: HomeIntentKind;
+  emoji: string;
+  titleKey: UIKey;
+  descriptionKey: UIKey;
+  resolve: (args: {
+    locale: Locale;
+    hubCoverage: ReadonlyMap<EditorialHubId, number>;
+    publishedEntries: readonly HomeArticle[];
+  }) => string | null;
+}
+
+const homeIntentContracts: readonly HomeIntentContract[] = [
+  {
+    id: 'trafego',
+    kind: 'editorial',
+    emoji: '📈',
+    titleKey: 'home.card.trafego.title',
+    descriptionKey: 'home.card.trafego.desc',
+    resolve: ({ locale, hubCoverage }) =>
+      (hubCoverage.get('digital-marketing') ?? 0) > 0
+        ? routePath('marketing-digital', locale)
+        : null,
+  },
+  {
+    id: 'ia',
+    kind: 'editorial',
+    emoji: '🤖',
+    titleKey: 'home.card.ia.title',
+    descriptionKey: 'home.card.ia.desc',
+    resolve: ({ locale, hubCoverage }) =>
+      (hubCoverage.get('artificial-intelligence') ?? 0) > 0
+        ? routePath('inteligencia-artificial', locale)
+        : null,
+  },
+  {
+    id: 'monetizar',
+    kind: 'editorial',
+    emoji: '💰',
+    titleKey: 'home.card.monetizar.title',
+    descriptionKey: 'home.card.monetizar.desc',
+    resolve: ({ locale, hubCoverage }) =>
+      (hubCoverage.get('monetization') ?? 0) > 0
+        ? routePath('monetizacao', locale)
+        : null,
+  },
+  {
+    id: 'guias',
+    kind: 'functional',
+    emoji: '📋',
+    titleKey: 'home.card.organizar.title',
+    descriptionKey: 'home.card.organizar.desc',
+    resolve: ({ locale, publishedEntries }) =>
+      publishedEntries.some(({ data }) => data.contentType === 'guide')
+        ? routePath('guias', locale)
+        : null,
+  },
+  {
+    id: 'ferramentas',
+    kind: 'functional',
+    emoji: '🧰',
+    titleKey: 'home.card.ferramentas.title',
+    descriptionKey: 'home.card.ferramentas.desc',
+    resolve: ({ locale }) => routePath('parceiros', locale),
+  },
+  {
+    id: 'bonus',
+    kind: 'functional',
+    emoji: '🎁',
+    titleKey: 'home.card.bonus.title',
+    descriptionKey: 'home.card.bonus.desc',
+    resolve: ({ locale }) => routePath('bonus', locale),
+  },
+];
 
 const activeEditorialFormats = new Set(
   editorialFormats
@@ -152,24 +250,25 @@ export function selectHomeArticles(
       // O registro de topics ainda não define rotas públicas.
       href: null,
     }));
+  const hubCoverage = publishedEntries.reduce((coverage, { data }) => {
+    if (!activeEditorialFormats.has(data.contentType)) return coverage;
+    const hubIds = new Set<EditorialHubId>([
+      ...(data.primaryHub ? [data.primaryHub] : []),
+      ...(data.relatedHubs ?? []),
+    ]);
+    for (const hubId of hubIds) {
+      coverage.set(hubId, (coverage.get(hubId) ?? 0) + 1);
+    }
+    return coverage;
+  }, new Map<EditorialHubId, number>());
   const editorialHubItems = editorialHubs.flatMap((hub): HomeHubItem[] => {
     if (hub.status !== 'active') return [];
 
     const routeContract = homeHubRouteContracts[hub.id];
     if (!routeContract) return [];
 
-    const coveredEntryIds = new Set(
-      publishedEntries
-        .filter(({ data }) => (
-          activeEditorialFormats.has(data.contentType)
-          && (
-            data.primaryHub === hub.id
-            || data.relatedHubs?.includes(hub.id)
-          )
-        ))
-        .map(({ id }) => id),
-    );
-    if (coveredEntryIds.size === 0) return [];
+    const coverageCount = hubCoverage.get(hub.id) ?? 0;
+    if (coverageCount === 0) return [];
 
     return [{
       id: hub.id,
@@ -177,7 +276,21 @@ export function selectHomeArticles(
       description: t(routeContract.descriptionKey, locale),
       monogram: routeContract.monogram,
       href: routePath(routeContract.routeKey, locale),
-      coverageCount: coveredEntryIds.size,
+      coverageCount,
+    }];
+  });
+
+  const intentItems = homeIntentContracts.flatMap((contract): HomeIntentItem[] => {
+    const href = contract.resolve({ locale, hubCoverage, publishedEntries });
+    if (!href) return [];
+
+    return [{
+      id: contract.id,
+      kind: contract.kind,
+      emoji: contract.emoji,
+      titleKey: contract.titleKey,
+      descriptionKey: contract.descriptionKey,
+      href,
     }];
   });
 
@@ -190,6 +303,7 @@ export function selectHomeArticles(
     editorialSelectionArticles,
     latestPublicationArticles,
     editorialHubItems,
+    intentItems,
   };
 }
 

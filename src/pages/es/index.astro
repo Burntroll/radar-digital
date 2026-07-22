@@ -8,6 +8,7 @@ import TopicRail from '../../components/TopicRail.astro';
 import EditorialSelection from '../../components/EditorialSelection.astro';
 import LatestPublications from '../../components/LatestPublications.astro';
 import EditorialHubs from '../../components/EditorialHubs.astro';
+import IntentNavigator from '../../components/IntentNavigator.astro';
 import { getCollection } from 'astro:content';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../../i18n/utils';
 import { routePath } from '../../i18n/utils';
@@ -24,6 +25,7 @@ const {
   editorialSelectionArticles: selecaoDaRedacao,
   latestPublicationArticles: ultimasPublicacoes,
   editorialHubItems: editorias,
+  intentItems: intencaoResolver,
 } = await loadHomeEditorialData(locale);
 
 // Guías publicadas (para el módulo propio de guías)
@@ -89,74 +91,7 @@ const marketCategorias = await getCollection('marketCategorias', ({ data }) => d
 
   <EditorialSelection articles={selecaoDaRedacao} locale={locale} />
 
-  <!-- ════════════════════════════════════════════════ -->
-  <!-- NAVEGACIÓN POR INTENCIÓN -->
-  <!-- ════════════════════════════════════════════════ -->
-  <section class="py-14 bg-surface transition-colors duration-300">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Section label -->
-      <div class="flex items-center gap-3 mb-8">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">{t('home.section.intencao', locale)}</h2>
-        <div class="h-px flex-1" style="background: var(--color-border);"></div>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- 1. Tráfico -->
-        <a href={`${prefix}/marketing-digital`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">📈</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.trafego.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.trafego.desc', locale)}</p>
-          </div>
-        </a>
-
-        <!-- 2. IA -->
-        <a href={`${prefix}/inteligencia-artificial`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">🤖</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.ia.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.ia.desc', locale)}</p>
-          </div>
-        </a>
-
-        <!-- 3. Monetizar -->
-        <a href={routePath('monetizacao', locale)} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">💰</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.monetizar.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.monetizar.desc', locale)}</p>
-          </div>
-        </a>
-
-        <!-- 4. Guías -->
-        <a href={`${prefix}/guias`} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-purple-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">📋</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-purple-500 transition-colors">{t('home.card.organizar.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.organizar.desc', locale)}</p>
-          </div>
-        </a>
-
-        <!-- 5. Herramientas -->
-        <a href={routePath('parceiros', locale)} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">🧰</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.ferramentas.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.ferramentas.desc', locale)}</p>
-          </div>
-        </a>
-
-        <!-- 6. Bonos -->
-        <a href={routePath('bonus', locale)} class="group flex items-start gap-4 rounded-xl border p-4 transition-colors hover:border-cyan-500/30" style="border-color: var(--color-border); background: var(--color-surface-card);">
-          <span class="text-2xl shrink-0 mt-0.5">🎁</span>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-sm font-bold text-text-primary group-hover:text-cyan-500 transition-colors">{t('home.card.bonus.title', locale)}</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">{t('home.card.bonus.desc', locale)}</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
+  <IntentNavigator items={intencaoResolver} locale={locale} />
 
   <LatestPublications articles={ultimasPublicacoes} locale={locale} />
 

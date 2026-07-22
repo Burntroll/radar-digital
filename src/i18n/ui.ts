@@ -242,6 +242,13 @@ export const ui = {
   'home.card.bonus.title':      { 'pt-BR': 'Quero ver bônus e códigos', 'es': 'Quiero ver bonos y códigos' },
   'home.card.bonus.desc':       { 'pt-BR': 'Condições promocionais e benefícios verificados.', 'es': 'Condiciones promocionales y beneficios verificados.' },
 
+  /* Resolver hoje (V4 — Task 7.15) */
+  'home.intents.eyebrow':       { 'pt-BR': 'Resolver hoje', 'es': 'Resolver hoy' },
+  'home.intents.title':         { 'pt-BR': 'O que você quer resolver?', 'es': '¿Qué quieres resolver?' },
+  'home.intents.description':   { 'pt-BR': 'Acessos diretos a conteúdos, guias e ferramentas que resolvem sua intenção.', 'es': 'Accesos directos a contenidos, guías y herramientas que resuelven tu intención.' },
+  'home.intents.cta':           { 'pt-BR': 'Acessar', 'es': 'Acceder' },
+  'home.intents.a11y':          { 'pt-BR': 'Navegação por intenção', 'es': 'Navegación por intención' },
+
   // Home — article / guide labels
   'home.article.read':          { 'pt-BR': 'Ler',                'es': 'Leer' },
   'home.article.guide.badge':   { 'pt-BR': 'Guia',               'es': 'Guía' },

@@ -191,8 +191,8 @@
 | 7.12 | Últimas publicações | ✅ Concluída — lista tipada, ordem estável, dedupe V4 e estado zero PT/ES |
 | 7.13 | Mais lidas | ✅ Concluída sem UI — fonte, janela e desempate auditáveis inexistentes; módulo permanece ausente |
 | 7.14 | Editorias | ✅ Concluída — hubs ativos com cobertura deduplicada e rotas PT/ES existentes |
-| 7.15 | Resolver hoje | ⏳ Próxima recomendada — somente acessos editoriais e funcionais reais |
-| 7.16 | Guias | ⏳ Pendente |
+| 7.15 | Resolver hoje | ✅ Concluída — intenções data-driven com rotas reais; Monetização oculta por falta de cobertura |
+| 7.16 | Guias | ⏳ Próxima recomendada |
 | 7.17 | Ferramentas | ⏳ Pendente |
 | 7.18 | Bônus | ⏳ Pendente |
 | 7.19 | Radar Market | ⏳ Pendente |

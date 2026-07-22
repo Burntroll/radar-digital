@@ -1,0 +1,48 @@
+---
+import { t, type Locale } from '../i18n/utils';
+import type { HomeIntentItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeIntentItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+---
+
+{items.length > 0 && (
+  <section
+    id="resolver-hoje"
+    class="intent-navigator"
+    aria-labelledby="intent-navigator-title"
+    aria-describedby="intent-navigator-description"
+    data-intent-navigator
+    data-count={items.length}
+  >
+    <div class="intent-navigator__inner">
+      <header class="intent-navigator__header">
+        <div>
+          <span class="intent-navigator__eyebrow">{t('home.intents.eyebrow', locale)}</span>
+          <h2 id="intent-navigator-title">{t('home.intents.title', locale)}</h2>
+        </div>
+        <p id="intent-navigator-description">{t('home.intents.description', locale)}</p>
+      </header>
+
+      <ul class="intent-navigator__grid" aria-label={t('home.intents.a11y', locale)}>
+        {items.map((item) => (
+          <li data-intent-id={item.id} data-intent-kind={item.kind}>
+            <a class="intent-navigator__card" href={item.href}>
+              <span class="intent-navigator__emoji" aria-hidden="true">{item.emoji}</span>
+              <h3 class="intent-navigator__title">{t(item.titleKey, locale)}</h3>
+              <p class="intent-navigator__desc">{t(item.descriptionKey, locale)}</p>
+              <span class="intent-navigator__cta">
+                {t('home.intents.cta', locale)}
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
