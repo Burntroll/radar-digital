@@ -203,7 +203,7 @@
 | 7.24 | Responsividade | ✅ Concluída — 9 breakpoints (320–1920px) + zoom 200%: zero overflow estrutural, ordem DOM=visual, sticky 126px correto, nav mobile→desktop em 1024px, PT/ES idênticos. Sem alteração de código. |
 | 7.25 | Acessibilidade | ✅ Concluída — axe-core: 22→9 nodes (todos aria-hidden decorativos), 0 violações em texto acessível. Fixes: tokens eyebrow AA, ad-slot opacity, badge/verified/footer portal. Landmarks documentados. Reduced motion e foco visível validados. |
 | 7.26 | Imagens e performance | ✅ Concluída — CWV dentro do orçamento (CLS 0,0002, FCP ~500ms, transfer 182KB, 6 resources). Fontes OFL preloaded (161.880 bytes). Zero hotlinks. Mídia editorial bloqueada por dependência de ativos licenciados. Sem alteração de código. |
-| 7.27 | Documentação e checkpoint final | ⏳ Pendente |
+| 7.27 | Documentação e checkpoint final | ✅ Concluída — DESIGN_V4.md reconciliado (7.20–7.27 com estado implementado), matriz de aceite fechada (18/18 critérios), dívida registrada, recomendação formal para Bloco 6. Baseline `d0e0b07`. |
 
 ---
 

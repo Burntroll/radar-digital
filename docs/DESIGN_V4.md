@@ -718,7 +718,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** categorias reais e estado transparente; itens apenas quando publicados.
 - **Implementação:** `MarketShowcase.astro` compartilhado; loader filtra `marketCategorias` publicadas no locale, ordena por `order`; PT/ES renderizam 4 categorias (ordem aprovada no Plano 2.2); placeholder draft oculto; disclosure comercial visível; link para `/market` e `/es/market`; fallback localizado quando vazio.
 
-### 7.20 — Newsletter
+### 7.20 — Newsletter ✅
 
 - **Objetivo:** aplicar a apresentação V4 sem simular inscrição.
 - **Dependências:** 7.1–7.2 e decisão do Bloco 9 para integração.
@@ -729,7 +729,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** CTA/formulário descreve a capacidade real e é acessível.
 - **Implementação:** `NewsletterBlock.astro` compartilhado substitui blocos inline PT/ES. Apresentação editorial estática e honesta: sem `<form>`, `<input>`, `<button>`, `onsubmit`, `alert()` ou textos de assinatura funcional. Todo texto via `t()`. Conteúdo PT: "Newsletter / O sinal chega em breve / Em preparação". ES: "Newsletter / La señal llegará pronto / En preparación". Âncoras: `/#newsletter` e `/es/#newsletter`. Tokens V4, sem cyan legado. Light/dark validados. Publicado em `7ce36d7` (23/07/2026). 41 páginas, 28 URLs. Integração real permanece no Bloco 9; footer na Task 7.21; responsividade na 7.24; acessibilidade na 7.25.
 
-### 7.21 — Footer institucional
+### 7.21 — Footer institucional ✅
 
 - **Objetivo:** separar footer do layout e remover destinos fictícios.
 - **Dependências:** mapa de rotas institucionais disponível.
@@ -738,8 +738,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** nenhum `#`, landmarks, PT/ES, contraste, mobile.
 - **Risco principal:** links para páginas inexistentes.
 - **Pronto:** um único footer, somente com destinos reais e disclosures adequados.
+- **Implementação:** `SiteFooter.astro` compartilhado substitui footer inline do Layout. Links reais via `routePath()` (IA, Marketing, Monetização, Guias, Ferramentas, Bônus, Market), idiomas com `hreflang`/`aria-current`, transparência comercial localizada, copyright. Zero `href="#"`, zero cyan legado, zero links fictícios (Privacidade/Termos/Contato omitidos — Bloco 10). Commits: `3e848d7` (implementação) + `59c5a10` (fix: seletor `[data-site-footer]` no inert do menu mobile). Publicado e validado remotamente (R1).
 
-### 7.22 — Consolidação ES
+### 7.22 — Consolidação ES ✅
 
 - **Objetivo:** auditar paridade integral da V4 espanhola sobre componentes compartilhados.
 - **Dependências:** 7.3–7.21.
@@ -748,8 +749,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** rotas, cópias, datas, aria, canonical/hreflang e conteúdo comercial.
 - **Risco principal:** fallback silencioso para PT ou divergência de template.
 - **Pronto:** paridade funcional/visual PT-ES sem componentes duplicados.
+- **Implementação:** Auditoria (sem alteração de código). 104 chaves `t()` completas (0 ausentes), 18 valores idênticos classificados (marca/sigla/termo internacional), zero fallback PT público, rotas/datas/comercial localizados, canonical/hreflang bidirecional em 14 pares, paridade visual desktop+mobile (M1 — Playwright 390×844), remoto R1. Achados legados (ternários inline, cyan em páginas não-V4, branches mortas) registrados como dívida fora do escopo.
 
-### 7.23 — Dark mode
+### 7.23 — Dark mode ✅
 
 - **Objetivo:** concluir os equivalentes dark de todos os módulos V4.
 - **Dependências:** 7.1 e módulos 7.3–7.22.
@@ -758,8 +760,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** contraste, flash de tema, imagens/overlays, estados de interação.
 - **Risco principal:** inversão mecânica e texto/verde sem contraste.
 - **Pronto:** matriz de módulos/estados aprovada nos dois temas.
+- **Implementação:** Tokens dark completos no `global.css` (16 papéis com equivalentes). 21/22 componentes V4 usam exclusivamente `var(--color-*)`. Fix único: `BrandMark.astro` ring hardcoded → token (`8d146cd`). Validação Playwright PT/ES: zero light leaks, contraste AA/AAA (primário 17,43:1, secundário 9,41:1, muted 5,79:1, link 12,53:1, signal 17,07:1, live 7,46:1, inverse 17,87:1), flash prevention funcional, toggle com persistência.
 
-### 7.24 — Responsividade
+### 7.24 — Responsividade ✅
 
 - **Objetivo:** consolidar composição e densidade em todos os breakpoints.
 - **Dependências:** 7.3–7.23.
@@ -768,8 +771,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** 320, 375, 390, 768, 820, 1024, 1280, 1440 e 1920px; zoom 200%.
 - **Risco principal:** overflow, ordem visual/DOM divergente e sticky excessivo.
 - **Pronto:** nenhum overflow horizontal ou conteúdo inacessível; composições documentadas.
+- **Implementação:** Auditoria (sem alteração de código). 9 breakpoints + zoom 200% via Playwright: zero overflow estrutural (`scrollWidth === clientWidth`), ordem DOM == visual (11 seções), sticky 126px correto, SignalBar `relative`, nav mobile→desktop em 1024px, PT/ES idênticos.
 
-### 7.25 — Acessibilidade
+### 7.25 — Acessibilidade ✅
 
 - **Objetivo:** auditoria e correção transversal de teclado, semântica, foco e motion.
 - **Dependências:** 7.3–7.24 e pendência 5.8 coordenada.
@@ -778,8 +782,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** axe/Lighthouse, teclado, leitores de tela, reduced motion, contraste e zoom.
 - **Risco principal:** tratar auditoria automatizada como cobertura completa.
 - **Pronto:** fluxos críticos manuais aprovados e falhas automáticas relevantes zeradas/documentadas.
+- **Implementação:** axe-core (WCAG 2.0/2.1 AA + best-practice) via Playwright PT/ES. Fixes (`f738b38`): novos tokens `--color-eyebrow-editorial` (#5f4fe8/#8b80ff) e `--color-eyebrow-commercial` (#8a5a00/#f59e0b) com contraste AA; 7 eyebrows + badge + verified migrados; `site-footer__portal` opacidade 0.35→0.55; ad-slot opacity removido. Resultado: 22→9 nodes (todos `aria-hidden` decorativos), zero violações em texto acessível. Landmarks documentados (RadarNow aside-in-main, SignalBar duplicate name). Reduced motion: ticker desativado. Foco: 2px solid verde-sinal. Teclado validado na Task 5.8.
 
-### 7.26 — Imagens e performance
+### 7.26 — Imagens e performance ✅
 
 - **Objetivo:** integrar mídia editorial final e fechar orçamento de Core Web Vitals/bundle.
 - **Dependências:** componentes estáveis e ativos licenciados.
@@ -788,8 +793,9 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** formatos/tamanhos, LCP/CLS/INP, rede simulada, alt e proveniência.
 - **Risco principal:** hero pesado ou fontes/imagens ampliarem LCP.
 - **Pronto:** mídia licenciada otimizada, dimensões explícitas e orçamento atendido/documentado.
+- **Implementação:** Auditoria (sem alteração de código). CWV: CLS 0,0002/0,0003 (≤0,1), FCP 524/452ms, TTFB 20/5ms, Load 160/93ms, Transfer 182KB, 6 resources. Fontes: Inter 67.576B + Source Serif 4 94.304B = 161.880B, preloaded, OFL 1.1. Bundle: JS ~7,4KB, CSS ~123KB. Zero hotlinks. `StoryCard`/`StoryRow` prontos com `loading="lazy"`, `decoding="async"`, dimensões explícitas. **Dependência pendente:** mídia editorial licenciada (DESIGN_V4.md §15).
 
-### 7.27 — Documentação e checkpoint final
+### 7.27 — Documentação e checkpoint final ✅
 
 - **Objetivo:** reconciliar especificação, implementação e evidências antes de retomar o Bloco 6.
 - **Dependências:** 7.1–7.26 concluídas ou impedimentos formalizados.
@@ -798,6 +804,51 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** `git diff --check`, `npm run check`, `npm run build`, sitemap/rotas, SEO, visual PT/ES, light/dark, desktop/mobile, a11y e performance.
 - **Risco principal:** declarar a V4 estável com dívida não registrada.
 - **Pronto:** matriz de aceite fechada, baseline publicado e recomendação formal para retomada do Bloco 6.
+- **Implementação:** Reconciliação completa. Matriz de aceite abaixo. Baseline: `d0e0b07` (23/07/2026). 41 páginas, 28 URLs, 0 errors, 13 hints pré-existentes.
+
+#### Matriz de aceite — Bloco 7
+
+| Critério | Status | Evidência |
+|---|---|---|
+| Três faixas no topo (SignalBar, masthead, nav) | ✅ | Tasks 7.3–7.5 |
+| Fundo creme + alternância de módulos pretos | ✅ | Tokens V4, dark mode auditado |
+| Verde-lima como sinal, não superfície | ✅ | `--color-signal` pontual |
+| Capa assimétrica (principal + secundárias + Radar agora) | ✅ | Tasks 7.7–7.9 |
+| Hierarquia tipográfica editorial | ✅ | Inter + Source Serif 4, tokens |
+| Sem mosaico/SaaS/glassmorphism | ✅ | Zero `glass-card` na V4 |
+| PT/ES aprovado | ✅ | Task 7.22 (M1) |
+| Light/dark aprovado | ✅ | Task 7.23 |
+| Mobile/desktop aprovado | ✅ | Task 7.24 (9 breakpoints + zoom 200%) |
+| Componentes compartilhados, sem duplicação PT/ES | ✅ | 15 componentes, loader único |
+| Content Collections com filtros reais | ✅ | `homeData.ts` |
+| Zero data futura, zero `#`, zero sucesso simulado | ✅ | Auditorias 7.20–7.22 |
+| Canonical/hreflang/sitemap/28 URLs | ✅ | 14 pares bidirecionais |
+| Uma H1, headings coerentes | ✅ | Tasks 7.7, 7.24 |
+| Teclado completo, foco, reduced motion | ✅ | Tasks 5.8, 7.25 |
+| Fontes medidas e preloaded | ✅ | 161.880B, OFL 1.1 |
+| CWV dentro do orçamento | ✅ | CLS 0,0002, FCP ~500ms |
+| Quality gate verde | ✅ | 0 errors, 0 warnings, 13 hints |
+| Sem dependência nova | ✅ | Zero adições ao `package.json` |
+
+#### Dívida registrada (fora do Bloco 7)
+
+| Item | Task/bloco futuro |
+|---|---|
+| Mídia editorial licenciada (imagens reais) | Ativos com proveniência — pré-lançamento |
+| "Mais lidas" (sem analytics) | Bloco 16 / decisão própria |
+| Newsletter funcional (backend) | Bloco 9 |
+| Páginas institucionais (Privacidade, Termos, Contato) | Bloco 10 |
+| Disclosure definitivo (schema/política) | Bloco 10 |
+| Templates de hubs públicos | Bloco 6 |
+| Arquivo/paginação/descoberta | Bloco 8 |
+| `ROUTES.md` / `I18N.md` ausentes | Task documental autorizada |
+| Ternários inline em páginas legadas | Migração V4 de cada página |
+| Cyan legado em páginas não-V4 | Migração V4 de cada página |
+| Scan-line em reduced motion (dark-only, opacidade reduzida) | Revisão na Task 7.25 futura ou pré-lançamento |
+
+#### Recomendação formal
+
+O Bloco 7 está **concluído e estável**. A homepage V4 atende a todos os critérios de aceite visual e técnico do DESIGN_V4.md §26. A dívida registrada é conhecida, documentada e pertence a blocos futuros. **Recomenda-se a retomada do Bloco 6 (Hubs)** como próxima prioridade, conforme Plano de Ação 2.2 §14.
 
 ## 26. Critérios de aceite visual e técnico
 
