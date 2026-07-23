@@ -304,16 +304,15 @@ export const ui = {
   'home.market.empty':          { 'pt-BR': 'Categorias em construção.', 'es': 'Categorías en construcción.' },
   'home.market.cta':            { 'pt-BR': 'Explorar Radar Market', 'es': 'Explorar Radar Market' },
 
-  // Home — newsletter
-  'home.newsletter.badge':        { 'pt-BR': 'Fique ligado',        'es': 'Mantente al tanto' },
-  'home.newsletter.title.prefix': { 'pt-BR': 'Receba o',            'es': 'Recibe la' },
-  'home.newsletter.title.word':   { 'pt-BR': 'sinal',               'es': 'señal' },
+  // Home — newsletter (Task 7.20: apresentação honesta, sem formulário)
+  'home.newsletter.eyebrow':   { 'pt-BR': 'Newsletter',          'es': 'Newsletter' },
+  'home.newsletter.title':     { 'pt-BR': 'O sinal chega em breve', 'es': 'La señal llegará pronto' },
   'home.newsletter.desc': {
-    'pt-BR': 'Assine e seja o primeiro a saber quando novos artigos chegarem no Radar Digital. Sem spam, só conteúdo de verdade.',
-    'es': 'Suscríbete y sé el primero en saber cuando lleguen nuevos artículos al Radar Digital. Sin spam, solo contenido real.',
+    'pt-BR': 'Estamos preparando uma newsletter com notícias, análises, ferramentas e oportunidades selecionadas pelo Radar Digital.',
+    'es': 'Estamos preparando una newsletter con noticias, análisis, herramientas y oportunidades seleccionadas por Radar Digital.',
   },
-  'home.newsletter.placeholder':  { 'pt-BR': 'seu@email.com',       'es': 'tu@email.com' },
-  'home.newsletter.cta':          { 'pt-BR': 'Assinar',             'es': 'Suscribirse' },
+  'home.newsletter.status':    { 'pt-BR': 'Em preparação',       'es': 'En preparación' },
+  'home.newsletter.note':      { 'pt-BR': 'A inscrição será disponibilizada quando a integração estiver pronta.', 'es': 'La suscripción estará disponible cuando la integración esté lista.' },
 
   // Home — empty states
   'home.empty.articles':      { 'pt-BR': 'Nenhum artigo publicado ainda.', 'es': 'Ningún artículo publicado aún.' },

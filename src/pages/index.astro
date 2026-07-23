@@ -13,6 +13,7 @@ import GuideHighlights from '../components/GuideHighlights.astro';
 import ToolDirectory from '../components/ToolDirectory.astro';
 import BonusDeals from '../components/BonusDeals.astro';
 import MarketShowcase from '../components/MarketShowcase.astro';
+import NewsletterBlock from '../components/NewsletterBlock.astro';
 import { getLocaleFromUrl, t, defaultLocale, type Locale } from '../i18n/utils';
 import { loadHomeEditorialData } from '../utils/homeData';
 
@@ -88,49 +89,5 @@ const {
 
   <MarketShowcase items={categoriasMarket} locale={locale} />
 
-  <!-- ════════════════════════════════════════════════ -->
-  <!-- NEWSLETTER -->
-  <!-- ════════════════════════════════════════════════ -->
-  <section id="newsletter" class="scroll-mt-header-sticky py-14 relative bg-surface transition-colors duration-300">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="glass-card p-10 md:p-14 text-center max-w-3xl mx-auto relative overflow-hidden">
-        <!-- Decorative dots -->
-        <div class="absolute -top-20 -right-20 w-40 h-40 opacity-[0.04] dark:opacity-[0.04] opacity-[0.08]">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="2" fill="#00e5ff"/><circle cx="30" cy="10" r="2" fill="#00e5ff"/>
-            <circle cx="50" cy="10" r="2" fill="#00e5ff"/><circle cx="70" cy="10" r="2" fill="#00e5ff"/>
-            <circle cx="90" cy="10" r="2" fill="#00e5ff"/><circle cx="10" cy="30" r="2" fill="#00e5ff"/>
-            <circle cx="30" cy="30" r="2" fill="#00e5ff"/><circle cx="50" cy="30" r="2" fill="#00e5ff"/>
-            <circle cx="70" cy="30" r="2" fill="#00e5ff"/><circle cx="90" cy="30" r="2" fill="#00e5ff"/>
-          </svg>
-        </div>
-
-        <div class="relative z-10">
-          <span class="tag-pill">{t('home.newsletter.badge', locale)}</span>
-          <h2 class="section-title mt-4 text-text-primary transition-colors">{t('home.newsletter.title.prefix', locale)} <span class="text-cyan-500">{t('home.newsletter.title.word', locale)}</span></h2>
-          <p class="text-text-secondary mt-3 max-w-lg mx-auto text-sm leading-relaxed transition-colors">
-            {t('home.newsletter.desc', locale)}
-          </p>
-
-          <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Newsletter em breve! 🚀')">
-            <input
-              type="email"
-              placeholder={t('home.newsletter.placeholder', locale)}
-              class="flex-1 px-5 py-3 rounded-xl text-sm transition-all duration-300"
-              style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);"
-              required
-            />
-            <button
-              type="submit"
-              class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-cyan-600/20
-                     border border-cyan-500/30 text-cyan-500 text-sm font-semibold
-                     hover:from-cyan-500/30 hover:to-cyan-600/30 hover:border-cyan-500/50
-                     transition-all duration-300">
-              {t('home.newsletter.cta', locale)}
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  <NewsletterBlock locale={locale} />
 </Layout>
