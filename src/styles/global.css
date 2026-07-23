@@ -75,6 +75,10 @@
   --color-link-rgb: 0 108 122;
   --color-focus: #6657ff;
   --color-focus-rgb: 102 87 255;
+  --color-eyebrow-editorial: #5f4fe8;
+  --color-eyebrow-editorial-rgb: 95 79 232;
+  --color-eyebrow-commercial: #8a5a00;
+  --color-eyebrow-commercial-rgb: 138 90 0;
 
   /* ── V4 layout primitives ── */
   --container-editorial: 90rem;
@@ -180,6 +184,10 @@
   --color-link-rgb: 100 223 242;
   --color-focus: #c7ff32;
   --color-focus-rgb: 199 255 50;
+  --color-eyebrow-editorial: #8b80ff;
+  --color-eyebrow-editorial-rgb: 139 128 255;
+  --color-eyebrow-commercial: #f59e0b;
+  --color-eyebrow-commercial-rgb: 245 158 11;
   --shadow-resting: 0 1px 0 rgb(244 241 233 / 0.04), 0 8px 24px rgb(0 0 0 / 0.25);
   --shadow-raised: 0 16px 44px rgb(0 0 0 / 0.45);
 }
@@ -1256,7 +1264,7 @@ body {
 
 .editorial-selection__eyebrow {
   display: block;
-  color: var(--color-editorial-accent);
+  color: var(--color-eyebrow-editorial);
   font-family: var(--font-family-functional);
   font-size: var(--type-eyebrow-size);
   font-weight: 850;
@@ -1794,7 +1802,7 @@ body {
 
 .editorial-hubs__eyebrow {
   display: block;
-  color: var(--color-editorial-accent);
+  color: var(--color-eyebrow-editorial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
@@ -2054,7 +2062,7 @@ body {
 
 .intent-navigator__eyebrow {
   display: block;
-  color: var(--color-editorial-accent);
+  color: var(--color-eyebrow-editorial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
@@ -2222,7 +2230,7 @@ body {
 
 .guide-highlights__eyebrow {
   display: block;
-  color: var(--color-editorial-accent);
+  color: var(--color-eyebrow-editorial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
@@ -2295,8 +2303,8 @@ body {
   align-self: flex-start;
   padding: 0.15rem 0.55rem;
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--color-editorial-accent) 10%, transparent);
-  color: var(--color-editorial-accent);
+  background: color-mix(in srgb, var(--color-eyebrow-editorial) 10%, transparent);
+  color: var(--color-eyebrow-editorial);
   font-family: var(--font-family-functional);
   font-size: 0.65rem;
   font-weight: 750;
@@ -2442,7 +2450,7 @@ body {
 
 .tool-directory__eyebrow {
   display: block;
-  color: var(--color-commercial-accent, var(--color-editorial-accent));
+  color: var(--color-eyebrow-commercial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
@@ -2648,7 +2656,7 @@ body {
 
 .bonus-deals__eyebrow {
   display: block;
-  color: var(--color-commercial);
+  color: var(--color-eyebrow-commercial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
@@ -2743,7 +2751,7 @@ body {
 }
 
 .bonus-deals__verified {
-  color: var(--color-commercial);
+  color: var(--color-eyebrow-commercial);
   font-family: var(--font-family-functional);
   font-size: 0.62rem;
   font-weight: 900;
@@ -2890,7 +2898,7 @@ body {
 
 .market-showcase__eyebrow {
   display: block;
-  color: var(--color-commercial);
+  color: var(--color-eyebrow-commercial);
   font-family: var(--font-family-functional);
   font-size: 0.72rem;
   font-weight: 800;
