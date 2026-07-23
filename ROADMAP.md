@@ -193,8 +193,8 @@
 | 7.14 | Editorias | ✅ Concluída — hubs ativos com cobertura deduplicada e rotas PT/ES existentes |
 | 7.15 | Resolver hoje | ✅ Concluída — intenções data-driven com rotas reais; Monetização oculta por falta de cobertura |
 | 7.16 | Guias | ✅ Concluída — guias extraídos com prioridade de formato, fallback localizado, sem duplicação |
-| 7.17 | Ferramentas | ⏳ Próxima recomendada |
-| 7.18 | Bônus | ⏳ Pendente |
+| 7.17 | Ferramentas | ✅ Concluída — categorias reais com disclosure comercial, hrefs localizados, ES sem cópia PT |
+| 7.18 | Bônus | ⏳ Próxima recomendada |
 | 7.19 | Radar Market | ⏳ Pendente |
 | 7.20 | Newsletter | ⏳ Pendente |
 | 7.21 | Footer institucional | ⏳ Pendente |

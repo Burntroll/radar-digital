@@ -48,6 +48,13 @@ export interface HomeGuideItem {
   href: string;
 }
 
+export interface HomeToolCategoryItem {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -59,6 +66,7 @@ export interface HomeEditorialData {
   editorialHubItems: HomeHubItem[];
   intentItems: HomeIntentItem[];
   guideItems: HomeGuideItem[];
+  toolCategoryItems: HomeToolCategoryItem[];
 }
 
 interface HomeHubRouteContract {
@@ -336,6 +344,7 @@ export function selectHomeArticles(
     editorialHubItems,
     intentItems,
     guideItems,
+    toolCategoryItems: [],
   };
 }
 
@@ -345,5 +354,23 @@ export async function loadHomeEditorialData(
 ): Promise<HomeEditorialData> {
   const { getCollection } = await import('astro:content');
   const entries = await getCollection('artigos');
-  return selectHomeArticles(entries, locale, buildTime);
+  const editorialData = selectHomeArticles(entries, locale, buildTime);
+
+  // ─── Ferramentas (Task 7.17) ──────────────────────────────────────────────
+  // Categorias de parceiros publicadas. Estrutural — sem filtro de locale.
+  // Descrição resolvida por locale (descriptionEs com fallback para description).
+  const parceiroCategorias = await getCollection(
+    'parceiroCategorias',
+    ({ data }) => data.draft === false,
+  );
+  const toolCategoryItems: HomeToolCategoryItem[] = parceiroCategorias
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(({ id, slug, data }) => ({
+      id,
+      title: data.title,
+      description: locale === 'es' ? (data.descriptionEs ?? data.description) : data.description,
+      href: routePath('parceiros', locale) + '/' + slug,
+    }));
+
+  return { ...editorialData, toolCategoryItems };
 }

@@ -264,9 +264,14 @@ export const ui = {
   'home.guides.empty':          { 'pt-BR': 'Nenhum guia publicado ainda.', 'es': 'Ninguna guía publicada aún.' },
 
   // Home — tools section
+  'home.tools.eyebrow':         { 'pt-BR': 'Ferramentas', 'es': 'Herramientas' },
   'home.tools.desc': {
     'pt-BR': 'Categorias úteis para operações digitais, conteúdo, tráfego e monetização.',
     'es': 'Categorías útiles para operaciones digitales, contenido, tráfico y monetización.',
+  },
+  'home.tools.disclosure': {
+    'pt-BR': 'Conteúdo comercial — links podem gerar comissão.',
+    'es': 'Contenido comercial — los enlaces pueden generar comisión.',
   },
   'home.tools.empty':           { 'pt-BR': 'Diretório em construção.', 'es': 'Directorio en construcción.' },
   'home.tools.cta':             { 'pt-BR': 'Ver ferramentas',    'es': 'Ver herramientas' },

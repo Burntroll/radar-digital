@@ -685,7 +685,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** guias publicados reais com fallback localizado.
 - **Implementação:** `GuideHighlights.astro` compartilhado; loader extrai guias antes da seleção da redação (prioridade de formato), exclui `occupiedEditorialIds`, máx. 3; fallback localizado quando vazio; PT 1 guia, ES 1 guia, sem duplicação.
 
-### 7.17 — Ferramentas
+### 7.17 — Ferramentas ✅
 
 - **Objetivo:** implementar módulo comercial usando categorias/parceiros reais e campos localizados.
 - **Dependências:** 7.16 e política visual de disclosure.
@@ -694,6 +694,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** ES sem cópia PT, disclosure, links, 0/N, teclado.
 - **Risco principal:** vazamento de idioma e opacidade comercial.
 - **Pronto:** conteúdo publicado, localizado e claramente comercial.
+- **Implementação:** `ToolDirectory.astro` compartilhado; loader carrega `parceiroCategorias` publicadas (estrutural, sem filtro de locale), resolve `descriptionEs` com fallback; disclosure comercial visível em PT/ES; 2 categorias com hrefs localizados (`/ferramentas/*`, `/es/herramientas/*`); fallback localizado quando vazio.
 
 ### 7.18 — Bônus
 

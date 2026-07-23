@@ -1,0 +1,58 @@
+---
+import { routePath, t, type Locale } from '../i18n/utils';
+import type { HomeToolCategoryItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeToolCategoryItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const allToolsHref = routePath('parceiros', locale);
+---
+
+<section
+  id="ferramentas"
+  class="tool-directory"
+  aria-labelledby="tool-directory-title"
+  data-tool-directory
+  data-count={items.length}
+>
+  <div class="tool-directory__inner">
+    <header class="tool-directory__header">
+      <div>
+        <span class="tool-directory__eyebrow">{t('home.tools.eyebrow', locale)}</span>
+        <h2 id="tool-directory-title">{t('home.section.ferramentas', locale)}</h2>
+      </div>
+      <p class="tool-directory__desc">{t('home.tools.desc', locale)}</p>
+    </header>
+
+    <p class="tool-directory__disclosure">{t('home.tools.disclosure', locale)}</p>
+
+    {items.length > 0 ? (
+      <ul class="tool-directory__grid">
+        {items.map((item) => (
+          <li data-tool-id={item.id}>
+            <a class="tool-directory__card" href={item.href}>
+              <h3 class="tool-directory__title">{item.title}</h3>
+              <p class="tool-directory__excerpt">{item.description}</p>
+              <span class="tool-directory__cta">
+                {t('home.tools.cta', locale)}
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="tool-directory__empty">
+        <p>{t('home.tools.empty', locale)}</p>
+      </div>
+    )}
+
+    <a class="tool-directory__all" href={allToolsHref}>
+      {t('home.tools.cta', locale)}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
