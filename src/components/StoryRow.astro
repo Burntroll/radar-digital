@@ -40,9 +40,7 @@ const itemNumber = String(index + 1).padStart(2, '0');
       <div class="story-row__media" aria-hidden="true">
         {imageSrc ? (
           <img src={imageSrc} alt="" width="480" height="300" loading="lazy" decoding="async" />
-        ) : (
-          <span>{article.data.emoji || '📡'}</span>
-        )}
+        ) : null}
       </div>
     </a>
   </article>

@@ -34,7 +34,6 @@ const allMarketHref = routePath('market', locale);
         {items.map((item) => (
           <li data-market-id={item.id}>
             <a class="market-showcase__card" href={item.href}>
-              <span class="market-showcase__emoji" aria-hidden="true">{item.emoji}</span>
               <h3 class="market-showcase__title">{item.title}</h3>
               <p class="market-showcase__excerpt">{item.description}</p>
             </a>

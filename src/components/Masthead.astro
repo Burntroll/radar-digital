@@ -35,11 +35,14 @@ const formattedDate = new Intl.DateTimeFormat(dateLocale, {
       <BrandMark />
       <span class="masthead__brand-copy">
         <strong>Radar Digital</strong>
-        <small>{t('masthead.tagline', locale)}</small>
       </span>
     </a>
 
     <div class="masthead__tools">
+      <button class="masthead__search" type="button" data-search-open aria-label={t('masthead.search.label', locale)}>
+        <span aria-hidden="true">⌕</span>
+        <span class="masthead__search-text">{t('masthead.search.placeholder', locale)}</span>
+      </button>
       <a class="masthead__newsletter" href={newsletterHref}>{t('signal.newsletter', locale)}</a>
       <button id="theme-toggle" class="theme-toggle masthead__theme" aria-label={t('theme.toggle', locale)}>
         <svg class="sun-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">

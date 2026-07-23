@@ -1,9 +1,11 @@
 ---
 // ═══════════════════════════════════════════════════════════════════════════
-// NewsletterBlock — bloco visual de newsletter V4
+// NewsletterBlock — bloco de newsletter V4 (conforme mockup aprovado)
 //
-// Apresentação editorial estática e honesta. Sem formulário, input ou botão.
-// A integração real é responsabilidade do Bloco 9 (Plano de Ação 2.2).
+// Apresentação editorial fiel ao mockup: caixa escura, título serif, formulário
+// com input de e-mail e botão "Entrar no radar". O botão permanece DESABILITADO
+// (disabled) porque a integração real pertence ao Bloco 9 — nenhuma inscrição é
+// processada nem simulada. O status "Em preparação" é exibido com honestidade.
 //
 // Props:
 //   locale: Locale — define o idioma do conteúdo
@@ -24,19 +26,8 @@ const { locale } = Astro.props;
   aria-labelledby="newsletter-title"
 >
   <div class="newsletter-block__container">
-    <div class="newsletter-block__card">
-      <!-- Decorative grid dots -->
-      <div class="newsletter-block__dots" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10" cy="10" r="2" fill="currentColor"/><circle cx="30" cy="10" r="2" fill="currentColor"/>
-          <circle cx="50" cy="10" r="2" fill="currentColor"/><circle cx="70" cy="10" r="2" fill="currentColor"/>
-          <circle cx="90" cy="10" r="2" fill="currentColor"/><circle cx="10" cy="30" r="2" fill="currentColor"/>
-          <circle cx="30" cy="30" r="2" fill="currentColor"/><circle cx="50" cy="30" r="2" fill="currentColor"/>
-          <circle cx="70" cy="30" r="2" fill="currentColor"/><circle cx="90" cy="30" r="2" fill="currentColor"/>
-        </svg>
-      </div>
-
-      <div class="newsletter-block__content">
+    <div class="newsletter-block__box">
+      <div class="newsletter-block__copy">
         <span class="newsletter-block__eyebrow">
           {t('home.newsletter.eyebrow' as UIKey, locale)}
         </span>
@@ -48,24 +39,36 @@ const { locale } = Astro.props;
         <p class="newsletter-block__desc">
           {t('home.newsletter.desc' as UIKey, locale)}
         </p>
-
-        <div class="newsletter-block__status">
-          <span class="newsletter-block__pill">
-            {t('home.newsletter.status' as UIKey, locale)}
-          </span>
-        </div>
-
-        <p class="newsletter-block__note">
-          {t('home.newsletter.note' as UIKey, locale)}
-        </p>
       </div>
+
+      <form class="newsletter-block__form" action="#" aria-describedby="newsletter-status">
+        <input
+          type="email"
+          name="email"
+          placeholder={t('home.newsletter.input' as UIKey, locale)}
+          aria-label={t('home.newsletter.input' as UIKey, locale)}
+          disabled
+        />
+        <button type="submit" disabled aria-disabled="true">
+          {t('home.newsletter.button' as UIKey, locale)}
+        </button>
+      </form>
     </div>
+
+    <p class="newsletter-block__status" id="newsletter-status">
+      <span class="newsletter-block__pill">
+        {t('home.newsletter.status' as UIKey, locale)}
+      </span>
+      <span class="newsletter-block__note">
+        {t('home.newsletter.note' as UIKey, locale)}
+      </span>
+    </p>
   </div>
 </section>
 
 <style>
 .newsletter-block {
-  padding: 3.5rem 0;
+  padding: 0 0 2.125rem;
   background: var(--color-canvas);
 }
 
@@ -75,94 +78,164 @@ const { locale } = Astro.props;
   padding: 0 var(--gutter-page);
 }
 
-.newsletter-block__card {
+.newsletter-block__box {
   position: relative;
-  max-width: 48rem;
-  margin: 0 auto;
-  padding: 2.5rem 2rem;
-  border-radius: var(--radius-md);
-  background: var(--color-surface-primary);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-resting);
-  text-align: center;
   overflow: hidden;
+  border-radius: 2.25rem;
+  background: var(--color-editorial-black);
+  color: var(--color-text-inverse);
+  padding: clamp(2.125rem, 6vw, 5.125rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(1.75rem, 4vw, 3.125rem);
 }
 
-.newsletter-block__dots {
+.newsletter-block__box::before {
+  content: '';
   position: absolute;
-  top: -1.25rem;
-  right: -1.875rem;
-  width: 10rem;
-  height: 10rem;
-  color: rgb(var(--color-signal-rgb) / 0.08);
+  width: 26.875rem;
+  height: 26.875rem;
+  right: -10.625rem;
+  top: -11.875rem;
+  border: 1px solid rgb(var(--color-signal-rgb) / 0.55);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4.6875rem rgb(var(--color-signal-rgb) / 0.05),
+    0 0 0 9.375rem rgb(var(--color-signal-rgb) / 0.025);
   pointer-events: none;
 }
 
-:global(.dark) .newsletter-block__dots {
-  color: rgb(var(--color-signal-rgb) / 0.06);
-}
-
-.newsletter-block__content {
+.newsletter-block__copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .newsletter-block__eyebrow {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  background: rgb(var(--color-signal-rgb) / 0.12);
-  color: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-inverse);
   font-family: var(--font-family-functional);
   font-size: var(--type-eyebrow-size);
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  font-weight: 850;
+  letter-spacing: 0.12em;
   line-height: var(--type-eyebrow-leading);
   text-transform: uppercase;
 }
 
+.newsletter-block__eyebrow::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-signal);
+  box-shadow: 0 0 0 0.3rem rgb(var(--color-signal-rgb) / 0.14);
+}
+
 .newsletter-block__title {
-  margin-top: 1rem;
+  margin: 0.75rem 0 0.875rem;
+  color: inherit;
   font-family: var(--font-family-editorial);
-  font-size: var(--type-section-size);
-  font-weight: var(--type-section-weight);
-  line-height: var(--type-section-leading);
-  color: var(--color-text-primary);
+  font-size: clamp(2.2rem, 4.5vw, 5rem);
+  font-weight: var(--type-display-weight);
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .newsletter-block__desc {
-  max-width: 28rem;
-  margin: 0.75rem auto 0;
-  color: var(--color-text-secondary);
+  max-width: 35rem;
+  margin: 0;
+  color: rgb(var(--color-text-inverse-rgb) / 0.63);
   font-family: var(--font-family-functional);
   font-size: var(--type-summary-size);
   line-height: var(--type-summary-leading);
 }
 
+.newsletter-block__form {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 0.5625rem;
+  padding: 0.625rem;
+  border: 1px solid rgb(var(--color-text-inverse-rgb) / 0.15);
+  border-radius: 1.375rem;
+  background: rgb(var(--color-text-inverse-rgb) / 0.08);
+}
+
+.newsletter-block__form input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-inverse);
+  padding: 0 0.875rem;
+  font-family: var(--font-family-functional);
+  font-size: 0.95rem;
+}
+
+.newsletter-block__form input::placeholder {
+  color: rgb(var(--color-text-inverse-rgb) / 0.48);
+}
+
+.newsletter-block__form button {
+  border: 0;
+  border-radius: 0.875rem;
+  background: var(--color-signal);
+  color: var(--color-editorial-black);
+  padding: 1rem 1.375rem;
+  font-family: var(--font-family-functional);
+  font-weight: 950;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.newsletter-block__form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .newsletter-block__status {
-  margin-top: 1.25rem;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem 1rem;
+  font-family: var(--font-family-functional);
 }
 
 .newsletter-block__pill {
   display: inline-block;
-  padding: 0.375rem 1rem;
-  border-radius: 9999px;
-  background: rgb(var(--color-surface-contrast-rgb));
-  color: rgb(var(--color-text-inverse-rgb));
-  font-family: var(--font-family-functional);
-  font-size: 0.8125rem;
-  font-weight: 720;
-  letter-spacing: 0.025em;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: rgb(var(--color-signal-rgb) / 0.14);
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .newsletter-block__note {
-  margin-top: 0.75rem;
   color: var(--color-text-muted);
-  font-family: var(--font-family-functional);
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   line-height: 1.4;
-  max-width: 22rem;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+@media (max-width: 56.25rem) {
+  .newsletter-block__box {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .newsletter-block__form {
+    flex-direction: column;
+  }
+
+  .newsletter-block__form input {
+    min-height: 3.25rem;
+  }
 }
 </style>

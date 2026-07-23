@@ -80,7 +80,6 @@ export interface HomeEditorialData {
   secondaryArticles: HomeArticle[];
   radarNowItems: HomeRadarItem[];
   topicRailItems: HomeTopicItem[];
-  editorialSelectionArticles: HomeArticle[];
   latestPublicationArticles: HomeArticle[];
   editorialHubItems: HomeHubItem[];
   intentItems: HomeIntentItem[];
@@ -279,21 +278,10 @@ export function selectHomeArticles(
     href: routePath('artigos', locale, slug),
   }));
 
-  const guideIds = new Set(guideArticles.map(({ id }) => id));
-  const editorialSelectionArticles = orderedPublishedEntries
-    .filter(({ id, data }) => (
-      activeEditorialFormats.has(data.contentType)
-      && !upperEditorialIds.has(id)
-      && !guideIds.has(id)
-    ))
-    .slice(0, 3);
-  const occupiedEditorialIds = new Set([
-    ...upperEditorialIds,
-    ...editorialSelectionArticles.map(({ id }) => id),
-  ]);
-  const latestPublicationArticles = publishedArticles
-    .filter(({ id }) => !occupiedEditorialIds.has(id))
-    .slice(0, 6);
+  // Últimas publicações: todos os artigos publicados em ordem cronológica
+  // (mais recente primeiro). A deduplicação contra a dobra superior foi
+  // removida por decisão editorial — a seção deve refletir o acervo completo.
+  const latestPublicationArticles = publishedArticles.slice(0, 6);
 
   const topicCoverage = publishedEntries.reduce((coverage, { data }) => {
     for (const topicId of data.topics ?? []) {
@@ -327,8 +315,10 @@ export function selectHomeArticles(
     const routeContract = homeHubRouteContracts[hub.id];
     if (!routeContract) return [];
 
+    // Decisão editorial: exibir todos os hubs ativos com rota pública,
+    // inclusive os ainda sem cobertura (contagem honesta = 0). Amplia a
+    // descoberta de editorias conforme solicitado.
     const coverageCount = hubCoverage.get(hub.id) ?? 0;
-    if (coverageCount === 0) return [];
 
     return [{
       id: hub.id,
@@ -360,7 +350,6 @@ export function selectHomeArticles(
     secondaryArticles,
     radarNowItems,
     topicRailItems,
-    editorialSelectionArticles,
     latestPublicationArticles,
     editorialHubItems,
     intentItems,

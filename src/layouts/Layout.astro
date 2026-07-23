@@ -3,6 +3,7 @@ import { getLocaleFromUrl, localizeRoutePath, t, defaultLocale, getAlternates, t
 import SEO from '../components/SEO.astro';
 import SignalBar from '../components/SignalBar.astro';
 import Masthead from '../components/Masthead.astro';
+import SearchOverlay from '../components/SearchOverlay.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/global.css';
@@ -146,6 +147,8 @@ const canonicalUrl = `${SITE_BASE}${currentPath}`;
         </div>
       </nav>
     </header>
+
+    <SearchOverlay locale={locale} />
 
     <main>
       <slot />

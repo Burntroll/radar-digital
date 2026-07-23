@@ -22,10 +22,6 @@ const color = article?.data.color || 'cyan';
 {article && href ? (
   <article class={`editorial-lead editorial-lead--${color}`} data-editorial-lead data-media-status="placeholder">
     <a class="editorial-lead__link" href={href} aria-labelledby="editorial-lead-title">
-      <span class="editorial-lead__signal" aria-hidden="true">
-        <span>{article.data.emoji || '📡'}</span>
-      </span>
-
       <div class="editorial-lead__content">
         <span class="editorial-lead__kicker">{article.data.subtema}</span>
         <h1 id="editorial-lead-title">{article.data.title}</h1>

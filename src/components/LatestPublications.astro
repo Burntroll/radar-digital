@@ -31,11 +31,19 @@ const visibleArticles = articles.slice(0, 6);
     </header>
 
     {visibleArticles.length > 0 ? (
-      <ol class="latest-publications__list">
-        {visibleArticles.map((article, index) => (
-          <StoryRow article={article} locale={locale} index={index} />
-        ))}
-      </ol>
+      <div class="latest-publications__layout">
+        <ol class="latest-publications__list">
+          {visibleArticles.map((article, index) => (
+            <StoryRow article={article} locale={locale} index={index} />
+          ))}
+        </ol>
+
+        <aside class="latest-publications__rank" aria-labelledby="latest-publications-rank-title">
+          <h3 id="latest-publications-rank-title">{t('home.latest.rank.title', locale)}</h3>
+          <p>{t('home.latest.rank.desc', locale)}</p>
+          <p class="latest-publications__rank-empty">{t('home.latest.rank.empty', locale)}</p>
+        </aside>
+      </div>
     ) : (
       <div class="latest-publications__empty" data-latest-publications-empty>
         <span aria-hidden="true">↗</span>

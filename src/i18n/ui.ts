@@ -63,6 +63,7 @@ export const ui = {
   'footer.section.editorial':  { 'pt-BR': 'Editorias',         'es': 'Secciones' },
   'footer.section.resources':   { 'pt-BR': 'Recursos',          'es': 'Recursos' },
   'footer.section.languages':   { 'pt-BR': 'Idiomas',           'es': 'Idiomas' },
+  'footer.section.institutional': { 'pt-BR': 'Institucional',   'es': 'Institucional' },
   'footer.transparency': {
     'pt-BR': 'Conteúdos comerciais são identificados nos próprios módulos.',
     'es': 'Los contenidos comerciales se identifican en sus propios módulos.',
@@ -79,6 +80,10 @@ export const ui = {
   'masthead.home.label': { 'pt-BR': 'Radar Digital, início', 'es': 'Radar Digital, inicio' },
   'masthead.tagline':    { 'pt-BR': 'Notícias e inteligência', 'es': 'Noticias e inteligencia' },
   'masthead.theme':      { 'pt-BR': 'Tema', 'es': 'Tema' },
+  'masthead.search.label':       { 'pt-BR': 'Abrir busca', 'es': 'Abrir búsqueda' },
+  'masthead.search.placeholder': { 'pt-BR': 'Busque por IA, marketing, ferramentas...', 'es': 'Busca por IA, marketing, herramientas...' },
+  'masthead.search.close':       { 'pt-BR': 'Fechar', 'es': 'Cerrar' },
+  'masthead.search.hints':       { 'pt-BR': 'Agentes de IA,Monetização,Redes sociais,Ferramentas,Creators', 'es': 'Agentes de IA,Monetización,Redes sociales,Herramientas,Creators' },
 
   // V4 — SignalBar
   'signal.label':              { 'pt-BR': 'Radar agora',          'es': 'Radar ahora' },
@@ -127,20 +132,6 @@ export const ui = {
     'es': 'Temas destacados',
   },
 
-  // V4 — Home / Seleção da redação
-  'home.selection.eyebrow': {
-    'pt-BR': 'Seleção da redação',
-    'es': 'Selección de la redacción',
-  },
-  'home.selection.title': {
-    'pt-BR': 'O que merece sua atenção agora',
-    'es': 'Lo que merece tu atención ahora',
-  },
-  'home.selection.rule': {
-    'pt-BR': 'Conteúdos recentes ainda não exibidos na abertura, em ordem de publicação.',
-    'es': 'Contenidos recientes aún no mostrados en la apertura, por orden de publicación.',
-  },
-
   // V4 — Home / Últimas publicações
   'home.latest.eyebrow': {
     'pt-BR': 'Fluxo editorial',
@@ -162,11 +153,20 @@ export const ui = {
     'pt-BR': 'As histórias publicadas já estão nos destaques acima. Novos artigos aparecerão aqui sem repetição.',
     'es': 'Las historias publicadas ya están en los destacados anteriores. Los nuevos artículos aparecerán aquí sin repetición.',
   },
+  'home.latest.rank.title': { 'pt-BR': 'Mais lidas', 'es': 'Más leídas' },
+  'home.latest.rank.desc': {
+    'pt-BR': 'O interesse dos leitores nas últimas 24 horas.',
+    'es': 'El interés de los lectores en las últimas 24 horas.',
+  },
+  'home.latest.rank.empty': {
+    'pt-BR': 'O ranking será exibido quando houver métricas de audiência verificáveis.',
+    'es': 'El ranking se mostrará cuando haya métricas de audiencia verificables.',
+  },
 
   // V4 — Home / Editorias
   'home.hubs.eyebrow': {
-    'pt-BR': 'Cobertura editorial',
-    'es': 'Cobertura editorial',
+    'pt-BR': 'Cobertura ampla',
+    'es': 'Cobertura amplia',
   },
   'home.hubs.title': {
     'pt-BR': 'Um portal. Vários radares.',
@@ -259,7 +259,6 @@ export const ui = {
   'home.intents.eyebrow':       { 'pt-BR': 'Resolver hoje', 'es': 'Resolver hoy' },
   'home.intents.title':         { 'pt-BR': 'O que você quer resolver?', 'es': '¿Qué quieres resolver?' },
   'home.intents.description':   { 'pt-BR': 'Acessos diretos a conteúdos, guias e ferramentas que resolvem sua intenção.', 'es': 'Accesos directos a contenidos, guías y herramientas que resuelven tu intención.' },
-  'home.intents.cta':           { 'pt-BR': 'Acessar', 'es': 'Acceder' },
   'home.intents.a11y':          { 'pt-BR': 'Navegação por intenção', 'es': 'Navegación por intención' },
 
   // Home — article / guide labels
@@ -317,14 +316,16 @@ export const ui = {
   'home.market.empty':          { 'pt-BR': 'Categorias em construção.', 'es': 'Categorías en construcción.' },
   'home.market.cta':            { 'pt-BR': 'Explorar Radar Market', 'es': 'Explorar Radar Market' },
 
-  // Home — newsletter (Task 7.20: apresentação honesta, sem formulário)
-  'home.newsletter.eyebrow':   { 'pt-BR': 'Newsletter',          'es': 'Newsletter' },
-  'home.newsletter.title':     { 'pt-BR': 'O sinal chega em breve', 'es': 'La señal llegará pronto' },
+  // Home — newsletter (mockup V4: form com botão desabilitado — integração no Bloco 9)
+  'home.newsletter.eyebrow':   { 'pt-BR': 'Receba o sinal',       'es': 'Recibe la señal' },
+  'home.newsletter.title':     { 'pt-BR': 'O que importa, antes de virar ruído.', 'es': 'Lo que importa, antes de convertirse en ruido.' },
   'home.newsletter.desc': {
-    'pt-BR': 'Estamos preparando uma newsletter com notícias, análises, ferramentas e oportunidades selecionadas pelo Radar Digital.',
-    'es': 'Estamos preparando una newsletter con noticias, análisis, herramientas y oportunidades seleccionadas por Radar Digital.',
+    'pt-BR': 'Uma curadoria inteligente de notícias, tendências, ferramentas e oportunidades do mercado digital.',
+    'es': 'Una curaduría inteligente de noticias, tendencias, herramientas y oportunidades del mercado digital.',
   },
-  'home.newsletter.status':    { 'pt-BR': 'Em preparação',       'es': 'En preparación' },
+  'home.newsletter.input':     { 'pt-BR': 'Seu melhor e-mail',    'es': 'Tu mejor correo' },
+  'home.newsletter.button':    { 'pt-BR': 'Entrar no radar',      'es': 'Entrar al radar' },
+  'home.newsletter.status':    { 'pt-BR': 'Em preparação',        'es': 'En preparación' },
   'home.newsletter.note':      { 'pt-BR': 'A inscrição será disponibilizada quando a integração estiver pronta.', 'es': 'La suscripción estará disponible cuando la integración esté lista.' },
 
   // Home — empty states

@@ -38,10 +38,6 @@ const dateLocale = getDateLocale(locale);
           data-media-status="placeholder"
         >
           <a class="secondary-lead__link" href={href} aria-labelledby={titleId}>
-            <span class="secondary-lead__signal" aria-hidden="true">
-              <span>{article.data.emoji || '📡'}</span>
-            </span>
-
             <div class="secondary-lead__content">
               <span class="secondary-lead__kicker">{article.data.subtema}</span>
               <h2 id={titleId}>{article.data.title}</h2>

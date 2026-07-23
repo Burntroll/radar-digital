@@ -32,13 +32,9 @@ const { items, locale } = Astro.props as Props;
         {items.map((item) => (
           <li data-intent-id={item.id} data-intent-kind={item.kind}>
             <a class="intent-navigator__card" href={item.href}>
-              <span class="intent-navigator__emoji" aria-hidden="true">{item.emoji}</span>
+              <span class="intent-navigator__media" aria-hidden="true"></span>
               <h3 class="intent-navigator__title">{t(item.titleKey, locale)}</h3>
               <p class="intent-navigator__desc">{t(item.descriptionKey, locale)}</p>
-              <span class="intent-navigator__cta">
-                {t('home.intents.cta', locale)}
-                <span aria-hidden="true">→</span>
-              </span>
             </a>
           </li>
         ))}

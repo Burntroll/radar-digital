@@ -1,0 +1,52 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<div class="search-overlay" data-search-overlay role="dialog" aria-modal="true" aria-label={t('masthead.search.label', locale)}>
+  <div class="search-panel">
+    <div class="search-panel__row">
+      <input type="search" data-search-input placeholder={t('masthead.search.placeholder', locale)} aria-label={t('masthead.search.placeholder', locale)} />
+      <button type="button" data-search-close>{t('masthead.search.close', locale)}</button>
+    </div>
+    <div class="search-hints">
+      {t('masthead.search.hints', locale).split(',').map((hint) => (
+        <span>{hint.trim()}</span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const searchOverlay = document.querySelector<HTMLElement>('[data-search-overlay]');
+  const searchOpen = document.querySelector<HTMLElement>('[data-search-open]');
+  const searchClose = document.querySelector<HTMLElement>('[data-search-close]');
+  const searchInput = document.querySelector<HTMLInputElement>('[data-search-input]');
+
+  const openSearch = () => {
+    if (!searchOverlay) return;
+    searchOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    window.setTimeout(() => searchInput?.focus(), 50);
+  };
+
+  const closeSearch = () => {
+    if (!searchOverlay) return;
+    searchOverlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  searchOpen?.addEventListener('click', openSearch);
+  searchClose?.addEventListener('click', closeSearch);
+  searchOverlay?.addEventListener('click', (event) => {
+    if (event.target === searchOverlay) closeSearch();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeSearch();
+  });
+</script>

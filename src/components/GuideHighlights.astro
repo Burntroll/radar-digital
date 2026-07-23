@@ -7,8 +7,10 @@ interface Props {
   locale: Locale;
 }
 
-const { items, locale } = Astro.props as Props;
+const { items, locale } = Astro.props;
 const allGuidesHref = routePath('guias', locale);
+const featureGuide = items[0] ?? null;
+const listGuides = items.slice(1);
 ---
 
 <section
@@ -27,28 +29,35 @@ const allGuidesHref = routePath('guias', locale);
       <p class="guide-highlights__desc">{t('home.guides.desc', locale)}</p>
     </header>
 
-    {items.length > 0 ? (
-      <ul class="guide-highlights__grid">
-        {items.map((item) => (
-          <li data-guide-id={item.id}>
-            <a class="guide-highlights__card" href={item.href}>
-              <span class="guide-highlights__emoji" aria-hidden="true">{item.emoji}</span>
-              {item.guideType && (
-                <span class="guide-highlights__badge">{item.guideType}</span>
-              )}
-              <h3 class="guide-highlights__title">{item.title}</h3>
-              <p class="guide-highlights__excerpt">{item.excerpt}</p>
-              <span class="guide-highlights__cta">
-                {t('home.article.guide.read', locale)}
-                <span aria-hidden="true">→</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+    {featureGuide ? (
+      <div class="guide-highlights__layout">
+        <a class="guide-feature" href={featureGuide.href}>
+          <div class="guide-feature__content">
+            <span class="guide-feature__kicker">{t('home.article.guide.badge', locale)}</span>
+            <h3 class="guide-feature__title">{featureGuide.title}</h3>
+            <div class="guide-feature__meta">
+              {featureGuide.guideType && <span>{featureGuide.guideType}</span>}
+            </div>
+          </div>
+        </a>
+
+        {listGuides.length > 0 && (
+          <div class="guide-list">
+            {listGuides.map((item, index) => (
+              <a class="guide-item" href={item.href} data-guide-id={item.id}>
+                <span class="guide-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <span class="guide-item__copy">
+                  <h4>{item.title}</h4>
+                  {item.guideType && <small>{item.guideType}</small>}
+                </span>
+                <span class="guide-item__arrow" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
     ) : (
       <div class="guide-highlights__empty">
-        <span class="guide-highlights__emoji" aria-hidden="true">📋</span>
         <p>{t('home.guides.empty', locale)}</p>
       </div>
     )}

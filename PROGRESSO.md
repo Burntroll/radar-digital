@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 23/07/2026 — Bloco 7 concluído (Tasks 7.0–7.27). V4 estável. Recomendação: retomar Bloco 6.
+> **Última atualização:** 23/07/2026 — Sessão de refinamento visual V4 (16 itens da sessão anterior + ajustes de revisão): cursor pointer nas pills EM FOCO, kickers em pílula verde simétricos (absolute, offset unificado), pills do topic-rail transparentes com hairline (mockup), overlay de busca movido para fora do header (backdrop-filter quebrava position:fixed — clique fora agora fecha), anel de foco do input da busca em verde-sinal, cards Resolver Hoje sem "ACESSAR" com bloco de mídia escuro (contraste no light), seção Seleção da Redação removida por completo (componente, CSS, i18n, dados — decisão editorial: não renderizava com o acervo atual), marca "Radar Digital" em Georgia 600/#10131A conforme mockup, favicon RD. Tudo não commitado.
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
 > **Checkpoint final do Bloco 7:** `42c277d` — `docs: close Bloco 7 checkpoint — V4 stable, recommend Bloco 6`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`

@@ -5,7 +5,6 @@ import EditorialLead from '../components/EditorialLead.astro';
 import SecondaryLeads from '../components/SecondaryLeads.astro';
 import RadarNow from '../components/RadarNow.astro';
 import TopicRail from '../components/TopicRail.astro';
-import EditorialSelection from '../components/EditorialSelection.astro';
 import LatestPublications from '../components/LatestPublications.astro';
 import EditorialHubs from '../components/EditorialHubs.astro';
 import IntentNavigator from '../components/IntentNavigator.astro';
@@ -25,7 +24,6 @@ const {
   secondaryArticles: artigosSecundarios,
   radarNowItems: radarAgora,
   topicRailItems: assuntosEmDestaque,
-  editorialSelectionArticles: selecaoDaRedacao,
   latestPublicationArticles: ultimasPublicacoes,
   editorialHubItems: editorias,
   intentItems: intencaoResolver,
@@ -44,10 +42,8 @@ const {
   <!-- ════════════════════════════════════════════════ -->
   <!-- ABERTURA EDITORIAL -->
   <!-- ════════════════════════════════════════════════ -->
-  <section class="home-opening" aria-labelledby="home-opening-label">
+  <section class="home-opening">
     <div class="home-opening__inner">
-      <p class="home-opening__label" id="home-opening-label">{t('home.section.leia', locale)}</p>
-
       <div class:list={['home-opening__grid', { 'home-opening__grid--no-secondary': artigosSecundarios.length === 0 }]}>
 
           <!-- COLUNA PRINCIPAL (2/3): Artigo Principal -->
@@ -72,8 +68,6 @@ const {
   </section>
 
   <TopicRail items={assuntosEmDestaque} locale={locale} />
-
-  <EditorialSelection articles={selecaoDaRedacao} locale={locale} />
 
   <IntentNavigator items={intencaoResolver} locale={locale} />
 
