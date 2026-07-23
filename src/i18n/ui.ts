@@ -277,11 +277,17 @@ export const ui = {
   'home.tools.cta':             { 'pt-BR': 'Ver ferramentas',    'es': 'Ver herramientas' },
 
   // Home — bonus section
+  'home.bonus.eyebrow':         { 'pt-BR': 'Radar de oportunidades', 'es': 'Radar de oportunidades' },
   'home.bonus.desc': {
     'pt-BR': 'Condições úteis para ferramentas do mercado digital, com status claro.',
     'es': 'Condiciones útiles para herramientas del mercado digital, con estado claro.',
   },
+  'home.bonus.disclosure': {
+    'pt-BR': 'Conteúdo comercial — somente ofertas verificadas e vigentes. Links podem gerar comissão.',
+    'es': 'Contenido comercial — solo ofertas verificadas y vigentes. Los enlaces pueden generar comisión.',
+  },
   'home.bonus.verified':        { 'pt-BR': '✓ verificado',       'es': '✓ verificado' },
+  'home.bonus.code':            { 'pt-BR': 'Código',             'es': 'Código' },
   'home.bonus.empty':           { 'pt-BR': 'Nenhum bônus verificado no momento.', 'es': 'Ningún bono verificado por el momento.' },
   'home.bonus.cta':             { 'pt-BR': 'Ver bônus',          'es': 'Ver bonos' },
 

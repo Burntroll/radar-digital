@@ -55,6 +55,17 @@ export interface HomeToolCategoryItem {
   href: string;
 }
 
+export interface HomeBonusItem {
+  id: string;
+  productName: string;
+  description: string;
+  benefit: string | null;
+  promoCode: string;
+  monogram: string;
+  verifiedAt: string | null;
+  href: string;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -67,6 +78,7 @@ export interface HomeEditorialData {
   intentItems: HomeIntentItem[];
   guideItems: HomeGuideItem[];
   toolCategoryItems: HomeToolCategoryItem[];
+  bonusItems: HomeBonusItem[];
 }
 
 interface HomeHubRouteContract {
@@ -345,6 +357,7 @@ export function selectHomeArticles(
     intentItems,
     guideItems,
     toolCategoryItems: [],
+    bonusItems: [],
   };
 }
 
@@ -372,5 +385,33 @@ export async function loadHomeEditorialData(
       href: routePath('parceiros', locale) + '/' + slug,
     }));
 
-  return { ...editorialData, toolCategoryItems };
+  // ─── Bônus (Task 7.18) ────────────────────────────────────────────────────
+  // Somente ofertas verificadas E vigentes no locale corrente.
+  // Vigência: expiresAt nulo ou posterior ao build. Expirados/unconfirmed
+  // permanecem ocultos — nenhum cupom é exibido sem verificação.
+  const buildTimestamp = buildTime.getTime();
+  const bonusEntries = await getCollection(
+    'bonuses',
+    ({ data }) => (
+      data.draft === false
+      && data.status === 'verified'
+      && (data.locale || 'pt-BR') === locale
+      && (data.expiresAt === null || data.expiresAt.getTime() > buildTimestamp)
+    ),
+  );
+  const bonusItems: HomeBonusItem[] = bonusEntries
+    .sort((a, b) => a.data.order - b.data.order)
+    .slice(0, 3)
+    .map(({ id, data }) => ({
+      id,
+      productName: data.productName,
+      description: data.description,
+      benefit: data.benefit ?? null,
+      promoCode: data.promoCode,
+      monogram: data.productName.slice(0, 2).toUpperCase(),
+      verifiedAt: data.verifiedAt ?? null,
+      href: routePath('bonus', locale) + '#' + data.category,
+    }));
+
+  return { ...editorialData, toolCategoryItems, bonusItems };
 }

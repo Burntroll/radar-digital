@@ -1,0 +1,62 @@
+---
+import { routePath, t, type Locale } from '../i18n/utils';
+import type { HomeBonusItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeBonusItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const allBonusHref = routePath('bonus', locale);
+---
+
+<section
+  id="bonus"
+  class="bonus-deals"
+  aria-labelledby="bonus-deals-title"
+  data-bonus-deals
+  data-count={items.length}
+>
+  <div class="bonus-deals__inner">
+    <header class="bonus-deals__header">
+      <div>
+        <span class="bonus-deals__eyebrow">{t('home.bonus.eyebrow', locale)}</span>
+        <h2 id="bonus-deals-title">{t('home.section.bonus', locale)}</h2>
+      </div>
+      <p class="bonus-deals__desc">{t('home.bonus.desc', locale)}</p>
+    </header>
+
+    <p class="bonus-deals__disclosure">{t('home.bonus.disclosure', locale)}</p>
+
+    {items.length > 0 ? (
+      <ul class="bonus-deals__grid">
+        {items.map((item) => (
+          <li data-bonus-id={item.id}>
+            <a class="bonus-deals__card" href={item.href}>
+              <div class="bonus-deals__top">
+                <span class="bonus-deals__logo" aria-hidden="true">{item.monogram}</span>
+                <span class="bonus-deals__verified">{t('home.bonus.verified', locale)}</span>
+              </div>
+              <h3 class="bonus-deals__name">{item.productName}</h3>
+              <p class="bonus-deals__excerpt">{item.description}</p>
+              <div class="bonus-deals__coupon">
+                <span>{t('home.bonus.code', locale)}</span>
+                <code>{item.promoCode}</code>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="bonus-deals__empty">
+        <p>{t('home.bonus.empty', locale)}</p>
+      </div>
+    )}
+
+    <a class="bonus-deals__all" href={allBonusHref}>
+      {t('home.bonus.cta', locale)}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

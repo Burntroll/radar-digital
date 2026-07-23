@@ -696,7 +696,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** conteúdo publicado, localizado e claramente comercial.
 - **Implementação:** `ToolDirectory.astro` compartilhado; loader carrega `parceiroCategorias` publicadas (estrutural, sem filtro de locale), resolve `descriptionEs` com fallback; disclosure comercial visível em PT/ES; 2 categorias com hrefs localizados (`/ferramentas/*`, `/es/herramientas/*`); fallback localizado quando vazio.
 
-### 7.18 — Bônus
+### 7.18 — Bônus ✅
 
 - **Objetivo:** exibir somente ofertas verificadas, vigentes e localizadas.
 - **Dependências:** 7.17 e regra formal de vigência.
@@ -705,6 +705,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** status, expiração, `verifiedAt`, locale, copy/disclosure.
 - **Risco principal:** publicar oferta vencida ou não verificada.
 - **Pronto:** regras automatizadas e fallback honesto sem códigos fictícios.
+- **Implementação:** `BonusDeals.astro` compartilhado (op-cards V4: monograma, badge verificado, cupom em `code`); loader filtra `status === 'verified'` E vigentes (`expiresAt` nulo ou posterior ao build) no locale, ordem por `order`, máx. 3; disclosure comercial visível; PT/ES renderizam RedTrack, AdHeart, Anstrex (ordem aprovada); expirados/unconfirmed ocultos.
 
 ### 7.19 — Radar Market
 

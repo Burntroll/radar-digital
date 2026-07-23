@@ -32,3 +32,6 @@ graphify-out/
 
 # Astro
 .astro/
+
+# Hermes agent attachments (internal storage, not project content)
+.hermes/
