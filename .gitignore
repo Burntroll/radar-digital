@@ -35,3 +35,9 @@ graphify-out/
 
 # Hermes agent attachments (internal storage, not project content)
 .hermes/
+
+# Perfil pessoal do usuário (instruções para LLMs)
+AGENTS.md
+
+# Plano de Ação do projeto (design, tasks, roadmap)
+docs/plano-de-acao-2.2.md
