@@ -201,7 +201,7 @@
 | 7.22 | Consolidação ES | ✅ Concluída — auditoria de paridade PT/ES: 104 chaves completas, zero fallback PT, rotas/datas/comercial localizados, canonical/hreflang bidirecional, paridade visual desktop+mobile (M1), remoto R1. Sem alteração de código. |
 | 7.23 | Dark mode | ✅ Concluída — tokens dark completos, 21/22 componentes só usam var(), 1 fix (BrandMark ring → token), zero light leaks, contraste AA/AAA, flash prevention e toggle validados PT/ES. |
 | 7.24 | Responsividade | ✅ Concluída — 9 breakpoints (320–1920px) + zoom 200%: zero overflow estrutural, ordem DOM=visual, sticky 126px correto, nav mobile→desktop em 1024px, PT/ES idênticos. Sem alteração de código. |
-| 7.25 | Acessibilidade | ⏳ Pendente |
+| 7.25 | Acessibilidade | ✅ Concluída — axe-core: 22→9 nodes (todos aria-hidden decorativos), 0 violações em texto acessível. Fixes: tokens eyebrow AA, ad-slot opacity, badge/verified/footer portal. Landmarks documentados. Reduced motion e foco visível validados. |
 | 7.26 | Imagens e performance | ⏳ Pendente |
 | 7.27 | Documentação e checkpoint final | ⏳ Pendente |
 
