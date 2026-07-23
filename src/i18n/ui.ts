@@ -54,10 +54,23 @@ export const ui = {
   },
 
   // Footer
-  'footer.copyright':   { 'pt-BR': 'Radar Digital © 2026', 'es': 'Radar Digital © 2026' },
-  'footer.privacidade': { 'pt-BR': 'Privacidade',    'es': 'Privacidad' },
-  'footer.termos':      { 'pt-BR': 'Termos',         'es': 'Términos' },
-  'footer.contato':     { 'pt-BR': 'Contato',        'es': 'Contacto' },
+  'footer.copyright':    { 'pt-BR': '© 2026 Radar Digital',   'es': '© 2026 Radar Digital' },
+  'footer.home.label':   { 'pt-BR': 'Radar Digital, início',  'es': 'Radar Digital, inicio' },
+  'footer.description': {
+    'pt-BR': 'Um portal para entender as mudanças que estão redesenhando tecnologia, marketing, negócios e cultura digital.',
+    'es': 'Un portal para entender los cambios que están rediseñando la tecnología, el marketing, los negocios y la cultura digital.',
+  },
+  'footer.section.editorial':  { 'pt-BR': 'Editorias',         'es': 'Secciones' },
+  'footer.section.resources':   { 'pt-BR': 'Recursos',          'es': 'Recursos' },
+  'footer.section.languages':   { 'pt-BR': 'Idiomas',           'es': 'Idiomas' },
+  'footer.transparency': {
+    'pt-BR': 'Conteúdos comerciais são identificados nos próprios módulos.',
+    'es': 'Los contenidos comerciales se identifican en sus propios módulos.',
+  },
+  'footer.portal': {
+    'pt-BR': 'Radar Digital — captando sinais, entregando valor.',
+    'es': 'Radar Digital — captando señales, entregando valor.',
+  },
 
   // Theme toggle
   'theme.toggle':       { 'pt-BR': 'Alternar tema',  'es': 'Cambiar tema' },
