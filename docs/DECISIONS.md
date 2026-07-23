@@ -658,3 +658,37 @@ Esta decisão deve ser revista somente se ocorrer um dos eventos abaixo:
 - checkpoint 7.27 identificar conflito estrutural não resolvível pelas tasks previstas.
 
 Qualquer revisão exige nova decisão documentada; não deve ocorrer por ajuste incidental de componente.
+
+---
+
+## ADR: Task 5.8 — Auditoria de acessibilidade por teclado da navegação
+
+**Contexto:**
+
+O ambiente disponível permitiu:
+- testes de teclado desktop em PT e ES (Enter, Space, Tab, Escape, Shift+Tab, exclusividade entre disclosures, clique externo, retorno de foco);
+- inspeção de semântica e ARIA (aria-expanded, aria-current, aria-label, role, aria-modal, inert);
+- testes programáticos do painel mobile (foco inicial, focus trap, inert, scroll lock, Escape).
+
+O ambiente não permitiu:
+- viewport mobile real para 390px e 768px (window.resizeTo sem efeito);
+- redimensionamento real de janela para testar transição 1023px ↔ 1024px;
+- teste real com leitor de tela (nenhuma ferramenta disponível).
+
+Nenhuma falha de teclado foi reproduzida nos cenários testados.
+
+**Decisão:**
+
+1. Não modificar código sem falha reproduzida.
+2. Encerrar a auditoria inicial da navegação como baseline, sem alteração de código.
+3. Transferir os testes residuais (leitor de tela, viewport mobile real, breakpoint transition, mobile ES real) para a Task 7.25 — Acessibilidade (ROADMAP).
+4. Manter esses testes como condição obrigatória antes do lançamento.
+
+**Consequências:**
+- Nenhuma correção na navegação foi criada.
+- Não existe dívida de código comprovada nesta task.
+- Permanece uma dívida de **validação** (não de código).
+- A dívida de validação não deve ser confundida com falha conhecida.
+- A próxima task (7.20 — Newsletter) pode ser aberta somente depois da publicação completa deste checkpoint documental.
+
+**Status:** ✅ Documentado — baseline `658f215`.

@@ -155,7 +155,7 @@
 || 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus promovidos a anchors independentes — ícones removidos no commit `bd78ec4`, links exclusivamente textuais) | ✅ Concluído |
 ||| 5.6 | Menu do Radar Market | ✅ Concluído sem submenu público — anchor mantido; submenu diferido por ausência de conteúdo comercial elegível |
 ||| 5.7 | Implementar menu mobile | ✅ Concluído — implementado, publicado em master (SHA 6843fc4), validado em CI e Vercel; mobile < 1024 px com hamburger, painel e accordions; desktop preservado a partir de 1024 px; 41 páginas e 28 URLs mantidas |
-|| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
+||| 5.8 | Validar teclado e leitores de tela | ✅ Concluída como auditoria de baseline — sem correção de código necessária. Desktop PT/ES validado. Testes de leitor de tela, viewport mobile real e transição de breakpoints transferidos para a Task 7.25. |
 
 ---
 

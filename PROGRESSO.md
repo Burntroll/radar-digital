@@ -3,7 +3,7 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 20/07/2026 — reportagem principal da capa V4 implementada
+> **Última atualização:** 23/07/2026 — Task 5.8 encerrada como auditoria de baseline da navegação, sem alterações de código
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
 > **GitHub Actions run 29454165474:** sucesso ✅
@@ -50,6 +50,7 @@
 - [x] **Task 7.17 — Ferramentas V4** — `ToolDirectory` compartilhado substitui a seção inline legada; loader carrega `parceiroCategorias` publicadas (estrutural, sem filtro de locale), resolve `descriptionEs` com fallback para `description`; disclosure comercial visível em PT/ES; 2 categorias (Trackers, Antidetect Browsers) com hrefs localizados (`/ferramentas/*`, `/es/herramientas/*`); ES sem cópia PT; fallback localizado quando vazio.
 - [x] **Task 7.18 — Bônus V4** — `BonusDeals` compartilhado (op-cards V4 com monograma, badge verificado e cupom em `code`) substitui a seção inline legada; loader filtra somente `status === 'verified'` E vigentes (`expiresAt` nulo ou posterior ao build) no locale corrente, ordena por `order`, máx. 3; PT/ES renderizam RedTrack, AdHeart e Anstrex (ordem aprovada no Plano 2.2) com códigos reais e hrefs localizados (`/bonus`, `/es/bonos`); expirados (SMS-Activate) e não confirmados (Keitaro, Proxy-Seller) permanecem ocultos; disclosure comercial visível; fallback localizado quando vazio.
 - [x] **Task 7.19 — Radar Market V4** — `MarketShowcase` compartilhado substitui a seção inline legada; loader filtra `marketCategorias` publicadas no locale, ordena por `order`; PT/ES renderizam 4 categorias na ordem aprovada (IA & Automação, Tráfego & Operação, Social & Conteúdo, Cursos & Treinamentos); placeholder draft permanece oculto; disclosure comercial visível; links para `/market` e `/es/market`; fallback localizado quando vazio.
+- [x] **Task 5.8 — Auditoria de acessibilidade por teclado da navegação** — Baseline auditado `658f215`. Desktop PT e ES validados: Enter, Space, Tab, Escape, exclusividade entre disclosures, clique externo, `aria-expanded` sincronizado, foco visível, `aria-current`. Mobile: foco inicial no primeiro link do painel, focus trap com 14 elementos, inert, scroll lock, Escape fecha e restaura. Nenhuma falha de teclado reproduzida. **Sem alteração de código.** Testes de leitor de tela, viewport mobile real e transição de breakpoints transferidos para a Task 7.25 (ROADMAP).
 
 ### Conteúdo & Collections
 - [x] **Content Collections** — Zod schemas para todas as coleções
@@ -108,7 +109,7 @@
 | 5.5 | Menu de Recursos — implementado (disclosure mantido com Guias; Ferramentas e Bônus promovidos a anchors independentes — ícones removidos no commit `bd78ec4`, links exclusivamente textuais) | ✅ Concluído |
 || 5.6 | Menu do Radar Market (anchor principal mantido; sem submenu público neste ciclo — sem conteúdo comercial elegível) | ✅ Concluído |
 || 5.7 | Implementar menu mobile — dedicado, responsivo (< 1024 px), com hamburger, painel, accordions, locale e tema; navbar desktop preservado | ✅ Concluído |
-| 5.8 | Validar teclado e leitores de tela | ⏳ Pendente |
+|| **5.8** | **Validar teclado e leitores de tela** | **✅ Concluída como auditoria de baseline — sem correção de código necessária. Testes de leitor de tela, viewport mobile real e transição de breakpoints transferidos para a Task 7.25 (ROADMAP).** |
 
 #### Regressão visual do seletor PT/ES — encerrada
 
@@ -307,7 +308,7 @@ Implementada nos commits `e2aef6d` e `8dade9c`. Validado em PT e ES.
 > **Task 7.19 concluída:** `MarketShowcase` substitui a seção inline legada por vitrine V4 com disclosure; 4 categorias PT/ES na ordem aprovada, placeholder draft oculto, links localizados para `/market` e `/es/market`.
 > **Próxima task técnica recomendada:** **7.20 — Newsletter**, apresentação V4 sem simular inscrição; integração real permanece no Bloco 9.
 > **Prioridade dos blocos:** Bloco 7 é a prioridade atual; Bloco 6 será retomado depois da estabilização da home.
-> **Bloco 5 (Navegação e mega menus):** em andamento — Tasks 5.1 a 5.6 concluídas, 5.7 concluída, 5.8 pendente.
+> **Bloco 5 (Navegação e mega menus):** ✅ concluído — Tasks 5.1 a 5.7 implementadas, 5.8 encerrada como auditoria de baseline (sem correção de código).
 > **Regressão visual do seletor PT/ES:** encerrada (commit `ef99fb9` — `fix: detach locale dropdown from nav overflow`).
 > **Editorial Cream surfaces:** publicadas em `39970e2` — 7 tokens de superfícies e bordas do light mode; primeiro estágio parcialmente aplicado.
 > **Neutros de texto:** secondary `#50504c` e muted `#696760` publicados em `5a41d88`; estágio 2 parcialmente iniciado; papéis funcionais cromáticos e estágios 3 a 5 futuros.
