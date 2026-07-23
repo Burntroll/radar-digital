@@ -209,7 +209,7 @@ function linkHref(item: NavLinkItem): string {
     const openLabel = toggle.dataset.labelOpen || 'Abrir menu';
     const closeLabel = toggle.dataset.labelClose || 'Fechar menu';
     const main = document.querySelector<HTMLElement>('main');
-    const footer = document.querySelector<HTMLElement>('footer');
+    const footer = document.querySelector<HTMLElement>('[data-site-footer]');
     const desktopQuery = window.matchMedia('(min-width: 1024px)');
     const accordions = Array.from(panel.querySelectorAll<HTMLDetailsElement>('.mobile-accordion'));
     let previousOverflow = '';
