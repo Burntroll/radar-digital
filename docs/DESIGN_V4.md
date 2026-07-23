@@ -727,6 +727,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** labels, erros/estado desabilitado, PT/ES, teclado, dark.
 - **Risco principal:** falso sucesso ou coleta sem governança.
 - **Pronto:** CTA/formulário descreve a capacidade real e é acessível.
+- **Implementação:** `NewsletterBlock.astro` compartilhado substitui blocos inline PT/ES. Apresentação editorial estática e honesta: sem `<form>`, `<input>`, `<button>`, `onsubmit`, `alert()` ou textos de assinatura funcional. Todo texto via `t()`. Conteúdo PT: "Newsletter / O sinal chega em breve / Em preparação". ES: "Newsletter / La señal llegará pronto / En preparación". Âncoras: `/#newsletter` e `/es/#newsletter`. Tokens V4, sem cyan legado. Light/dark validados. Publicado em `7ce36d7` (23/07/2026). 41 páginas, 28 URLs. Integração real permanece no Bloco 9; footer na Task 7.21; responsividade na 7.24; acessibilidade na 7.25.
 
 ### 7.21 — Footer institucional
 
