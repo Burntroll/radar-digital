@@ -198,7 +198,7 @@
 | 7.19 | Radar Market | ✅ Concluída — 4 categorias PT/ES na ordem aprovada, placeholder oculto, disclosure |
 || 7.20 | Newsletter | ✅ Concluída — NewsletterBlock compartilhado PT/ES, apresentação estática e honesta, sem formulário ou inscrição simulada; publicada no commit 7ce36d7 e validada remotamente. |
 || 7.21 | Footer institucional | ✅ Concluída — SiteFooter compartilhado PT/ES com rotas reais, disclosure e fix de inert (`59c5a10`). Push autorizado. |
-| 7.22 | Consolidação ES | ⏳ Pendente |
+| 7.22 | Consolidação ES | ✅ Concluída — auditoria de paridade PT/ES: 104 chaves completas, zero fallback PT, rotas/datas/comercial localizados, canonical/hreflang bidirecional, paridade visual desktop+mobile (M1), remoto R1. Sem alteração de código. |
 | 7.23 | Dark mode | ⏳ Pendente |
 | 7.24 | Responsividade | ⏳ Pendente |
 | 7.25 | Acessibilidade | ⏳ Pendente |
