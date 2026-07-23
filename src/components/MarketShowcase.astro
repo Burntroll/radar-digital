@@ -1,0 +1,55 @@
+---
+import { routePath, t, type Locale } from '../i18n/utils';
+import type { HomeMarketCategoryItem } from '../utils/homeData';
+
+interface Props {
+  items: HomeMarketCategoryItem[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props as Props;
+const allMarketHref = routePath('market', locale);
+---
+
+<section
+  id="market"
+  class="market-showcase"
+  aria-labelledby="market-showcase-title"
+  data-market-showcase
+  data-count={items.length}
+>
+  <div class="market-showcase__inner">
+    <header class="market-showcase__header">
+      <div>
+        <span class="market-showcase__eyebrow">{t('home.market.eyebrow', locale)}</span>
+        <h2 id="market-showcase-title">{t('home.section.market', locale)}</h2>
+      </div>
+      <p class="market-showcase__desc">{t('home.market.desc', locale)}</p>
+    </header>
+
+    <p class="market-showcase__disclosure">{t('home.market.disclosure', locale)}</p>
+
+    {items.length > 0 ? (
+      <ul class="market-showcase__grid">
+        {items.map((item) => (
+          <li data-market-id={item.id}>
+            <a class="market-showcase__card" href={item.href}>
+              <span class="market-showcase__emoji" aria-hidden="true">{item.emoji}</span>
+              <h3 class="market-showcase__title">{item.title}</h3>
+              <p class="market-showcase__excerpt">{item.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="market-showcase__empty">
+        <p>{t('home.market.empty', locale)}</p>
+      </div>
+    )}
+
+    <a class="market-showcase__all" href={allMarketHref}>
+      {t('home.market.cta', locale)}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

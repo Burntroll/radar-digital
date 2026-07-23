@@ -292,9 +292,14 @@ export const ui = {
   'home.bonus.cta':             { 'pt-BR': 'Ver bônus',          'es': 'Ver bonos' },
 
   // Home — market section
+  'home.market.eyebrow':        { 'pt-BR': 'Vitrine comercial', 'es': 'Vitrina comercial' },
   'home.market.desc': {
     'pt-BR': 'Produtos, cursos e soluções para quem trabalha com marketing, IA e monetização.',
     'es': 'Productos, cursos y soluciones para quienes trabajan con marketing, IA y monetización.',
+  },
+  'home.market.disclosure': {
+    'pt-BR': 'Conteúdo comercial — itens exibidos somente quando publicados e verificados.',
+    'es': 'Contenido comercial — los items se muestran solo cuando están publicados y verificados.',
   },
   'home.market.empty':          { 'pt-BR': 'Categorias em construção.', 'es': 'Categorías en construcción.' },
   'home.market.cta':            { 'pt-BR': 'Explorar Radar Market', 'es': 'Explorar Radar Market' },

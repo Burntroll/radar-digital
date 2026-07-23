@@ -66,6 +66,14 @@ export interface HomeBonusItem {
   href: string;
 }
 
+export interface HomeMarketCategoryItem {
+  id: string;
+  title: string;
+  description: string;
+  emoji: string;
+  href: string;
+}
+
 export interface HomeEditorialData {
   publishedArticles: HomeArticle[];
   leadArticle: HomeArticle | null;
@@ -79,6 +87,7 @@ export interface HomeEditorialData {
   guideItems: HomeGuideItem[];
   toolCategoryItems: HomeToolCategoryItem[];
   bonusItems: HomeBonusItem[];
+  marketCategoryItems: HomeMarketCategoryItem[];
 }
 
 interface HomeHubRouteContract {
@@ -358,6 +367,7 @@ export function selectHomeArticles(
     guideItems,
     toolCategoryItems: [],
     bonusItems: [],
+    marketCategoryItems: [],
   };
 }
 
@@ -413,5 +423,23 @@ export async function loadHomeEditorialData(
       href: routePath('bonus', locale) + '#' + data.category,
     }));
 
-  return { ...editorialData, toolCategoryItems, bonusItems };
+  // ─── Radar Market (Task 7.19) ─────────────────────────────────────────────
+  // Categorias do Market publicadas no locale corrente. A vitrine expõe apenas
+  // as categorias reais; itens comerciais só aparecem quando publicados e
+  // elegíveis — o placeholder draft permanece oculto (estado transparente).
+  const marketCategorias = await getCollection(
+    'marketCategorias',
+    ({ data }) => data.draft === false && data.locale === locale,
+  );
+  const marketCategoryItems: HomeMarketCategoryItem[] = marketCategorias
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(({ id, data }) => ({
+      id,
+      title: data.title,
+      description: data.description,
+      emoji: data.emoji || '🛒',
+      href: routePath('market', locale),
+    }));
+
+  return { ...editorialData, toolCategoryItems, bonusItems, marketCategoryItems };
 }

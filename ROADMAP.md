@@ -195,8 +195,8 @@
 | 7.16 | Guias | ✅ Concluída — guias extraídos com prioridade de formato, fallback localizado, sem duplicação |
 | 7.17 | Ferramentas | ✅ Concluída — categorias reais com disclosure comercial, hrefs localizados, ES sem cópia PT |
 | 7.18 | Bônus | ✅ Concluída — somente verified+vigentes, ordem aprovada, disclosure, expirados ocultos |
-| 7.19 | Radar Market | ⏳ Próxima recomendada |
-| 7.20 | Newsletter | ⏳ Pendente |
+| 7.19 | Radar Market | ✅ Concluída — 4 categorias PT/ES na ordem aprovada, placeholder oculto, disclosure |
+| 7.20 | Newsletter | ⏳ Próxima recomendada |
 | 7.21 | Footer institucional | ⏳ Pendente |
 | 7.22 | Consolidação ES | ⏳ Pendente |
 | 7.23 | Dark mode | ⏳ Pendente |

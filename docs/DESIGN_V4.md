@@ -707,7 +707,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Pronto:** regras automatizadas e fallback honesto sem códigos fictícios.
 - **Implementação:** `BonusDeals.astro` compartilhado (op-cards V4: monograma, badge verificado, cupom em `code`); loader filtra `status === 'verified'` E vigentes (`expiresAt` nulo ou posterior ao build) no locale, ordem por `order`, máx. 3; disclosure comercial visível; PT/ES renderizam RedTrack, AdHeart, Anstrex (ordem aprovada); expirados/unconfirmed ocultos.
 
-### 7.19 — Radar Market
+### 7.19 — Radar Market ✅
 
 - **Objetivo:** apresentar categorias e somente itens comerciais públicos elegíveis.
 - **Dependências:** 7.17 e cobertura de Market.
@@ -716,6 +716,7 @@ Cada task abaixo é pequena, fechada e sequencial. Uma task não autoriza itens 
 - **Validação:** categorias PT/ES, status dos itens, links, zero itens.
 - **Risco principal:** vitrine vazia mascarada por conteúdo demo.
 - **Pronto:** categorias reais e estado transparente; itens apenas quando publicados.
+- **Implementação:** `MarketShowcase.astro` compartilhado; loader filtra `marketCategorias` publicadas no locale, ordena por `order`; PT/ES renderizam 4 categorias (ordem aprovada no Plano 2.2); placeholder draft oculto; disclosure comercial visível; link para `/market` e `/es/market`; fallback localizado quando vazio.
 
 ### 7.20 — Newsletter
 
