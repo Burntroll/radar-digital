@@ -3,12 +3,12 @@
 > **Stack:** Astro 4 + Tailwind + TypeScript
 > **Hospedagem:** Vercel (https://radar-digital-lemon.vercel.app)
 > **Domínio:** radardigital.ai (não conectado — preview Vercel apenas)
-> **Última atualização:** 23/07/2026 — Task 7.20 Newsletter V4 publicada e validada remotamente
+> **Última atualização:** 23/07/2026 — Bloco 7 concluído (Tasks 7.0–7.27). V4 estável. Recomendação: retomar Bloco 6.
 > **Baseline remoto auditado para a Task 7.0:** `aad1c0c5b51e185ba3a93e292215bf044afac9eb` — `chore: preserve visual exploration artifacts`; `master` e `origin/master` sincronizados, ahead/behind `0/0`
+> **Checkpoint final do Bloco 7:** `42c277d` — `docs: close Bloco 7 checkpoint — V4 stable, recommend Bloco 6`
 > **Checkpoint documental do Bloco 3:** `a52757c` — `docs: close editorial architecture block`
-> **GitHub Actions run 29454165474:** sucesso ✅
-> **Vercel Production (5a41d88):** validada ✅
-> **GitHub Actions:** 41+ runs, success ✅
+> **GitHub Actions:** success ✅ (todos os commits do Bloco 7)
+> **Vercel:** conteúdo atualizado confirmado (R1 — 6 fetches com cache busting)
 > **Idiomas:** PT (raiz, default) + ES (`/es/`) ✅
 > **Build:** 41 páginas | **Sitemap:** 28 URLs
 > **Quality gate:** `npm run build` valida dados da collection; `npm run check` valida TypeScript/Astro (não frontmatter)
