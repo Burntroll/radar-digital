@@ -8,6 +8,7 @@ readTime: "7 min"
 draft: false
 color: "cyan"
 emoji: "📧"
+image: "/images/artigos/email-marketing.jpg"
 locale: "pt-BR"
 slugEs: "marketing-digital/04-email-marketing-vale-la-pena"
 authorId: radar-digital

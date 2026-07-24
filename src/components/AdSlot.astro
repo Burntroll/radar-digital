@@ -43,7 +43,7 @@ const labelMap: Record<string, string> = {
 ---
 
 <div
-  class={`ad-slot ${widthClass[variant]} ${heightClass[variant]}`}
+  class={`ad-slot ad-slot--${variant} ${widthClass[variant]} ${heightClass[variant]}`}
   role="region"
   aria-label={labelMap[variant]}
 >
@@ -69,6 +69,11 @@ const labelMap: Record<string, string> = {
     border: 1px dashed var(--color-border);
     background: var(--color-surface);
     transition: border-color 0.2s ease;
+  }
+
+  /* Leaderboard no topo da página: respiro em relação à navbar */
+  .ad-slot--horizontal {
+    margin-top: var(--space-6);
   }
 
   .ad-slot:hover {

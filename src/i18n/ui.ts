@@ -98,8 +98,8 @@ export const ui = {
 
   // V4 — Home / Radar agora
   'home.radar.status': {
-    'pt-BR': 'Recência editorial',
-    'es': 'Recencia editorial',
+    'pt-BR': 'Em movimento',
+    'es': 'En movimiento',
   },
   'home.radar.updated': {
     'pt-BR': 'Atualizado em',
@@ -265,6 +265,11 @@ export const ui = {
   'home.article.read':          { 'pt-BR': 'Ler',                'es': 'Leer' },
   'home.article.guide.badge':   { 'pt-BR': 'Guia',               'es': 'Guía' },
   'home.article.guide.read':    { 'pt-BR': 'Ler guia',           'es': 'Leer guía' },
+
+  // Página de artigo — hero
+  'article.byline':             { 'pt-BR': 'Por',                'es': 'Por' },
+  'article.byline.fallback':    { 'pt-BR': 'Redação Radar Digital', 'es': 'Redacción Radar Digital' },
+  'article.readtime':           { 'pt-BR': 'de leitura',         'es': 'de lectura' },
 
   // Home — guides section
   'home.guides.eyebrow':        { 'pt-BR': 'Guias práticos', 'es': 'Guías prácticas' },

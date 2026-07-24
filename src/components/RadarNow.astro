@@ -19,11 +19,11 @@ const dateLocale = getDateLocale(locale);
   data-count={visibleItems.length}
 >
   <header class="radar-now-panel__header">
-    <div class="radar-now-panel__title-group">
-      <span class="radar-now-panel__dot" aria-hidden="true"></span>
-      <h2 id="radar-now-title">{t('signal.label', locale)}</h2>
-    </div>
-    <span class="radar-now-panel__status">{t('home.radar.status', locale)}</span>
+    <h2 id="radar-now-title">{t('signal.label', locale)}</h2>
+    <span class="radar-now-panel__status">
+      <span class="radar-now-panel__status-dot" aria-hidden="true"></span>
+      {t('home.radar.status', locale)}
+    </span>
   </header>
 
   {visibleItems.length > 0 ? (

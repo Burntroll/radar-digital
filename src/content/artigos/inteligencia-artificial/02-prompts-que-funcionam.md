@@ -9,6 +9,7 @@ readTime: "9 min"
 draft: false
 color: "purple"
 emoji: "💬"
+image: "/images/artigos/prompting-ia.jpg"
 locale: "pt-BR"
 slugEs: "inteligencia-artificial/02-crear-prompts-que-funcionan"
 translationKey: effective-prompts

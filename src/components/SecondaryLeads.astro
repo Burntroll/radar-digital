@@ -35,9 +35,12 @@ const dateLocale = getDateLocale(locale);
           class={`secondary-lead secondary-lead--${variant} secondary-lead--${color}`}
           data-secondary-lead
           data-variant={variant}
-          data-media-status="placeholder"
+          data-media-status={article.data.image ? 'image' : 'placeholder'}
         >
           <a class="secondary-lead__link" href={href} aria-labelledby={titleId}>
+            {article.data.image && (
+              <img class="secondary-lead__media" src={article.data.image} alt="" loading="lazy" decoding="async" />
+            )}
             <div class="secondary-lead__content">
               <span class="secondary-lead__kicker">{article.data.subtema}</span>
               <h2 id={titleId}>{article.data.title}</h2>

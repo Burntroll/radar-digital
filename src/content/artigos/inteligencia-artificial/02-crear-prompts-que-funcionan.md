@@ -8,6 +8,7 @@ readTime: "9 min"
 draft: false
 color: "purple"
 emoji: "💬"
+image: "/images/artigos/prompting-ia.jpg"
 locale: "es"
 translationKey: effective-prompts
 authorId: radar-digital

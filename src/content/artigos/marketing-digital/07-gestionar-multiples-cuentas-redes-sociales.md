@@ -9,6 +9,7 @@ readTime: "12 min"
 draft: false
 color: "cyan"
 emoji: "🔐"
+image: "/images/artigos/social-multi-contas.jpg"
 locale: "es"
 translationKey: social-media-multi-account-management
 authorId: radar-digital

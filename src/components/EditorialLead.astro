@@ -20,8 +20,11 @@ const color = article?.data.color || 'cyan';
 ---
 
 {article && href ? (
-  <article class={`editorial-lead editorial-lead--${color}`} data-editorial-lead data-media-status="placeholder">
+  <article class={`editorial-lead editorial-lead--${color}`} data-editorial-lead data-media-status={article.data.image ? 'image' : 'placeholder'}>
     <a class="editorial-lead__link" href={href} aria-labelledby="editorial-lead-title">
+      {article.data.image && (
+        <img class="editorial-lead__media" src={article.data.image} alt="" loading="eager" decoding="async" />
+      )}
       <div class="editorial-lead__content">
         <span class="editorial-lead__kicker">{article.data.subtema}</span>
         <h1 id="editorial-lead-title">{article.data.title}</h1>

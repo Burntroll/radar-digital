@@ -8,6 +8,7 @@ readTime: "7 min"
 draft: false
 color: "cyan"
 emoji: "📧"
+image: "/images/artigos/email-marketing.jpg"
 locale: "es"
 authorId: radar-digital
 sources:

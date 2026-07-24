@@ -8,6 +8,7 @@ readTime: "12 min"
 draft: false
 color: "cyan"
 emoji: "🔐"
+image: "/images/artigos/social-multi-contas.jpg"
 locale: "pt-BR"
 slugEs: "marketing-digital/07-gestionar-multiples-cuentas-redes-sociales"
 translationKey: social-media-multi-account-management

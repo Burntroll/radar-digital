@@ -27,6 +27,14 @@ const colorMap: Record<string, { accent: string; text: string; bg: string; borde
 
 const c = colorMap[artigo.data.color] || colorMap.cyan;
 
+// Cor de acento do hero (glow) derivada da cor editorial do artigo
+const accentRgbMap: Record<string, string> = {
+  cyan:   'var(--color-brand-cyan-rgb)',
+  purple: 'var(--color-editorial-accent-rgb)',
+  amber:  'var(--color-commercial-rgb)',
+};
+const accentRgb = accentRgbMap[artigo.data.color] || accentRgbMap.cyan;
+
 // Categoria name mapping for breadcrumb
 const catNameKey: Record<string, string> = {
   'marketing-digital': 'cat.marketing.name',
@@ -46,8 +54,8 @@ let updatedStr: string | null = null;
 if (artigo.data.updatedAt && artigo.data.updatedAt > artigo.data.date) {
   const upd = artigo.data.updatedAt;
   const d = upd.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
-  const t = upd.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
-  updatedStr = `${locale === 'pt-BR' ? 'Atualizado em' : 'Actualizado el'} ${d} ${locale === 'pt-BR' ? 'às' : 'a las'} ${t}`;
+  const tm = upd.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' });
+  updatedStr = `${locale === 'pt-BR' ? 'Atualizado em' : 'Actualizado el'} ${d} ${locale === 'pt-BR' ? 'às' : 'a las'} ${tm}`;
 }
 
 // Hreflang alternates via translationKey
@@ -63,6 +71,7 @@ const alternateUrls = translationGroup.map((entry) => ({
 const authorData = artigo.data.authorId
   ? getEditorialAuthor(artigo.data.authorId as any)
   : undefined;
+const byline = authorData?.name || t('article.byline.fallback', locale);
 ---
 
 <Layout 
@@ -87,69 +96,22 @@ const authorData = artigo.data.authorId
   }}
 >
   <!-- ════════════════════════════════════════════════ -->
-  <!-- HERO DO ARTIGO -->
+  <!-- HERO DO ARTIGO (V4 — banner escuro editorial)     -->
   <!-- ════════════════════════════════════════════════ -->
   <article class="bg-surface transition-colors duration-300">
-    <header class="relative pt-32 pb-12 overflow-hidden">
-      <!-- Glow da categoria -->
-      <div class={`absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl pointer-events-none`}
-           style={`background: radial-gradient(circle, var(--color-accent-glow, rgba(0, 229, 255, 0.25)) 0%, transparent 60%);`}></div>
+    <header class="article-hero" style={`--article-accent-rgb: ${accentRgb}`}>
+      <div class="article-hero__inner">
+        <span class="article-hero__kicker">{artigo.data.subtema}</span>
 
-      <div class="max-w-3xl mx-auto px-6 relative z-10">
-        <nav class="flex items-center gap-2 text-xs text-text-muted mb-8 transition-colors">
-            <a href={`${prefix}/`} class="hover:text-text-primary transition-colors">{t('cat.breadcrumb.home', locale)}</a>
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-            </svg>
-            <a href={routePath(artigo.data.categoria as RouteKey, locale)} class={`hover:${c.text} transition-colors capitalize`}>
-              {artigo.data.categoria.replace('-', ' ')}
-            </a>
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-            </svg>
-            <span class={`${c.text} truncate`}>{artigo.data.subtema}</span>
-          </nav>
+        <h1 id="hero-title" class="article-hero__title">{artigo.data.title}</h1>
 
-        <!-- Subtema pill -->
-        <div class="flex items-center gap-2 mb-5">
-          <span class={`inline-block px-2.5 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider ${c.bg} ${c.text} border ${c.border}`}>
-            {artigo.data.subtema}
-          </span>
-          {artigo.data.emoji && <span class="text-lg">{artigo.data.emoji}</span>}
-        </div>
+        <p class="story-deck article-hero__deck">{artigo.data.excerpt}</p>
 
-        <!-- Título -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 text-text-primary transition-colors">
-          {artigo.data.title}
-        </h1>
-
-        <!-- Excerpt -->
-        <p class="text-lg text-text-secondary leading-relaxed mb-8 transition-colors">
-          {artigo.data.excerpt}
-        </p>
-
-        <!-- Meta -->
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-text-muted pt-6 border-t transition-colors" style="border-color: var(--color-border);">
-          <time datetime={artigo.data.date.toISOString()} class="flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-            </svg>
-            {dateStr}
-          </time>
-          {updatedStr && (
-            <span class="flex items-center gap-1.5 text-amber-500">
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/>
-              </svg>
-              <span>{updatedStr}</span>
-            </span>
-          )}
-          <span class="flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            {artigo.data.readTime} {locale === 'pt-BR' ? 'de leitura' : 'de lectura'}
-          </span>
+        <div class="article-hero__meta">
+          <span class="article-hero__byline">{t('article.byline', locale)} {byline}</span>
+          <span>{artigo.data.readTime} {t('article.readtime', locale)}</span>
+          <time datetime={artigo.data.date.toISOString()}>{dateStr}</time>
+          {updatedStr && <span class="article-hero__updated">{updatedStr}</span>}
         </div>
       </div>
     </header>
